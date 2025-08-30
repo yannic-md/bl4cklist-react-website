@@ -1,0 +1,182 @@
+import Image from 'next/image';
+import {JSX} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+import {faDiscord} from "@fortawesome/free-brands-svg-icons";
+
+import buttons from '../../styles/util/buttons.module.css'
+import colors from '../../styles/util/colors.module.css'
+import index from '../../styles/components/index.module.css'
+
+/**
+ * Hero Section - Welcome Experience
+ *
+ * Features a fullscreen video background with interactive overlays designed to:
+ * - Welcome users with an immersive visual experience
+ * - Present key information through strategically placed text overlays
+ * - Create curiosity and encourage further exploration of the site
+ * - Establish brand identity and visual tone
+ *
+ * Components included:
+ * - Fullscreen background video
+ * - Welcome text overlays
+ * - Call-to-action elements
+ * - Scroll down indicator
+ *
+ * @returns {JSX.Element} The welcome hero section.
+ */
+export default function WelcomeHero(): JSX.Element {
+    return (
+        <section className="relative w-screen h-screen overflow-hidden">
+            {/* Background Video */}
+            <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
+                <video className="w-full h-full object-cover relative" autoPlay muted loop
+                       playsInline poster="/images/bg/bg-intro.avif">
+                    <source src="/videos/hero/bg-intro-2560w.webm" type="video/webm; codecs=vp9" media="(min-width: 2560px)" />
+                    <source src="/videos/hero/bg-intro-1920w.webm" type="video/webm; codecs=vp9" media="(min-width: 1920px)" />
+                    <source src="/videos/hero/bg-intro-1440w.webm" type="video/webm; codecs=vp9" media="(min-width: 1440px)" />
+                    <source src="/videos/hero/bg-intro-1080w.webm" type="video/webm; codecs=vp9" media="(min-width: 1024px)" />
+                    <source src="/videos/hero/bg-intro-768w.webm" type="video/webm" media="(min-width: 768px)" />
+                    <source src="/images/bg/bg-intro.avif" media="(max-width: 480px)" />
+
+                    {/* Fallback for Safari or other old browsers */}
+                    <source src="/videos/hero/bg-intro-1920w.mp4" type="video/mp4" media="(min-width: 1920px)" />
+                    <source src="/videos/hero/bg-intro-1080w.mp4" type="video/mp4" media="(min-width: 1024px)" />
+                </video>
+            </div>
+
+            {/* Some Overlays to improve quality & add unique effect */}
+            <div className={`absolute z-[3] inset-0 overflow-hidden pointer-events-none blur-[2px] 
+                             ${index.hero_colored_overlay}`}></div>
+            <div className={`absolute z-[3] inset-0 overflow-hidden pointer-events-none 
+                             ${index.hero_corner_shadow}`}></div>
+            <div className={`absolute z-[3] h-[30vh] w-[80vw] max-w-[1241px] rounded-[10px] top-0 left-1/2 
+                             -translate-x-1/2 -translate-y-1/2 ${index.hero_top_glow}`}></div>
+            <div className={`absolute rounded-none overflow-hidden bg-repeat h-full w-full ${index.hero_grid_bg}`}></div>
+
+            {/* Main Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center h-full gap-3">
+                {/* Animated Tag */}
+                <div className="relative z-10">
+                    <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border border-gray-900">
+                        <img src="/images/icons/small/discord-heart-24w.png" className="w-[18px] h-[18px] mr-1 mt-0.5"
+                             alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                        <div className="relative">
+                            <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal whitespace-nowrap
+                                          font-ibm-plex-sans">
+                                - HERZLICH WILLKOMMEN BEI..
+                            </p>
+                        </div>
+
+                        {/* Borders & Accents */}
+                        <div className="absolute -left-0.5 top-0 w-0.5 h-full bg-orange-50"></div>
+                        <div className="absolute -right-0.5 top-0 w-0.5 h-full bg-orange-50"></div>
+
+                        <div className={`absolute left-0 top-0 w-6 h-full ${index.hero_tag_left_accent}`}></div>
+                        <div className={`absolute right-0 top-0 w-6 h-full ${index.hero_tag_right_accent}`}></div>
+                    </div>
+                </div>
+
+                {/* Main Area */}
+                <div className="flex flex-col text-center max-w-4xl gap-3 z-10 justify-center items-center">
+                    {/* Logo Container */}
+                    <div className="flex flex-row justify-center items-center">
+                        {/* Logo Showcase Box */}
+                        <div className="relative w-[148px] z-[2]">
+                            <div className={`${index.square_border} !h-[166px]`}>
+                                {/* Corners of the Showcase Box */}
+                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -left-[5px] -top-[5px]">
+                                    <div className={`${index.showcase_top_edge}`}></div>
+                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                </div>
+                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -left-[5px] -bottom-[5px] -rotate-90">
+                                    <div className={`${index.showcase_top_edge}`}></div>
+                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                </div>
+                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -right-[5px] -bottom-[5px] -rotate-180">
+                                    <div className={`${index.showcase_top_edge}`}></div>
+                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                </div>
+
+                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -right-[5px] -top-[5px] rotate-90">
+                                    <div className={`${index.showcase_top_edge}`}></div>
+                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                </div>
+                            </div>
+
+                            <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority={true}
+                                   alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized={true}
+                                   className="absolute top-1/2 left-1/2 -translate-1/2" />
+                        </div>
+
+                        <h1 className={`font-normal font-jetbrains-mono text-[166px] leading-none tracking-tighter 
+                                        bg-clip-text text-transparent ${colors.text_gradient_gray} p-4`}>
+                            BL4CKLIST
+                        </h1>
+                    </div>
+
+                    {/* Description */}
+                    <p className="mx-auto max-w-2xl text-base font-normal tracking-tight text-[#a3a3a3] font-ibm-plex-sans">
+                        Unser deutscher Discord-Server für Technik und Gaming ist die perfekte Community für alle,
+                        die sich für Programmierung, Coding-Hilfe und aktuelle Gaming-Trends interessieren. 🚀
+                    </p>
+
+                    {/* Call-to-Action Button */}
+                    <div className="flex flex-row gap-x-6 justify-center items-end mt-4">
+
+                        {/* Join discord */}
+                        <div className="flex flex-col items-end">
+                            <a href={"https://discord.gg/bl4cklist"} target="_blank" className="flex flex-col
+                                                                                                items-end group">
+                                <button className={`relative min-w-52 ${buttons.white_gray}`}>
+                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100"></FontAwesomeIcon>
+                                    <p className="whitespace-pre">Discord-Server</p>
+                                </button>
+
+                                <div className="flex items-center justify-center w-full gap-1.5 text-green-400
+                                                text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
+                                                border border-gray-800">
+                                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                                    <span>890 Online</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        {/* Learn More */}
+                        <div className="flex flex-col items-start">
+                            <a href="discord/community" className="flex flex-col items-end group">
+                                <button className={`relative min-w-52 ${buttons.black_purple}`}>
+                                    <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100"></FontAwesomeIcon>
+                                    <p className="whitespace-pre">Mehr Erfahren</p>
+                                </button>
+
+                                <div className="flex items-center justify-center w-full gap-1.5 text-white/80 text-xs
+                                                font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b border
+                                                border-gray-800">
+                                    <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                                    <span>3.533 Mitglieder</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={`absolute inset-0 w-full h-full z-[2] ${index.hero_text_bg}`}></div>
+            </div>
+
+            {/* Scroll Indicator with Background gradient */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 drop-shadow-2xl z-20">
+                <div className="animate-bounce drop-shadow-[0_0_4px_rgba(0,0,0,1)]">
+                    <FontAwesomeIcon icon={faAnglesDown} size={"lg"} className="text-white/70" />
+                </div>
+            </div>
+
+            <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10 ">
+                <Image src="/images/bg/color-gradient-1726w.avif" width={960} height={194} priority={true}
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 960px"
+                       alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                       className="object-contain max-w-[960px]" />
+            </div>
+        </section>
+    )
+}
