@@ -1,0 +1,49 @@
+@reference "tailwindcss";
+
+.hero_text_bg {
+    background: radial-gradient(50% 84% at 50% 50%, rgb(1, 1, 13) 0%,rgba(0,0,0,0) 100%)
+}
+
+.hero_grid_bg {
+    background-image: radial-gradient(rgba(240, 240, 255, .5) 0.09999999999999998px, transparent 0.9px);
+    background-size: 6px 6px;
+    background-position: 50% 50%;
+}
+
+.hero_top_glow {
+    /*background: radial-gradient(50% 50% at 50% 50%, rgb(255, 165, 0) 0%, rgba(1, 1, 13, 0) 100%);*/
+    background: radial-gradient(50% 50% at 50% 50%, rgb(240, 240, 255) 0%, rgba(1, 1, 13, 0) 100%);
+    opacity: 0.2;
+}
+
+.hero_corner_shadow {
+    /*background: radial-gradient(75% 64% at 50% 50%, rgba(255, 165, 0, 0.1) 17.57%, #04070d);*/
+    background: radial-gradient(75% 64% at 50% 50%, #fff0 17.56756756756757%, #04070d);
+}
+
+.hero_colored_overlay {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgb(1, 1, 13) 100%);
+    opacity: .3;
+}
+
+.hero_tag_left_accent {
+    background: radial-gradient(ellipse 100% 100% at 0% 50%, rgba(240,240,255,0.3) 0%, rgba(240,240,255,0.1) 50%,
+                                transparent 100%);
+}
+
+.hero_tag_right_accent {
+    background: radial-gradient(ellipse 100% 100% at 100% 50%, rgba(240,240,255,0.3) 0%, rgba(240,240,255,0.1) 50%,
+                                transparent 100%)
+}
+
+.square_border:after {
+    @apply content-[''] absolute inset-0 border border-[rgb(24,24,37)] rounded-[inherit] pointer-events-none;
+}
+
+.showcase_top_edge {
+    @apply absolute left-0 top-0 h-px w-1.5 bg-gray-50;
+}
+
+.showcase_bottom_edge {
+    @apply absolute left-0 top-0 w-px h-1.5 bg-gray-50;
+}

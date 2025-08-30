@@ -1,3 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@theme {
+    --font-inter: var(--font-inter), sans-serif;
+    --font-dm-sans: var(--font-dm-sans), sans-serif;
+    --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
+    --font-jetbrains-mono: var(--font-jetbrains-mono), monospace;
+}
+
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-dm-sans;
+    }
+
+    p, span {
+        @apply font-inter;
+    }
+}
+
+* {
+    @apply box-border;
+}
+
+html {
+    @apply font-sans m-0 p-0;
+}
+
+body {
+    @apply font-inter;
+    @apply bg-[#090014] text-white;
+    @apply text-base;
+}
