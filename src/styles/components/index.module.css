@@ -1,5 +1,33 @@
 @reference "tailwindcss";
 
+@keyframes corner-anim-tl {
+  0%, 5%   { transform: translate3d(0,0,0); }          /* Start */
+  10%      { transform: translate3d(-6px,-6px,0); }    /* jump */
+  15%      { transform: translate3d(0,0,0); }          /* back */
+  100%     { transform: translate3d(0,0,0); }          /* Pause */
+}
+
+@keyframes corner-anim-bl {
+  0%, 5%   { transform: translate3d(0,0,0); }
+  10%      { transform: translate3d(-6px,6px,0); }
+  15%      { transform: translate3d(0,0,0); }
+  100%     { transform: translate3d(0,0,0); }
+}
+
+@keyframes corner-anim-br {
+  0%, 5%   { transform: translate3d(0,0,0); }
+  10%      { transform: translate3d(6px,6px,0); }
+  15%      { transform: translate3d(0,0,0); }
+  100%     { transform: translate3d(0,0,0); }
+}
+
+@keyframes corner-anim-tr {
+  0%, 5%   { transform: translate3d(0,0,0); }
+  10%      { transform: translate3d(6px,-6px,0); }
+  15%      { transform: translate3d(0,0,0); }
+  100%     { transform: translate3d(0,0,0); }
+}
+
 .hero_text_bg {
     background: radial-gradient(50% 84% at 50% 50%, rgb(1, 1, 13) 0%,rgba(0,0,0,0) 100%)
 }
@@ -47,3 +75,9 @@
 .showcase_bottom_edge {
     @apply absolute left-0 top-0 w-px h-1.5 bg-gray-50;
 }
+
+/* Animation 6s: Jump ~0,6s, Pause ~5,4s */
+.corner_anim_tl { animation: corner-anim-tl 6s ease-out infinite; }
+.corner_anim_bl { animation: corner-anim-bl 6s ease-out infinite; }
+.corner_anim_br { animation: corner-anim-br 6s ease-out infinite; }
+.corner_anim_tr { animation: corner-anim-tr 6s ease-out infinite; }

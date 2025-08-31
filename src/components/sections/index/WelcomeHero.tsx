@@ -58,7 +58,7 @@ export default function WelcomeHero(): JSX.Element {
             {/* Main Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full gap-3">
                 {/* Animated Tag */}
-                <div className="relative z-10">
+                <div className="relative z-10 animate__animated animate__fadeInDown">
                     <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border border-gray-900">
                         <img src="/images/icons/small/discord-heart-24w.png" className="w-[18px] h-[18px] mr-1 mt-0.5"
                              alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
@@ -81,27 +81,37 @@ export default function WelcomeHero(): JSX.Element {
                 {/* Main Area */}
                 <div className="flex flex-col text-center max-w-4xl gap-3 z-10 justify-center items-center">
                     {/* Logo Container */}
-                    <div className="flex flex-row justify-center items-center">
+                    <div className="flex flex-row justify-center items-center animate__animated animate__fadeInLeft">
                         {/* Logo Showcase Box */}
                         <div className="relative w-[148px] z-[2]">
                             <div className={`${index.square_border} !h-[166px]`}>
                                 {/* Corners of the Showcase Box */}
-                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -left-[5px] -top-[5px]">
-                                    <div className={`${index.showcase_top_edge}`}></div>
-                                    <div className={`${index.showcase_bottom_edge}`}></div>
-                                </div>
-                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -left-[5px] -bottom-[5px] -rotate-90">
-                                    <div className={`${index.showcase_top_edge}`}></div>
-                                    <div className={`${index.showcase_bottom_edge}`}></div>
-                                </div>
-                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -right-[5px] -bottom-[5px] -rotate-180">
-                                    <div className={`${index.showcase_top_edge}`}></div>
-                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                <div className={`absolute z-[1] -left-[5px] -top-[5px] ${index.corner_anim_tl}`}>
+                                    <div className="h-2.5 w-2.5 opacity-[0.8]">
+                                        <div className={`${index.showcase_top_edge}`}></div>
+                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                    </div>
                                 </div>
 
-                                <div className="absolute z-[1] opacity-[0.8] h-2.5 w-2.5 -right-[5px] -top-[5px] rotate-90">
-                                    <div className={`${index.showcase_top_edge}`}></div>
-                                    <div className={`${index.showcase_bottom_edge}`}></div>
+                                <div className={`absolute z-[1] -left-[5px] -bottom-[5px] ${index.corner_anim_bl}`}>
+                                    <div className="h-2.5 w-2.5 opacity-[0.8] -rotate-90">
+                                        <div className={`${index.showcase_top_edge}`}></div>
+                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                    </div>
+                                </div>
+
+                                <div className={`absolute z-[1] -right-[5px] -bottom-[5px] ${index.corner_anim_br}`}>
+                                    <div className="h-2.5 w-2.5 opacity-[0.8] -rotate-180">
+                                        <div className={`${index.showcase_top_edge}`}></div>
+                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                    </div>
+                                </div>
+
+                                <div className={`absolute z-[1] -right-[5px] -top-[5px] ${index.corner_anim_tr}`}>
+                                    <div className="h-2.5 w-2.5 opacity-[0.8] rotate-90">
+                                        <div className={`${index.showcase_top_edge}`}></div>
+                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -117,13 +127,14 @@ export default function WelcomeHero(): JSX.Element {
                     </div>
 
                     {/* Description */}
-                    <p className="mx-auto max-w-2xl text-base font-normal tracking-tight text-[#a3a3a3] font-ibm-plex-sans">
+                    <p className="mx-auto max-w-2xl text-base font-normal tracking-tight text-[#a3a3a3] font-ibm-plex-sans
+                                  animate__animated animate__fadeInRight">
                         Unser deutscher Discord-Server für Technik und Gaming ist die perfekte Community für alle,
                         die sich für Programmierung, Coding-Hilfe und aktuelle Gaming-Trends interessieren. 🚀
                     </p>
 
                     {/* Call-to-Action Button */}
-                    <div className="flex flex-row gap-x-6 justify-center items-end mt-4">
+                    <div className="flex flex-row gap-x-6 justify-center items-end mt-4 animate__animated animate__fadeInUp">
 
                         {/* Join discord */}
                         <div className="flex flex-col items-end relative group">
@@ -169,13 +180,15 @@ export default function WelcomeHero(): JSX.Element {
             </div>
 
             {/* Scroll Indicator with Background gradient */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 drop-shadow-2xl z-20">
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 drop-shadow-2xl z-20 
+                            animate__animated animate__fadeInUp">
                 <div className="animate-bounce drop-shadow-[0_0_4px_rgba(0,0,0,1)]">
                     <FontAwesomeIcon icon={faAnglesDown} size={"lg"} className="text-white/70" />
                 </div>
             </div>
 
-            <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10 ">
+            <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10 
+                            animate__animated animate__fadeInUp">
                 <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
