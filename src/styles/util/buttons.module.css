@@ -2,13 +2,13 @@
 
 .white_gray {
     @apply border border-solid border-white/30 text-white py-2.5 px-5 flex flex-row flex-nowrap items-center
-           justify-center gap-2;
+           justify-center gap-2 cursor-pointer;
     background: radial-gradient(100% 150% at 50% 50%, rgb(40, 40, 60) 0%, rgb(24, 24, 37) 100%);
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.2) inset, 0 0 6px rgba(255, 255, 255, 0.1);
 }
 
 .black_purple {
-    @apply text-white py-[11px] px-5 flex flex-row flex-nowrap items-center justify-center gap-2;
+    @apply text-white py-[11px] px-5 flex flex-row flex-nowrap items-center justify-center gap-2 cursor-pointer;
     background: radial-gradient(100% 150% at 50% 50%, rgb(1, 1, 13) 0%, rgb(24, 24, 37) 100%);
     box-shadow: rgba(105, 105, 150, 0.4) 0 0 12px 0 inset;
 }

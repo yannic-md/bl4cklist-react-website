@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 
-import buttons from '../../styles/util/buttons.module.css'
-import colors from '../../styles/util/colors.module.css'
-import index from '../../styles/components/index.module.css'
+import buttons from '../../../styles/util/buttons.module.css'
+import colors from '../../../styles/util/colors.module.css'
+import index from '../../../styles/components/index.module.css'
+import ButtonHover from '@/components/elements/ButtonHover';
 
 /**
  * Hero Section - Welcome Experience
@@ -125,9 +126,8 @@ export default function WelcomeHero(): JSX.Element {
                     <div className="flex flex-row gap-x-6 justify-center items-end mt-4">
 
                         {/* Join discord */}
-                        <div className="flex flex-col items-end">
-                            <a href={"https://discord.gg/bl4cklist"} target="_blank" className="flex flex-col
-                                                                                                items-end group">
+                        <div className="flex flex-col items-end relative group">
+                            <a href={"https://discord.gg/bl4cklist"} target="_blank" className="flex flex-col items-end">
                                 <button className={`relative min-w-52 ${buttons.white_gray}`}>
                                     <FontAwesomeIcon icon={faDiscord} className="text-gray-100"></FontAwesomeIcon>
                                     <p className="whitespace-pre">Discord-Server</p>
@@ -140,11 +140,13 @@ export default function WelcomeHero(): JSX.Element {
                                     <span>890 Online</span>
                                 </div>
                             </a>
+
+                            <ButtonHover />
                         </div>
 
                         {/* Learn More */}
-                        <div className="flex flex-col items-start">
-                            <a href="discord/community" className="flex flex-col items-end group">
+                        <div className="flex flex-col items-start relative group">
+                            <a href="discord/community" className="flex flex-col items-end">
                                 <button className={`relative min-w-52 ${buttons.black_purple}`}>
                                     <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100"></FontAwesomeIcon>
                                     <p className="whitespace-pre">Mehr Erfahren</p>
@@ -157,6 +159,8 @@ export default function WelcomeHero(): JSX.Element {
                                     <span>3.533 Mitglieder</span>
                                 </div>
                             </a>
+
+                            <ButtonHover />
                         </div>
                     </div>
                 </div>
@@ -172,10 +176,11 @@ export default function WelcomeHero(): JSX.Element {
             </div>
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10 ">
-                <Image src="/images/bg/color-gradient-1726w.avif" width={960} height={194} priority={true}
-                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 960px"
-                       alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                       className="object-contain max-w-[960px]" />
+                <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                    alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                    className="object-contain max-w-[800px]"
+                />
             </div>
         </section>
     )

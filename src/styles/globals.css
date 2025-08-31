@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
 
 @theme {
     --font-inter: var(--font-inter), sans-serif;

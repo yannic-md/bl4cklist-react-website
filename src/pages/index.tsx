@@ -1,5 +1,5 @@
+import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
-import WelcomeHero from "@/components/welcome-hero/WelcomeHero";
 
 /**
  * Renders the home page of the project.
