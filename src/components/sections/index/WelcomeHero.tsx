@@ -7,6 +7,7 @@ import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import buttons from '../../../styles/util/buttons.module.css'
 import colors from '../../../styles/util/colors.module.css'
 import index from '../../../styles/components/index.module.css'
+import responsive from '../../../styles/util/responsive.module.css'
 import ButtonHover from '@/components/elements/ButtonHover';
 
 /**
@@ -56,50 +57,42 @@ export default function WelcomeHero(): JSX.Element {
             <div className={`absolute rounded-none overflow-hidden bg-repeat h-full w-full ${index.hero_grid_bg}`}></div>
 
             {/* Our Partners */}
-            <div className="fixed bottom-12 left-0 right-0 z-[15] hidden sm:block px-12 animate__animated animate__fadeInUp">
-                <div className="flex items-center">
-                    <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" 
-                       className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
-                        <Image src="/images/brand/dsh-partner.webp" className="object-contain"
-                               style={{ width: 'auto', height: 'auto' }} width={537} height={132} priority={true}
-                               sizes="(max-width: 640px) 0vw, (max-width: 768px) 50vw, (max-width: 1024px) 40vw, 537px"
-                               alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                    </a>
+            <div className="fixed bottom-12 left-0 right-0 z-[15] hidden xl:flex px-4 2xl:px-12 animate__animated
+                            animate__fadeInUp justify-between items-center">
+                <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank"
+                   className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
+                    <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
+                        className="object-contain w-auto max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] h-auto"
+                        alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                </a>
 
-                    {/* Spacer to center the right logo next to color gradient */}
-                    <div className="flex-1"></div>
-
-                    {/* Center reference point (same as color gradient) */}
-                    <div className="flex justify-center w-[800px] max-w-[800px]">
-                        <div className="w-[800px]"></div>
+                <a href="https://clank.dev" target="_blank" className="flex items-center gap-2 relative z-[20]
+                                                                       opacity-20 hover:opacity-50 transition-opacity
+                                                                       duration-300 cursor-pointer mr-16 2xl:mr-20">
+                    <div className="w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
+                        <Image src="/images/brand/clank-logo-65w.png" className="object-contain"
+                               width={65} height={65} priority
+                               alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
+                    <h2 className="font-jetbrains-mono tracking-tight text-3xl md:text-6xl font-bold opacity-60
+                                   text-white">CLANK</h2>
+                </a>
 
-                    <a href="https://clank.dev" target="_blank" 
-                       className="flex items-center gap-2 ml-4 relative z-[20] opacity-20 
-                                  hover:opacity-50 transition-opacity duration-300 cursor-pointer">
-                        <div className="w-20 h-20 flex items-center justify-center">
-                            <Image src="/images/brand/clank-logo-65w.png" className="object-contain"
-                                   width={65} height={65} priority={true}
-                                   alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                        </div>
-                        <h2 className="font-jetbrains-mono tracking-tight text-6xl font-bold opacity-60 
-                                       text-white">CLANK</h2>
-                    </a>
-
-                    <div className="flex-1"></div>
-                </div>
             </div>
+
 
             {/* Main Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full gap-3">
                 {/* Animated Tag */}
-                <div className="relative z-10 animate__animated animate__fadeInDown">
-                    <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border border-gray-900">
+                <div className={`relative z-10 animate__animated animate__fadeInDown mb-4 md:mb-0 hidden 
+                                 ${responsive.hero_responsive_tag}`}>
+                    <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border
+                                  border-gray-900">
                         <img src="/images/icons/small/discord-heart-24w.png" className="w-[18px] h-[18px] mr-1 mt-0.5"
                              alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                         <div className="relative">
-                            <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal whitespace-nowrap
-                                          font-ibm-plex-sans">
+                            <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal
+                                          whitespace-nowrap font-ibm-plex-sans">
                                 - HERZLICH WILLKOMMEN BEI..
                             </p>
                         </div>
@@ -114,102 +107,105 @@ export default function WelcomeHero(): JSX.Element {
                 </div>
 
                 {/* Main Area */}
-                <div className="flex flex-col text-center max-w-4xl gap-3 z-10 justify-center items-center">
+                <div className="flex flex-col text-center max-w-4xl gap-6 z-10 justify-center items-center px-4">
                     {/* Logo Container */}
-                    <div className="flex flex-row justify-center items-center animate__animated animate__fadeInLeft">
+                    <div className="flex flex-row justify-center items-center gap-4 animate__animated animate__fadeInLeft">
                         {/* Logo Showcase Box */}
-                        <div className="relative w-[148px] z-[2]">
-                            <div className={`${index.square_border} !h-[166px]`}>
-                                {/* Corners of the Showcase Box */}
+                        <div className="relative w-16 sm:w-24 lg:w-32 xl:w-40 z-[2]">
+                            <div className={`${index.square_border} !h-auto aspect-square`}>
+                                {/* Corners */}
                                 <div className={`absolute z-[1] -left-[5px] -top-[5px] ${index.corner_anim_tl}`}>
                                     <div className="h-2.5 w-2.5 opacity-[0.8]">
-                                        <div className={`${index.showcase_top_edge}`}></div>
-                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                        <div className={`${index.showcase_top_edge}`} />
+                                        <div className={`${index.showcase_bottom_edge}`} />
                                     </div>
                                 </div>
 
                                 <div className={`absolute z-[1] -left-[5px] -bottom-[5px] ${index.corner_anim_bl}`}>
                                     <div className="h-2.5 w-2.5 opacity-[0.8] -rotate-90">
-                                        <div className={`${index.showcase_top_edge}`}></div>
-                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                        <div className={`${index.showcase_top_edge}`} />
+                                        <div className={`${index.showcase_bottom_edge}`} />
                                     </div>
                                 </div>
 
                                 <div className={`absolute z-[1] -right-[5px] -bottom-[5px] ${index.corner_anim_br}`}>
                                     <div className="h-2.5 w-2.5 opacity-[0.8] -rotate-180">
-                                        <div className={`${index.showcase_top_edge}`}></div>
-                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                        <div className={`${index.showcase_top_edge}`} />
+                                        <div className={`${index.showcase_bottom_edge}`} />
                                     </div>
                                 </div>
 
                                 <div className={`absolute z-[1] -right-[5px] -top-[5px] ${index.corner_anim_tr}`}>
                                     <div className="h-2.5 w-2.5 opacity-[0.8] rotate-90">
-                                        <div className={`${index.showcase_top_edge}`}></div>
-                                        <div className={`${index.showcase_bottom_edge}`}></div>
+                                        <div className={`${index.showcase_top_edge}`} />
+                                        <div className={`${index.showcase_bottom_edge}`} />
                                     </div>
                                 </div>
                             </div>
 
-                            <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority={true}
-                                   alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized={true}
-                                   className="absolute top-1/2 left-1/2 -translate-1/2" />
+                            <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority
+                                alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28
+                                           lg:w-32" />
                         </div>
 
-                        <h1 className={`font-normal font-jetbrains-mono text-[166px] leading-none tracking-tighter 
-                                        bg-clip-text text-transparent ${colors.text_gradient_gray} p-4`}>
+                        <h1 className={`font-normal font-jetbrains-mono text-[50px] sm:text-7xl lg:text-[120px] 
+                                        xl:text-[166px] leading-none tracking-tighter bg-clip-text text-transparent 
+                                        ${colors.text_gradient_gray} px-2`}>
                             BL4CKLIST
                         </h1>
                     </div>
 
                     {/* Description */}
-                    <p className="mx-auto max-w-2xl text-base font-normal tracking-tight text-[#a3a3a3] font-ibm-plex-sans
-                                  animate__animated animate__fadeInRight">
+                    <p className="mx-auto max-w-2xl text-sm sm:text-base font-normal tracking-tight text-[#a3a3a3]
+                                  font-ibm-plex-sans animate__animated animate__fadeInRight">
                         Unser deutscher Discord-Server für Technik und Gaming ist die perfekte Community für alle,
                         die sich für Programmierung, Coding-Hilfe und aktuelle Gaming-Trends interessieren. 🚀
                     </p>
 
-                    {/* Call-to-Action Button */}
-                    <div className="flex flex-row gap-x-6 justify-center items-end mt-4 animate__animated animate__fadeInUp">
-
-                        {/* Join discord */}
-                        <div className="flex flex-col items-end relative group">
-                            <a href={"https://discord.gg/bl4cklist"} target="_blank" className="flex flex-col items-end">
-                                <button className={`relative min-w-52 ${buttons.white_gray}`}>
-                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100"></FontAwesomeIcon>
+                    {/* Call-to-Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 gap-x-4 sm:gap-x-20 md:gap-x-20 lg:gap-4
+                                    justify-center items-center
+                                    mt-4 md:mt-1 lg:mt-4 animate__animated animate__fadeInUp z-[20]">
+                        {/* Join Discord */}
+                        <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20]">
+                            <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end
+                                                                                              w-full">
+                                <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
+                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
                                     <p className="whitespace-pre">Discord-Server</p>
                                 </button>
 
                                 <div className="flex items-center justify-center w-full gap-1.5 text-green-400
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
-                                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                                     <span>890 Online</span>
                                 </div>
                             </a>
-
                             <ButtonHover />
                         </div>
 
                         {/* Learn More */}
-                        <div className="flex flex-col items-start relative group">
-                            <a href="discord/community" className="flex flex-col items-end">
-                                <button className={`relative min-w-52 ${buttons.black_purple}`}>
-                                    <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100"></FontAwesomeIcon>
+                        <div className="flex flex-col items-end relative group w-full sm:w-auto">
+                            <a href="discord/community" className="flex flex-col items-end w-full">
+                                <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
+                                    <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100" />
                                     <p className="whitespace-pre">Mehr Erfahren</p>
                                 </button>
 
-                                <div className="flex items-center justify-center w-full gap-1.5 text-white/80 text-xs
-                                                font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b border
-                                                border-gray-800">
-                                    <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                                <div className="flex items-center justify-center w-full gap-1.5 text-white/80
+                                                text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
+                                                border border-gray-800">
+                                    <div className="w-2 h-2 bg-gray-500 rounded-full" />
                                     <span>3.533 Mitglieder</span>
                                 </div>
                             </a>
-
                             <ButtonHover />
                         </div>
                     </div>
                 </div>
+
 
                 <div className={`absolute inset-0 w-full h-full z-[2] ${index.hero_text_bg}`}></div>
             </div>
@@ -222,13 +218,12 @@ export default function WelcomeHero(): JSX.Element {
                 </div>
             </div>
 
-            <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10 
-                            animate__animated animate__fadeInUp">
+            <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
+                            md:z-5 lg:z-10 animate__animated animate__fadeInUp">
                 <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                    className="object-contain max-w-[800px]"
-                />
+                    className="object-contain max-w-[800px]" />
             </div>
         </section>
     )

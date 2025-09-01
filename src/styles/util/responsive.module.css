@@ -1,0 +1,5 @@
+.hero_responsive_tag { display: none; }
+
+@media (min-width: 375px) and (min-height: 400px) {
+    .hero_responsive_tag { display: flex; }
+}
