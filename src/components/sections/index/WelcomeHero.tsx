@@ -55,6 +55,41 @@ export default function WelcomeHero(): JSX.Element {
                              -translate-x-1/2 -translate-y-1/2 ${index.hero_top_glow}`}></div>
             <div className={`absolute rounded-none overflow-hidden bg-repeat h-full w-full ${index.hero_grid_bg}`}></div>
 
+            {/* Our Partners */}
+            <div className="fixed bottom-12 left-0 right-0 z-[15] hidden sm:block px-12 animate__animated animate__fadeInUp">
+                <div className="flex items-center">
+                    <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" 
+                       className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
+                        <Image src="/images/brand/dsh-partner.webp" className="object-contain"
+                               style={{ width: 'auto', height: 'auto' }} width={537} height={132} priority={true}
+                               sizes="(max-width: 640px) 0vw, (max-width: 768px) 50vw, (max-width: 1024px) 40vw, 537px"
+                               alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                    </a>
+
+                    {/* Spacer to center the right logo next to color gradient */}
+                    <div className="flex-1"></div>
+
+                    {/* Center reference point (same as color gradient) */}
+                    <div className="flex justify-center w-[800px] max-w-[800px]">
+                        <div className="w-[800px]"></div>
+                    </div>
+
+                    <a href="https://clank.dev" target="_blank" 
+                       className="flex items-center gap-2 ml-4 relative z-[20] opacity-20 
+                                  hover:opacity-50 transition-opacity duration-300 cursor-pointer">
+                        <div className="w-20 h-20 flex items-center justify-center">
+                            <Image src="/images/brand/clank-logo-65w.png" className="object-contain"
+                                   width={65} height={65} priority={true}
+                                   alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                        </div>
+                        <h2 className="font-jetbrains-mono tracking-tight text-6xl font-bold opacity-60 
+                                       text-white">CLANK</h2>
+                    </a>
+
+                    <div className="flex-1"></div>
+                </div>
+            </div>
+
             {/* Main Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full gap-3">
                 {/* Animated Tag */}
