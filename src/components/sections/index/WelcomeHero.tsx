@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import {JSX} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 
-import buttons from '../../../styles/util/buttons.module.css'
-import colors from '../../../styles/util/colors.module.css'
-import index from '../../../styles/components/index.module.css'
-import responsive from '../../../styles/util/responsive.module.css'
+import buttons from '../../../styles/util/buttons.module.css';
+import colors from '../../../styles/util/colors.module.css';
+import index from '../../../styles/components/index.module.css';
+import responsive from '../../../styles/util/responsive.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
 
 /**
@@ -29,7 +29,7 @@ import ButtonHover from '@/components/elements/ButtonHover';
  */
 export default function WelcomeHero(): JSX.Element {
     return (
-        <section className="relative w-screen h-screen overflow-hidden">
+        <section className="relative w-full h-screen overflow-hidden">
             {/* Background Video */}
             <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
                 <video className="w-full h-full object-cover relative" autoPlay muted loop
@@ -52,23 +52,23 @@ export default function WelcomeHero(): JSX.Element {
                              ${index.hero_colored_overlay}`}></div>
             <div className={`absolute z-[3] inset-0 overflow-hidden pointer-events-none 
                              ${index.hero_corner_shadow}`}></div>
-            <div className={`absolute z-[3] h-[30vh] w-[80vw] max-w-[1241px] rounded-[10px] top-0 left-1/2 
+            <div className={`absolute z-[3] h-[30vh] w-[80vw] max-w-[1241px] rounded-[10px] top-10 left-1/2 
                              -translate-x-1/2 -translate-y-1/2 ${index.hero_top_glow}`}></div>
             <div className={`absolute rounded-none overflow-hidden bg-repeat h-full w-full ${index.hero_grid_bg}`}></div>
 
             {/* Our Partners */}
-            <div className="fixed bottom-12 left-0 right-0 z-[15] hidden xl:flex px-4 2xl:px-12 animate__animated
+            <div className="absolute bottom-12 left-0 right-0 z-[15] hidden xl:flex px-4 2xl:px-12 animate__animated
                             animate__fadeInUp justify-between items-center">
-                <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank"
+                <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
                     <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
                         className="object-contain w-auto max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] h-auto"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
 
-                <a href="https://clank.dev" target="_blank" className="flex items-center gap-2 relative z-[20]
-                                                                       opacity-20 hover:opacity-50 transition-opacity
-                                                                       duration-300 cursor-pointer mr-16 2xl:mr-20">
+                <a href="https://clank.dev" target="_blank" aria-label="Clank-Bot Partner" 
+                   className="flex items-center gap-2 relative z-[20] opacity-20 hover:opacity-50 
+                              transition-opacity duration-300 cursor-pointer mr-16 2xl:mr-20">
                     <div className="w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
                         <Image src="/images/brand/clank-logo-65w.png" className="object-contain"
                                width={65} height={65} priority
@@ -180,7 +180,7 @@ export default function WelcomeHero(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                    <span>890 Online</span>
+                                    <span>890 Online</span> { /* TODO */ }
                                 </div>
                             </a>
                             <ButtonHover />
@@ -198,7 +198,7 @@ export default function WelcomeHero(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                                    <span>3.533 Mitglieder</span>
+                                    <span>3.533 Mitglieder</span> { /* TODO */ }
                                 </div>
                             </a>
                             <ButtonHover />

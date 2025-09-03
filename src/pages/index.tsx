@@ -1,3 +1,4 @@
+import Header from "@/components/elements/Header";
 import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
 
@@ -9,7 +10,16 @@ import {JSX} from "react";
  */
 export default function Home(): JSX.Element {
     return (
-        // Start of the page; greet the visitor & explain our project quick
-        <WelcomeHero />
+        <>
+            {/* Header - allow navigation to other pages */}
+            <Header />
+
+            {/* Start of the page; greet the visitor & explain our project quick */}
+            <WelcomeHero />
+
+            {/* Testing purposes*/}
+            <div className="h-96"></div>
+            
+        </>
     );
 }
