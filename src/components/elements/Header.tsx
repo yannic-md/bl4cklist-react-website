@@ -11,13 +11,13 @@ import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 export default function Header(): JSX.Element {
     return (
         <header className="fixed top-5 lg:top-3 left-0 right-0 mt-0 z-[20] my-0 mx-auto py-0 px-4 lg:!p-0
-                           xl:top-5 w-full animate__animated animate__fadeInDown">
+                           xl:top-5 w-full">
             {/* Header for PCs & Laptops (Big Screens) */}
             <nav aria-label="Header Desktop" className="hidden lg:flex justify-center relative">
                 <div className="relative">
                     <ul className={`relative inline-flex lg:flex items-center max-w-full h-14 mx-auto rounded-full 
-                                   transition-colors duration-200 ease-in-out backdrop-blur-xl z-10
-                                   bg-[rgba(29,30,35,0.5)] ${head.header_border}`}>
+                                   transition-colors duration-200 ease-in-out backdrop-blur-md z-10 transform-gpu
+                                   bg-[rgba(29,30,35,0.8)] ${head.header_border} animate__animated animate__fadeInDown`}>
                         <div className="flex items-center justify-between w-full h-full capitalize py-3 pr-2 pl-3 gap-2">
                             <Link className="block w-8 ml-2" href="/">
                                 <Image src="/images/brand/logo-64w.avif" className="object-contain"
@@ -79,7 +79,7 @@ export default function Header(): JSX.Element {
                                 </div>
                             </div>
                         
-                            <div className="flex gap-2 mr-0 ml-16 items-center">
+                            <div className="flex gap-2 ml-16 items-center mr-2">
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20]">
                                     <a href="https://discord.gg/bl4cklist" target="_blank" 
                                        className="border border-white/5 rounded-[3.125rem] text-white py-1.5 px-4 font-semibold
@@ -96,7 +96,8 @@ export default function Header(): JSX.Element {
             {/* Header for Mobile Devices (Small Screens) */}
             <nav aria-label="Header Mobile" className="block lg:hidden">
                 <div className="relative">
-                    <ul className={`inline-flex bg-[rgba(29,30,35,0.8)] items-center w-full ${head.header_border} rounded-full`}>
+                    <ul className={`inline-flex bg-[rgba(29,30,35,0.8)] items-center w-full ${head.header_border} 
+                                    rounded-full backdrop-blur-sm animate__animated animate__fadeInDown transform-gpu`}>
                         <div className="flex items-center justify-between w-full h-full gap-2 capitalize py-3 pl-3 pr-2">
                             <Link className="block w-8 ml-2" href="/">
                                 <Image src="/images/brand/logo-64w.avif" className="object-contain"
