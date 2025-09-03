@@ -103,7 +103,7 @@ export default function Header(): JSX.Element {
                                        width={64} height={64} priority
                                        alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </Link>
-                            <button type="button" className="Menu_dropdownTrigger__OrEpC mr-1.5">
+                            <button type="button" className="flex bg-white/5 p-3 rounded-[3.5rem] mr-1.5">
                                 <FontAwesomeIcon icon={faBars} className="text-white/70" />
                             </button>
                         </div>
