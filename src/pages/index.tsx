@@ -1,4 +1,4 @@
-import Header from "@/components/elements/Header";
+import Header from "@/components/elements/header/Header";
 import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
 

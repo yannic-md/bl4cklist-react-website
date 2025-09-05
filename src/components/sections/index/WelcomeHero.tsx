@@ -70,7 +70,7 @@ export default function WelcomeHero(): JSX.Element {
                    className="flex items-center gap-2 relative z-[20] opacity-20 hover:opacity-50 
                               transition-opacity duration-300 cursor-pointer mr-16 2xl:mr-20">
                     <div className="w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
-                        <Image src="/images/brand/clank-logo-65w.png" className="object-contain"
+                        <Image src="/images/brand/clank-logo-65w.webp" className="object-contain"
                                width={65} height={65} priority
                                alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
@@ -88,7 +88,7 @@ export default function WelcomeHero(): JSX.Element {
                                  ${responsive.hero_responsive_tag}`}>
                     <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border
                                   border-gray-900">
-                        <img src="/images/icons/small/discord-heart-24w.png" className="w-[18px] h-[18px] mr-1 mt-0.5"
+                        <img src="/images/icons/small/discord-heart-24w.webp" className="w-[18px] h-[18px] mr-1 mt-0.5"
                              alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                         <div className="relative">
                             <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal
@@ -107,7 +107,8 @@ export default function WelcomeHero(): JSX.Element {
                 </div>
 
                 {/* Main Area */}
-                <div className="flex flex-col text-center max-w-4xl gap-6 z-10 justify-center items-center px-4">
+                <div className={`flex flex-col text-center max-w-4xl z-10 justify-center items-center 
+                                 ${responsive.hero_main_gap}`}>
                     {/* Logo Container */}
                     <div className="flex flex-row justify-center items-center gap-4 animate__animated animate__fadeInLeft">
                         {/* Logo Showcase Box */}
@@ -219,11 +220,11 @@ export default function WelcomeHero(): JSX.Element {
             </div>
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
-                            md:z-5 lg:z-10 animate__animated animate__fadeInUp">
+                            md:z-5 lg:z-10 animate__animated animate__fadeInUp pointer-events-none">
                 <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                    className="object-contain max-w-[800px]" />
+                    className="object-contain max-w-[800px] pointer-events-none" />
             </div>
         </section>
     )

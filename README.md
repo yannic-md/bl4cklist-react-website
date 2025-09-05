@@ -9,7 +9,7 @@
   <i align="center">This website is intended to introduce my tech and gaming Discord server, which is primarily focused on programming. The site features many unique ideas and concepts to stand out from the crowd.</i>
   <br /><br />
 
-[//]: # (TODO: Image of site & google page speed score)
+![Bl4cklist - React Website](https://i.imgur.com/zRawIcp.png)
 
 <br />
 <h4 align="center">

@@ -1,5 +1,19 @@
-.hero_responsive_tag { display: none; }
+@reference "tailwindcss";
 
-@media (min-width: 375px) and (min-height: 400px) {
+.hero_responsive_tag { display: none; }
+.hero_main_gap { @apply px-4 md:px-0 mt-10 lg:mt-0 gap-2 md:gap-6; }
+
+@media (min-width: 360px) and (min-height: 431px) {
     .hero_responsive_tag { display: flex; }
+    .hero_main_gap { @apply px-0 mt-0 gap-4; }
+}
+
+.chrome_doesnt_like_nesting {
+    @apply bg-[rgba(32,33,36,0.8)];
+}
+
+@supports (font-variation-settings: normal) and (-webkit-appearance:none) and (not (-moz-appearance:none)) and (not (-webkit-touch-callout:none)) {
+  .chrome_doesnt_like_nesting {  /* chromium browsers doesnt support nested blur effects. */
+    background: rgba(32, 33, 36, 0.985) !important;
+  }
 }
