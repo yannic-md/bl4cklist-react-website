@@ -66,3 +66,8 @@ It supports following <strong>features</strong>:
 
 ## 🔨 Usage
 › You can open this website here: <code>https://bl4cklist.de</code>
+
+## ⚖️ License
+
+- **Source Code:** MIT License (see LICENSE file for details)
+- **Branding / Images:** All files inside `/public/images/brand` are **copyrighted** and **may only be used with explicit permission** from the author.
