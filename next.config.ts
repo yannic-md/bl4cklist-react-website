@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     trailingSlash: true,
+    i18n: {
+        locales: ['de', 'en'],
+        defaultLocale: 'de'
+    },
 
     async redirects() {
         return [

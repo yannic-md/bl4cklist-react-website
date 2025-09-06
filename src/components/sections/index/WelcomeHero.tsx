@@ -9,6 +9,7 @@ import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
 import responsive from '../../../styles/util/responsive.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
+import { useTranslations } from 'next-intl';
 
 /**
  * Hero Section - Welcome Experience
@@ -28,6 +29,8 @@ import ButtonHover from '@/components/elements/ButtonHover';
  * @returns {JSX.Element} The welcome hero section.
  */
 export default function WelcomeHero(): JSX.Element {
+    const tWelcome = useTranslations('WelcomeHero');
+
     return (
         <section className="relative w-full h-screen overflow-hidden">
             {/* Background Video */}
@@ -92,9 +95,7 @@ export default function WelcomeHero(): JSX.Element {
                              alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                         <div className="relative">
                             <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal
-                                          whitespace-nowrap font-ibm-plex-sans">
-                                - HERZLICH WILLKOMMEN BEI..
-                            </p>
+                                          whitespace-nowrap font-ibm-plex-sans">{tWelcome('welcomeTag')}</p>
                         </div>
 
                         {/* Borders & Accents */}
@@ -160,8 +161,7 @@ export default function WelcomeHero(): JSX.Element {
                     {/* Description */}
                     <p className="mx-auto max-w-2xl text-sm sm:text-base font-normal tracking-tight text-[#a3a3a3]
                                   font-ibm-plex-sans animate__animated animate__fadeInRight">
-                        Unser deutscher Discord-Server für Technik und Gaming ist die perfekte Community für alle,
-                        die sich für Programmierung, Coding-Hilfe und aktuelle Gaming-Trends interessieren. 🚀
+                        {tWelcome('description')}
                     </p>
 
                     {/* Call-to-Action Buttons */}
@@ -174,7 +174,7 @@ export default function WelcomeHero(): JSX.Element {
                                                                                               w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
                                     <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
-                                    <p className="whitespace-pre">Discord-Server</p>
+                                    <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                 </button>
 
                                 <div className="flex items-center justify-center w-full gap-1.5 text-green-400
@@ -192,14 +192,14 @@ export default function WelcomeHero(): JSX.Element {
                             <a href="discord/community" className="flex flex-col items-end w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                     <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100" />
-                                    <p className="whitespace-pre">Mehr Erfahren</p>
+                                    <p className="whitespace-pre">{tWelcome('learnMore')}</p>
                                 </button>
 
                                 <div className="flex items-center justify-center w-full gap-1.5 text-white/80
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                                    <span>3.533 Mitglieder</span> { /* TODO */ }
+                                    <span>3.533 {tWelcome('memberCount')}</span> { /* TODO */ }
                                 </div>
                             </a>
                             <ButtonHover />

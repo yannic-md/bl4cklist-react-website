@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^3.0.1",
     "animate.css": "^4.1.1",
     "next": "15.4.7",
+    "next-intl": "^4.3.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

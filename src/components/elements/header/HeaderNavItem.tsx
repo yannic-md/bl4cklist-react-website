@@ -4,7 +4,8 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import head from '../../../styles/components/header.module.css';
 import { NavigationItem } from '@/types/NavigationItem';
 import HeaderDropdown from './HeaderDropdown';
-import { useRouter } from 'next/router';
+import {NextRouter, useRouter} from 'next/router';
+import {JSX} from "react";
 
 interface NavigationItemProps {
   item: NavigationItem;
@@ -21,10 +22,9 @@ interface NavigationItemProps {
  *
  * The navigation button highlights as active if the current route matches the item's href.
  */
-export default function HeaderNavItem({ item, leftPosition }: NavigationItemProps) {
-  const router = useRouter();
-  const isActive = router.pathname === item.href || 
-                   (item.href !== '/' && router.pathname.startsWith(item.href));
+export default function HeaderNavItem({ item, leftPosition }: NavigationItemProps): JSX.Element {
+  const router: NextRouter = useRouter();
+  const isActive: boolean = router.pathname === item.href || (item.href !== '/' && router.pathname.startsWith(item.href));
 
   return (
     <li className="group">

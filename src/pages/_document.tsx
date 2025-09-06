@@ -5,7 +5,6 @@ export default function Document(): JSX.Element {
     return (
         <Html lang="en">
             <Head>
-                <title>Startseite ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server</title>
                 <meta name="description" content="Unser deutscher Discord-Server für Technik und Gaming ist die perfekte Community für alle, die sich für Programmierung, Coding-Hilfe und aktuelle Gaming-Trends interessieren." />
 
                 {/* Favicons */}

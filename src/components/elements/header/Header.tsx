@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import { nav_items } from '@/types/NavigationItem';
+import { getNavItems, NavigationItem } from '@/types/NavigationItem';
 import HeaderNavItem from './HeaderNavItem';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import HeaderMobileNav from './HeaderMobile';
+import { useTranslations } from 'next-intl';
+import {NextRouter, useRouter} from 'next/router';
 
-const dropdown_pos = ['left-[63px]', 'left-[145px]', 'left-[305px]', 'left-[435px]'];
+const dropdown_pos: string[] = ['left-[63px]', 'left-[145px]', 'left-[305px]', 'left-[435px]'];
 
 /**
  * Renders the main header component for the website, including navigation for both desktop and mobile devices.
@@ -23,14 +25,19 @@ const dropdown_pos = ['left-[63px]', 'left-[145px]', 'left-[305px]', 'left-[435p
  * @returns {JSX.Element} The rendered header component with responsive navigation.
  */
 export default function Header(): JSX.Element {
+    const router: NextRouter = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const t = useTranslations('Navigation');
+    const tDropdown = useTranslations('Dropdown');
+    const tHeader = useTranslations('Header');
+    const nav_items: NavigationItem[] = getNavItems(t, tDropdown);
 
     /**
      * Toggles the state of the mobile menu.
      * When called, it switches the `isMobileMenuOpen` state between open and closed.
      * Useful for showing or hiding the mobile navigation menu.
      */
-    const toggleMobileMenu = () => {
+    const toggleMobileMenu: () => void = (): void => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
@@ -38,8 +45,33 @@ export default function Header(): JSX.Element {
      * Closes the mobile menu by setting its open state to false.
      * Typically used as an event handler to hide the mobile navigation menu.
      */
-    const closeMobileMenu = () => {
+    const closeMobileMenu: () => void = (): void => {
         setIsMobileMenuOpen(false);
+    };
+
+    /**
+     * Switches the application language between German and English.
+     * Uses Next.js router to change the locale while preserving the current path.
+     */
+    const switchLanguage: () => void = (): void => {
+        const newLocale: "de" | "en" = router.locale === 'de' ? 'en' : 'de';
+        router.push(router.asPath, router.asPath, {locale: newLocale}).then();
+    };
+
+    /**
+     * Gets the appropriate flag image based on current locale.
+     * @returns The flag image path for the current language
+     */
+    const getCurrentFlag: () => string = (): string => {
+        return router.locale === 'de' ? '/images/icons/lang/germany-35w.webp' : '/images/icons/lang/united-states-35w.webp';
+    };
+
+    /**
+     * Gets the alt text for the flag image based on current locale.
+     * @returns The alt text for the flag image
+     */
+    const getFlagAltText: () => string = (): string => {
+        return router.locale === 'de' ? 'German Flag - Switch to English' : 'US Flag - Switch to German';
     };
 
     return (
@@ -70,23 +102,23 @@ export default function Header(): JSX.Element {
                         
                             <div className="flex gap-2 ml-16 items-center mr-2">
                                 {/* Language Switcher */}
-                                <div className="transition-transform duration-500 ease-in-out transform animate-rotate
-                                                rotate-left cursor-pointer">
-                                    <Image src="/images/icons/lang/germany-35w.webp" width={31} height={31}
-                                         alt="Clank ~ Discord-Bot (Germany Icon)" 
+                                <button className="transition-transform duration-500 ease-in-out transform animate-rotate
+                                                rotate-left cursor-pointer" onClick={switchLanguage}
+                                        aria-label={`Switch to ${router.locale === 'de' ? 'English' : 'German'}`}>
+                                    <Image src={getCurrentFlag()} width={31} height={31} alt={getFlagAltText()}
                                          className='bg-gray-500 transition-all duration-200 rounded-full hover:-translate-y-0.5 
                                                     hover:bg-white/25 hover:border-white/20
                                                     hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]' />
-                                </div>
+                                </button>
 
                                 {/* Discord Button */}
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20] mt-0.5">
                                     <a href="https://discord.gg/bl4cklist" target="_blank" 
                                        className="border border-white/5 rounded-[3.125rem] text-white py-1.5 px-4 font-semibold
                                                 bg-white/15 transition-all duration-200 ease-in-out -translate-y-[1px]
-                                                hover:bg-white/25 hover:border-white/20
+                                                hover:bg-white/25 hover:border-white/20 
                                                 hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]">
-                                        <FontAwesomeIcon icon={faDiscord} size='sm' className="mr-2" />Discord-Server</a>
+                                        <FontAwesomeIcon icon={faDiscord} size='sm' className="mr-2" />{tHeader('discord')}</a>
                                 </div>
                             </div>
                         </div>
@@ -123,13 +155,14 @@ export default function Header(): JSX.Element {
                                 </button>
 
                                 {/* Language Switcher */}
-                                <div className="transition-transform duration-500 ease-in-out transform animate-rotate
-                                                rotate-left cursor-pointer">
-                                    <Image src="/images/icons/lang/germany-35w.webp" width={35} height={35}
-                                         alt="Clank ~ Discord-Bot (Germany Icon)" 
+                                <button className="transition-transform duration-500 ease-in-out transform animate-rotate
+                                                rotate-left cursor-pointer" onClick={switchLanguage}
+                                        aria-label={`Switch to ${router.locale === 'de' ? 'English' : 'German'}`}>
+                                    <Image src={getCurrentFlag()} width={35} height={35} alt={getFlagAltText()}
                                          className='bg-gray-500 transition-all duration-200 rounded-full hover:-translate-y-0.5 
-                                                    hover:bg-white/25 hover:border-white/20 hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]' />
-                                </div>
+                                                    hover:bg-white/25 hover:border-white/20
+                                                    hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]' />
+                                </button>
                             </div>
                         </div>
                     </ul>

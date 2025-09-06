@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, {JSX, useEffect, useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { faDiscord as faDiscordBrand } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import {NextRouter, useRouter} from 'next/router';
 import { NavigationItem } from '@/types/NavigationItem';
 import head from '../../../styles/components/header.module.css';
 import responsive from '../../../styles/util/responsive.module.css';
@@ -42,14 +42,14 @@ interface HeaderMobileNavProps {
  * @param {HeaderMobileNavProps} props - The props for the mobile navigation menu.
  * @returns {JSX.Element | null} The rendered mobile navigation menu, or null if not visible.
  */
-export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMobileNavProps) {
-  const router = useRouter();
+export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMobileNavProps): JSX.Element | null {
+  const router: NextRouter = useRouter();
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (isOpen) {
       setShouldRender(true);
       setAnimationComplete(false);
@@ -69,7 +69,7 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
   *
   * @param index - The index of the item to toggle in the expanded items array.
   */
-  const toggleExpanded = (index: number) => {
+  const toggleExpanded: (index: number) => void = (index: number): void => {
     setExpandedItem(prev => prev === index ? null : index);
   };
 
@@ -83,9 +83,8 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
   * @param href - The route path to check against the current pathname.
   * @returns `true` if the route is active, otherwise `false`.
   */
-  const isActive = (href: string) => {
-    return router.pathname === href || 
-           (href !== '/' && router.pathname.startsWith(href));
+  const isActive: (href: string) => boolean = (href: string): boolean => {
+    return router.pathname === href || (href !== '/' && router.pathname.startsWith(href));
   };
 
  /**
@@ -95,10 +94,8 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
   *
   * @param e - The mouse event triggered by the user's click.
  */
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+  const handleBackdropClick: (e: React.MouseEvent) => void = (e: React.MouseEvent): void => {
+    if (e.target === e.currentTarget) { onClose(); }
   };
 
   if (!shouldRender) return null;
@@ -126,7 +123,7 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
                         <button className={`flex items-center justify-between w-full text-left text-white/70 
                                             capitalize py-2.5 px-6 hover:text-white transition-colors duration-200 
                                             ${isActive(item.href) ? head.active : ''}`}
-                                onClick={() => toggleExpanded(index)} aria-expanded={expandedItem === index}>
+                                onClick={(): void => toggleExpanded(index)} aria-expanded={expandedItem === index}>
                         <span>{item.title}</span>
                         <FontAwesomeIcon icon={faChevronDown} size="2xs" className={`text-white/40 transition-transform 
                             duration-200 ${expandedItem === index ? 'rotate-180' : ''}`} />
