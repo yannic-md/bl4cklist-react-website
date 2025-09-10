@@ -31,3 +31,8 @@ body {
     @apply bg-[#090014] text-white;
     @apply text-base;
 }
+
+/* Disable all animations (except page-loader) if page is not ready yet */
+.is-loading *:not(#page-loader, #page-loader *) {
+    animation-play-state: paused !important;
+}

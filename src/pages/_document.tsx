@@ -13,9 +13,9 @@ export default function Document(): JSX.Element {
                 <link rel="icon" type="image/png" sizes="16x16" href="/images/brand/favicon/logo-16w.png" />
                 <link rel="apple-touch-icon" href="/images/brand/favicon/logo-32w.png" />
             </Head>
-            <body className="antialiased">
-            <Main />
-            <NextScript />
+            <body className="antialiased is-loading">
+                <Main />
+                <NextScript />
             </body>
         </Html>
     );

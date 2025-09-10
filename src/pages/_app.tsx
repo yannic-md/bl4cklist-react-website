@@ -7,6 +7,7 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { NextIntlClientProvider } from 'next-intl';
 import {NextRouter, useRouter} from 'next/router';
+import PageLoader from "@/components/elements/PageLoader";
 config.autoAddCss = false
 
 const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
     
     return (
         <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
+            <PageLoader />
             <NextIntlClientProvider locale={router.locale} timeZone="Europe/Berlin" messages={pageProps.messages}>
                 <Component {...pageProps} />
             </NextIntlClientProvider>
