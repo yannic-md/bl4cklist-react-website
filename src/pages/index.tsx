@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
             <WelcomeHero />
 
             {/* Testing purposes*/}
-            <div className="h-96"></div>
+            <div className="h-[200vh]"></div>
             
         </>
     );

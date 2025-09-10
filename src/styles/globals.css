@@ -28,11 +28,28 @@ html {
 
 body {
     @apply font-inter;
-    @apply bg-[#090014] text-white;
+    @apply bg-black text-white;
     @apply text-base;
 }
 
-/* Disable all animations (except page-loader) if page is not ready yet */
+/* Disable all animations (except page-loader) & hide scrollbar if page is not ready yet */
 .is-loading *:not(#page-loader, #page-loader *) {
     animation-play-state: paused !important;
+}
+
+.is-loading {
+    overflow: hidden !important;
+}
+
+/* Custom scrollbar design */
+*::-webkit-scrollbar {
+    @apply w-1;
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply rounded bg-[#34343d];
+}
+
+*::-webkit-scrollbar-track {
+    @apply rounded bg-gray-900/15;
 }
