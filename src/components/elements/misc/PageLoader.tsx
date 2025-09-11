@@ -1,6 +1,6 @@
 import React, { JSX } from "react";
 
-import elements from "../../styles/util/elements.module.css";
+import elements from "../../../styles/util/elements.module.css";
 import {usePageLoader} from "@/hooks/usePageLoader";
 
 /**
