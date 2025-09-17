@@ -60,5 +60,18 @@
     "joinDiscord": "Discord Server",
     "learnMore": "Learn More",
     "memberCount": "Members"
+  },
+  "IntroSection": {
+    "infoTag": "WHAT MAKES THE COMMUNITY SPECIAL?",
+    "title": "THIS IS US.",
+    "description": "Bl4cklist is a general coding & tech <strong>Discord server</strong> with a main focus on <strong>Discord bots</strong> and offers its own programming courses.",
+    "description2": "But we have even more: Spend your time chatting with our loving community, make new friends or just relax and enjoy all kinds of news from the gaming world - we want to connect the most diverse <strong>Discord server</strong> communities.",
+    "count_chat": "Messages in Chat",
+    "tip_1_title": "Learn programming with us",
+    "tip_1_desc": "› Ask your questions in our Discord server and get quick help from our community – whether it's a bug or a general coding problem.",
+    "tip_2_title": "Talk about your problems",
+    "tip_2_desc": "› In our counseling you can (also anonymously) talk about personal problems – our community listens and gives you supportive advice.",
+    "tip_3_title": "Own Discord bots",
+    "tip_3_desc": "› Our lovingly own developed Discord bots support you on managing your Discord server and are available in several languages."
   }
 }

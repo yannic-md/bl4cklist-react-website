@@ -55,7 +55,7 @@ export default function Header(): JSX.Element {
      */
     const switchLanguage: () => void = (): void => {
         const newLocale: "de" | "en" = router.locale === 'de' ? 'en' : 'de';
-        router.push(router.asPath, router.asPath, {locale: newLocale}).then();
+        window.location.href = `/${newLocale}${router.asPath}`;  /* don't use router redirect to show page loader */
     };
 
     /**

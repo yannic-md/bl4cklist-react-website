@@ -60,5 +60,18 @@
     "joinDiscord": "Discord-Server",
     "learnMore": "Mehr Erfahren",
     "memberCount": "Mitglieder"
+  },
+  "IntroSection": {
+    "infoTag": "WAS MACHT DIE COMMUNITY BESONDERS?",
+    "title": "DAS SIND WIR.",
+    "description": "Bl4cklist ist ein allgemeiner Coding & Technik-<strong>Discord Server</strong>, welcher sein Hauptfokus auf <strong>Discord-Bots</strong> gelegt hat und eigene Lernkurse für die Programmierung anbietet.",
+    "description2": "Doch wir haben noch mehr: Vertreibe deine Zeit beim chatten mit unserer liebevollen Community, lerne neue Freunde kennen oder lehn' dich zurück und genieße allerhand von Neuigkeiten aus der Gaming-Welt - wir möchten die verschiedensten <strong>Discord-Server</strong> Communities verbinden.",
+    "count_chat": "Nachrichten im Chat",
+    "tip_1_title": "Lerne Programmieren mit uns",
+    "tip_1_desc": "› Stell deine Fragen in unserem Discord-Server und erhalte schnelle Hilfe von unserer Community – egal ob es ein Bug oder allgemeines Coding-Problem ist.",
+    "tip_2_title": "Sprich über deine Probleme",
+    "tip_2_desc": "› In unserer Seelsorge kannst du (auch anonym) über persönliche Probleme sprechen – unsere Community hört zu und gibt dir unterstützende Ratschläge.",
+    "tip_3_title": "Eigene Discord-Bots",
+    "tip_3_desc": "› Unsere liebevoll entwickelten Discord-Bots unterstützen dich auf deinem Discord-Server und sind in mehreren Sprachen verfügbar."
   }
 }

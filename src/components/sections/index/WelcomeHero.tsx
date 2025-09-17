@@ -10,6 +10,7 @@ import index from '../../../styles/components/index.module.css';
 import responsive from '../../../styles/util/responsive.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 /**
  * Hero Section - Welcome Experience
@@ -32,7 +33,7 @@ export default function WelcomeHero(): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
 
     return (
-        <section className="relative w-full h-screen overflow-hidden">
+        <section className="relative w-full h-screen overflow-hidden" id="discord-server-start">
             {/* Background Video */}
             <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
                 <video className="w-full h-full object-cover relative" autoPlay muted loop
@@ -91,8 +92,8 @@ export default function WelcomeHero(): JSX.Element {
                                  ${responsive.hero_responsive_tag}`}>
                     <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border
                                   border-gray-900">
-                        <img src="/images/icons/small/discord-heart-24w.webp" className="w-[18px] h-[18px] mr-1 mt-0.5"
-                             alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                        <Image src="/images/icons/small/discord-heart-24w.webp" className="mr-1 mt-0.5"
+                             alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" width={18} height={18} />
                         <div className="relative">
                             <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal
                                           whitespace-nowrap font-ibm-plex-sans">{tWelcome('welcomeTag')}</p>
@@ -212,12 +213,16 @@ export default function WelcomeHero(): JSX.Element {
             </div>
 
             {/* Scroll Indicator with Background gradient */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 drop-shadow-2xl z-20 
-                            animate__animated animate__fadeInUp">
-                <div className="animate-bounce drop-shadow-[0_0_4px_rgba(0,0,0,1)]">
-                    <FontAwesomeIcon icon={faAnglesDown} size={"lg"} className="text-white/70" />
+            <Link href="#discord-server-features" aria-label="Scroll Down">
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 drop-shadow-2xl z-20 
+                                animate__animated animate__fadeInUp">
+                    <div className="animate-bounce drop-shadow-[0_0_4px_rgba(0,0,0,1)] 
+                                    hover:bg-white/10 hover:backdrop-blur-sm rounded-full p-2 -m-3 
+                                    transition-all duration-300 cursor-pointer">
+                        <FontAwesomeIcon icon={faAnglesDown} size={"lg"} className="text-white/70" />
+                    </div>
                 </div>
-            </div>
+            </Link>
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                             md:z-5 lg:z-10 animate__animated animate__fadeInUp pointer-events-none">

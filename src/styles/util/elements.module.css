@@ -5,7 +5,7 @@
     animation: rotation 1s linear infinite;
 }
 .page_loader::after {
-    @apply content-[""] absolute left-1/2 top-1/2 w-12 h-12 border-[3px] border-transparent border-b-[#FF3D00]
+    @apply content-[""] absolute left-1/2 top-1/2 w-12 h-12 border-[3px] border-transparent border-b-[#ff7f50]
            rounded-[50%] -translate-1/2;
 }
 

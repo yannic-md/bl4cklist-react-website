@@ -24,7 +24,7 @@ export default function PageLoader(): JSX.Element {
             <div className="absolute top-0 left-0 w-full overflow-hidden">
                 <div className="w-full bg-gray-700 h-0.5">
                     <div
-                        className="bg-[#FF3D00] h-0.5 transition-all duration-200 ease-out"
+                        className="bg-[#ff7f50] h-0.5 transition-all duration-200 ease-out"
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>

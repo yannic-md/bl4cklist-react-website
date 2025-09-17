@@ -19,7 +19,7 @@
 }
 
 * {
-    @apply box-border;
+    @apply box-border scroll-smooth;
 }
 
 html {
@@ -27,9 +27,7 @@ html {
 }
 
 body {
-    @apply font-inter;
-    @apply bg-black text-white;
-    @apply text-base;
+    @apply font-inter text-base bg-black text-white;
 }
 
 /* Disable all animations (except page-loader) & hide scrollbar if page is not ready yet */
@@ -52,4 +50,90 @@ body {
 
 *::-webkit-scrollbar-track {
     @apply rounded bg-gray-900/15;
+}
+
+.line-wrap {
+    position: absolute;
+    transform: translate(0%);
+}
+
+.line-wrap.top {
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 10px;
+    display: flex;
+    inset: -1% 0% 0%;
+
+    transform: translate3d(-57.403%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    opacity: 1;
+    will-change: transform;
+}
+
+.line-element {
+    background-image: linear-gradient(90deg, #fff0, #9e67fa 17%, #fe6abb 74%, #ff9c65);
+    opacity: .5;
+    width: 100px;
+    height: 100%;
+    position: absolute;
+}
+
+.line-element.vertical {
+    background-image: linear-gradient(180deg, #0000, #9e67fa 17%, #fe6abb 74%, #ff9c65);
+    width: 100%;
+    height: 93px;
+}
+
+.line-wrap.right {
+    z-index: 3;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 10px;
+    display: flex
+;
+    inset: 0% 0% 0% auto;
+
+    transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    opacity: 0;
+}
+
+.line-wrap.bottom {
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 5px;
+    display: flex
+;
+    inset: auto 0% 0%;
+
+    transform: translate3d(100%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    opacity: 0;
+}
+
+.line-element.bottom {
+    background-image: linear-gradient(90deg, #ff9c65, #fe6abb 26%, #9e67fa 83%, #0000);
+}
+
+.line-wrap.left {
+    z-index: 3;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 10px;
+    display: flex
+;
+    inset: 0% auto 0% 0%;
+
+    transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    opacity: 0;
+}
+
+.line-element.vertical.reverse {
+    background-image: linear-gradient(180deg, #ff9c65, #fe6abb 26%, #9e67fa 83%, #0000);
+}
+
+.line-wrap {
+    position: absolute;
+    transform: translate(0%);
 }

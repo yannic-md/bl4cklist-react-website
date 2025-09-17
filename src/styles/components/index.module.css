@@ -28,6 +28,12 @@
   100%     { transform: translate3d(0,0,0); }
 }
 
+.head_border::after {
+    @apply content-[""] block w-[75px] h-[5px] bg-[coral] mt-5;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
+    clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
+}
+
 .hero_text_bg {
     background: radial-gradient(50% 84% at 50% 50%, rgb(1, 1, 13) 0%,rgba(0,0,0,0) 100%)
 }
