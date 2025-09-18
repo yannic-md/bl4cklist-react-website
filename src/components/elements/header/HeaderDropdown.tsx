@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import responsive from '../../../styles/util/responsive.module.css';
 import { DropdownItem } from '@/types/NavigationItem';
-import {JSX} from "react";
+import {JSX, RefObject, useMemo, useRef} from "react";
+import {useActiveSection} from "@/hooks/useActiveSection";
 
 interface DropdownMenuProps {
   title: string;
@@ -27,35 +28,81 @@ interface DropdownMenuProps {
  * @returns {JSX.Element} The rendered dropdown menu component.
  */
 export default function HeaderDropdown({ title, items, leftPosition }: DropdownMenuProps): JSX.Element {
-  return (
-    <div className={`absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-                     transition-all duration-200 ease-in-out flex z-20 top-[calc(100%+8px)] rounded-3xl
-                     backdrop-blur-xl ${leftPosition} ${responsive.chrome_doesnt_like_nesting} border border-white/15`}>
-      <div className="flex flex-col self-start pt-5 px-3.5 pb-3.5 gap-1 min-w-48">
-        <div className="flex items-center h-6 leading-6 pl-1.5 mb-1.5 text-white/60 font-medium">
-          {title}
-        </div>
+    const dropdownRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 
-        {items.map((item, index) => (
-          <Link key={index} className="flex justify-start items-center gap-3 text-left capitalize text-white/90 
-                                       text-base px-3 py-2 rounded-lg hover:text-white hover:bg-white/6" 
-            href={item.href}>
-            <div className="flex items-center justify-center w-[42px] h-[42px] rounded-lg
-                            [box-shadow:inset_0_0_0_1px_hsla(0,0%,100%,.1)]">
-              <Image src={item.icon} width={20} height={20}
-                     alt={`${item.title} Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`} />
+    /**
+     * Extracts section IDs from the hrefs of dropdown items.
+     * Only hrefs containing a hash (#) are considered.
+     *
+     * @param {DropdownItem[]} items - Array of dropdown items.
+     * @returns {string[]} Array of section IDs.
+     */
+    const sectionIds: string[] = useMemo((): string[] =>
+            items.map((item: DropdownItem): string => item.href.includes('#') ? item.href.split('#')[1] : '')
+                 .filter((id: string): boolean => id !== ''), [items]
+    );
+
+    const activeSection: string = useActiveSection(sectionIds, 0.5);
+
+    /**
+     * Checks if the given href corresponds to the currently active section.
+     *
+     * @param {string} href - The link URL containing a section hash.
+     * @returns {boolean} True if the section in href matches the active section, otherwise false.
+     */
+    const isItemActive: (href: string) => boolean = (href: string): boolean => {
+        if (!href.includes('#')) return false;
+        const sectionId: string = href.split('#')[1];
+        return sectionId === activeSection;
+    };
+
+    /**
+     * Closes the dropdown by temporarily disabling pointer events on the parent element.
+     * Adds the `pointer-events-none` class to prevent interaction, then removes it after 200ms
+     * to match the transition duration for smooth UI behavior.
+     */
+    const closeDropdown: () => void = (): void => {
+        const parentElement: HTMLDivElement | undefined | null = dropdownRef.current?.closest('.group');
+        if (parentElement) {
+            parentElement.classList.add('pointer-events-none');
+
+            setTimeout((): void => {
+                parentElement.classList.remove('pointer-events-none');
+            }, 200); // 200ms equals transition-duration
+        }
+    };
+
+    return (
+        <div ref={dropdownRef} className={`absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                         transition-all duration-200 ease-in-out flex z-20 top-[calc(100%+8px)] rounded-3xl
+                         backdrop-blur-xl ${leftPosition} ${responsive.chrome_doesnt_like_nesting} border border-white/15`}>
+          <div className="flex flex-col self-start pt-5 px-3.5 pb-3.5 gap-1 min-w-48">
+            <div className="flex items-center h-6 leading-6 pl-1.5 mb-1.5 text-white/60 font-medium">
+              {title}
             </div>
-            
-            <div className="flex flex-col justify-center">
-              <div>
-                <span>{item.title}</span>
-                {item.isExternal && ( <FontAwesomeIcon icon={faLink} size='2xs' className="ml-2 text-white/40" /> )}
-              </div>
-              <div className="text-xs text-white/40 [text-transform:none]">{item.description}</div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
+
+            {items.map((item, index) => (
+              <Link key={index} href={item.href} onClick={closeDropdown}
+                    className={`flex justify-start items-center gap-3 text-left capitalize text-white/90 text-base px-3 
+                                py-2 rounded-lg ${isItemActive(item.href) ? 'text-white bg-white/10 border border-white/20' 
+                                                                          : 'text-white/90 hover:text-white hover:bg-white/6'}`}>
+                  <div className={`flex items-center justify-center w-[42px] h-[42px] rounded-lg
+                                  ${isItemActive(item.href) ? '[box-shadow:inset_0_0_0_1px_hsla(0,0%,100%,.2)]'
+                                                            : '[box-shadow:inset_0_0_0_1px_hsla(0,0%,100%,.1)]'}`}>
+                  <Image src={item.icon} width={20} height={20}
+                         alt={`${item.title} Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`} />
+                </div>
+
+                <div className="flex flex-col justify-center">
+                  <div>
+                    <span>{item.title}</span>
+                    {item.isExternal && ( <FontAwesomeIcon icon={faLink} size='2xs' className="ml-2 text-white/40" /> )}
+                  </div>
+                  <div className="text-xs text-white/40 [text-transform:none]">{item.description}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
   );
 }
