@@ -11,7 +11,6 @@
 
 ![Bl4cklist - React Website](https://i.imgur.com/zRawIcp.png)
 
-<br />
 <h4 align="center">
   <a href="https://react.dev/">
     <img src="https://img.shields.io/badge/React-19.1.0-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
