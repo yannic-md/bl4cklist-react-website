@@ -161,7 +161,7 @@ export default function WelcomeHero(): JSX.Element {
 
                     {/* Description */}
                     <p className="mx-auto max-w-2xl text-sm sm:text-base font-normal tracking-tight text-[#a3a3a3]
-                                  font-ibm-plex-sans animate__animated animate__fadeInRight">
+                                  font-ibm-plex-sans animate__animated animate__fadeInRight px-3 lg:px-0">
                         {tWelcome('description')}
                     </p>
 

@@ -20,11 +20,11 @@ export interface NavigationItem {
  * @param tDropdown - Translation function for dropdown content
  * @returns Array of NavigationItem objects with translated content
  */
-export function getNavItems(t: any, tDropdown: any): NavigationItem[] {
+export function getNavItems(t: (key: string) => string, tDropdown: (key: string) => string): NavigationItem[] {
   return [
     {
       title: t('start'),
-      href: "/",
+      href: "/#discord-server-start",
       dropdownTitle: tDropdown('homepage'),
       items: [
         {

@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
                 {/* Container for IntroSection with shadow overlay */}
                 <div className="relative">
                     {/* Smooth transition shadow overlay - positioned at the top of IntroSection */}
-                    <div className="absolute top-0 left-0 right-0 h-20 z-[5] pointer-events-none
+                    <div className="absolute top-0 left-0 right-0 h-20 z-[2] pointer-events-none
                                     bg-gradient-to-b from-transparent via-gray-950/75 to-transparent 
                                     transform -translate-y-1/2"></div>
 

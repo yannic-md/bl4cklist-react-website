@@ -24,7 +24,8 @@ interface NavigationItemProps {
  */
 export default function HeaderNavItem({ item, leftPosition }: NavigationItemProps): JSX.Element {
   const router: NextRouter = useRouter();
-  const isActive: boolean = router.pathname === item.href || (item.href !== '/' && router.pathname.startsWith(item.href));
+  const isActive: boolean = router.pathname === item.href.split("#")[0] ||
+                            (item.href !== '/' && router.pathname.startsWith(item.href));
 
   return (
     <li className="group">

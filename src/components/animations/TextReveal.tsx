@@ -30,7 +30,7 @@ interface AnimatedTextRevealProps {
  * - triggerOnce: If true, animation triggers only once per mount.
  */
 export const AnimatedTextReveal = ({
-        text, className = "", letterDelay = 50, fadeDuration = 500, threshold = 0.3,  rootMargin = "0px 0px -50px 0px",
+        text, className = "", letterDelay = 75, fadeDuration = 500, threshold = 0.3,  rootMargin = "0px 0px -50px 0px",
         shadowColor = "rgba(255,127,80,0.35)", blurShadow = true, blurShadowOpacity = 0.4,
         triggerOnce = true}: AnimatedTextRevealProps): JSX.Element => {
     const [isVisible, setIsVisible] = useState(false);
@@ -71,32 +71,46 @@ export const AnimatedTextReveal = ({
 
     return (
         <div ref={elementRef} className={`relative ${className}`}>
-            {text.split('').map((char, index) => (
-                <span key={index} className="relative inline-block">
-                    {/* Blur-Shadow Layer (optional) */}
-                    {blurShadow && (
-                        <span className={`absolute inset-0 -top-[5px] -bottom-[5px] blur-sm transition-opacity ease-out`}
-                              style={{transitionDuration: `${fadeDuration}ms`,
-                                      transitionDelay: isVisible ? `${index * letterDelay}ms` : '0ms',
-                                      opacity: isVisible ? blurShadowOpacity : 0,
-                                      color: shadowColor.includes('rgba') ?
-                                             shadowColor.replace(/rgba?\(([^)]+)\)/, 'rgb($1)')
-                                                 .replace(/,\s*[\d.]+\)/, ')') : shadowColor}}>
-                          {char === ' ' ? '\u00A0' : char}
-                        </span>
-                    )}
+            {((): JSX.Element[] => {
+                let globalCharIdx = 0;
+                return text.split(' ').map((word, wordIdx): JSX.Element => (
+                    <span key={wordIdx} className="inline-block whitespace-nowrap">
+                        {word.split('').map((char): JSX.Element => {
+                            const index = globalCharIdx++;
+                            return (
+                                <span key={index} className="relative inline-block">
+                                    {/* Blur-Shadow Layer (optional) */}
+                                    {blurShadow && (
+                                        <span className="absolute inset-0 -top-[5px] -bottom-[5px] blur-sm transition-opacity ease-out"
+                                              style={{transitionDuration: `${fadeDuration}ms`,
+                                                      transitionDelay: isVisible ? `${index * letterDelay}ms` : '0ms',
+                                                      opacity: isVisible ? blurShadowOpacity : 0,
+                                                      color: shadowColor.includes('rgba')
+                                                          ? shadowColor.replace(/rgba?\(([^)]+)\)/, 'rgb($1)')
+                                                              .replace(/,\s*[\d.]+\)/, ')')
+                                                          : shadowColor}}>
+                                            {char}
+                                        </span>
+                                    )}
 
-                    {/* Main Letters */}
-                    <span className={`relative z-10 inline-block transition-all ease-out`} style={{
-                            transitionDuration: `${fadeDuration}ms`,
-                            transitionDelay: isVisible ? `${index * letterDelay}ms` : '0ms',
-                            opacity: isVisible ? 1 : 0,
-                            textShadow: isVisible ? `0 2px 4px ${shadowColor}` :
-                                                    `0 2px 4px ${shadowColor.replace(/[\d.]+\)$/, '0)')}`}}>
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                </span>
-            ))}
+                                    {/* Main Letters */}
+                                    <span className="relative z-10 inline-block transition-all ease-out"
+                                          style={{transitionDuration: `${fadeDuration}ms`,
+                                                  transitionDelay: isVisible ? `${index * letterDelay}ms` : '0ms',
+                                                  opacity: isVisible ? 1 : 0,
+                                                  textShadow: isVisible ? `0 2px 4px ${shadowColor}`
+                                                                        : `0 2px 4px ${shadowColor.replace(/[\d.]+\)$/, '0)')}`,}}>
+                                        {char}
+                                    </span>
+                                </span>
+                            );
+                        })}
+
+                        {/* Add a space after each word except the last */}
+                        {wordIdx < text.split(' ').length - 1 && <span className="inline-block">&nbsp;</span>}
+                    </span>
+                ));
+            })()}
         </div>
     );
 };

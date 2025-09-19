@@ -30,7 +30,7 @@ export default function IntroSection(): JSX.Element {
         <section className="w-full min-h-screen relative overflow-hidden" id="discord-server-features">
 
             {/* Same Gradient for smoother section transition */}
-            <div className="absolute -top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-[15]
+            <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                             animate__animated animate__fadeInDown pointer-events-none">
                 <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
@@ -42,7 +42,7 @@ export default function IntroSection(): JSX.Element {
                 <div className="px-8 pb-20">
                     <div className="max-w-6xl w-full mx-auto">
                         <div>
-                            <div className="flex mb-20 flex-row justify-center items-center gap-[60px]">
+                            <div className="flex mb-20 flex-col lg:flex-row justify-center items-center gap-[60px]">
                                 {/* Left Text Container */}
                                 <div className="flex flex-col justify-start items-start">
 
@@ -51,7 +51,8 @@ export default function IntroSection(): JSX.Element {
                                         <div className="font-bold tracking-wider">
                                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
                                                 <AnimatedTextReveal text={tIntro('infoTag')}
-                                                                    className="text-sm text-[coral] uppercase"
+                                                                    className="text-sm text-[coral] uppercase
+                                                                               text-center lg:text-start pb-3 lg:pb-0"
                                                                     shadowColor="rgba(255,127,80,0.35)" />
                                             </AnimateOnView>
                                         </div>
@@ -81,29 +82,33 @@ export default function IntroSection(): JSX.Element {
                                     </AnimateOnView>
 
                                     {/* Some entertaining discord server statistics */}
-                                    <AnimateOnView animation="animate__fadeInUp animate__slower">
-                                        <div className="flex items-center flex-wrap gap-x-8 gap-y-12">
+                                    <AnimateOnView animation="animate__fadeInUp animate__slower self-center lg:self-auto">
+                                        <div className="flex justify-center lg:justify-start items-center flex-wrap
+                                                        gap-x-8 gap-y-12">
                                             <div className="flex flex-col items-center text-center px-1">
                                                 <AnimatedCounter end={3533} suffix="+" locale={locale} />
-                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1">👥 {tWelcome('memberCount')}</span>
+                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1">
+                                                    👥 {tWelcome('memberCount')}</span>
                                             </div>
 
                                             <div className="flex flex-col items-center text-center px-1">
                                                 <AnimatedCounter end={890} suffix="+" locale={locale} />
-                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1.5">🔥 Online</span>
+                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1.5">
+                                                    🔥 Online</span>
                                             </div>
 
                                             <div className="flex flex-col items-center text-center px-1">
                                                 <AnimatedCounter end={4381784} suffix="+" locale={locale} />
-                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1">💬 {tIntro('count_chat')}</span>
+                                                <span className="text-sm text-[#969cb1] tracking-wide mr-1">
+                                                    💬 {tIntro('count_chat')}</span>
                                             </div>
                                         </div>
                                     </AnimateOnView>
 
                                     {/* Join Discord button */}
-                                    <AnimateOnView animation="animate__fadeInUp animate__slower">
+                                    <AnimateOnView animation="animate__fadeInUp animate__slower w-full lg:w-auto">
                                         <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20]
-                                                    mt-8 drop-shadow-xl drop-shadow-white/5">
+                                                        mt-8 drop-shadow-xl drop-shadow-white/5">
                                             <a href="https://discord.gg/bl4cklist" target="_blank"
                                                className="flex flex-col items-end w-full">
                                                 <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>

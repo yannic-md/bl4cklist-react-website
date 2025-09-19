@@ -84,7 +84,7 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
   * @returns `true` if the route is active, otherwise `false`.
   */
   const isActive: (href: string) => boolean = (href: string): boolean => {
-    return router.pathname === href || (href !== '/' && router.pathname.startsWith(href));
+    return router.pathname === href.split("#")[0] || (href !== '/' && router.pathname.startsWith(href));
   };
 
  /**
