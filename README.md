@@ -16,17 +16,20 @@
   <a href="https://react.dev/">
     <img src="https://img.shields.io/badge/React-19.1.0-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
   </a>
-  <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Next.JS-15.4.7-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+  <a href="https://nextjs.org/">
+    <img src="https://img.shields.io/badge/Next.JS-15.4.7-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
   </a>
   <a href="https://tailwindcss.com">
     <img src="https://img.shields.io/badge/Tailwind-4.1.11-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
-
-[//]: # (  <a href="https://jestjs.io/">)
-[//]: # (    <img src="https://img.shields.io/badge/JEST-29.7.0-1abc9c?style=for-the-badge" alt="jest version" style="height: 25px;">)
-[//]: # (  </a>)
-  <br>
+</h4>
+<h4 align="center">
+  <a href="https://animate.style/">
+    <img src="https://img.shields.io/badge/Animate.css-4.1.1-1abc9c?style=for-the-badge" alt="animate.css version" style="height: 25px;">
+  </a>
+  <a href="https://particles.js.org/">
+    <img src="https://img.shields.io/badge/Particles.js-3.9.1-1abc9c?style=for-the-badge" alt="particles.js version" style="height: 25px;">
+  </a>
 </h4>
 <h4 align="center">
  <a href="https://discord.gg/bl4cklist">

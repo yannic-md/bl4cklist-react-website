@@ -13,6 +13,7 @@ import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {useRouter} from "next/router";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 
 /**
  * Renders the introductory section of the Discord server landing page.
@@ -28,6 +29,7 @@ export default function IntroSection(): JSX.Element {
 
     return (
         <section className="w-full min-h-screen relative overflow-hidden" id="discord-server-features">
+            <ParticlesBackground className="z-0" />
 
             {/* Same Gradient for smoother section transition */}
             <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
@@ -124,8 +126,8 @@ export default function IntroSection(): JSX.Element {
                                 {/* Right Image Container */}
                                 <AnimateOnView animation="animate__fadeInRight animate__slower">
                                     <div className="rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5
-                                                p-px relative overflow-hidden rotate-1 border border-gray-900">
-                                        <div className="rounded-xl">
+                                                    p-px relative overflow-hidden rotate-1 border border-gray-900">
+                                        <div className={`rounded-xl ${index.easter_cursor}`}>
                                             <Image src="/images/pixel/guild-banner-508w.webp" width={508} height={508}
                                                    alt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                                    className="h-full rounded-xl brightness-90" unoptimized={true} />
