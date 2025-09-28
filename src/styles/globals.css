@@ -51,3 +51,8 @@ body {
 *::-webkit-scrollbar-track {
     @apply rounded bg-gray-900/15;
 }
+
+/* Custom Background for highlighted text */
+::selection {
+    @apply bg-[coral] text-white;
+}

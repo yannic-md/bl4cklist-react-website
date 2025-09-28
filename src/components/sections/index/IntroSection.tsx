@@ -14,7 +14,6 @@ import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {useRouter} from "next/router";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
-
 /**
  * Renders the introductory section of the Discord server landing page.
  * Displays animated headline, description, server statistics, join button, and feature highlights.
@@ -137,44 +136,48 @@ export default function IntroSection(): JSX.Element {
                             </div>
 
                             {/* A few guild features */}
-                            <div className="flex flex-wrap gap-10 [&>*]:flex-1 [&>*]:min-w-[280px]">
-                                <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <div className="flex items-start justify-start gap-4">
-                                        <div className="flex-none">
-                                            <Image src="/images/icons/small/coding-32w.webp" className="h-full" width={32} height={32}
-                                                   alt="Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                        </div>
-                                        <div>
-                                            <h3 className="mb-2 text-xl font-semibold leading-[1.5]">{tIntro('tip_1_title')}</h3>
-                                            <p className="text-[#969cb1]">{tIntro('tip_1_desc')}</p>
-                                        </div>
+                            <div className="flex flex-col flex-wrap gap-10">
+                                {[[{ src: "/images/icons/small/coding-32w.webp",
+                                     alt: "Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                     titleKey: "tip_1_title", descKey: "tip_1_desc",
+                                     animation: "animate__fadeInLeft animate__slower" },
+                                   { src: "/images/icons/small/heart-32w.webp",
+                                     alt: "Heart Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                     titleKey: "tip_2_title", descKey: "tip_2_desc",
+                                     animation: "animate__fadeInDown animate__slower" },
+                                   { src: "/images/icons/small/verify-32w.webp",
+                                     alt: "Bot Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                     titleKey: "tip_3_title", descKey: "tip_3_desc",
+                                     animation: "animate__fadeInRight animate__slower" }
+                                ], [{ src: "/images/icons/small/gift-32w.png",
+                                      alt: "Gift Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                      titleKey: "tip_4_title", descKey: "tip_4_desc",
+                                      animation: "animate__fadeInLeft animate__slower" },
+                                   { src: "/images/icons/small/rocket-32w.png",
+                                     alt: "Rocket Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                     titleKey: "tip_5_title", descKey: "tip_5_desc",
+                                     animation: "animate__fadeInUp animate__slower" },
+                                   { src: "/images/icons/small/game-32w.png",
+                                     alt: "Game Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+                                     titleKey: "tip_6_title", descKey: "tip_6_desc",
+                                     animation: "animate__fadeInRight animate__slower" }]
+                                ].map((row, rowIndex) => (
+                                    <div key={rowIndex} className="flex flex-col lg:flex-row [&>*]:flex-1 [&>*]:min-w-[280px] gap-10">
+                                        {row.map((feature, featureIndex) => (
+                                            <AnimateOnView key={featureIndex} animation={feature.animation}>
+                                                <div className="flex items-start justify-start gap-4">
+                                                    <div className="flex-none">
+                                                        <Image src={feature.src} className="h-full" width={32} height={32} alt={feature.alt} />
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="mb-2 text-xl font-semibold leading-[1.5]">{tIntro(feature.titleKey)}</h3>
+                                                        <p className="text-[#969cb1]">{tIntro(feature.descKey)}</p>
+                                                    </div>
+                                                </div>
+                                            </AnimateOnView>
+                                        ))}
                                     </div>
-                                </AnimateOnView>
-                                <AnimateOnView animation="animate__fadeInUp animate__slower">
-                                    <div className="flex items-start justify-start gap-4">
-                                        <div className="flex-none">
-                                            <Image src="/images/icons/small/heart-32w.webp" className="h-full" width={32} height={32}
-                                                   alt="Heart Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                        </div>
-                                        <div>
-                                            <h3 className="mb-2 text-xl font-semibold leading-[1.5]">{tIntro('tip_2_title')}</h3>
-                                            <p className="text-[#969cb1]">{tIntro('tip_2_desc')}</p>
-                                        </div>
-                                    </div>
-                                </AnimateOnView>
-                                <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                    <div className="flex items-start justify-start gap-4">
-                                        <div className="flex-none">
-                                            <Image src="/images/icons/small/verify-32w.webp" className="h-full"
-                                                   width={32} height={32}
-                                                   alt="Bot Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                        </div>
-                                        <div>
-                                            <h3 className="mb-2 text-xl font-semibold leading-[1.5]">{tIntro('tip_3_title')}</h3>
-                                            <p className="text-[#969cb1]">{tIntro('tip_3_desc')}</p>
-                                        </div>
-                                    </div>
-                                </AnimateOnView>
+                                ))}
                             </div>
 
                         </div>
