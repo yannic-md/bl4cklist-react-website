@@ -1,0 +1,120 @@
+import {JSX} from "react";
+import { AnimatedTextReveal } from "@/components/animations/TextReveal";
+import { AnimateOnView } from "@/components/animations/AnimateOnView";
+import { useTranslations } from "next-intl";
+
+import colors from '../../../styles/util/colors.module.css';
+import index from '../../../styles/components/index.module.css';
+import TeamMemberCard from "@/components/elements/misc/TeamMemberCard";
+import Image from "next/image";
+import {TeamMember} from "@/types/TeamMember";
+
+export default function TeamSection(): JSX.Element {
+    const tTeam = useTranslations('TeamSection');
+
+    // Placeholder Data TODO
+    const teamMembers: TeamMember[] = [
+        { username: 'yannicde', display_name: 'Yannic 🦙', rank: 'LEITUNG', user_id: '327176944640720906',
+          avatar_url: 'https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128',
+          social_media_1: 'https://twitch.tv/yannicde', social_media_2: 'https://github.com/yannicde' },
+        { username: 'xlonestar.888', display_name: '.Julian🎴', rank: 'ADMIN', user_id: '806086469268668437',
+          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/806086469268668437/avatars/a_ad9098a369c818b10c7ca055f22e8f66.gif?size=128',
+          social_media_1: 'https://youtube.com/@julian', social_media_2: 'https://twitter.com/xlonestar888' },
+        { username: '7raku_', display_name: 'Döner <3 🥙', rank: 'SENIOR', user_id: '1170958319662407694',
+          avatar_url: 'https://cdn.discordapp.com/avatars/1170958319662407694/08a55a7194b3e7f8c868b8b034f916b8.png?size=128',
+          social_media_1: 'https://tiktok.com/@7raku_', social_media_2: 'https://instagram.com/7raku_' },
+        { username: 'moderator_example', display_name: 'Platzhalter', rank: 'MODERATOR', user_id: '1170958319662407699',
+          avatar_url: 'https://cdn.discordapp.com/avatars/981918775651745832/4ef47e4b6c4bcb1f0d23ec0ec2112109.png?size=128',
+          social_media_1: 'https://twitch.tv/moderator_example', social_media_2: 'https://youtube.com/@modexample' },
+        { username: 'helper_example', display_name: 'Platzhalter', rank: 'ENTWICKLER', user_id: '1170958319662407700',
+          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/880436867357622292/avatars/a_6944984ee59435315ce7184411485cd9.gif?size=128',
+          social_media_1: 'https://github.com/helper_example', social_media_2: 'https://twitter.com/helper_example' },
+        { username: 'community_manager', display_name: 'Platzhalter', rank: 'HELFER', user_id: '1170958319662407701',
+          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/880436867357622292/avatars/a_6944984ee59435315ce7184411485cd9.gif?size=128',
+          social_media_1: 'https://instagram.com/community_manager' }
+    ];
+
+    /**
+     * Determines the appropriate animation class for a team member based on their position in a grid layout.
+     * 
+     * @param index - The zero-based index of the team member in the array
+     * @param totalMembers - The total number of team members
+     * @returns The CSS animation class name to apply to the team member element
+     */
+    const getTeamMemberAnimation = (index: number, totalMembers: number): string => {
+        const rowIndex: number = Math.floor(index / 3);
+        const colIndex: number = index % 3;
+        const totalRows: number = Math.ceil(totalMembers / 3);
+        
+        if (colIndex === 0) { return "animate__fadeInLeft";
+        } else if (colIndex === 2) { return "animate__fadeInRight";
+        } else if (colIndex === 1) {
+            // Middle column - determine based on row position
+            if (rowIndex === 0) { return "animate__fadeInDown";
+            } else if (rowIndex === totalRows - 1) { return "animate__fadeInUp";
+            } else { return "animate__fadeIn"; }
+        }
+        
+        // Mid items in a mid row
+        return "animate__fadeIn";
+    };
+
+    return (
+        <section className="relative flex flex-col w-full gap-10 z-[2] bg-slate-900/30 px-10 
+                            pt-24 pb-28 scroll-m-2.5 overflow-hidden justify-center" id="discord-server-team">
+
+            {/* Decorational moon image */}
+            <AnimateOnView animation="animate__fadeIn animate__slower">
+                <div className="absolute left-0 top-56 z-[3] pointer-events-none opacity-25">
+                    <Image src="/images/bg/moon.svg" alt="Moon ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" 
+                        className="w-48 h-48 ml-10" width={192} height={192} />
+                </div>
+            </AnimateOnView>
+
+            <div className="relative flex flex-col w-full z-[1] justify-center items-center gap-2.5">
+                <div className="relative flex flex-col items-center gap-2.5 mb-10">
+                    {/* Tag */}
+                    <div className="font-bold tracking-wider mb-1">
+                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
+                            <AnimatedTextReveal text={tTeam('infoTag')}
+                                                className="text-sm text-[coral] uppercase
+                                                            text-center lg:text-start pb-3 lg:pb-0"
+                                                shadowColor="rgba(255,127,80,0.35)" />
+                        </AnimateOnView>
+                    </div>
+
+                    {/* Headline */}
+                    <AnimateOnView animation="animate__fadeInRight animate__slower">
+                        <h2 className={`${index.head_border_center} max-w-[20ch] bg-clip-text text-transparent mb-6 
+                                        ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-center lg:text-start
+                                        text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.75rem)]`}>
+                            <span className="inline-block align-middle leading-none -mx-[10px]
+                                             text-white">🚔</span> - {tTeam('title')}
+                        </h2>
+                    </AnimateOnView>
+                    <AnimateOnView animation="animate__fadeInUp animate__slower">
+                        <p className="text-base max-w-4xl leading-[-.02em] text-center text-gray-300">
+                            {tTeam('description')}</p>
+                    </AnimateOnView>
+                
+                </div>
+
+                {/* Team-Members */}
+                <div className="relative flex flex-wrap z-[1] w-full justify-center max-w-7xl gap-8">
+                    {teamMembers.map((member, index) => (
+                        <AnimateOnView key={member.user_id} animation={`${getTeamMemberAnimation(index, teamMembers.length)} animate__slower`}>
+                            <TeamMemberCard member={member} />
+                        </AnimateOnView>
+                    ))}
+                </div>
+            </div>
+
+            {/* Border for better transition to next section & Light shape for more depth */}
+            <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1] 
+                            flex-none h-1 absolute bottom-0 left-0 right-0"></div>
+            <div className="-rotate-[13deg] bg-[radial-gradient(50%_50%_at_50%_50%,#d5dbe6b3_0%,#04070d00_100%)] 
+                            opacity-10 pointer-events-none z-[1] rounded-[10px] flex-none w-[793px] h-[499px] 
+                            absolute -bottom-[249px] left-[calc(50%-396.5px)]"></div>
+        </section>
+    )
+}

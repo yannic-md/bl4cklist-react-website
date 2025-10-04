@@ -34,6 +34,12 @@
     clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
 }
 
+.head_border_center::after {
+    @apply content-[""] block w-[75px] h-[5px] bg-[coral] mt-5 mx-auto;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
+    clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
+}
+
 .easter_cursor {
     cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer !important;
 }
@@ -84,6 +90,10 @@
 
 .showcase_bottom_edge {
     @apply absolute left-0 top-0 w-px h-1.5 bg-gray-50;
+}
+
+.team_border_shadow:after {
+    @apply content-[''] absolute border border-[#d8e7f212] pointer-events-none w-full h-full left-0 top-0 rounded-2xl;
 }
 
 /* Animation 6s: Jump ~0,6s, Pause ~5,4s */

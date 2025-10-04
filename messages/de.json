@@ -79,5 +79,22 @@
     "tip_5_desc": "› Bei uns findest du 500+ Discord Server-Vorlagen für den idealen Start & kannst darüber hinaus noch für dein Discord-Server werben.",
     "tip_6_title": "Gaming & Technik - News",
     "tip_6_desc": "› Unser Discord-Bot veröffentlicht rund um die Uhr die neusten Artikel aus der Gaming-& Technik-Welt mithilfe von GameStar um dich stets zu unterhalten."
+  },
+  "TeamSection": {
+    "infoTag": "WER KÜMMERT SICH UM UNSERE DISCORD-COMMUNITY?",
+    "title": "DAS SERVER-TEAM",
+    "description": "› Unser engagiertes Server-Team sorgt auf unserem Discord-Server für Sicherheit, Unterstützung und spannende Community-Events, damit sich alle Mitglieder wohlfühlen und gemeinsam Spaß haben können.",
+    "rank_owner": "Server-Leitung",
+    "rank_developer": "System-Entwickler",
+    "rank_helper": "Neuer Helfer",
+    "rank_owner_desc": "Die Leitung kümmert sich um die ganze Server-Verwaltung, die Organisation und um die Umsetzung neuer Ideen.",
+    "rank_admin_desc": "Die Admins greifen größtenteils der Leitung unter die Arme oder bearbeiten teilweise schon Bewerbungen mit uns.",
+    "rank_senior_desc": "Die Senior-Mods sind erfahrene Moderatoren und kümmern sich um die Pflege des Support-Teams. Sie agieren als eine Art von \"Mentor\".",
+    "rank_mod_desc": "Die Mods sind wichtige Bestandteile des Teams. Sie kümmern sich um Tickets, Moderation und administrieren kleinere Elemente.",
+    "rank_dev_desc": "Die Entwickler kümmern sich um die Entwicklung unserer Systeme und helfen der Leitung bei der technischen Umsetzung.",
+    "rank_helper_desc": "Die Helfer sind neu in unserem Team. Sie kümmern sich um Support-Tickets, moderieren den Chat und gewöhnen sich ein."
+  },
+  "Misc": {
+    "copy": "Kopiert!"
   }
 }

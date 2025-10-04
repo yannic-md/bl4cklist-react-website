@@ -25,7 +25,7 @@ export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ classN
     const particlesLoaded: () => Promise<void> = useCallback(async (): Promise<void> => {}, []);
 
     return (
-        <Particles id="tsparticles" particlesLoaded={particlesLoaded} className={`absolute inset-0 opacity-30 ${className}`}
+        <Particles id="tsparticles" particlesLoaded={particlesLoaded} className={`absolute inset-0 !opacity-30 ${className}`}
                 options={{
                     background: {
                         color: {
@@ -70,7 +70,7 @@ export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ classN
                             value: { min: 0, max: 1 },
                         },
                         size: {
-                            value: { min: 1, max: 3 },
+                            value: { min: 1, max: 2.5 },
                         },
                     },
                     detectRetina: true,

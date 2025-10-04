@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
         locales: ['de', 'en'],
         defaultLocale: 'de'
     },
+    images: {
+        remotePatterns: [{ hostname: 'cdn.discordapp.com' }],
+    },
 
     async redirects() {
         return [

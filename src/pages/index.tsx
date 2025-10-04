@@ -3,6 +3,7 @@ import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
 import {GetStaticPropsContext} from "next";
 import IntroSection from "@/components/sections/index/IntroSection";
+import TeamSection from "@/components/sections/index/TeamSection";
 
 /**
  * Renders the home page of the project.
@@ -30,6 +31,10 @@ export default function Home(): JSX.Element {
 
                     {/* Short description of our discord-server with some statistics */}
                     <IntroSection />
+
+                    {/* Presentation of the server-team */}
+                    <TeamSection />
+
                 </div>
             </div>
 

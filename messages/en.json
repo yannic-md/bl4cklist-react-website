@@ -79,5 +79,22 @@
     "tip_5_desc": "› With us you will find 500+ Discord server templates for the perfect start & you can also advertise your Discord server.",
     "tip_6_title": "Gaming & Tech News",
     "tip_6_desc": "› Our Discord bot publishes the latest articles from the gaming & tech world around the clock with the help of GameStar to keep you entertained."
+  },
+  "TeamSection": {
+    "infoTag": "WHO TAKES CARE OF OUR DISCORD COMMUNITY?",
+    "title": "THE SERVER TEAM",
+    "description": "› Our dedicated server team ensures safety, support, and exciting community events on our Discord server, so all members can feel comfortable and have fun together.",
+    "rank_owner": "Server Owner",
+    "rank_developer": "System Developer",
+    "rank_helper": "New Helper",
+    "rank_owner_desc": "The management takes care of the entire server administration, organization, and the implementation of new ideas.",
+    "rank_admin_desc": "The admins mostly support the management or sometimes already help with processing applications.",
+    "rank_senior_desc": "The senior mods are experienced moderators and take care of the support team. They act as a kind of \"mentor.\"",
+    "rank_mod_desc": "The mods are important parts of the team. They handle tickets, moderation, and administer smaller elements.",
+    "rank_dev_desc": "The developers take care of the development of our systems and assist the management with technical implementation.",
+    "rank_helper_desc": "The helpers are new to our team. They handle support tickets, moderate the chat, and are getting used to their tasks."
+  },
+  "Misc": {
+    "copy": "Copied!"
   }
 }
