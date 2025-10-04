@@ -28,7 +28,7 @@ export default function IntroSection(): JSX.Element {
 
     return (
         <section className="w-full min-h-screen relative overflow-hidden" id="discord-server-features">
-            <ParticlesBackground className="z-0" />
+            <ParticlesBackground className="z-0 animate__animated animate__fadeIn animate__slower" />
 
             {/* Same Gradient for smoother section transition */}
             <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
@@ -149,21 +149,21 @@ export default function IntroSection(): JSX.Element {
                                      alt: "Bot Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
                                      titleKey: "tip_3_title", descKey: "tip_3_desc",
                                      animation: "animate__fadeInRight animate__slower" }
-                                ], [{ src: "/images/icons/small/gift-32w.png",
+                                ], [{ src: "/images/icons/small/gift-32w.webp",
                                       alt: "Gift Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
                                       titleKey: "tip_4_title", descKey: "tip_4_desc",
                                       animation: "animate__fadeInLeft animate__slower" },
-                                   { src: "/images/icons/small/rocket-32w.png",
+                                   { src: "/images/icons/small/rocket-32w.webp",
                                      alt: "Rocket Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
                                      titleKey: "tip_5_title", descKey: "tip_5_desc",
                                      animation: "animate__fadeInUp animate__slower" },
-                                   { src: "/images/icons/small/game-32w.png",
+                                   { src: "/images/icons/small/game-32w.webp",
                                      alt: "Game Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
                                      titleKey: "tip_6_title", descKey: "tip_6_desc",
                                      animation: "animate__fadeInRight animate__slower" }]
-                                ].map((row, rowIndex) => (
+                                ].map((row, rowIndex): JSX.Element => (
                                     <div key={rowIndex} className="flex flex-col lg:flex-row [&>*]:flex-1 [&>*]:min-w-[280px] gap-10">
-                                        {row.map((feature, featureIndex) => (
+                                        {row.map((feature, featureIndex): JSX.Element => (
                                             <AnimateOnView key={featureIndex} animation={feature.animation}>
                                                 <div className="flex items-start justify-start gap-4">
                                                     <div className="flex-none">
@@ -184,6 +184,11 @@ export default function IntroSection(): JSX.Element {
                     </div>
                 </div>
             </div>
+
+            {/* Bottom Border for good looking transition to new section */}
+            <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1] 
+                            flex-none h-1 absolute bottom-0 left-0 right-0"></div>
         </section>
+
     )
 }
