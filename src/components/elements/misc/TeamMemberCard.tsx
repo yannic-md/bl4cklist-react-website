@@ -66,7 +66,13 @@ export default function TeamMemberCard({ member }: { member: TeamMember }) {
         <div>
             <div className="relative flex-[1_0_0] w-96"></div>
             <div className={`relative flex gap-6 p-8 bg-[#04070d] rounded-2xl
-                                shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)] ${index.team_border_shadow}`}>
+                ${member.rank === 'LEITUNG' ? 'shadow-[inset_0_2px_1px_0_rgba(239,68,68,0.2)]' :
+                    member.rank === 'ADMIN' ? 'shadow-[inset_0_2px_1px_0_rgba(248,113,113,0.2)]' :
+                    member.rank === 'SENIOR' ? 'shadow-[inset_0_2px_1px_0_rgba(59,130,246,0.2)]' :
+                    member.rank === 'ENTWICKLER' ? 'shadow-[inset_0_2px_1px_0_rgba(37,99,235,0.2)]' :
+                    member.rank === 'MODERATOR' ? 'shadow-[inset_0_2px_1px_0_rgba(56,189,248,0.2)]' :
+                    member.rank === 'HELFER' ? 'shadow-[inset_0_2px_1px_0_rgba(52,211,153,0.2)]' :
+                    'shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]'} ${index.team_border_shadow}`}>
 
                 {/* User Name + Rank */}
                 <div className="relative flex flex-col flex-1 items-start justify-center gap-6 w-px">
