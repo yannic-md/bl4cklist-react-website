@@ -4,6 +4,8 @@ import {JSX} from "react";
 import {GetStaticPropsContext} from "next";
 import IntroSection from "@/components/sections/index/IntroSection";
 import TeamSection from "@/components/sections/index/TeamSection";
+import HistorySection from "@/components/sections/index/HistorySection";
+import Image from "next/image";
 
 /**
  * Renders the home page of the project.
@@ -34,6 +36,16 @@ export default function Home(): JSX.Element {
 
                     {/* Presentation of the server-team */}
                     <TeamSection />
+
+                    {/* History of the server */}
+                    <div>
+                        {/* Decorational grid image on top of section */}
+                        <Image src="/images/bg/grid-2340w.webp" className="absolute grayscale pointer-events-none"
+                               width={2340} height={280} sizes="100vw"
+                               alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+
+                        <HistorySection />
+                    </div>
 
                 </div>
             </div>

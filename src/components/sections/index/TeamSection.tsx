@@ -93,7 +93,7 @@ export default function TeamSection(): JSX.Element {
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView animation="animate__fadeInUp animate__slower">
-                        <p className="text-base max-w-4xl leading-[-.02em] text-center text-gray-300">
+                        <p className="text-base max-w-4xl leading-[-.02em] text-center text-[#969cb1]">
                             {tTeam('description')}</p>
                     </AnimateOnView>
                 
