@@ -13,8 +13,20 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {TeamMember} from "@/types/TeamMember";
+import {JSX} from "react";
 
-export default function TeamMemberCard({ member }: { member: TeamMember }) {
+/**
+ * Renders a card component for a team member, displaying their avatar, username, rank,
+ * and social media links. The card includes interactive elements such as tooltips
+ * for additional information and a copy-to-clipboard feature for the username.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {TeamMember} props.member - The team member object containing details such as
+ * username, rank, avatar URL, and social media links.
+ *
+ * @returns {JSX.Element} A styled card component with team member details.
+ */
+export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element {
     const tTeam = useTranslations('TeamSection');
     const tMisc = useTranslations('Misc');
 
