@@ -28,6 +28,7 @@ import Link from "next/link";
  */
 export default function HistorySection(): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
+    const tHistorySection = useTranslations("HistorySection");
     const [focusedIndex, setFocusedIndex] = useState<number>(0);
     const [fillHeight, setFillHeight] = useState<number>(0);
     const itemRefs: RefObject<(HTMLDivElement | null)[]> = useRef<(HTMLDivElement | null)[]>([]);
@@ -40,7 +41,7 @@ export default function HistorySection(): JSX.Element {
      * This is used to change the size and opacity of the focused item inside the timeline.
      */
     useEffect((): () => void => {
-        const observer = new IntersectionObserver(
+        const observer: IntersectionObserver = new IntersectionObserver(
             (entries: IntersectionObserverEntry[]): void => {
                 let closestEntry: IntersectionObserverEntry = entries[0];
                 let closestDistance: number = Math.abs(
@@ -116,7 +117,7 @@ export default function HistorySection(): JSX.Element {
                         {/* Animated Tag */}
                         <div className="font-bold tracking-wider mb-1">
                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                <AnimatedTextReveal text="WIE SIND WIR EIGENTLICH ENTSTANDEN?"
+                                <AnimatedTextReveal text={tHistorySection('infoTag')}
                                                     className="text-sm text-[coral] uppercase
                                                                text-center lg:text-start pb-3 lg:pb-0"
                                                     shadowColor="rgba(255,127,80,0.35)" />
@@ -129,17 +130,17 @@ export default function HistorySection(): JSX.Element {
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-center 
                                             lg:text-start text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.60rem)]`}>
                                 <span className="inline-block align-middle leading-none text-white">
-                                    🪶</span> - DIE GESCHICHTE..
+                                    🪶</span> - {tHistorySection('title')}
                             </h2>
                         </AnimateOnView>
 
                         {/* Description */}
                         <AnimateOnView animation="animate__fadeInUp animate__slower">
                             <p className="text-[#969cb1] mb-6 break-words max-w-2xl">
-                                📜 › Wir haben zusammen mit unserer Discord-Community schon sehr viel erlebt. Wir haben viele schöne neue Erinnerungen, aber auch jede Menge neuer Freunde gefunden. Bl4cklist war ein Ort um den Stress des Alltags etwas zu vergessen.<br /><br />
-                                ⚡› Doch dies war nur der Anfang: Auch nach vielen revolutionären und einzigartigen Ideen geht uns noch immer nicht die Luft aus: Uns wird es für immer für euch geben & wir haben noch jede Menge Asse im Ärmel um euch stets bei Laune zu halten und zu inspirieren.<br /><br />
-                                💕 › Wir sind jedem einzelnen User dankbar, welcher uns in der vergangenen Zeit besucht, gechattet, gespendet oder innerhalb unseres Teams unterstützt hat. Ohne euch wäre Bl4cklist nicht das, was es heute ist und wir werden keinen einzigen von euch vergessen!<br /><br />
-                                🤔 › Um euch einen kleinen Einblick darin zu geben was wir alles zusammen erlebt haben, haben wir ein paar besondere Momente hier zusammengetragen.</p>
+                                {tHistorySection('description')}<br /><br />
+                                {tHistorySection('description2')}<br /><br />
+                                {tHistorySection('description3')}<br /><br />
+                                {tHistorySection('description4')}</p>
                         </AnimateOnView>
 
                         {/* Buttons */}
@@ -161,7 +162,7 @@ export default function HistorySection(): JSX.Element {
                                     <Link href="discord/community" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                             <FontAwesomeIcon icon={faUsers} className="text-gray-100" />
-                                            <p className="whitespace-pre">Unsere Community</p>
+                                            <p className="whitespace-pre">{tHistorySection('ourCommunity')}</p>
                                         </button>
                                     </Link>
 
@@ -186,7 +187,8 @@ export default function HistorySection(): JSX.Element {
                             {/* Items of the timeline */}
                             {timeline.map((item: TimelineData, index1: number): JSX.Element => (
                                 <div key={index1} ref={(el: HTMLDivElement | null): void => { itemRefs.current[index1] = el; }}>
-                                    <TimelineItem date={item.date} title={item.title} description={item.description}
+                                    <TimelineItem date={tHistorySection(item.date)} title={tHistorySection(item.title)}
+                                                  description={tHistorySection(item.description)}
                                                   logoSrc={item.logoSrc} logoAlt={item.logoAlt}
                                                   borderShadowClass={index.team_border_shadow}
                                                   isFocused={focusedIndex === index1}
