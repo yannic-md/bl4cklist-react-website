@@ -1,4 +1,4 @@
-import {JSX} from "react";
+import {JSX, RefObject, useEffect, useRef, useState} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
@@ -12,6 +12,7 @@ import {timeline, TimelineData} from "@/types/TimelineData";
 import TimelineItem from "@/components/elements/misc/TimelineItem";
 
 import index from '../../../styles/components/index.module.css';
+import Link from "next/link";
 
 /**
  * The `HistorySection` component renders a section of the webpage that provides
@@ -27,6 +28,82 @@ import index from '../../../styles/components/index.module.css';
  */
 export default function HistorySection(): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
+    const [focusedIndex, setFocusedIndex] = useState<number>(0);
+    const [fillHeight, setFillHeight] = useState<number>(0);
+    const itemRefs: RefObject<(HTMLDivElement | null)[]> = useRef<(HTMLDivElement | null)[]>([]);
+
+    /**
+     * Sets up an IntersectionObserver to track which timeline item is closest to the vertical center of the viewport.
+     * Updates the focusedIndex state when the closest item changes.
+     * Observes all timeline item refs and disconnects the observer on cleanup.
+     *
+     * This is used to change the size and opacity of the focused item inside the timeline.
+     */
+    useEffect((): () => void => {
+        const observer = new IntersectionObserver(
+            (entries: IntersectionObserverEntry[]): void => {
+                let closestEntry: IntersectionObserverEntry = entries[0];
+                let closestDistance: number = Math.abs(
+                    entries[0].boundingClientRect.top + entries[0].boundingClientRect.height / 2 - window.innerHeight / 2
+                );
+
+                // find the item which is the closest in the mid of the screen
+                entries.forEach((entry: IntersectionObserverEntry): void => {
+                    const distance: number = Math.abs(
+                        entry.boundingClientRect.top + entry.boundingClientRect.height / 2 - window.innerHeight / 2
+                    );
+
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestEntry = entry;
+                    }
+                });
+
+                // find the index of the focused item and set it to the state
+                const index: number = itemRefs.current.findIndex((ref: HTMLDivElement | null): boolean =>
+                    ref === closestEntry.target);
+                if (index !== -1) { setFocusedIndex(index); }
+            },
+            {threshold: [0, 0.25, 0.5, 0.75, 1], rootMargin: '-50% 0px -50% 0px' }
+        );
+
+        // observe all timeline items
+        itemRefs.current.forEach((ref: HTMLDivElement | null): void => {
+            if (ref) observer.observe(ref);
+        });
+
+        return (): void => observer.disconnect();
+    }, []);
+
+    /**
+     * Updates the fill height of the timeline's animated line based on the currently focused timeline item.
+     * - If the first item is focused, calculates the height from the top of the container to the center of the first item.
+     * - If another item is focused, sums the heights of all previous items plus half the height of the focused item,
+     *   including the gap between items (56px).
+     *
+     * This is used to apply a "color animation" on the border of the timeline container.
+     *
+     * @param focusedIndex Index of the currently focused timeline item.
+     * @effect Recalculates fillHeight whenever focusedIndex changes.
+     */
+    useEffect((): void => {
+        if (focusedIndex === 0 && itemRefs.current[0]) {
+            const firstItemRect: DOMRect = itemRefs.current[0].getBoundingClientRect();
+            const containerTop: number = itemRefs.current[0].parentElement?.parentElement?.getBoundingClientRect().top || 0;
+            setFillHeight((firstItemRect.top - containerTop) + (firstItemRect.height / 2));
+        } else if (focusedIndex > 0 && itemRefs.current[focusedIndex]) {
+            let totalHeight: number = 0;
+            for (let i: number = 0; i < focusedIndex; i++) {
+                if (itemRefs.current[i]) {
+                    totalHeight += itemRefs.current[i]!.offsetHeight + 56; // 56px = "gap-14" used class in code
+                }
+            }
+            if (itemRefs.current[focusedIndex]) {
+                totalHeight += itemRefs.current[focusedIndex]!.offsetHeight / 2;
+            }
+            setFillHeight(totalHeight);
+        }
+    }, [focusedIndex]);
 
     return (
         <section className="pr-8 pl-8 pb-28 pt-32 bg-slate-900/30" id="discord-server-history">
@@ -81,12 +158,12 @@ export default function HistorySection(): JSX.Element {
                                 </div>
 
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
-                                    <a href="discord/community" className="flex flex-col items-end w-full">
+                                    <Link href="discord/community" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                             <FontAwesomeIcon icon={faUsers} className="text-gray-100" />
                                             <p className="whitespace-pre">Unsere Community</p>
                                         </button>
-                                    </a>
+                                    </Link>
 
                                     <ButtonHover />
                                 </div>
@@ -102,10 +179,19 @@ export default function HistorySection(): JSX.Element {
                             <div className="absolute w-0.5 h-full bg-gradient-to-b from-white/20 via-white/40
                                           to-white/10 inset-y-0 left-0"></div>
 
+                            {/* Used to fill out the timeline border color for passed elements */}
+                            <div className="absolute w-0.5 bg-gradient-to-b from-white/90 to-white/60 inset-y-0
+                                            left-0 transition-all duration-500" style={{ height: `${fillHeight}px` }} />
+
                             {/* Items of the timeline */}
-                            {timeline.reverse().map((item: TimelineData, index1: number): JSX.Element => (
-                                <TimelineItem key={index1} date={item.date} title={item.title} description={item.description}
-                                              logoSrc={item.logoSrc} logoAlt={item.logoAlt} borderShadowClass={index.team_border_shadow} />
+                            {timeline.map((item: TimelineData, index1: number): JSX.Element => (
+                                <div key={index1} ref={(el: HTMLDivElement | null): void => { itemRefs.current[index1] = el; }}>
+                                    <TimelineItem date={item.date} title={item.title} description={item.description}
+                                                  logoSrc={item.logoSrc} logoAlt={item.logoAlt}
+                                                  borderShadowClass={index.team_border_shadow}
+                                                  isFocused={focusedIndex === index1}
+                                                  isPassed={index1 <= focusedIndex} />
+                                </div>
                             ))}
                         </div>
                     </div>
