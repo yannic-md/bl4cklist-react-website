@@ -4,6 +4,9 @@ export interface TimelineData {
     description: string;
     logoSrc?: string;
     logoAlt?: string;
+    bgSrc?: string;
+    bgRotation?: 'left' | 'right';
+    bgAlt?: string;
 }
 
 export const timeline: TimelineData[] = [
@@ -30,7 +33,10 @@ export const timeline: TimelineData[] = [
         title: 'ITEM_4_TITLE',
         description: 'ITEM_4_DESC',
         logoSrc: '/images/brand/logo-96w.webp',
-        logoAlt: 'Main Logo ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
+        logoAlt: 'Main Logo ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server',
+        bgSrc: '/images/bg/jupiter-128w.webp',
+        bgRotation: 'right',
+        bgAlt: 'Jupiter Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
     },
     {
         date: 'ITEM_5_DATE',
@@ -58,6 +64,9 @@ export const timeline: TimelineData[] = [
         date: 'ITEM_9_DATE',
         title: 'ITEM_9_TITLE',
         description: 'ITEM_9_DESC',
+        bgSrc: '/images/bg/uranus-128w.webp',
+        bgRotation: 'left',
+        bgAlt: 'Uranus Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
     },
     {
         date: 'ITEM_10_DATE',

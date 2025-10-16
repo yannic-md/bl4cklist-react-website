@@ -1,12 +1,17 @@
 import Image from 'next/image';
 import {JSX} from "react";
 
+import animations from '../../../styles/util/animations.module.css';
+
 interface TimelineItemProps {
     date: string;
     title: string;
     description: string;
     logoSrc?: string;
     logoAlt?: string;
+    bgSrc?: string;
+    bgAlt?: string;
+    bgRotation?: 'left' | 'right';
     borderShadowClass: string;
     isFocused?: boolean;
     isPassed?: boolean;
@@ -21,14 +26,17 @@ interface TimelineItemProps {
  * @param {string} props.description - A brief description of the timeline item.
  * @param {string} [props.logoSrc] - The optional source URL for the logo image.
  * @param {string} [props.logoAlt] - The optional alt text for the logo image.
+ * @param {string} [props.bgSrc] - The optional source URL for the decorative background image.
+ * @param {string} [props.bgRotation] - The orientation for the tilt of the planet icon.
+ * @param {string} [props.bgAlt] - The optional alt text for the decorative background image.
  * @param {string} props.borderShadowClass - The TailwindCSS class for the border shadow effect.
  * @param {boolean} props.isFocused - Determines if the current item is focused.
  * @param {boolean} props.isPassed - Determines whether the user has already scrolled past the item.
  *
  * @returns {JSX.Element} The rendered JSX element for the timeline item.
  */
-export default function TimelineItem({date, title, description, logoSrc, logoAlt, borderShadowClass,
-                                      isFocused = false, isPassed = false}: TimelineItemProps): JSX.Element {
+export default function TimelineItem({date, title, description, logoSrc, logoAlt, bgSrc, bgAlt, bgRotation,
+                                      borderShadowClass, isFocused = false, isPassed = false}: TimelineItemProps): JSX.Element {
     return (
         <div className="relative flex flex-col gap-4 pl-[63px]">
             {/* Container for the timeline item */}
@@ -56,6 +64,15 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
                             bg-[radial-gradient(50%_50%_at_93.7%_8.1%,#b8c7d980_0%,rgba(4,7,13,0)_100%)]" />
                 </div>
             </div>
+
+            {/* Decorative background image positioned far right */}
+            {bgSrc && (
+                <div className={`absolute -right-48 top-48 w-32 h-32 z-0 pointer-events-none ${animations.animate_float}
+                                 ${bgRotation === 'left' ? 'rotate-12' : 'rotate-20'}`}>
+                    <Image src={bgSrc} width={256} height={256} alt={bgAlt || 'Background decoration'}
+                           className={`w-full h-full object-contain transition-all duration-700 opacity-10`} />
+                </div>
+            )}
 
             {/* Some decoration to highlight the item on the timeline */}
             <div className="w-[10px] absolute top-[47%] -left-[4px] transition-all duration-500">

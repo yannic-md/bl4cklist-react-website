@@ -27,7 +27,7 @@ export default function IntroSection(): JSX.Element {
     const { locale } = useRouter();
 
     return (
-        <section className="w-full min-h-screen relative overflow-hidden" id="discord-server-features">
+        <section className="w-full min-h-full relative overflow-hidden" id="discord-server-features">
             <ParticlesBackground className="z-0 animate__animated animate__fadeIn animate__slower" />
 
             {/* Same Gradient for smoother section transition */}

@@ -9,6 +9,15 @@ import TeamMemberCard from "@/components/elements/misc/TeamMemberCard";
 import Image from "next/image";
 import {TeamMember} from "@/types/TeamMember";
 
+/**
+ * Renders the Discord server team section with animated elements and team member cards.
+ *
+ * Displays a headline, description, and a grid of team members with individual animations
+ * based on their position in the grid. Uses translations for all texts and applies
+ * responsive TailwindCSS styling.
+ *
+ * @returns {JSX.Element} The rendered team section component.
+ */
 export default function TeamSection(): JSX.Element {
     const tTeam = useTranslations('TeamSection');
 

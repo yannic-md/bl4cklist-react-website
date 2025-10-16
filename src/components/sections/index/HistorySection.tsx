@@ -1,4 +1,4 @@
-import {JSX, RefObject, useEffect, useRef, useState} from "react";
+import {JSX, RefObject, useEffect, useMemo, useRef, useState} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
@@ -13,6 +13,7 @@ import TimelineItem from "@/components/elements/misc/TimelineItem";
 
 import index from '../../../styles/components/index.module.css';
 import Link from "next/link";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 
 /**
  * The `HistorySection` component renders a section of the webpage that provides
@@ -107,7 +108,12 @@ export default function HistorySection(): JSX.Element {
     }, [focusedIndex]);
 
     return (
-        <section className="pr-8 pl-8 pb-28 pt-32 bg-slate-900/30" id="discord-server-history">
+        <section className="pr-8 pl-8 pb-28 pt-32 bg-slate-900/30 relative" id="discord-server-history">
+            {/* useMemo stops re-creating the particles on scroll */}
+            {useMemo((): JSX.Element => (
+                <ParticlesBackground particles={80} className="z-10 animate__animated animate__fadeIn animate__slower" />
+            ), [])}
+
             <div className="mx-auto w-full max-w-[1400px]">
                 <div className="grid auto-cols-[1fr] grid-cols-[1fr_1fr] grid-rows-[auto_auto] gap-x-[106px] gap-y-4
                                 [place-items:start_stretch]">
@@ -125,7 +131,7 @@ export default function HistorySection(): JSX.Element {
                         </div>
 
                         {/* Headline */}
-                        <AnimateOnView animation="animate__fadeInRight animate__slower">
+                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
                             <h2 className={`${index.head_border} max-w-[22ch] bg-clip-text text-transparent mb-6 
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-center 
                                             lg:text-start text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.60rem)]`}>
@@ -135,7 +141,7 @@ export default function HistorySection(): JSX.Element {
                         </AnimateOnView>
 
                         {/* Description */}
-                        <AnimateOnView animation="animate__fadeInUp animate__slower">
+                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
                             <p className="text-[#969cb1] mb-6 break-words max-w-2xl">
                                 {tHistorySection('description')}<br /><br />
                                 {tHistorySection('description2')}<br /><br />
@@ -174,29 +180,35 @@ export default function HistorySection(): JSX.Element {
                     </div>
 
                     {/* Scrollable Content right (Timeline Items) */}
-                    <div className="pl-3">
-                        <div className="relative flex flex-col gap-14">
-                            {/* Timeline Border gradient */}
-                            <div className="absolute w-0.5 h-full bg-gradient-to-b from-white/20 via-white/40
-                                          to-white/10 inset-y-0 left-0"></div>
+                    <AnimateOnView animation="animate__fadeInRight animate__slower">
+                        <div className="pl-3">
+                            <div className="relative flex flex-col gap-14">
+                                {/* Timeline Border gradient */}
+                                <div className="absolute w-0.5 h-full bg-gradient-to-b from-white/20 via-white/40
+                                              to-white/10 inset-y-0 left-0"></div>
 
-                            {/* Used to fill out the timeline border color for passed elements */}
-                            <div className="absolute w-0.5 bg-gradient-to-b from-white/90 to-white/60 inset-y-0
-                                            left-0 transition-all duration-500" style={{ height: `${fillHeight}px` }} />
+                                {/* Used to fill out the timeline border color for passed elements */}
+                                <div className="absolute w-0.5 bg-gradient-to-b from-white/90 to-white/60 inset-y-0
+                                                left-0 transition-all duration-500" style={{ height: `${fillHeight}px` }} />
 
-                            {/* Items of the timeline */}
-                            {timeline.map((item: TimelineData, index1: number): JSX.Element => (
-                                <div key={index1} ref={(el: HTMLDivElement | null): void => { itemRefs.current[index1] = el; }}>
-                                    <TimelineItem date={tHistorySection(item.date)} title={tHistorySection(item.title)}
-                                                  description={tHistorySection(item.description)}
-                                                  logoSrc={item.logoSrc} logoAlt={item.logoAlt}
-                                                  borderShadowClass={index.team_border_shadow}
-                                                  isFocused={focusedIndex === index1}
-                                                  isPassed={index1 <= focusedIndex} />
-                                </div>
-                            ))}
+                                {/* Items of the timeline */}
+                                {timeline.map((item: TimelineData, index1: number): JSX.Element => (
+                                    <div key={index1} ref={(el: HTMLDivElement | null): void => { itemRefs.current[index1] = el; }}>
+                                        <AnimateOnView animation="animate__fadeInUp animate__slower">
+                                            <TimelineItem date={tHistorySection(item.date)} title={tHistorySection(item.title)}
+                                                          description={tHistorySection(item.description)}
+                                                          logoSrc={item.logoSrc} logoAlt={item.logoAlt}
+                                                          bgSrc={item.bgSrc} bgAlt={item.bgAlt}
+                                                          bgRotation={item.bgRotation}
+                                                          borderShadowClass={index.team_border_shadow}
+                                                          isFocused={focusedIndex === index1}
+                                                          isPassed={index1 <= focusedIndex} />
+                                        </AnimateOnView>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    </AnimateOnView>
                 </div>
             </div>
 
