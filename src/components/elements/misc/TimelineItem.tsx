@@ -38,7 +38,7 @@ interface TimelineItemProps {
 export default function TimelineItem({date, title, description, logoSrc, logoAlt, bgSrc, bgAlt, bgRotation,
                                       borderShadowClass, isFocused = false, isPassed = false}: TimelineItemProps): JSX.Element {
     return (
-        <div className="relative flex flex-col gap-4 pl-[63px]">
+        <div className="relative flex flex-col gap-4 pl-[63px] pointer-events-none">
             {/* Container for the timeline item */}
             <div className={`transition-all duration-500 ${isFocused ? 'scale-105 opacity-100' : 'scale-100 opacity-40'}`}>
                 <div className={`relative flex p-3 bg-[#04070d] rounded-2xl shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]
@@ -52,7 +52,7 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
 
                     {/* optional image shown on the right corner of the container */}
                     {logoSrc && (
-                        <div className="absolute -top-8 -right-8 w-24 h-24 z-10">
+                        <div className="absolute -top-8 -right-0 2xl:-right-8 w-24 h-24 z-10">
                             <Image src={logoSrc} width={96} height={96} alt={logoAlt || 'Logo'}
                                    className="w-full h-full object-contain drop-shadow-2xl hover:opacity-100
                                            hover:scale-110 transition-all duration-300 opacity-80" />
@@ -67,7 +67,8 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
 
             {/* Decorative background image positioned far right */}
             {bgSrc && (
-                <div className={`absolute -right-48 top-48 w-32 h-32 z-0 pointer-events-none ${animations.animate_float}
+                <div className={`absolute -right-48 top-48 w-32 h-32 z-0 pointer-events-none 
+                                 ${animations.animate_float} hidden 2xl:block
                                  ${bgRotation === 'left' ? 'rotate-12' : 'rotate-20'}`}>
                     <Image src={bgSrc} width={256} height={256} alt={bgAlt || 'Background decoration'}
                            className={`w-full h-full object-contain transition-all duration-700 opacity-10`} />

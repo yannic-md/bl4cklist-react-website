@@ -9,6 +9,7 @@ interface AnimateOnViewProps {
     className?: string;
     delay?: number;
     duration?: number;
+    onAnimationEnd?: () => void;
 }
 
 /**
@@ -19,7 +20,7 @@ interface AnimateOnViewProps {
  */
 export const AnimateOnView = ({
         children, animation, threshold = 0.1, rootMargin = "0px 0px -100px 0px", triggerOnce = true, className = "",
-        delay = 0, duration = 1000}: AnimateOnViewProps): JSX.Element => {
+        delay = 0, duration = 1000, onAnimationEnd}: AnimateOnViewProps): JSX.Element => {
     const [isVisible, setIsVisible] = useState(false);
     const [hasTriggered, setHasTriggered] = useState(false);
     const elementRef: RefObject<HTMLDivElement | null> = useRef(null);
@@ -60,8 +61,17 @@ export const AnimateOnView = ({
         };
     }, [hasTriggered, triggerOnce, threshold, rootMargin, delay]);
 
+    /**
+     * Handles the animation end event.
+     * Calls the optional onAnimationEnd callback if provided.
+     */
+    const handleAnimationEnd: () => void = (): void => {
+        if (onAnimationEnd) onAnimationEnd();
+    };
+
     return (
         <div ref={elementRef} style={{animationDuration: `${duration}ms`}}
+             onAnimationEnd={handleAnimationEnd}
              className={`${className} ${!isVisible ? 'opacity-0' : ''} 
                          ${isVisible && animation ? `animate__animated ${animation}` : ''}`}>
             {children}

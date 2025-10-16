@@ -33,7 +33,8 @@ export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ classN
     const particlesLoaded: () => Promise<void> = useCallback(async (): Promise<void> => {}, []);
 
     return (
-        <Particles id={particlesId} particlesLoaded={particlesLoaded} className={`absolute inset-0 !opacity-30 ${className}`}
+        <Particles id={particlesId} particlesLoaded={particlesLoaded} className={`absolute inset-0 !opacity-30 
+                                                                                  ${className} pointer-events-none`}
                 options={{
                     background: {
                         color: {
