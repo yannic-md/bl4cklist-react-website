@@ -1,0 +1,7 @@
+.bg_white_black {
+    background: linear-gradient(105deg, rgb(201, 201, 201) -19%, rgba(252, 127, 3, 0) 30%);
+}
+
+.text_gradient_gray {
+    background-image: linear-gradient(0deg, rgb(24, 24, 37) 0%, rgb(240, 240, 255) 73%);
+}

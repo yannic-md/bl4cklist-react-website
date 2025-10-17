@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.header_border::before {
+    @apply content-[''] absolute inset-0 rounded-[3.5rem] p-[1px] mask-exclude pointer-events-none;
+
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(100, 100, 110, 0.15));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude; /* for some reason, tailwind forget's it sometimes */
+}
+
+.active {
+    @apply text-white [text-shadow:_0_0_1px_currentColor];
+}

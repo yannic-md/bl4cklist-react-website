@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+
+.page_loader {
+    @apply inline-block relative w-14 h-14 border-[3px] border-[#303436] rounded-[50%];
+    animation: rotation 1s linear infinite;
+}
+.page_loader::after {
+    @apply content-[""] absolute left-1/2 top-1/2 w-12 h-12 border-[3px] border-transparent border-b-[#ff7f50]
+           rounded-[50%] -translate-1/2;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    

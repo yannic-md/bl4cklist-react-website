@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import 'animate.css';
+
+@theme {
+    --font-inter: var(--font-inter), sans-serif;
+    --font-dm-sans: var(--font-dm-sans), sans-serif;
+    --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
+    --font-jetbrains-mono: var(--font-jetbrains-mono), monospace;
+}
+
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-dm-sans;
+    }
+
+    p, span {
+        @apply font-inter;
+    }
+}
+
+* {
+    @apply box-border scroll-smooth;
+}
+
+html {
+    @apply font-sans m-0 p-0;
+}
+
+body {
+    @apply font-inter text-base bg-black text-white;
+}
+
+/* Disable all animations (except page-loader) & hide scrollbar if page is not ready yet */
+.is-loading *:not(#page-loader, #page-loader *) {
+    animation-play-state: paused !important;
+}
+
+.is-loading {
+    overflow: hidden !important;
+}
+
+/* Custom scrollbar design */
+*::-webkit-scrollbar {
+    @apply w-1;
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply rounded bg-[#34343d];
+}
+
+*::-webkit-scrollbar-track {
+    @apply rounded bg-gray-900/15;
+}
+
+/* Custom Background for highlighted text */
+::selection {
+    @apply bg-[coral] text-white;
+}
