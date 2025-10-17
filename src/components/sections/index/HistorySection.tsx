@@ -4,7 +4,7 @@ import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
 import buttons from "@/styles/util/buttons.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
+import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
 import {faUsers} from "@fortawesome/free-solid-svg-icons/faUsers";
@@ -14,6 +14,7 @@ import TimelineItem from "@/components/elements/misc/TimelineItem";
 import index from '../../../styles/components/index.module.css';
 import Link from "next/link";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
+import {faRocket} from "@fortawesome/free-solid-svg-icons/faRocket";
 
 /**
  * The `HistorySection` component renders a section of the webpage that provides
@@ -32,6 +33,7 @@ export default function HistorySection(): JSX.Element {
     const tHistorySection = useTranslations("HistorySection");
     const [focusedIndex, setFocusedIndex] = useState<number>(0);
     const [fillHeight, setFillHeight] = useState<number>(0);
+    const [maxBorderHeight, setMaxBorderHeight] = useState<number>(0);
     const [borderAnimationComplete, setBorderAnimationComplete] = useState<boolean>(false);
     const itemRefs: RefObject<(HTMLDivElement | null)[]> = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -98,7 +100,7 @@ export default function HistorySection(): JSX.Element {
             let totalHeight: number = 0;
             for (let i: number = 0; i < focusedIndex; i++) {
                 if (itemRefs.current[i]) {
-                    totalHeight += itemRefs.current[i]!.offsetHeight + 56; // 56px = "gap-14" used class in code
+                    totalHeight += itemRefs.current[i]!.offsetHeight + 56; // 56px = "gap-14"
                 }
             }
             if (itemRefs.current[focusedIndex]) {
@@ -107,6 +109,32 @@ export default function HistorySection(): JSX.Element {
             setFillHeight(totalHeight);
         }
     }, [focusedIndex]);
+
+    /**
+     * Calculates and sets the maximum height for the timeline border gradient based on the measured
+     * heights of the rendered timeline items.
+     *
+     * The effect runs whenever the count of measured item refs changes. It:
+     * - Ensures all timeline item refs are present.
+     * - Sums the heights of all items before the last one, adding 56px per gap (corresponds to `gap-14`).
+     * - Adds half of the last item's height (to reach its vertical center).
+     * - Stores the computed value in `maxBorderHeight` so the border gradient can be clipped to the content.
+     */
+    useEffect((): void => {
+        if (itemRefs.current.length === timeline.length && itemRefs.current[timeline.length - 1]) {
+            let totalHeight: number = 0;
+            for (let i: number = 0; i < timeline.length - 1; i++) {
+                if (itemRefs.current[i]) {
+                    totalHeight += itemRefs.current[i]!.offsetHeight + 56;
+                }
+            }
+            // to mid from last item
+            if (itemRefs.current[timeline.length - 1]) {
+                totalHeight += itemRefs.current[timeline.length - 1]!.offsetHeight / 2;
+            }
+            setMaxBorderHeight(totalHeight);
+        }
+    }, [itemRefs.current.length]);
 
     /**
      * Smoothly scrolls the viewport to the timeline item at the given index,
@@ -137,7 +165,7 @@ export default function HistorySection(): JSX.Element {
     };
 
     return (
-        <section className="pr-8 pl-8 pb-28 pt-32 bg-slate-900/30 relative" id="discord-server-history">
+        <section className="pr-8 pl-8 pb-40 pt-32 bg-slate-900/30 relative" id="discord-server-history">
             {/* useMemo stops re-creating the particles on scroll */}
             {useMemo((): JSX.Element => (
                 <ParticlesBackground particles={80} className="z-10 animate__animated animate__fadeIn animate__slower
@@ -218,12 +246,20 @@ export default function HistorySection(): JSX.Element {
                                            onAnimationEnd={() => setBorderAnimationComplete(true)}>
                                 {/* Timeline Border gradient */}
                                 <div className="absolute w-0.5 h-full bg-gradient-to-b from-white/20 via-white/40
-                                                to-white/10 inset-y-0 left-0"></div>
+                                                to-white/10 inset-y-0 left-0"
+                                     style={{ height: maxBorderHeight > 0 ? `${maxBorderHeight}px` : '100%' }}></div>
 
                                 {/* Used to fill out the timeline border color for passed elements */}
                                 <div className="absolute w-0.5 bg-gradient-to-b from-white/90 to-white/60 inset-y-0
                                                 left-0 transition-all duration-500"
                                      style={{ height: `${fillHeight}px` }} />
+
+                                {/* Icon at the top of the timeline border */}
+                                <div className="absolute -top-1 -left-2 w-5 h-5 flex items-center justify-center
+                                                bg-gradient-to-br from-white via-gray-200 to-gray-400 rounded-full
+                                                shadow-lg transition-all duration-500">
+                                    <FontAwesomeIcon icon={faRocket} className="text-gray-800 text-xs -rotate-45" />
+                                </div>
                             </AnimateOnView>
 
                             {/* Items of the timeline */}
@@ -240,6 +276,7 @@ export default function HistorySection(): JSX.Element {
                                                       borderShadowClass={index.team_border_shadow}
                                                       isFocused={focusedIndex === index1}
                                                       isPassed={index1 <= focusedIndex}
+                                                      isLastItem={index1 === timeline.length - 1}
                                                       onClick={() => handleItemClick(index1)} />
                                     </AnimateOnView>
                                 </div>

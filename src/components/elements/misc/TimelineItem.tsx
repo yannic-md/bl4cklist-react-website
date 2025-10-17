@@ -16,6 +16,7 @@ interface TimelineItemProps {
     borderShadowClass: string;
     isFocused?: boolean;
     isPassed?: boolean;
+    isLastItem?: boolean;
     onClick?: () => void;
 }
 
@@ -40,7 +41,7 @@ interface TimelineItemProps {
  */
 export default function TimelineItem({date, title, description, logoSrc, logoAlt, bgSrc, bgAlt, bgRotation,
                                       borderShadowClass, isFocused = false, isPassed = false,
-                                      onClick}: TimelineItemProps): JSX.Element {
+                                      isLastItem = false, onClick}: TimelineItemProps): JSX.Element {
     return (
         <div className={`relative flex flex-col gap-4 pl-[63px] ${isFocused ? index.easter_cursor : 'cursor-pointer'}`}>
             {/* Container for the timeline item */}
@@ -89,10 +90,13 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
                              : 'bg-gradient-to-r from-gray-500/60 via-gray-500/30 via-21% to-transparent to-92%'}`} />
                 <div className={`w-[2px] h-[40px] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full transition-all duration-500 ${
                     isPassed ? 'bg-gradient-to-t from-white/60 to-transparent to-80%'
-                             : 'bg-gradient-to-t from-gray-500/40 to-transparent to-80%'}`} />
-                <div className={`w-[2px] h-[40px] absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full transition-all duration-500 ${
-                    isPassed ? 'bg-gradient-to-b from-white/60 to-transparent to-80%'
-                             : 'bg-gradient-to-b from-gray-500/40 to-transparent to-80%'}`} />
+                        : 'bg-gradient-to-t from-gray-500/40 to-transparent to-80%'}`} />
+
+                {!isLastItem && (
+                    <div className={`w-[2px] h-[40px] absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full transition-all duration-500 ${
+                        isPassed ? 'bg-gradient-to-b from-white/60 to-transparent to-80%'
+                            : 'bg-gradient-to-b from-gray-500/40 to-transparent to-80%'}`} />
+                )}
             </div>
         </div>
     );

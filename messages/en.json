@@ -10,6 +10,12 @@
     "closeMenu": "Close menu",
     "openMenu": "Open menu"
   },
+  "Footer": {
+    "copyright": "💖 made with love and attention to detail",
+    "imprint": "Imprint & Privacy",
+    "contact": "Contact",
+    "description": "Bl4cklist is a German gaming and tech Discord server that provides a friendly community for gamers and tech enthusiasts. Join our growing community and enjoy exciting discussions, events, and shared gaming sessions."
+  },
   "Dropdown": {
     "homepage": "Homepage",
     "techAndProgramming": "Technology & Programming",

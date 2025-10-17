@@ -1,4 +1,4 @@
-import Header from "@/components/elements/header/Header";
+import Header from "@/components/elements/layout/Header";
 import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
 import {GetStaticPropsContext} from "next";
@@ -6,6 +6,7 @@ import IntroSection from "@/components/sections/index/IntroSection";
 import TeamSection from "@/components/sections/index/TeamSection";
 import HistorySection from "@/components/sections/index/HistorySection";
 import Image from "next/image";
+import Footer from "@/components/elements/layout/Footer";
 
 /**
  * Renders the home page of the project.
@@ -46,13 +47,11 @@ export default function Home(): JSX.Element {
 
                         <HistorySection />
                     </div>
-
                 </div>
             </div>
 
-            {/* Testing purposes*/}
-            <div className="h-[100vh]"></div>
-            
+            {/* Footer at the bottom */}
+            <Footer />
         </>
     );
 }

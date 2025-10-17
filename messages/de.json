@@ -10,6 +10,12 @@
     "closeMenu": "Menü schließen",
     "openMenu": "Menü öffnen"
   },
+  "Footer": {
+    "copyright": "💖 erstellt mit Liebe zum Detail",
+    "imprint": "Impressum & Datenschutz",
+    "contact": "Kontakt",
+    "description": "Bl4cklist ist ein deutscher Gaming- und Tech-Discord-Server, der eine freundliche Community für Gamer und Technikbegeisterte bietet. Trete unserer wachsenden Community bei und erlebe spannende Diskussionen, Events und gemeinsame Gaming-Sessions."
+  },
   "Dropdown": {
     "homepage": "Startseite",
     "techAndProgramming": "Technik & Programmieren",
