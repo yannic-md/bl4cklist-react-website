@@ -2,6 +2,7 @@ import Image from 'next/image';
 import {JSX} from "react";
 
 import animations from '../../../styles/util/animations.module.css';
+import index from '../../../styles/components/index.module.css';
 
 interface TimelineItemProps {
     date: string;
@@ -15,6 +16,7 @@ interface TimelineItemProps {
     borderShadowClass: string;
     isFocused?: boolean;
     isPassed?: boolean;
+    onClick?: () => void;
 }
 
 /**
@@ -32,17 +34,19 @@ interface TimelineItemProps {
  * @param {string} props.borderShadowClass - The TailwindCSS class for the border shadow effect.
  * @param {boolean} props.isFocused - Determines if the current item is focused.
  * @param {boolean} props.isPassed - Determines whether the user has already scrolled past the item.
+ * @param {function} props.onClick - Custom handler to do some actions on item clicks.
  *
  * @returns {JSX.Element} The rendered JSX element for the timeline item.
  */
 export default function TimelineItem({date, title, description, logoSrc, logoAlt, bgSrc, bgAlt, bgRotation,
-                                      borderShadowClass, isFocused = false, isPassed = false}: TimelineItemProps): JSX.Element {
+                                      borderShadowClass, isFocused = false, isPassed = false,
+                                      onClick}: TimelineItemProps): JSX.Element {
     return (
-        <div className="relative flex flex-col gap-4 pl-[63px] pointer-events-none">
+        <div className={`relative flex flex-col gap-4 pl-[63px] ${isFocused ? index.easter_cursor : 'cursor-pointer'}`}>
             {/* Container for the timeline item */}
             <div className={`transition-all duration-500 ${isFocused ? 'scale-105 opacity-100' : 'scale-100 opacity-40'}`}>
                 <div className={`relative flex p-3 bg-[#04070d] rounded-2xl shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]
-                                ${borderShadowClass} hover:-translate-y-1 transition-all duration-200`}>
+                                ${borderShadowClass} hover:-translate-y-1 transition-all duration-200`} onClick={onClick}>
                     <div>
                         {/* Details of the timeline item */}
                         <p className="opacity-50 mb-2 ml-1">{date}</p>

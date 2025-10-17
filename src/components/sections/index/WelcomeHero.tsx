@@ -66,7 +66,7 @@ export default function WelcomeHero(): JSX.Element {
                 <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
                     <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
-                        className="object-contain w-auto max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] h-auto"
+                        className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px]"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
 

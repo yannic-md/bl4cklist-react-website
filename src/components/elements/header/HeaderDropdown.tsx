@@ -42,7 +42,7 @@ export default function HeaderDropdown({ title, items, leftPosition }: DropdownM
                  .filter((id: string): boolean => id !== ''), [items]
     );
 
-    const activeSection: string = useActiveSection(sectionIds, 0.5);
+    const activeSection: string = useActiveSection(sectionIds);
 
     /**
      * Checks if the given href corresponds to the currently active section.

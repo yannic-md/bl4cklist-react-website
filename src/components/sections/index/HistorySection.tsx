@@ -108,6 +108,34 @@ export default function HistorySection(): JSX.Element {
         }
     }, [focusedIndex]);
 
+    /**
+     * Smoothly scrolls the viewport to the timeline item at the given index,
+     * centering it vertically in the window.
+     *
+     * @param index - The index of the timeline item to scroll to.
+     */
+    const scrollToItem: (index: number) => void = (index: number): void => {
+        if (itemRefs.current[index]) {
+            const element: HTMLDivElement | null = itemRefs.current[index];
+            const elementRect: DOMRect = element!.getBoundingClientRect();
+            const absoluteElementTop: number = elementRect.top + window.pageYOffset;
+            const middle: number = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+            window.scrollTo({top: middle, behavior: 'smooth' });
+        }
+    };
+
+    /**
+     * Handles the click event for a timeline item.
+     * Scrolls smoothly to the selected item and updates the focused index state.
+     *
+     * @param index - Index of the clicked timeline item.
+     */
+    const handleItemClick: (index: number) => void = (index: number): void => {
+        scrollToItem(index);
+        setFocusedIndex(index);
+    };
+
     return (
         <section className="pr-8 pl-8 pb-28 pt-32 bg-slate-900/30 relative" id="discord-server-history">
             {/* useMemo stops re-creating the particles on scroll */}
@@ -211,7 +239,8 @@ export default function HistorySection(): JSX.Element {
                                                       bgRotation={item.bgRotation}
                                                       borderShadowClass={index.team_border_shadow}
                                                       isFocused={focusedIndex === index1}
-                                                      isPassed={index1 <= focusedIndex} />
+                                                      isPassed={index1 <= focusedIndex}
+                                                      onClick={() => handleItemClick(index1)} />
                                     </AnimateOnView>
                                 </div>
                             ))}
