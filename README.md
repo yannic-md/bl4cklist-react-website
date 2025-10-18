@@ -13,13 +13,13 @@
 
 <h4 align="center">
   <a href="https://react.dev/">
-    <img src="https://img.shields.io/badge/React-19.1.0-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/React-19.2.0-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
   </a>
   <a href="https://nextjs.org/">
-    <img src="https://img.shields.io/badge/Next.JS-15.4.7-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Next.JS-15.5.6-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
   </a>
   <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Tailwind-4.1.11-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Tailwind-4.1.14-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
 </h4>
 <h4 align="center">
