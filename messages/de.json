@@ -5,6 +5,10 @@
     "community": "Community",
     "clankBot": "Clank-Bot"
   },
+  "Errors": {
+    "404_DESC": "Ups.. diese Seite ist wohl im Universum verloren gegangen - ich glaube der Praktikant hat wohl zu viel Freizeit! Vielleicht hast du dich verschrieben oder sie wurde gelöscht? Ich bin auf jeden Fall traurig. 😔",
+    "goBack": "Zur Startseite"
+  },
   "Header": {
     "discord": "Discord-Server",
     "closeMenu": "Menü schließen",

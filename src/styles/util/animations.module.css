@@ -7,6 +7,19 @@
     }
 }
 
+@keyframes float_less {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
 .animate_float {
     animation: float 3s ease-in-out infinite;
+}
+
+.animate_float_less {
+    animation: float_less 3s ease-in-out infinite;
 }

@@ -5,6 +5,10 @@
     "community": "Community", 
     "clankBot": "Clank Bot"
   },
+  "Errors": {
+    "404_DESC": "Oops... this page seems to have been lost in the universe - I think the intern had a bit too much free time! Maybe you mistyped the URL or it was deleted? I'm sad about it. 😔",
+    "goBack": "Back to Start"
+  },
   "Header": {
     "discord": "Discord Server",
     "closeMenu": "Close menu",
