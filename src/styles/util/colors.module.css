@@ -5,3 +5,7 @@
 .text_gradient_gray {
     background-image: linear-gradient(0deg, rgb(24, 24, 37) 0%, rgb(240, 240, 255) 73%);
 }
+
+.orange_overlay {
+    filter: hue-rotate(155deg) saturate(180%) brightness(130%) contrast(105%);
+}
