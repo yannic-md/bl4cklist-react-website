@@ -10,6 +10,7 @@ import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {faHouse} from "@fortawesome/free-solid-svg-icons/faHouse";
 import Image from "next/image";
+import Link from "next/link";
 
 /* A full-screen 404 error section component with decorative animated background elements
  * and localized copy. This component uses `next-intl` translations to render user-facing
@@ -109,7 +110,7 @@ export default function NotFound(): JSX.Element {
 
                         {/* Learn More */}
                         <div className="flex flex-col items-end relative group w-full sm:w-auto">
-                            <a href="discord/community" className="flex flex-col items-end w-full">
+                            <Link href="/" className="flex flex-col items-end w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                     <FontAwesomeIcon icon={faHouse} className="text-gray-100" />
                                     <p className="whitespace-pre">{tErrors('goBack')}</p>
@@ -121,7 +122,7 @@ export default function NotFound(): JSX.Element {
                                     <div className="w-2 h-2 bg-gray-500 rounded-full" />
                                     <span>3.533 {tWelcome('memberCount')}</span> { /* TODO */ }
                                 </div>
-                            </a>
+                            </Link>
                             <ButtonHover />
                         </div>
                     </div>
