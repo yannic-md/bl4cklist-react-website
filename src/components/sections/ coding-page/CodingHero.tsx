@@ -18,6 +18,7 @@ import Image from "next/image";
 
 export default function CodingHero(): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
+    const tCodingHero = useTranslations('CodingHero');
     const { locale } = useRouter();
 
     return (
@@ -46,7 +47,7 @@ export default function CodingHero(): JSX.Element {
                         <div className="mb-2">
                             <div className="font-bold tracking-wider">
                                 <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <AnimatedTextReveal text="PROGRAMMIEREN LERNEN - EINFACH GEMACHT!"
+                                    <AnimatedTextReveal text={tCodingHero('infoTag')}
                                                         className="text-sm text-[coral] uppercase text-center
                                                                    lg:text-start pb-3 lg:pb-0"
                                                         shadowColor="rgba(255,127,80,0.35)" />
@@ -59,16 +60,20 @@ export default function CodingHero(): JSX.Element {
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] 
                                             text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
                                 <span className="inline-block align-middle leading-none -mx-[5px] text-white">🛠️</span> -
-                                TECHNIK & CODING
+                                 {tCodingHero('title')}
                             </h2>
                         </AnimateOnView>
 
                         {/* Description (strong tags in translation are formatted) */}
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
                             <p className="text-[#969cb1] mb-6 break-words max-w-xl">
-                                Auf unserem Discord-Server dreht sich viel um <strong>Software-Entwicklung & Technik</strong> an sich. Wir bieten eigene kleine Lernkurse, öffentliche Discord-Bots, einen Coding-Support und automatisierte Technik-News von GameStar.
+                                {tCodingHero.rich('description', {
+                                    strong: (chunks): JSX.Element => <strong>{chunks}</strong>
+                                })}
                                 <br /><br />
-                                Dabei ist unser Coding-Support-System von Stackoverflow inspiriert und für jede hilfreiche Antwort winkt eine Belohnung! Wirf doch einen Blick rein und vielleicht können wir dein unbeantwortetes Problem lösen.
+                                {tCodingHero.rich('description2', {
+                                    strong: (chunks): JSX.Element => <strong>{chunks}</strong>
+                                })}
                             </p>
                         </AnimateOnView>
 
@@ -78,13 +83,13 @@ export default function CodingHero(): JSX.Element {
                                 <div className="flex flex-col items-center text-center px-1">
                                     <AnimatedCounter end={342} suffix="+" locale={locale} />
                                     <span className="text-sm text-[#969cb1] tracking-wide mr-1">
-                                                         📡 Fragen gestellt</span>
+                                                         📡 {tCodingHero('questionStats')}</span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center px-1">
                                     <AnimatedCounter end={216} suffix="+" locale={locale} />
                                     <span className="text-sm text-[#969cb1] tracking-wide mr-1">
-                                                         🐞 Bugs behoben</span>
+                                                         🐞 {tCodingHero('bugsStats')}</span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center px-1">
@@ -125,47 +130,56 @@ export default function CodingHero(): JSX.Element {
                     </div>
 
                     {/* Image Section on the right */}
-                    <div className="relative flex w-full max-w-[420px] flex-col justify-center items-center mr-12">
-                        {/* Dark background for better visibility */}
-                        <div className="absolute z-[3] blur-2xl bg-[#0c0e12] w-[534px] min-h-[300px]
-                                        inset-[20px_auto_auto] mx-auto"></div>
+                    <AnimateOnView animation="animate__zoomIn animate__slower"
+                                   className="flex w-full max-w-[420px] flex-col justify-center items-center mr-12 z-[20]">
+                        <div className="relative w-full h-full">
+                            {/* Dark background for better visibility */}
+                            <div className="absolute z-[3] blur-2xl bg-[#0c0e12] w-[534px] min-h-[300px]
+                                            left-1/2 top-5 -translate-x-1/2"></div>
 
-                        {/* Main image */}
-                        <Image src="/images/bg/coding-support-450w.avif" width={450} height={571}
-                               alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 300px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 450px"
-                               className={`relative z-[4] rounded-2xl w-full h-full object-cover border border-white/30
-                                          ${animations.animate_float}`} />
+                            {/* Main image */}
+                            <Image src="/images/bg/coding-support-450w.avif" width={450} height={571}
+                                   alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                   sizes="(max-width: 640px) 300px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 450px"
+                                   className={`relative z-[5] rounded-2xl w-full h-full object-cover border border-white/30
+                                               ${animations.animate_float}`} />
 
-                        {/* Decoration Images */}
-                        <Image src="/images/bg/discord-bot-150w.avif" width={150} height={182} quality={100}
-                               alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 75px, (max-width: 768px) 112px, 150px"
-                               className="absolute z-[1] -rotate-[40deg] inset-[auto_auto_9px_-111px]" />
-                        <Image src="/images/bg/code-programming-128w.avif" width={128} height={128}
-                               alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 128px"
-                               className="absolute z-[1] inset-[0_-125px_auto_auto] rotate-[24deg] max-w-[107px]" />
+                            {/* Decoration Images */}
+                            <div className={`absolute z-[1] inset-[auto_auto_9px_-111px] ${animations.animate_float}`}>
+                                <Image src="/images/bg/discord-bot-150w.avif" width={150} height={182} quality={100}
+                                       alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                       sizes="(max-width: 640px) 75px, (max-width: 768px) 112px, 150px"
+                                       className="-rotate-[40deg]" />
+                            </div>
+                            <div className={`absolute z-[1] inset-[0_-125px_auto_auto] ${animations.animate_float}`}>
+                                <Image src="/images/bg/code-programming-128w.avif" width={128} height={128}
+                                       alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                       sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 128px"
+                                       className="rotate-[24deg] max-w-[107px]" />
+                            </div>
 
-                        {/* Some particle "effects" */}
-                        <Image src="/images/particles/particle-up-116w.avif" width={116} height={114}
-                               alt="Particles Top - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 58px, (max-width: 768px) 87px, 116px"
-                               className={`absolute inset-[-50px_auto_auto_-116px] ${colors.orange_overlay}`} />
-                        <Image src="/images/particles/particle-bottom-113w.avif" width={113} height={91}
-                               alt="Particles Bottom - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 57px, (max-width: 768px) 85px, 113px"
-                               className={`absolute inset-[auto_auto_-50px_-140px] ${colors.orange_overlay}`} />
-                        <Image src="/images/particles/particle-top-right-100w.avif" width={100} height={106}
-                               alt="Particles Top Right - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 50px, (max-width: 768px) 75px, 100px"
-                               className={`absolute inset-[-85px_-100px_auto_auto] ${colors.orange_overlay}`} />
+                            {/* Some particle "effects" */}
+                            <Image src="/images/particles/particle-up-116w.avif" width={116} height={114}
+                                   alt="Particles Top - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                   sizes="(max-width: 640px) 58px, (max-width: 768px) 87px, 116px"
+                                   className={`absolute inset-[-60px_auto_auto_-126px] ${colors.orange_overlay}`} />
+                            <Image src="/images/particles/particle-bottom-113w.avif" width={113} height={91}
+                                   alt="Particles Bottom - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                   sizes="(max-width: 640px) 57px, (max-width: 768px) 85px, 113px"
+                                   className={`absolute inset-[auto_auto_-50px_-140px] ${colors.orange_overlay}`} />
+                            <Image src="/images/particles/particle-top-right-100w.avif" width={100} height={106}
+                                   alt="Particles Top Right - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                   sizes="(max-width: 640px) 50px, (max-width: 768px) 75px, 100px"
+                                   className={`absolute inset-[-85px_-100px_auto_auto] ${colors.orange_overlay}`} />
 
-                        <Image src="/images/bg/circled-border-732w.avif" width={732} height={732}
-                               alt="Circle BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                               sizes="(max-width: 640px) 366px, (max-width: 768px) 549px, 732px"
-                               className="absolute inset-auto max-w-[732px] animate-[spin_75s_linear_infinite]" />
-                    </div>
+                            <Image src="/images/bg/circled-border-732w.avif" width={732} height={732}
+                                   alt="Circle BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                   sizes="(max-width: 640px) 366px, (max-width: 768px) 549px, 732px"
+                                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[732px]
+                          animate-[spin_75s_linear_infinite]" />
+                        </div>
+                    </AnimateOnView>
+
                 </div>
             </div>
 

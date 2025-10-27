@@ -152,6 +152,14 @@
     "ITEM_13_TITLE": "🎉 ~ Discord-Server veröffentlicht!",
     "ITEM_13_DESC": "› Discord war noch für alle etwas ganz neues: es war aufregend! Angefangen als kleine GTA5-Crew haben wir uns zu einem allgemeinen Community-Server weiterentwickelt."
   },
+  "CodingHero": {
+    "infoTag": "PROGRAMMIEREN LERNEN - EINFACH GEMACHT!",
+    "title": " TECHNIK & CODING",
+    "description": "Auf unserem Discord-Server dreht sich viel um <strong>Software-Entwicklung & Technik</strong> an sich. Wir bieten eigene kleine Lernkurse, öffentliche Discord-Bots, einen Coding-Support und automatisierte Technik-News von GameStar.",
+    "description2": "Dabei ist unser Coding-Support-System von Stackoverflow inspiriert und für jede hilfreiche Antwort winkt eine Belohnung! Wirf doch einen Blick rein und vielleicht können wir dein unbeantwortetes Problem lösen.",
+    "questionStats": "Fragen gestellt",
+    "bugsStats": "Bugs behoben"
+  },
   "Misc": {
     "copy": "Kopiert!"
   }
