@@ -225,7 +225,7 @@ export default function CodingFeatures(): JSX.Element {
 
                                 {/* Showcase Image */}
                                 <div className="inline-block border-2 border-gray-700/50 rounded-2xl md:rounded-4xl overflow-hidden
-                                self-center my-auto hover:-rotate-1 drop-shadow-2xl mb-7 xl:mb-auto xl:mt-0
+                                self-center my-auto hover:rotate-1 drop-shadow-2xl mb-7 xl:mb-auto xl:mt-0
                                 transition-all duration-200 hover:-translate-y-1 hover:scale-105 max-h-[60%] md:max-h-[70%] w-full">
                                     <Image src="/images/pixel/discord-server-templates-740w.webp" width={740} height={322}
                                            alt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
