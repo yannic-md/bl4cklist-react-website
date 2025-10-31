@@ -56,3 +56,7 @@ body {
 ::selection {
     @apply bg-[coral] text-white;
 }
+
+img:hover {
+    cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer;
+}

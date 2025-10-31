@@ -174,9 +174,8 @@ export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.
 
                 {/* User Avatar */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
-                    <Image src={member.avatar_url} className={`rounded-lg hover:rotate-1 transition-all duration-300
-                                                              hover:scale-105 ${index.easter_cursor}`}
-                           width={136} height={136}
+                    <Image src={member.avatar_url} className="rounded-lg hover:rotate-1 transition-all duration-300
+                                                              hover:scale-105" width={136} height={136}
                            alt={`${member.display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`} />
                 </div>
                 
