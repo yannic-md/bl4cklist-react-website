@@ -154,11 +154,26 @@
   },
   "CodingHero": {
     "infoTag": "LEARN PROGRAMMING - MADE EASY!",
-    "title": "TECH & CODING",
+    "title": " TECH & CODING",
     "description": "Our Discord server focuses heavily on <strong>software development & technology</strong>. We offer small learning courses, public Discord bots, a coding support channel, and automated tech news from GameStar.",
     "description2": "Our coding support system is inspired by StackOverflow and each helpful answer is rewarded! Take a look and maybe we can solve your unanswered problem.",
     "questionStats": "Questions Asked",
     "bugsStats": "Bugs Fixed"
+  },
+  "CodingFeatures": {
+    "infoTag": "HOW CAN WE HELP YOU LEARN PROGRAMMING?",
+    "title": " WHAT WE OFFER YOU!",
+    "description": "› The world of hardware & software is mysterious and complex: We've also had a tough journey to climb this path! However, we offer several major features that can help you implement your own project in no time or get an exciting first insight.",
+    "BENTO_1_TITLE": "📰 GAMING & TECH NEWS",
+    "BENTO_1_DESC": "Always stay informed about the latest topics from the gaming & tech world!",
+    "BENTO_2_TITLE": "🔨 OUR PROGRAMMING SUPPORT",
+    "BENTO_2_DESC": "In our coding support, you can help other users with their code errors or questions & also get help yourself.",
+    "BENTO_3_TITLE": "📚 GUIDES & TUTORIALS",
+    "BENTO_3_DESC": "Our small learning courses help you better understand programming.",
+    "BENTO_4_TITLE": "🤖 PUBLIC DISCORD BOTS",
+    "BENTO_4_DESC": "We have developed our own Discord bots with great attention to detail, which can inspire you or improve your server.",
+    "BENTO_5_TITLE": "📂 100+ DISCORD SERVER TEMPLATES",
+    "BENTO_5_DESC": "Our huge collection of uniquely created Discord server templates helps you build & organize your new super cool project."
   },
   "Misc": {
     "copy": "Copied!"

@@ -57,8 +57,9 @@ export default function CodingHero(): JSX.Element {
     }, []);
 
     return (
-        <section className="relative w-full py-6 md:pb-12 xl:py-24 2xl:p-0 min-h-[90%] 2xl:h-[95vh]
-                            [@media(max-height:500px)]:pt-[20px] [@media(max-height:500px)]:pb-[50px] overflow-hidden">
+        <section className="relative w-full py-6 pb-20 md:pb-12 xl:py-24 2xl:p-0 min-h-[90%] 2xl:h-[95vh]
+                            [@media(max-height:500px)]:pt-[20px] [@media(max-height:500px)]:pb-[50px] overflow-hidden"
+                 id="bots">
             <Image src="/images/bg/tech-coding-bg-1920w.avif" fill priority sizes="100vw"
                    alt="Grid Background - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                    className="object-cover object-center -z-10 grayscale" />

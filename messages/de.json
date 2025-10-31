@@ -160,6 +160,21 @@
     "questionStats": "Fragen gestellt",
     "bugsStats": "Bugs behoben"
   },
+  "CodingFeatures": {
+    "infoTag": "WIE KÖNNT IHR MIR HELFEN PROGRAMMIEREN ZU LERNEN?",
+    "title": " DAS BIETEN WIR DIR!",
+    "description": "› Die Welt der Hard-& Software ist mysteriös und komplex: Auch wir haben einen harten Weg hinter uns, diesen Pfad zu erklimmen! Wir bieten jedoch einige verschiedene große Features an, die dir helfen können, dein eigenes Projekt blitzschnell umzusetzen oder einen ersten spannenden Einblick zu erhalten.",
+    "BENTO_1_TITLE": "📰 GAMING & TECHNIK-NEWS",
+    "BENTO_1_DESC": "Bleib immer informiert über die neusten Themen aus der Gaming-& Tech-Welt!",
+    "BENTO_2_TITLE": "🔨 UNSERE PROGRAMMIERHILFE",
+    "BENTO_2_DESC": "In unserem Coding-Support kannst du anderen Usern bei ihren Codefehlern oder Fragen weiterhelfen & auch selbst Hilfe holen.",
+    "BENTO_3_TITLE": "📚 GUIDES & TUTORIALS",
+    "BENTO_3_DESC": "Unsere kleinen Lernkurse helfen dir, Programmieren besser zu verstehen.",
+    "BENTO_4_TITLE": "🤖 ÖFFENTLICHE DISCORD-BOTS",
+    "BENTO_4_DESC": "Wir haben eigene Discord-Bots entwickelt mit viel Liebe zum Detail womit du dich inspirieren lassen oder deinen Server verbessern kannst.",
+    "BENTO_5_TITLE": "📂 100+ DISCORD-SERVER VORLAGEN",
+    "BENTO_5_DESC": "Unsere Sammlung an einzigartig erstellten Discord-Server Vorlagen helfen dir beim Aufbau deines neuen supercoolen Projekts."
+  },
   "Misc": {
     "copy": "Kopiert!"
   }

@@ -3,6 +3,7 @@ import {JSX} from "react";
 import Header from "@/components/elements/layout/Header";
 import Footer from "@/components/elements/layout/Footer";
 import CodingHero from "@/components/sections/ coding-page/CodingHero";
+import CodingFeatures from "@/components/sections/ coding-page/CodingFeatures";
 
 export default function TechCoding(): JSX.Element {
     return (
@@ -14,6 +15,9 @@ export default function TechCoding(): JSX.Element {
             <div className="relative">
                 {/* Start of the page; greet the visitor & explain our project quick */}
                 <CodingHero />
+
+                {/* Explain some important big features related to the coding theme (using bentobox layout) */}
+                <CodingFeatures />
 
                 {/* Container for IntroSection with shadow overlay */}
                 <div className="bg-transparent h-[100vh]"></div>
