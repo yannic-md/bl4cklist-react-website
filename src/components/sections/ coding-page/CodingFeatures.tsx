@@ -5,7 +5,20 @@ import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
+import BentoBoxItem from "@/components/elements/misc/BentoBoxItem";
 
+/**
+ * Renders the "Coding Features" section used on the tech-coding page.
+ *
+ * Behavior:
+ * - Displays an animated headline, tag and description.
+ * - Arranges multiple `BentoBoxItem` feature cards in a responsive grid.
+ * - Maintains internal `is2XL` state synchronized with the viewport width to
+ *   adapt animations and layout when the viewport reaches Tailwind's `2xl`
+ *   breakpoint (>= 1536px).
+ *
+ * @returns {JSX.Element} The rendered features section.
+*/
 export default function CodingFeatures(): JSX.Element {
     const tCodingFeatures = useTranslations('CodingFeatures');
     const [is2XL, setIs2XL] = useState(false);
@@ -76,167 +89,46 @@ export default function CodingFeatures(): JSX.Element {
                 <div className="flex flex-col gap-y-5 origin-top scale-90">
                     {/* Top Row of Items */}
                     <div className="flex flex-col xl:flex-row justify-between gap-x-5 gap-y-7 xl:gap-y-0">
-                        {/* Left Item: Gaming-& Tech News */}
-                        <AnimateOnView animation="animate__fadeInLeft animate__slower"
-                            className="relative flex flex-col justify-end items-start overflow-hidden
-                                       transition-all duration-200 w-full xl:max-w-[376px] min-h-[376px] p-6 border
-                                       border-white/[0.08] rounded-lg group">
-                            {/* Background Image Wrapper */}
-                            <div className="absolute inset-0 -z-10">
-                                <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 376px"
-                                       alt="Bentobox Top-Left BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="object-cover object-center pointer-events-none
-                                                  group-hover:brightness-125 transition-all duration-200" />
-                            </div>
+                        <BentoBoxItem animation="animate__fadeInLeft animate__slower"
+                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={441}
+                                      showcaseImage="/images/pixel/gaming-tech-news-441w.webp" showcaseHeight={360}
+                                      showcaseAlt="Cocoboi Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      showcaseTitle="Made by CocoNotShell" title={tCodingFeatures('BENTO_1_TITLE')}
+                                      description={tCodingFeatures('BENTO_1_DESC')} maxWidth="xl:max-w-[376px]" />
 
-                            {/* Showcase Image */}
-                            <div className="inline-block self-center my-auto mt-0 max-h-[70%] overflow-hidden border-2
-                                          border-gray-700/50 rounded-4xl drop-shadow-2xl transition-all duration-200
-                                            hover:rotate-1 hover:-translate-y-1 hover:scale-105 w-full max-w-[280px]
-                                            sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[441px]
-                                            mb-7 xl:mb-auto">
-                                <Image src="/images/pixel/gaming-tech-news-441w.webp" width={441} height={360} unoptimized
-                                       alt="Cocoboi Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="w-full h-auto object-contain opacity-65 transition-opacity duration-200
-                                                  hover:opacity-100" title="Made by CocoNotShell" />
-                            </div>
+                        <BentoBoxItem animation="animate__fadeInUp animate__slower" hoverRotation="right"
+                                      backgroundImage="/images/containers/bentobox-t-602w.avif" showcaseWidth={594}
+                                      showcaseImage="/images/pixel/coding-support-594w.webp" showcaseHeight={301}
+                                      showcaseAlt="Coding Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      showcaseTitle="Made by Kirokaze" title={tCodingFeatures('BENTO_2_TITLE')}
+                                      description={tCodingFeatures('BENTO_2_DESC')} maxWidth="xl:max-w-[602px]" />
 
-                            {/* Description */}
-                            <div className="relative z-[2] text-lg text-center w-full">
-                                <span className="font-medium text-white">{tCodingFeatures('BENTO_1_TITLE')}</span><br />
-                                <span className="text-base text-[#969cb1]">{tCodingFeatures('BENTO_1_DESC')}</span>
-                            </div>
-                        </AnimateOnView>
-
-                        {/* Mid Item: Coding-Support */}
-                        <AnimateOnView animation="animate__fadeInUp animate__slower"
-                            className="relative flex flex-col justify-end items-start overflow-hidden w-full
-                                       transition-all duration-200 xl:max-w-[602px] min-h-[376px] p-6 border
-                                       border-white/[0.08] rounded-lg group">
-                            {/* Background Image Wrapper */}
-                            <div className="absolute inset-0 -z-10">
-                                <Image src="/images/containers/bentobox-t-602w.avif" fill
-                                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 602px"
-                                       alt="Bentobox Top-Mid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="object-cover object-center pointer-events-none
-                                                  group-hover:brightness-125 transition-all duration-200" />
-                            </div>
-
-                            {/* Showcase Image */}
-                            <div className="inline-block border-2 border-gray-700/50 rounded-4xl overflow-hidden
-                                            self-center my-auto mt-0 hover:-rotate-1 drop-shadow-2xl w-full max-w-[594px]
-                                            transition-all duration-200 hover:-translate-y-1 hover:scale-105 max-h-[70%]
-                                            mb-7 xl:mb-auto">
-                                <Image src="/images/pixel/coding-support-594w.webp" width={594} height={301} unoptimized
-                                       alt="Coding Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="w-full h-auto object-contain opacity-65 hover:opacity-100
-                                                  transition-opacity duration-200" title="Made by Kirokaze" />
-                            </div>
-
-                            {/* Description */}
-                            <div className="relative z-[2] text-lg text-center">
-                                <span className="font-medium text-white">{tCodingFeatures('BENTO_2_TITLE')}</span><br />
-                                <span className="text-base text-[#969cb1]">{tCodingFeatures('BENTO_2_DESC')}</span>
-                            </div>
-                        </AnimateOnView>
-
-                        {/* Right Item: Guides & Tutorials */}
-                        <AnimateOnView animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
-                            className="relative flex flex-col justify-end items-start overflow-hidden w-full
-                                       transition-all duration-200 xl:max-w-[376px] min-h-[376px] p-6 border
-                                       border-white/[0.08] rounded-lg group">
-                            {/* Background Image Wrapper */}
-                            <div className="absolute inset-0 -z-10">
-                                <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 376px"
-                                       alt="Bentobox Top-Right BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="object-cover object-center pointer-events-none
-                                                  group-hover:brightness-125 transition-all duration-200" />
-                            </div>
-
-                            {/* Showcase Image */}
-                            <div className="inline-block self-center my-auto mt-0 max-h-[70%] overflow-hidden border-2
-                                            border-gray-700/50 rounded-4xl drop-shadow-2xl transition-all duration-200
-                                            hover:rotate-1 hover:-translate-y-1 hover:scale-105 w-full max-w-[280px]
-                                            sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[441px]
-                                            mb-7 xl:mb-auto">
-                                <Image src="/images/pixel/discord-study-content-441w.webp" width={441} height={360} unoptimized
-                                       alt="Guides & Tutorials Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="w-full h-auto object-contain opacity-65 transition-opacity duration-200
-                                                  hover:opacity-100" title="Made by Archipics" />
-                            </div>
-
-                            {/* Description */}
-                            <div className="relative z-[2] text-lg text-center w-full">
-                                <span className="font-medium text-white">{tCodingFeatures('BENTO_3_TITLE')}</span><br />
-                                <span className="text-sm md:text-base text-[#969cb1]">{tCodingFeatures('BENTO_3_DESC')}</span>
-                            </div>
-                        </AnimateOnView>
+                        <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
+                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={441}
+                                      showcaseImage="/images/pixel/discord-study-content-441w.webp" showcaseHeight={360}
+                                      showcaseAlt="Guides & Tutorials Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      showcaseTitle="Made by Archipics" title={tCodingFeatures('BENTO_3_TITLE')}
+                                      description={tCodingFeatures('BENTO_3_DESC')} maxWidth="xl:max-w-[376px]" />
                     </div>
 
                     {/* Bottom Row of Items */}
                     <div className="flex flex-col lg:flex-row justify-between mt-2 lg:mt-0">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-5 auto-cols-fr gap-y-7 lg:gap-y-0">
-                            {/* Left Item */}
-                            <AnimateOnView animation="animate__fadeInLeft animate__slower"
-                                           className="relative flex flex-col justify-end items-start overflow-hidden w-full
-                                                      transition-all duration-200 min-h-[320px] md:min-h-[418px] group
-                                                      md:max-h-[400px] p-5 md:p-6 border border-white/[0.08] rounded-lg">
-                                {/* Background Image Wrapper */}
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-b-650w.avif" fill
-                                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 602px"
-                                           alt="Bentobox Bottom-Left BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                           className="object-cover object-center pointer-events-none
-                                                      group-hover:brightness-125 transition-all duration-200" />
-                                </div>
+                            <BentoBoxItem animation="animate__fadeInLeft animate__slower" hoverRotation="right"
+                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={740}
+                                          showcaseImage="/images/pixel/discord-bots-740w.webp" showcaseHeight={322}
+                                          showcaseAlt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                          showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_4_TITLE')}
+                                          description={tCodingFeatures('BENTO_4_DESC')}
+                                          minHeight="min-h-[320px] md:min-h-[418px]" />
 
-                                {/* Showcase Image */}
-                                <div className="inline-block border-2 border-gray-700/50 rounded-2xl md:rounded-4xl overflow-hidden
-                                self-center my-auto mt-0 hover:-rotate-1 drop-shadow-2xl mb-7 xl:mb-auto
-                                transition-all duration-200 hover:-translate-y-1 hover:scale-105 max-h-[60%] md:max-h-[70%] w-full">
-                                    <Image src="/images/pixel/discord-bots-740w.webp" width={594} height={301} unoptimized
-                                           alt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                           className="w-full h-auto object-contain opacity-65 hover:opacity-100
-                                                      transition-opacity duration-200" title="Made by Karukaze"/>
-                                </div>
-
-                                {/* Description */}
-                                <div className="relative z-[2] text-base md:text-lg text-center w-full">
-                                    <span className="font-medium text-white">{tCodingFeatures('BENTO_4_TITLE')}</span><br />
-                                    <span className="text-sm md:text-base text-[#969cb1]">{tCodingFeatures('BENTO_4_DESC')}</span>
-                                </div>
-                            </AnimateOnView>
-
-                            {/* Right Item */}
-                            <AnimateOnView animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
-                                           className="relative flex flex-col justify-end items-start overflow-hidden w-full
-                                                      transition-all duration-200 min-h-[320px] md:min-h-[418px] group
-                                                      md:max-h-[400px] p-5 md:p-6 border border-white/[0.08] rounded-lg">
-                                {/* Background Image Wrapper */}
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-b-650w.avif" fill
-                                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 602px"
-                                           alt="Bentobox Bottom-Left BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                           className="object-cover object-center pointer-events-none
-                                                      group-hover:brightness-125 transition-all duration-200" />
-                                </div>
-
-                                {/* Showcase Image */}
-                                <div className="inline-block border-2 border-gray-700/50 rounded-2xl md:rounded-4xl overflow-hidden
-                                self-center my-auto hover:rotate-1 drop-shadow-2xl mb-7 xl:mb-auto xl:mt-0
-                                transition-all duration-200 hover:-translate-y-1 hover:scale-105 max-h-[60%] md:max-h-[70%] w-full">
-                                    <Image src="/images/pixel/discord-server-templates-740w.webp" width={740} height={322}
-                                           alt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                           className="w-full h-auto object-contain opacity-65 hover:opacity-100
-                                                      transition-opacity duration-200" unoptimized title="Made by Karukaze"/>
-                                </div>
-                                <div className="relative z-[2] text-base md:text-lg text-center w-full">
-                                    <span className="font-medium text-white">{tCodingFeatures('BENTO_5_TITLE')}</span><br />
-                                    <span className="text-sm md:text-base text-[#969cb1]">{tCodingFeatures('BENTO_5_DESC')}</span>
-                                </div>
-                            </AnimateOnView>
+                            <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
+                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={740}
+                                          showcaseImage="/images/pixel/discord-server-templates-740w.webp" showcaseHeight={322}
+                                          showcaseAlt="Discord-Templates Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                          showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_5_TITLE')}
+                                          description={tCodingFeatures('BENTO_5_DESC')}
+                                          minHeight="min-h-[320px] md:min-h-[418px]" />
                         </div>
                     </div>
                 </div>

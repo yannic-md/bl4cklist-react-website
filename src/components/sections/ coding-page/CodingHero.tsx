@@ -189,8 +189,8 @@ export default function CodingHero(): JSX.Element {
                             <Image src="/images/bg/coding-support-450w.avif" width={450} height={571}
                                    alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 450px"
-                                   className={`relative z-[5] rounded-2xl w-full h-full object-cover border border-white/30
-                                               ${animations.animate_float}`} />
+                                   className={`relative z-[5] rounded-2xl w-full h-full object-cover border 
+                                               border-white/30 ${animations.animate_float}`} />
 
                             {/* Decoration Images */}
                             <div className={`absolute z-[1] bottom-2 -left-16 md:-left-20 lg:-left-28 
@@ -198,7 +198,7 @@ export default function CodingHero(): JSX.Element {
                                 <Image src="/images/bg/discord-bot-150w.avif" width={150} height={182}
                                        alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                        sizes="(max-width: 768px) 100px, (max-width: 1024px) 125px, 150px"
-                                       className="-rotate-[40deg] w-[100px] md:w-[125px] lg:w-[150px]" />
+                                       className="-rotate-[40deg] w-[100px] md:w-[125px] lg:w-[150px] pointer-events-none" />
                             </div>
 
                             <div className={`absolute z-[1] top-0 -right-16 md:-right-20 lg:-right-32 
@@ -206,28 +206,28 @@ export default function CodingHero(): JSX.Element {
                                 <Image src="/images/bg/code-programming-128w.avif" width={128} height={128}
                                        alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                        sizes="(max-width: 768px) 80px, (max-width: 1024px) 100px, 128px"
-                                       className="rotate-[24deg] w-[80px] md:w-[100px] lg:w-[107px]" />
+                                       className="rotate-[24deg] w-[80px] md:w-[100px] lg:w-[107px] pointer-events-none" />
                             </div>
 
                             {/* Some particle "effects" */}
                             <Image src="/images/particles/particle-up-116w.avif" width={116} height={114}
                                    alt="Particles Top - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 58px, (max-width: 768px) 87px, 116px"
-                                   className={`absolute inset-[-60px_auto_auto_-126px] ${colors.orange_overlay}`} />
+                                   className={`absolute inset-[-60px_auto_auto_-126px] ${colors.orange_overlay} pointer-events-none`} />
                             <Image src="/images/particles/particle-bottom-113w.avif" width={113} height={91}
                                    alt="Particles Bottom - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 57px, (max-width: 768px) 85px, 113px"
-                                   className={`absolute inset-[auto_auto_-50px_-140px] ${colors.orange_overlay}`} />
+                                   className={`absolute inset-[auto_auto_-50px_-140px] ${colors.orange_overlay} pointer-events-none`} />
                             <Image src="/images/particles/particle-top-right-100w.avif" width={100} height={106}
                                    alt="Particles Top Right - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 50px, (max-width: 768px) 75px, 100px"
-                                   className={`absolute inset-[-85px_-100px_auto_auto] ${colors.orange_overlay}`} />
+                                   className={`absolute inset-[-85px_-100px_auto_auto] ${colors.orange_overlay} pointer-events-none`} />
 
                             <Image src="/images/bg/circled-border-732w.avif" width={732} height={732}
                                    alt="Circle BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 366px, (max-width: 768px) 549px, 732px"
                                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[732px]
-                                              animate-[spin_75s_linear_infinite]" />
+                                              animate-[spin_75s_linear_infinite] pointer-events-none" />
                         </div>
                     </AnimateOnView>
 
