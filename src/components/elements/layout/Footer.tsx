@@ -8,6 +8,7 @@ import {faInstagram} from "@fortawesome/free-brands-svg-icons/faInstagram";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
 import {useTranslations} from "next-intl";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
+import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 
 /**
  * Renders the site's footer containing:
@@ -53,6 +54,10 @@ export default function Footer(): JSX.Element {
                             <Link href="https://www.youtube.com/@razzerde" target="_blank"
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
                                 <FontAwesomeIcon icon={faYoutube} size={'lg'}/>
+                            </Link>
+                            <Link href="https://github.com/yannic-md?tab=repositories" target="_blank"
+                                  className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
+                                <FontAwesomeIcon icon={faGithub} size={'lg'}/>
                             </Link>
                             <Link href="https://discord.gg/bl4cklist" target="_blank"
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">

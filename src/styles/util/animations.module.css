@@ -16,6 +16,22 @@
     }
 }
 
+@keyframes click_slide {
+    0% {
+        transform: translateX(0);
+    }
+    3% {
+        transform: translateX(8px);
+    }
+    6%, 100% {
+        transform: translateX(0);
+    }
+}
+
+.animate_click_slide {
+    animation: click_slide 10s ease-in-out infinite;
+}
+
 .animate_float {
     animation: float 3s ease-in-out infinite;
 }

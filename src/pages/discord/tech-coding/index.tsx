@@ -4,6 +4,7 @@ import Header from "@/components/elements/layout/Header";
 import Footer from "@/components/elements/layout/Footer";
 import CodingHero from "@/components/sections/ coding-page/CodingHero";
 import CodingFeatures from "@/components/sections/ coding-page/CodingFeatures";
+import CodingFAQ from "@/components/sections/ coding-page/CodingFAQ";
 
 export default function TechCoding(): JSX.Element {
     return (
@@ -18,6 +19,9 @@ export default function TechCoding(): JSX.Element {
 
                 {/* Explain some important big features related to the coding theme (using bentobox layout) */}
                 <CodingFeatures />
+
+                {/* Answer most relevant questions related to Coding and display some small features */}
+                <CodingFAQ />
 
                 {/* Container for IntroSection with shadow overlay */}
                 <div className="bg-transparent h-[100vh]"></div>

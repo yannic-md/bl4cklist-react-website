@@ -1,0 +1,16 @@
+@reference "tailwindcss";
+
+{/* Create a little line on the left side for more depth */}
+.feature_card::before {
+    @apply content-[''] block absolute left-0 top-[88px] w-px h-4 bg-gray-400;
+}
+
+.feature_grid div {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.04) 15%,
+                                rgba(255, 255, 255, .12) 50%, rgba(255, 255, 255, 0.04) 85%, rgba(255, 255, 255, 0) 100%);
+    @apply h-full w-px;
+}
+
+.feature_grid div:last-child {
+    @apply absolute left-0 top-1/2 h-0 w-full -translate-y-1/2;
+}
