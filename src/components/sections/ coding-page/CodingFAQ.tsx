@@ -35,24 +35,32 @@ export default function CodingFAQ(): JSX.Element {
     };
 
     return (
-        <section className="relative py-24 bg-slate-900/30" id="faq">
+        <section className="relative py-24 bg-slate-900/30 overflow-x-hidden" id="faq">
             <div className="w-full max-w-7xl mx-auto">
 
                 {/* Decorative Planet - Left Top */}
-                <div className="absolute left-20 top-36 -translate-x-1/3 lg:-translate-x-1/4
-                                pointer-events-none z-0 opacity-40 hidden md:block">
-                    <Image src="/images/bg/uranus-128w.webp" width={128} height={128}
-                           alt="Uranus Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                           className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 drop-shadow-2xl" />
-                </div>
+                <AnimateOnView animation="animate__fadeInLeft animate__slower"
+                               className="absolute left-20 top-36 -translate-x-1/3 lg:-translate-x-1/4
+                                          pointer-events-none hidden md:block">
+                    <div>
+                        <Image src="/images/bg/uranus-128w.webp" width={128} height={128}
+                            alt="Uranus Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                            className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 drop-shadow-2xl
+                                       z-0 opacity-40" />
+                    </div>
+                </AnimateOnView>
 
                 {/* Decorative Planet - Right Bottom */}
-                <div className="absolute right-32 bottom-24 translate-x-1/3 lg:translate-x-1/4
-                                pointer-events-none z-0 opacity-40 hidden md:block">
-                    <Image src="/images/bg/moon.svg" width={128} height={128}
-                           alt="Moon Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                           className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 drop-shadow-2xl" />
-                </div>
+                <AnimateOnView animation="animate__fadeInRight animate__slower"
+                               className="absolute right-32 bottom-24 translate-x-1/3 lg:translate-x-1/4
+                                          pointer-events-none hidden md:block">
+                    <div>
+                        <Image src="/images/bg/moon.svg" width={128} height={128}
+                               alt="Moon Deco ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                               className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 drop-shadow-2xl z-0 opacity-40" />
+                    </div>
+                </AnimateOnView>
+
 
                 {/* Header of Section */}
                 <div className="flex justify-between gap-x-8 mb-4">
@@ -149,87 +157,94 @@ export default function CodingFAQ(): JSX.Element {
                             </AnimateOnView>
                         </div>
                     </div>
-                    <div className={`absolute flex h-full w-full justify-between top-0 ${coding.feature_grid}`}>
-                        <div></div><div></div><div></div><div></div><div></div><div></div>
-                    </div>
+                    <AnimateOnView animation="animate__fadeIn animate__slower">
+                        <div className={`absolute flex h-full w-full justify-between top-0 ${coding.feature_grid}`}>
+                            <div></div><div></div><div></div><div></div><div></div><div></div>
+                        </div>
+                    </AnimateOnView>
                 </div>
 
                 {/* FAQ Items */}
                 <div className="grid grid-cols-2 gap-7">
                     {/* Left column */}
                     <div className="flex flex-col gap-7">
-                        <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                            <div className="relative rounded-lg z-10 p-8 cursor-pointer"
-                                 onClick={(): void => toggleFaq(0)}>
-                                {/* Background Image Wrapper */}
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                           alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                          group-hover:brightness-125 transition-all duration-200" />
-                                </div>
+                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
+                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
+                                <div className="relative rounded-lg z-10 p-8 cursor-pointer"
+                                     onClick={(): void => toggleFaq(0)}>
+                                    {/* Background Image Wrapper */}
+                                    <div className="absolute inset-0 -z-10">
+                                        <Image src="/images/containers/bentobox-tl-339w.avif" fill
+                                               alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
+                                                                              group-hover:brightness-125 transition-all duration-200" />
+                                    </div>
 
-                                {/* Title */}
-                                <div className="flex justify-between items-center cursor-pointer" >
-                                    <h3 className="text-xl font-medium">⚙️ ~ Welche Programmiersprachen unterstützt ihr?</h3>
-                                    <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                      ${openFaq === 0 ? 'rotate-180' : ''}`}>
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                    </span>
-                                </div>
+                                    {/* Title */}
+                                    <div className="flex justify-between items-center cursor-pointer" >
+                                        <h3 className="text-xl font-medium">⚙️ ~ Welche Programmiersprachen unterstützt ihr?</h3>
+                                        <span className={`transform transition-transform duration-300 text-[#969cb1]
+                                                          ${openFaq === 0 ? 'rotate-180' : ''}`}>
+                                            <FontAwesomeIcon icon={faChevronDown} />
+                                        </span>
+                                    </div>
 
-                                {/* Description */}
-                                <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                 ${openFaq === 0 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                  to-slate-900 rounded-full opacity-40 my-6"></div>
-                                    <div className="max-w-full text-[#969cb1]">
-                                        <p>› Auf unserem Discord-Server findest du <strong>alle bekannten Programmiersprachen</strong>, von Python bis hin zu Assembly. Da unsere Community sehr vielfältig ist und viele verschiedene Talente bietet, ist es sehr wahrscheinlich das dein Problem oder deine Frage blitzschnell beantwortet werden kann.
-                                            <br /><br />
-                                            › Das Server-Team von uns arbeitet hauptsächlich mit Python für Discord-Bots, Java für REST-APIs & Minecraft-Plugins und TypeScript für die Web-Entwicklung, zum Beispiel für genau diese Webseite.</p>
+                                    {/* Description */}
+                                    <div className={`overflow-hidden transition-all duration-300 cursor-default
+                                                     ${openFaq === 0 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
+                                                      to-slate-900 rounded-full opacity-40 my-6"></div>
+                                        <div className="max-w-full text-[#969cb1]">
+                                            <p>› Auf unserem Discord-Server findest du <strong>alle bekannten Programmiersprachen</strong>, von Python bis hin zu Assembly. Da unsere Community sehr vielfältig ist und viele verschiedene Talente bietet, ist es sehr wahrscheinlich das dein Problem oder deine Frage blitzschnell beantwortet werden kann.
+                                                <br /><br />
+                                                › Das Server-Team von uns arbeitet hauptsächlich mit Python für Discord-Bots, Java für REST-APIs & Minecraft-Plugins und TypeScript für die Web-Entwicklung, zum Beispiel für genau diese Webseite.</p>
+                                        </div>
                                     </div>
                                 </div>
+
+                                {/* Border Gradient */}
+                                <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
+                                                from-transparent via-white/60 to-transparent"></div>
                             </div>
+                        </AnimateOnView>
+                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
+                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
+                                <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
+                                     onClick={(): void => toggleFaq(2)}>
+                                    <div className="absolute inset-0 -z-10">
+                                        <Image src="/images/containers/bentobox-tl-339w.avif" fill
+                                               alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
+                                                                              group-hover:brightness-125 transition-all duration-200" />
+                                    </div>
 
-                            {/* Border Gradient */}
-                            <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                            from-transparent via-white/60 to-transparent"></div>
-                        </div>
-                        <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                            <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
-                                 onClick={(): void => toggleFaq(2)}>
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                           alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                          group-hover:brightness-125 transition-all duration-200" />
-                                </div>
+                                    <div className="flex justify-between items-center" >
+                                        <h3 className="text-xl font-medium">🤖 ~ Wie entwickle ich einen eigenen Discord-Bot?</h3>
+                                        <span className={`transform transition-transform duration-300 text-[#969cb1]
+                                                          ${openFaq === 2 ? 'rotate-180' : ''}`}>
+                                            <FontAwesomeIcon icon={faChevronDown} />
+                                        </span>
+                                    </div>
 
-                                <div className="flex justify-between items-center" >
-                                    <h3 className="text-xl font-medium">🤖 ~ Wie entwickle ich einen eigenen Discord-Bot?</h3>
-                                    <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                      ${openFaq === 2 ? 'rotate-180' : ''}`}>
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                    </span>
-                                </div>
-
-                                <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                 ${openFaq === 2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                  to-slate-900 rounded-full opacity-40 my-6"></div>
-                                    <div className="max-w-full text-[#969cb1]">
-                                        <p>› Wir haben eine kleine <a href="https://www.youtube.com/playlist?list=PLkZNWsy7A7m5RBj02l042pqJIGk2fAZdt" target="_blank" className="text-[coral]">Tutorial-Reihe auf YouTube</a> hochgeladen, in welchen wir zusammen mit Python3.12 und - der Bibliothek für Discord's API - discord.py ausführlich Feature-für-Feature durchgehen und diese in einen eigenen Discord-Bot integrieren.
-                                            <br /><br />
-                                            › Es finden hin und wieder <a href="https://www.twitch.tv/r4zzerde" target="_blank" className="text-[coral]">Livestreams</a> auf Twitch statt, in welchen wir an diesem Projekt gemeinsam mit euch weiterarbeiten und währenddessen auch Fragen zum Thema (oder auch allgemeine Programmierfragen) beantworten.</p>
+                                    <div className={`overflow-hidden transition-all duration-300 cursor-default
+                                                     ${openFaq === 2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
+                                                      to-slate-900 rounded-full opacity-40 my-6"></div>
+                                        <div className="max-w-full text-[#969cb1]">
+                                            <p>› Wir haben eine kleine <a href="https://www.youtube.com/playlist?list=PLkZNWsy7A7m5RBj02l042pqJIGk2fAZdt" target="_blank" className="text-[coral]">Tutorial-Reihe auf YouTube</a> hochgeladen, in welchen wir zusammen mit Python3.12 und - der Bibliothek für Discord's API - discord.py ausführlich Feature-für-Feature durchgehen und diese in einen eigenen Discord-Bot integrieren.
+                                                <br /><br />
+                                                › Es finden hin und wieder <a href="https://www.twitch.tv/r4zzerde" target="_blank" className="text-[coral]">Livestreams</a> auf Twitch statt, in welchen wir an diesem Projekt gemeinsam mit euch weiterarbeiten und währenddessen auch Fragen zum Thema (oder auch allgemeine Programmierfragen) beantworten.</p>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
+                                                from-transparent via-white/60 to-transparent"></div>
                             </div>
-                            <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                            from-transparent via-white/60 to-transparent"></div>
-                        </div>
+                        </AnimateOnView>
                     </div>
 
                     {/* Right column */}
                     <div className="flex flex-col gap-7">
-                        <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
+                        <AnimateOnView animation="animate__fadeInRight animate__slower">
+                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
                             <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
                                  onClick={(): void => toggleFaq(1)}>
                                 <div className="absolute inset-0 -z-10">
@@ -260,7 +275,9 @@ export default function CodingFAQ(): JSX.Element {
                             <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
                                             from-transparent via-white/60 to-transparent"></div>
                         </div>
-                        <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
+                        </AnimateOnView>
+                        <AnimateOnView animation="animate__fadeInRight animate__slower">
+                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
                             <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
                                  onClick={(): void => toggleFaq(3)}>
                                 <div className="absolute inset-0 -z-10">
@@ -290,39 +307,37 @@ export default function CodingFAQ(): JSX.Element {
                             <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
                                             from-transparent via-white/60 to-transparent"></div>
                         </div>
+                        </AnimateOnView>
                     </div>
                 </div>
 
 
                 {/* Join Button */}
                 <div className="flex justify-center items-center mt-16">
-                    <div className="relative">
-                        {/* Join Button */}
-                        <div className="relative group drop-shadow-xl drop-shadow-white/5">
-                            <a href="https://discord.gg/bl4cklist" target="_blank">
-                                <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
-                                    <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
-                                </button>
-                            </a>
+                    <AnimateOnView animation="animate__fadeInUp animate__slower">
+                        <div className="relative">
+                            {/* Join Button */}
+                            <div className="relative group drop-shadow-xl drop-shadow-white/5">
+                                <a href="https://discord.gg/bl4cklist" target="_blank">
+                                    <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
+                                        <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                        <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
+                                    </button>
+                                </a>
 
-                            <ButtonHover />
-                        </div>
+                                <ButtonHover />
+                            </div>
 
-                        {/* Left Pointing Arrow */}
-                        <div className={`hidden md:block opacity-10 absolute right-full top-1/2 -translate-y-1/2 
-                                         mr-4 lg:mr-6 w-12 h-6 lg:w-20 lg:h-14 ${anim.animate_click_slide}`}>
-                            <Image src="/images/pixel/arrow-80w.avif" width={80} height={54}
-                                   alt="Arrow Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   className="w-12 h-6 lg:w-20 lg:h-14 grayscale pointer-events-none" />
+                            {/* Left Pointing Arrow */}
+                            <div className={`hidden md:block opacity-10 absolute right-full top-1/2 -translate-y-1/2 
+                                             mr-4 lg:mr-6 w-12 h-6 lg:w-20 lg:h-14 ${anim.animate_click_slide}`}>
+                                <Image src="/images/pixel/arrow-80w.avif" width={80} height={54}
+                                       alt="Arrow Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                       className="w-12 h-6 lg:w-20 lg:h-14 grayscale pointer-events-none" />
+                            </div>
                         </div>
-                    </div>
+                    </AnimateOnView>
                 </div>
-
-
-
-
-
             </div>
 
             { /* Bottom border for this section */ }

@@ -43,7 +43,7 @@ export default function CodingFeatures(): JSX.Element {
     }, []);
 
     return (
-        <section className="relative py-24 pb-0 lg:pb-10 bg-blue-700/5" id="features">
+        <section className="relative py-24 pb-0 lg:pb-10 bg-blue-700/5 overflow-x-hidden" id="features">
             {/* Background Image  */}
             <div className="absolute inset-0 -z-10">
                 <Image src="/images/bg/grid-bg-1920w.avif" fill priority unoptimized sizes="100vw"
