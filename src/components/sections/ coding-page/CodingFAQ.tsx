@@ -6,12 +6,13 @@ import colors from "@/styles/util/colors.module.css";
 import coding from "@/styles/components/coding.module.css";
 import Image from "next/image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import buttons from "@/styles/util/buttons.module.css";
 import anim from "@/styles/util/animations.module.css";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
+import FAQItem from "@/components/elements/grid/FAQItem";
+import FeatureItem from "@/components/elements/grid/FeatureItem";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -23,6 +24,7 @@ import {useTranslations} from "next-intl";
 export default function CodingFAQ(): JSX.Element {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const tWelcome = useTranslations('WelcomeHero');
+    const tFAQ = useTranslations('CodingFAQ');
 
     /**
      * Toggles the open state of a FAQ item.
@@ -69,7 +71,7 @@ export default function CodingFAQ(): JSX.Element {
                         <div className="mb-2">
                             <div className="font-bold tracking-wider">
                                 <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <AnimatedTextReveal text="HÄUFIG GESTELLTEN FRAGEN AUS DER COMMUNITY!"
+                                    <AnimatedTextReveal text={tFAQ('infoTag')}
                                                         className="text-sm text-[coral] uppercase text-center
                                                            2xl:text-start pb-3 lg:pb-0"
                                                         shadowColor="rgba(255,127,80,0.35)"/>
@@ -84,15 +86,14 @@ export default function CodingFAQ(): JSX.Element {
                                             leading-[1.1] text-[1.75rem] md:text-[2.5rem] 
                                             lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.50rem)]`}>
                                 <span className="inline-block align-middle leading-none -mx-[5px] -mt-[5px] text-white">❓</span> -
-                                Eure Fragen..
+                                {tFAQ('title')}
                             </h2>
                         </AnimateOnView></div>
 
                     {/* Description */}
                     <AnimateOnView animation="animate__fadeInRight animate__slower">
                         <p className="text-[#969cb1] pt-6 break-words max-w-md text-sm text-end items-center md:text-base">
-                            › In den vergangenen Jahren haben sich einige interessante Fragen zu unserem Coding-System
-                            angesammelt, die wir euch gerne beantworten! 🚀
+                            {tFAQ('description')}
                         </p>
                     </AnimateOnView>
                 </div>
@@ -102,58 +103,28 @@ export default function CodingFAQ(): JSX.Element {
                     <div className="relative z-10 mx-auto overflow-hidden">
                         <div className="grid z-10 w-full h-full grid-cols-4">
                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b 
-                                                 hover:from-transparent hover:to-slate-900/30 transition-all 
-                                                 duration-300`}>
-                                <Image src="/images/icons/small/charts-40w.avif" width={40} height={40}
-                                       className="mb-5 pointer-events-none"
-                                       alt="Member Count - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                <div className="font-medium text-white mb-1">Bewirb Dein Projekt</div>
-                                <div className="text-[#969cb1] text-base">
-                                    Erreiche eine riesige Community & vergrößere das Interesse an dein eigenes Projekt!
-                                </div>
-                            </div>
+                                <FeatureItem iconSrc="/images/icons/small/charts-40w.avif"
+                                             title={tFAQ('feature1.title')}
+                                             description={tFAQ('feature1.description')}
+                                             altText="Charts Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </AnimateOnView>
                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b 
-                                                 hover:from-transparent hover:to-slate-900/30 transition-all 
-                                                 duration-300`}>
-                                <Image src="/images/icons/small/book-40w.avif" width={40} height={40}
-                                       className="mb-5 pointer-events-none"
-                                       alt="Love Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                <div className="font-medium text-white mb-1 hover:text-[coral] transition-colors duration-200">
-                                    <a href="https://discord.bl4cklist.de/">Unsere Discord-Hilfe</a>
-                                </div>
-                                <div className="text-[#969cb1] text-base">
-                                    Wir haben eine riesige Sammlung an Artikeln, die dir helfen deinen Discord-Server einzurichten.
-                                </div>
-                            </div>
+                                <FeatureItem iconSrc="/images/icons/small/book-40w.avif"
+                                             title={tFAQ('feature2.title')} link="https://discord.bl4cklist.de/"
+                                             description={tFAQ('feature2.description')}
+                                             altText="Book Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </AnimateOnView>
                             <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b 
-                                                 hover:from-transparent hover:to-slate-900/30 transition-all 
-                                                 duration-300`}>
-                                <Image src="/images/icons/small/money-40w.avif" width={40} height={40}
-                                       className="mb-5 pointer-events-none"
-                                       alt="Love Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                <div className="font-medium text-white mb-1">Erhalte Gratis-Spiele</div>
-                                <div className="text-[#969cb1] text-base">
-                                    Spare echtes Geld und werde zu jedem neuen kostenlosen Spiel sofort informiert!
-                                </div>
-                            </div>
+                                <FeatureItem iconSrc="/images/icons/small/money-40w.avif"
+                                             title={tFAQ('feature3.title')}
+                                             description={tFAQ('feature3.description')}
+                                             altText="Money Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </AnimateOnView>
                             <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b 
-                                                 hover:from-transparent hover:to-slate-900/30 transition-all 
-                                                 duration-300`}>
-                                <Image src="/images/icons/small/love-40w.avif" width={40} height={40}
-                                       className="mb-5 pointer-events-none"
-                                       alt="Love Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                                <div className="font-medium text-white mb-1">Lerne Zusammen Mit Uns</div>
-                                <div className="text-[#969cb1] text-base">
-                                    Wir reden immer zusammen mit euch über unsere Entwicklung und lassen euch direkt teil daran haben.
-                                </div>
-                            </div>
+                                <FeatureItem iconSrc="/images/icons/small/love-40w.avif"
+                                             title={tFAQ('feature4.title')}
+                                             description={tFAQ('feature4.description')}
+                                             altText="Love Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </AnimateOnView>
                         </div>
                     </div>
@@ -169,144 +140,24 @@ export default function CodingFAQ(): JSX.Element {
                     {/* Left column */}
                     <div className="flex flex-col gap-7">
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                                <div className="relative rounded-lg z-10 p-8 cursor-pointer"
-                                     onClick={(): void => toggleFaq(0)}>
-                                    {/* Background Image Wrapper */}
-                                    <div className="absolute inset-0 -z-10">
-                                        <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                               alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                              group-hover:brightness-125 transition-all duration-200" />
-                                    </div>
-
-                                    {/* Title */}
-                                    <div className="flex justify-between items-center cursor-pointer" >
-                                        <h3 className="text-xl font-medium">⚙️ ~ Welche Programmiersprachen unterstützt ihr?</h3>
-                                        <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                          ${openFaq === 0 ? 'rotate-180' : ''}`}>
-                                            <FontAwesomeIcon icon={faChevronDown} />
-                                        </span>
-                                    </div>
-
-                                    {/* Description */}
-                                    <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                     ${openFaq === 0 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                        <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                      to-slate-900 rounded-full opacity-40 my-6"></div>
-                                        <div className="max-w-full text-[#969cb1]">
-                                            <p>› Auf unserem Discord-Server findest du <strong>alle bekannten Programmiersprachen</strong>, von Python bis hin zu Assembly. Da unsere Community sehr vielfältig ist und viele verschiedene Talente bietet, ist es sehr wahrscheinlich das dein Problem oder deine Frage blitzschnell beantwortet werden kann.
-                                                <br /><br />
-                                                › Das Server-Team von uns arbeitet hauptsächlich mit Python für Discord-Bots, Java für REST-APIs & Minecraft-Plugins und TypeScript für die Web-Entwicklung, zum Beispiel für genau diese Webseite.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Border Gradient */}
-                                <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                                from-transparent via-white/60 to-transparent"></div>
-                            </div>
+                            <FAQItem index={0} isOpen={openFaq === 0} title={tFAQ('question1.title')}
+                                     description={tFAQ.raw('question1.description')} onToggle={toggleFaq} />
                         </AnimateOnView>
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                                <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
-                                     onClick={(): void => toggleFaq(2)}>
-                                    <div className="absolute inset-0 -z-10">
-                                        <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                               alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                              group-hover:brightness-125 transition-all duration-200" />
-                                    </div>
-
-                                    <div className="flex justify-between items-center" >
-                                        <h3 className="text-xl font-medium">🤖 ~ Wie entwickle ich einen eigenen Discord-Bot?</h3>
-                                        <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                          ${openFaq === 2 ? 'rotate-180' : ''}`}>
-                                            <FontAwesomeIcon icon={faChevronDown} />
-                                        </span>
-                                    </div>
-
-                                    <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                     ${openFaq === 2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                        <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                      to-slate-900 rounded-full opacity-40 my-6"></div>
-                                        <div className="max-w-full text-[#969cb1]">
-                                            <p>› Wir haben eine kleine <a href="https://www.youtube.com/playlist?list=PLkZNWsy7A7m5RBj02l042pqJIGk2fAZdt" target="_blank" className="text-[coral]">Tutorial-Reihe auf YouTube</a> hochgeladen, in welchen wir zusammen mit Python3.12 und - der Bibliothek für Discord's API - discord.py ausführlich Feature-für-Feature durchgehen und diese in einen eigenen Discord-Bot integrieren.
-                                                <br /><br />
-                                                › Es finden hin und wieder <a href="https://www.twitch.tv/r4zzerde" target="_blank" className="text-[coral]">Livestreams</a> auf Twitch statt, in welchen wir an diesem Projekt gemeinsam mit euch weiterarbeiten und währenddessen auch Fragen zum Thema (oder auch allgemeine Programmierfragen) beantworten.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                                from-transparent via-white/60 to-transparent"></div>
-                            </div>
+                            <FAQItem index={2} isOpen={openFaq === 2} title={tFAQ('question3.title')}
+                                     description={tFAQ.raw('question3.description')} onToggle={toggleFaq} />
                         </AnimateOnView>
                     </div>
 
                     {/* Right column */}
                     <div className="flex flex-col gap-7">
                         <AnimateOnView animation="animate__fadeInRight animate__slower">
-                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                            <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
-                                 onClick={(): void => toggleFaq(1)}>
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                           alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                          group-hover:brightness-125 transition-all duration-200" />
-                                </div>
-
-                                <div className="flex justify-between items-center" >
-                                    <h3 className="text-xl font-medium">🌐 ~ Wie kann ich mein Projekt online stellen?</h3>
-                                    <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                      ${openFaq === 1 ? 'rotate-180' : ''}`}>
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                    </span>
-                                </div>
-
-                                <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                 ${openFaq === 1 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                  to-slate-900 rounded-full opacity-40 my-6"></div>
-                                    <div className="max-w-full text-[#969cb1]">
-                                        <p>› Im Internet kusieren sehr viele Angebote von Plattformen die anbieten dein Projekt kostenlos zu hosten, wir raten jedoch dringend davon ab, da dies massive Datenschutz-& Sicherheitsbedenken beherbergt.
-                                            <br /><br />
-                                            › Wir selbst nutzen <a href="https://deinserverhost.de/store/aff.php?aff=3181" className="text-[coral]">DeinServerHost</a> um für wenig Geld enorm leistungsstarke Server zu erhalten, worauf alle unsere Dienste rund um die Uhr laufen.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                            from-transparent via-white/60 to-transparent"></div>
-                        </div>
+                            <FAQItem index={1} isOpen={openFaq === 1} title={tFAQ('question2.title')}
+                                     description={tFAQ.raw('question2.description')} onToggle={toggleFaq} />
                         </AnimateOnView>
                         <AnimateOnView animation="animate__fadeInRight animate__slower">
-                            <div className="relative p-px drop-shadow-white/1 drop-shadow-xl">
-                            <div className="relative rounded-lg z-10 p-8 bg-[#04070d] cursor-pointer"
-                                 onClick={(): void => toggleFaq(3)}>
-                                <div className="absolute inset-0 -z-10">
-                                    <Image src="/images/containers/bentobox-tl-339w.avif" fill
-                                           alt={`Bentobox Background`} className="object-cover object-center pointer-events-none
-                                                                          group-hover:brightness-125 transition-all duration-200" />
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <h3 className="text-xl font-medium">📌 ~ Habt ihr Projekte, von denen man lernen kann?</h3>
-                                    <span className={`transform transition-transform duration-300 text-[#969cb1]
-                                                      ${openFaq === 3 ? 'rotate-180' : ''}`}>
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                    </span>
-                                </div>
-
-                                <div className={`overflow-hidden transition-all duration-300 cursor-default
-                                                 ${openFaq === 3 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="w-5/6 mx-auto h-px bg-gradient-to-r from-slate-900 via-slate-300
-                                                  to-slate-900 rounded-full opacity-40 my-6"></div>
-                                    <div className="max-w-full text-[#969cb1]">
-                                        <p>› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.
-                                            <br /><br />
-                                            › Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href="https://github.com/yannic-md?tab=repositories" target="_blank" className="text-[coral]">hier auf Github</a>.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="absolute inset-0 rounded-lg opacity-40 bg-white/[0.05] bg-gradient-to-r
-                                            from-transparent via-white/60 to-transparent"></div>
-                        </div>
+                            <FAQItem index={3} isOpen={openFaq === 3} title={tFAQ('question4.title')}
+                                     description={tFAQ.raw('question4.description')} onToggle={toggleFaq} />
                         </AnimateOnView>
                     </div>
                 </div>

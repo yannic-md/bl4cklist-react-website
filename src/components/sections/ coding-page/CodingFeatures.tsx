@@ -5,7 +5,7 @@ import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import BentoBoxItem from "@/components/elements/misc/BentoBoxItem";
+import BentoBoxItem from "@/components/elements/grid/BentoBoxItem";
 
 /**
  * Renders the "Coding Features" section used on the tech-coding page.

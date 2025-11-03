@@ -175,6 +175,43 @@
     "BENTO_5_TITLE": "📂 100+ DISCORD SERVER TEMPLATES",
     "BENTO_5_DESC": "Our huge collection of uniquely created Discord server templates helps you build & organize your new super cool project."
   },
+  "CodingFAQ": {
+    "infoTag": "FREQUENTLY ASKED QUESTIONS",
+    "title": " Your Questions..",
+    "description": "› Over the past years, we've collected some interesting questions about our coding system that we're happy to answer! 🚀",
+    "feature1": {
+      "title": "Promote Your Project",
+      "description": "Reach a huge community & increase interest in your own project!"
+    },
+    "feature2": {
+      "title": "Our Discord Help",
+      "description": "We have a huge collection of articles that help you set up your Discord server."
+    },
+    "feature3": {
+      "title": "Get Free Games",
+      "description": "Save real money and be notified immediately about every new free game!"
+    },
+    "feature4": {
+      "title": "Learn Together With Us",
+      "description": "We always talk with you about our development and let you be part of it directly."
+    },
+    "question1": {
+      "title": "⚙️ ~ Which programming languages do you support?",
+      "description": "› On our Discord server you'll find <strong>all known programming languages</strong>, from Python to Assembly. Since our community is very diverse and offers many different talents, it's very likely that your problem or question can be answered quickly.<br /><br />› Our server team mainly works with Python for Discord bots, Java for REST APIs & Minecraft plugins, and TypeScript for web development, for example for this very website."
+    },
+    "question2": {
+      "title": "🌐 ~ How can I put my project online?",
+      "description": "› There are many offers on the internet from platforms that offer to host your project for free, but we strongly advise against this as it poses massive privacy & security concerns.<br /><br />› We ourselves use <a href=\"https://deinserverhost.de/store/aff.php?aff=3181\" class=\"text-[coral]\">DeinServerHost</a> to get extremely powerful servers for little money, on which all our services run around the clock."
+    },
+    "question3": {
+      "title": "🤖 ~ How do I develop my own Discord bot?",
+      "description": "› We have uploaded a small <a href=\"https://www.youtube.com/playlist?list=PLkZNWsy7A7m5RBj02l042pqJIGk2fAZdt\" target=\"_blank\" class=\"text-[coral]\">tutorial series on YouTube</a>, in which we go through feature-by-feature in detail together with Python3.12 and discord.py - the library for Discord's API - and integrate them into our own Discord bot.<br /><br />› <a href=\"https://www.twitch.tv/r4zzerde\" target=\"_blank\" class=\"text-[coral]\">Livestreams</a> take place on Twitch from time to time, where we continue working on this project together with you and also answer questions on the topic (or general programming questions)."
+    },
+    "question4": {
+      "title": "📌 ~ Do you have projects to learn from?",
+      "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
+    }
+  },
   "Misc": {
     "copy": "Copied!"
   }
