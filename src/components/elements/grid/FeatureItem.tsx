@@ -19,10 +19,10 @@ interface FeatureItemProps {
  */
 export default function FeatureItem({ iconSrc, title, description, link, altText }: FeatureItemProps): JSX.Element {
     return (
-        <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b
+        <div className={`relative px-8 pt-6 pb-9 ${coding.feature_card} hover:bg-gradient-to-b text-center lg:text-start
                          hover:from-transparent hover:to-slate-900/30 transition-all duration-300`}>
             {/* Icon */}
-            <Image src={iconSrc} width={40} height={40} className="mb-5 pointer-events-none" alt={altText} />
+            <Image src={iconSrc} width={40} height={40} className="mb-5 mx-auto lg:mx-0 pointer-events-none" alt={altText} />
 
             {/* Title (optional with link) */}
             <div className={`font-medium text-white mb-1 ${link ? 'hover:text-[coral] transition-colors duration-200' : ''}`}>

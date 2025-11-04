@@ -1,4 +1,4 @@
-import {JSX, useState} from "react";
+import {JSX, useEffect, useState} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
@@ -25,6 +25,26 @@ export default function CodingFAQ(): JSX.Element {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const tWelcome = useTranslations('WelcomeHero');
     const tFAQ = useTranslations('CodingFAQ');
+    const [is2XL, setIs2XL] = useState(false);
+
+    /**
+     * Effect: synchronize `is2XL` state with the current viewport width.
+     *
+     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
+     *   otherwise sets it to `false`.
+     * - Runs once on mount to initialize the value.
+     * - Adds a `resize` event listener to update the state when the viewport resizes.
+     * - Cleans up the event listener on unmount.
+     */
+    useEffect((): () => void => {
+        const checkScreenSize: () => void = (): void => {
+            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return (): void => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     /**
      * Toggles the open state of a FAQ item.
@@ -65,8 +85,8 @@ export default function CodingFAQ(): JSX.Element {
 
 
                 {/* Header of Section */}
-                <div className="flex justify-between gap-x-8 mb-4">
-                    <div className="max-w-xl">
+                <div className="flex flex-col xl:flex-row justify-between gap-x-8 mb-4 px-8 lg:px-0">
+                    <div className="xl:max-w-xl">
                         {/* Animated Tag */}
                         <div className="mb-2">
                             <div className="font-bold tracking-wider">
@@ -81,27 +101,31 @@ export default function CodingFAQ(): JSX.Element {
 
                         {/* Headline */}
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <h2 className={`${index.head_border} bg-clip-text text-transparent mb-2 md:mb-6 
+                            <h2 className={`${is2XL ? index.head_border : index.head_border_center} bg-clip-text 
+                                            text-transparent mb-2 md:mb-6 
                                             text-center ${colors.text_gradient_gray} my-0 font-semibold 
-                                            leading-[1.1] text-[1.75rem] md:text-[2.5rem] 
+                                            leading-[1.1] text-[2.25rem] md:text-[2.75rem] 
                                             lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.50rem)]`}>
                                 <span className="inline-block align-middle leading-none -mx-[5px] -mt-[5px] text-white">❓</span> -
                                 {tFAQ('title')}
                             </h2>
-                        </AnimateOnView></div>
+                        </AnimateOnView>
+
+                    </div>
 
                     {/* Description */}
                     <AnimateOnView animation="animate__fadeInRight animate__slower">
-                        <p className="text-[#969cb1] pt-6 break-words max-w-md text-sm text-end items-center md:text-base">
+                        <p className="text-[#969cb1] pt-6 break-words max-w-lg xl:max-w-md text-sm text-center xl:text-end
+                                      items-center md:text-base mx-auto xl:mx-0">
                             {tFAQ('description')}
                         </p>
                     </AnimateOnView>
                 </div>
 
                 {/* Feature List */}
-                <div className="relative w-7xl mt-0 mx-auto !mb-10">
+                <div className="relative max-w-7xl mt-0 mx-auto !mb-10 px-4 lg:px-0">
                     <div className="relative z-10 mx-auto overflow-hidden">
-                        <div className="grid z-10 w-full h-full grid-cols-4">
+                        <div className="grid z-10 w-full h-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
                                 <FeatureItem iconSrc="/images/icons/small/charts-40w.avif"
                                              title={tFAQ('feature1.title')}
@@ -129,14 +153,15 @@ export default function CodingFAQ(): JSX.Element {
                         </div>
                     </div>
                     <AnimateOnView animation="animate__fadeIn animate__slower">
-                        <div className={`absolute flex h-full w-full justify-between top-0 ${coding.feature_grid}`}>
+                        <div className={`absolute hidden lg:flex h-full w-full justify-between top-0 
+                                         ${coding.feature_grid}`}>
                             <div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
                     </AnimateOnView>
                 </div>
 
                 {/* FAQ Items */}
-                <div className="grid grid-cols-2 gap-7">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 px-6 2xl:px-0">
                     {/* Left column */}
                     <div className="flex flex-col gap-7">
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
