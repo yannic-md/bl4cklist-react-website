@@ -7,6 +7,7 @@ import animations from "@/styles/util/animations.module.css";
 import {Testimonial} from "@/types/Testimonial";
 import {TestimonialCard} from "@/components/elements/grid/TestimonialCard";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 
 {/* TODO: REAL API DATA */}
 const TESTIMONIALS: Testimonial[] = [
@@ -248,6 +249,7 @@ function splitArray<T>(array: T[], parts: number): T[][] {
 export default function TestimonialSection(): JSX.Element {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isPaused, setIsPaused] = useState<boolean>(false);
+    const tTestimonial = useTranslations('TestimonialSection');
 
     const [columns, setColumns] = useState<[Testimonial[], Testimonial[]]>((): [Testimonial[], Testimonial[]] => {
         const [left, right] = splitArray(TESTIMONIALS, 2);
@@ -266,6 +268,14 @@ export default function TestimonialSection(): JSX.Element {
         setColumns([left, right]);
     }, []);
 
+    /**
+     * Handles the hover state for a testimonial card.
+     * Updates the currently hovered card ID and toggles the scrolling animation.
+     *
+     * When a card is hovered, scrolling pauses for readability; when hover ends, it resumes.
+     *
+     * @param cardId - The hovered card's ID, or null if no card is hovered.
+     */
     const handleCardHover: (cardId: string | null) => void = (cardId: string | null): void => {
         setHoveredCard(cardId);
         setIsPaused(cardId !== null);
@@ -289,7 +299,7 @@ export default function TestimonialSection(): JSX.Element {
                                                                                     animations.animate_scroll_column_reverse}`}
                          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
                         {doubled.map((testimonial: Testimonial, index: number): JSX.Element => {
-                            const cardId = `${testimonial.userid}-${index}`;
+                            const cardId: string = `${testimonial.userid}-${index}`;
                             const isCurrentHovered: boolean = hoveredCard === cardId;
 
                             return (
@@ -323,25 +333,28 @@ export default function TestimonialSection(): JSX.Element {
                         <div className="mb-2">
                             <div className="font-bold tracking-wider">
                                 <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <AnimatedTextReveal
-                                        text="EIN PAAR EINBLICKE AUS DER COMMUNITY.."
-                                        className="text-sm text-[coral] uppercase text-center 2xl:text-start pb-3 lg:pb-0"
-                                        shadowColor="rgba(255,127,80,0.35)"
-                                    />
+                                    <AnimatedTextReveal text={tTestimonial('infoTag')}
+                                                        className="text-sm text-[coral] uppercase text-center
+                                                                   2xl:text-start pb-3 lg:pb-0"
+                                                        shadowColor="rgba(255,127,80,0.35)" />
                                 </AnimateOnView>
                             </div>
                         </div>
 
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <h2 className={`${index.head_border} bg-clip-text text-transparent mb-2 text-start ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2.25rem] md:text-[2.75rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
-                                <span className="inline-block align-middle leading-none -mx-[5px] -mt-[5px] text-white">💫</span> - DAS SAGT IHR!
+                            <h2 className={`${index.head_border} bg-clip-text text-transparent mb-2 text-start 
+                                            ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2.25rem] 
+                                            md:text-[2.75rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
+                                <span className="inline-block align-middle leading-none -mx-[5px]
+                                                 -mt-[5px] text-white">💫</span> - {tTestimonial('title')}
                             </h2>
                         </AnimateOnView>
 
                         <AnimateOnView animation="animate__fadeInRight animate__slower">
                             <p className="text-[#969cb1] pt-6 break-words max-w-lg xl:max-w-md text-sm text-start items-center md:text-base mx-auto xl:mx-0">
-                                › Wir haben zusammen mit euch bereits unheimlich viele Geschichten erlebt, Freundschaften geschaffen, inspiriert und gelacht. Hier sind ein paar Storys direkt von euch, unseren Server-Mitgliedern, die etwas über unseren wundervollen Discord-Server "Bl4cklist" erzählen und dabei sowohl die Vergangenheit, als auch die Zukunft aufgreifen.<br /><br />
-                                💖 › Wir danken jedem einzelnen, der über die vergangenen Jahre ein Teil von uns war und hoffen das diese ewige Freundschaft niemals endet - ihr macht uns zu dem, was wir sind!
+                                {tTestimonial('description')}
+                                <br /><br />
+                                {tTestimonial('description2')}
                             </p>
                         </AnimateOnView>
                     </div>

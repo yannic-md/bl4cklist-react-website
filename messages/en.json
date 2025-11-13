@@ -212,6 +212,12 @@
       "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
     }
   },
+  "TestimonialSection": {
+    "infoTag": "A FEW INSIGHTS FROM THE COMMUNITY..",
+    "title": "WHAT YOU SAY..",
+    "description": "› Together with you, we've already experienced incredibly many stories, created friendships, inspired and laughed. Here are a few stories directly from you, our server members, telling something about our wonderful Discord server \"Bl4cklist\" and addressing both the past and the future.",
+    "description2": "💖 › We thank each and every one who has been part of us over the past years and hope that this eternal friendship never ends - you make us what we are!"
+  },
   "Misc": {
     "copy": "Copied!"
   }

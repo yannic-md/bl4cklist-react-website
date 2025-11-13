@@ -212,6 +212,12 @@
       "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
     }
   },
+  "TestimonialSection": {
+    "infoTag": "EIN PAAR EINBLICKE AUS DER COMMUNITY..",
+    "title": "DAS SAGT IHR..",
+    "description": "› Wir haben zusammen mit euch bereits unheimlich viele Geschichten erlebt, Freundschaften geschaffen, inspiriert und gelacht. Hier sind ein paar Storys direkt von euch, unseren Server-Mitgliedern, die etwas über unseren wundervollen Discord-Server \"Bl4cklist\" erzählen und dabei sowohl die Vergangenheit, als auch die Zukunft aufgreifen.",
+    "description2": "💖 › Wir danken jedem einzelnen, der über die vergangenen Jahre ein Teil von uns war und hoffen das diese ewige Freundschaft niemals endet - ihr macht uns zu dem, was wir sind!"
+  },
   "Misc": {
     "copy": "Kopiert!"
   }
