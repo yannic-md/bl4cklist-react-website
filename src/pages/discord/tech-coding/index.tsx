@@ -5,6 +5,7 @@ import Footer from "@/components/elements/layout/Footer";
 import CodingHero from "@/components/sections/ coding-page/CodingHero";
 import CodingFeatures from "@/components/sections/ coding-page/CodingFeatures";
 import CodingFAQ from "@/components/sections/ coding-page/CodingFAQ";
+import TestimonialSection from "@/components/sections/TestimonialSection";
 
 export default function TechCoding(): JSX.Element {
     return (
@@ -23,8 +24,8 @@ export default function TechCoding(): JSX.Element {
                 {/* Answer most relevant questions related to Coding and display some small features */}
                 <CodingFAQ />
 
-                {/* Container for IntroSection with shadow overlay */}
-                <div className="bg-transparent h-[100vh]"></div>
+                {/* Section for server member reviews */}
+                <TestimonialSection />
             </div>
 
             {/* Footer at the bottom */}

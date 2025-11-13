@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .bg_white_black {
     background: linear-gradient(105deg, rgb(201, 201, 201) -19%, rgba(252, 127, 3, 0) 30%);
 }
@@ -8,4 +10,14 @@
 
 .orange_overlay {
     filter: hue-rotate(155deg) saturate(180%) brightness(130%) contrast(105%);
+}
+
+.gradient_top {
+    @apply z-[2] absolute inset-x-0 top-0 h-[38%] pointer-events-none;
+    background-image: linear-gradient(to bottom, rgb(8, 9, 19), transparent);
+}
+
+.gradient_bottom {
+    @apply z-[2] absolute inset-x-0 bottom-0 h-[38%] pointer-events-none;
+    background-image: linear-gradient(to top, rgb(8, 9, 19), transparent);
 }

@@ -7,6 +7,7 @@ import TeamSection from "@/components/sections/index/TeamSection";
 import HistorySection from "@/components/sections/index/HistorySection";
 import Image from "next/image";
 import Footer from "@/components/elements/layout/Footer";
+import TestimonialSection from "@/components/sections/TestimonialSection";
 
 /**
  * Renders the home page of the project.
@@ -47,6 +48,9 @@ export default function Home(): JSX.Element {
 
                         <HistorySection />
                     </div>
+
+                    {/* Section for server member reviews */}
+                    <TestimonialSection />
                 </div>
             </div>
 
