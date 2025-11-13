@@ -246,6 +246,9 @@ function splitArray<T>(array: T[], parts: number): T[][] {
  * @returns JSX element containing the complete testimonial section
  */
 export default function TestimonialSection(): JSX.Element {
+    const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+    const [isPaused, setIsPaused] = useState<boolean>(false);
+
     const [columns, setColumns] = useState<[Testimonial[], Testimonial[]]>((): [Testimonial[], Testimonial[]] => {
         const [left, right] = splitArray(TESTIMONIALS, 2);
         return [left, right];
@@ -263,6 +266,11 @@ export default function TestimonialSection(): JSX.Element {
         setColumns([left, right]);
     }, []);
 
+    const handleCardHover: (cardId: string | null) => void = (cardId: string | null): void => {
+        setHoveredCard(cardId);
+        setIsPaused(cardId !== null);
+    };
+
     /**
      * Renders a column of testimonial cards with infinite scroll animation.
      * The testimonials are doubled to create a seamless infinite scroll effect.
@@ -277,14 +285,23 @@ export default function TestimonialSection(): JSX.Element {
 
             return (
                 <div className="flex-1 min-w-0 overflow-hidden">
-                    <div
-                        className={`flex flex-col gap-y-7 ${direction === 'down' ? animations.animate_scroll_column_up :
-                                                                                   animations.animate_scroll_column_reverse}`}>
-                        {doubled.map((testimonial: Testimonial, index: number): JSX.Element => (
-                            <TestimonialCard key={`${testimonial.username}-${index}`} username={testimonial.username}
-                                             rank={testimonial.rank} rank_color={testimonial.rank_color}
-                                             avatar_url={testimonial.avatar_url} content={testimonial.content} />
-                        ))}
+                    <div className={`flex flex-col gap-y-7 ${direction === 'down' ? animations.animate_scroll_column_up :
+                                                                                    animations.animate_scroll_column_reverse}`}
+                         style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
+                        {doubled.map((testimonial: Testimonial, index: number): JSX.Element => {
+                            const cardId = `${testimonial.userid}-${index}`;
+                            const isCurrentHovered: boolean = hoveredCard === cardId;
+
+                            return (
+                                <div key={cardId} className={isCurrentHovered ? 'hovered' : ''}>
+                                    <TestimonialCard username={testimonial.username} rank={testimonial.rank}
+                                                     rank_color={testimonial.rank_color} avatar_url={testimonial.avatar_url}
+                                                     content={testimonial.content} isHovered={isCurrentHovered}
+                                                     hoveredCard={hoveredCard} userid={testimonial.userid}
+                                                     onHoverChange={(hovered: boolean): void => handleCardHover(hovered ? cardId : null)} />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             );
