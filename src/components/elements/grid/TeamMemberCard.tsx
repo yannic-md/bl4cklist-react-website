@@ -172,12 +172,27 @@ export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.
                     </div>
                 </div>
 
-                {/* User Avatar */}
+                {/* User Avatar (with Fallback Avatar) */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
-                    <Image src={member.avatar_url} className={`rounded-lg hover:rotate-1 transition-all duration-300
-                                                              hover:scale-105 ${index.easter_cursor}`}
-                           width={136} height={136}
-                           alt={`${member.display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`} />
+                    {member.avatar_url ? (
+                        <Image src={member.avatar_url} width={136} height={136} unoptimized
+                               className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
+                                alt={`${member.display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
+                                onError={(e): void => {
+                                    const target = e.currentTarget as HTMLImageElement;
+                                    target.style.display = 'none';
+                                    const fallback = target.nextElementSibling as HTMLDivElement;
+                                    if (fallback) fallback.style.display = 'flex';
+                                }} />) : null}
+
+                    {/* Fallback Avatar */}
+                    <div className={`${member.avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 
+                                     rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 text-white text-5xl 
+                                     font-bold hover:rotate-1 transition-all duration-300 hover:scale-105`}
+                         style={{ aspectRatio: '1.08594' }}>
+                        {member.username.length > 1 ? member.username.substring(0, 2).toUpperCase()
+                                                    : member.username.toUpperCase()}
+                    </div>
                 </div>
                 
                 {/* Light Effect on Profile Container */}

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
-import TeamMemberCard from "@/components/elements/misc/TeamMemberCard";
+import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 import Image from "next/image";
 import {TeamMember} from "@/types/TeamMember";
 

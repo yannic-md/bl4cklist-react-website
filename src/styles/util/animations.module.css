@@ -7,6 +7,52 @@
     }
 }
 
+@keyframes float_less {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes click_slide {
+    0% {
+        transform: translateX(0);
+    }
+    3% {
+        transform: translateX(8px);
+    }
+    6%, 100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scroll_column {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(calc(-50% - 0.875rem));
+    }
+}
+
+.animate_scroll_column_up {
+    animation: scroll_column 40s linear infinite;
+}
+
+.animate_scroll_column_reverse {
+    animation: scroll_column 40s linear infinite reverse;
+}
+
+.animate_click_slide {
+    animation: click_slide 10s ease-in-out infinite;
+}
+
 .animate_float {
     animation: float 3s ease-in-out infinite;
+}
+
+.animate_float_less {
+    animation: float_less 3s ease-in-out infinite;
 }

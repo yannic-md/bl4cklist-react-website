@@ -107,7 +107,7 @@ export default function Header(): JSX.Element {
                                         aria-label={`Switch to ${router.locale === 'de' ? 'English' : 'German'}`}>
                                     <Image src={getCurrentFlag()} width={31} height={31} alt={getFlagAltText()}
                                          className='bg-gray-500 transition-all duration-200 rounded-full hover:-translate-y-0.5 
-                                                    hover:bg-white/25 hover:border-white/20
+                                                    hover:bg-white/25 hover:border-white/20 !cursor-pointer
                                                     hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]' />
                                 </button>
 

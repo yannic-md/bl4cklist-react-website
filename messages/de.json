@@ -5,6 +5,10 @@
     "community": "Community",
     "clankBot": "Clank-Bot"
   },
+  "Errors": {
+    "404_DESC": "Ups.. diese Seite ist wohl im Universum verloren gegangen - ich glaube der Praktikant hat wohl zu viel Freizeit! Vielleicht hast du dich verschrieben oder sie wurde gelöscht? Ich bin auf jeden Fall traurig. 😔",
+    "goBack": "Zur Startseite"
+  },
   "Header": {
     "discord": "Discord-Server",
     "closeMenu": "Menü schließen",
@@ -147,6 +151,72 @@
     "ITEM_13_DATE": "25. Mai 2020",
     "ITEM_13_TITLE": "🎉 ~ Discord-Server veröffentlicht!",
     "ITEM_13_DESC": "› Discord war noch für alle etwas ganz neues: es war aufregend! Angefangen als kleine GTA5-Crew haben wir uns zu einem allgemeinen Community-Server weiterentwickelt."
+  },
+  "CodingHero": {
+    "infoTag": "PROGRAMMIEREN LERNEN - EINFACH GEMACHT!",
+    "title": " TECHNIK & CODING",
+    "description": "Auf unserem Discord-Server dreht sich viel um <strong>Software-Entwicklung & Technik</strong> an sich. Wir bieten eigene kleine Lernkurse, öffentliche Discord-Bots, einen Coding-Support und automatisierte Technik-News von GameStar.",
+    "description2": "Dabei ist unser Coding-Support-System von Stackoverflow inspiriert und für jede hilfreiche Antwort winkt eine Belohnung! Wirf doch einen Blick rein und vielleicht können wir dein unbeantwortetes Problem lösen.",
+    "questionStats": "Fragen gestellt",
+    "bugsStats": "Bugs behoben"
+  },
+  "CodingFeatures": {
+    "infoTag": "WIE KÖNNT IHR MIR HELFEN PROGRAMMIEREN ZU LERNEN?",
+    "title": " DAS BIETEN WIR DIR!",
+    "description": "› Die Welt der Hard-& Software ist mysteriös und komplex: Auch wir haben einen harten Weg hinter uns, diesen Pfad zu erklimmen! Wir bieten jedoch einige verschiedene große Features an, die dir helfen können, dein eigenes Projekt blitzschnell umzusetzen oder einen ersten spannenden Einblick zu erhalten.",
+    "BENTO_1_TITLE": "📰 GAMING & TECHNIK-NEWS",
+    "BENTO_1_DESC": "Bleib immer informiert über die neusten Themen aus der Gaming-& Tech-Welt!",
+    "BENTO_2_TITLE": "🔨 UNSERE PROGRAMMIERHILFE",
+    "BENTO_2_DESC": "In unserem Coding-Support kannst du anderen Usern bei ihren Codefehlern oder Fragen weiterhelfen & auch selbst Hilfe holen.",
+    "BENTO_3_TITLE": "📚 GUIDES & TUTORIALS",
+    "BENTO_3_DESC": "Unsere kleinen Lernkurse helfen dir, Programmieren besser zu verstehen.",
+    "BENTO_4_TITLE": "🤖 ÖFFENTLICHE DISCORD-BOTS",
+    "BENTO_4_DESC": "Wir haben eigene Discord-Bots entwickelt mit viel Liebe zum Detail womit du dich inspirieren lassen oder deinen Server verbessern kannst.",
+    "BENTO_5_TITLE": "📂 100+ DISCORD-SERVER VORLAGEN",
+    "BENTO_5_DESC": "Unsere Sammlung an einzigartig erstellten Discord-Server Vorlagen helfen dir beim Aufbau deines neuen supercoolen Projekts."
+  },
+  "CodingFAQ": {
+    "infoTag": "HÄUFIG GESTELLTE FRAGEN",
+    "title": " Eure Fragen..",
+    "description": "› In den vergangenen Jahren haben sich einige interessante Fragen zu unserem Coding-System angesammelt, die wir euch gerne beantworten! 🚀",
+    "feature1": {
+      "title": "Bewirb Dein Projekt",
+      "description": "Erreiche eine riesige Community & vergrößere das Interesse an dein eigenes Projekt!"
+    },
+    "feature2": {
+      "title": "Unsere Discord-Hilfe",
+      "description": "Wir haben eine riesige Sammlung an Artikeln, die dir helfen deinen Discord-Server einzurichten."
+    },
+    "feature3": {
+      "title": "Erhalte Gratis-Spiele",
+      "description": "Spare echtes Geld und werde zu jedem neuen kostenlosen Spiel sofort informiert!"
+    },
+    "feature4": {
+      "title": "Lerne Zusammen Mit Uns",
+      "description": "Wir reden immer zusammen mit euch über unsere Entwicklung und lassen euch direkt teil daran haben."
+    },
+    "question1": {
+      "title": "⚙️ ~ Welche Programmiersprachen unterstützt ihr?",
+      "description": "› Auf unserem Discord-Server findest du <strong>alle bekannten Programmiersprachen</strong>, von Python bis hin zu Assembly. Da unsere Community sehr vielfältig ist und viele verschiedene Talente bietet, ist es sehr wahrscheinlich das dein Problem oder deine Frage blitzschnell beantwortet werden kann.<br /><br />› Das Server-Team von uns arbeitet hauptsächlich mit Python für Discord-Bots, Java für REST-APIs & Minecraft-Plugins und TypeScript für die Web-Entwicklung, zum Beispiel für genau diese Webseite."
+    },
+    "question2": {
+      "title": "🌐 ~ Wie kann ich mein Projekt online stellen?",
+      "description": "› Im Internet kusieren sehr viele Angebote von Plattformen die anbieten dein Projekt kostenlos zu hosten, wir raten jedoch dringend davon ab, da dies massive Datenschutz-& Sicherheitsbedenken beherbergt.<br /><br />› Wir selbst nutzen <a href=\"https://deinserverhost.de/store/aff.php?aff=3181\" class=\"text-[coral]\">DeinServerHost</a> um für wenig Geld enorm leistungsstarke Server zu erhalten, worauf alle unsere Dienste rund um die Uhr laufen."
+    },
+    "question3": {
+      "title": "🤖 ~ Wie entwickle ich einen eigenen Discord-Bot?",
+      "description": "› Wir haben eine kleine <a href=\"https://www.youtube.com/playlist?list=PLkZNWsy7A7m5RBj02l042pqJIGk2fAZdt\" target=\"_blank\" class=\"text-[coral]\">Tutorial-Reihe auf YouTube</a> hochgeladen, in welchen wir zusammen mit Python3.12 und - der Bibliothek für Discord's API - discord.py ausführlich Feature-für-Feature durchgehen und diese in einen eigenen Discord-Bot integrieren.<br /><br />› Es finden hin und wieder <a href=\"https://www.twitch.tv/r4zzerde\" target=\"_blank\" class=\"text-[coral]\">Livestreams</a> auf Twitch statt, in welchen wir an diesem Projekt gemeinsam mit euch weiterarbeiten und währenddessen auch Fragen zum Thema (oder auch allgemeine Programmierfragen) beantworten."
+    },
+    "question4": {
+      "title": "📌 ~ Habt ihr Projekte, von denen man lernen kann?",
+      "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
+    }
+  },
+  "TestimonialSection": {
+    "infoTag": "EIN PAAR EINBLICKE AUS DER COMMUNITY..",
+    "title": "DAS SAGT IHR..",
+    "description": "› Wir haben zusammen mit euch bereits unheimlich viele Geschichten erlebt, Freundschaften geschaffen, inspiriert und gelacht. Hier sind ein paar Storys direkt von euch, unseren Server-Mitgliedern, die etwas über unseren wundervollen Discord-Server \"Bl4cklist\" erzählen und dabei sowohl die Vergangenheit, als auch die Zukunft aufgreifen.",
+    "description2": "💖 › Wir danken jedem einzelnen, der über die vergangenen Jahre ein Teil von uns war und hoffen das diese ewige Freundschaft niemals endet - ihr macht uns zu dem, was wir sind!"
   },
   "Misc": {
     "copy": "Kopiert!"

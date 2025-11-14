@@ -126,7 +126,7 @@ export default function IntroSection(): JSX.Element {
                                 <AnimateOnView animation="animate__fadeInRight animate__slower">
                                     <div className="rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5
                                                     p-px relative overflow-hidden rotate-1 border border-gray-900">
-                                        <div className={`rounded-xl ${index.easter_cursor}`}>
+                                        <div className="rounded-xl">
                                             <Image src="/images/pixel/guild-banner-508w.webp" width={508} height={508}
                                                    alt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                                    className="h-full rounded-xl brightness-90" unoptimized={true} />

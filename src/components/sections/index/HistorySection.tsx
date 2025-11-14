@@ -9,7 +9,7 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
 import {faUsers} from "@fortawesome/free-solid-svg-icons/faUsers";
 import {timeline, TimelineData} from "@/types/TimelineData";
-import TimelineItem from "@/components/elements/misc/TimelineItem";
+import TimelineItem from "@/components/elements/grid/TimelineItem";
 
 import index from '../../../styles/components/index.module.css';
 import Link from "next/link";
