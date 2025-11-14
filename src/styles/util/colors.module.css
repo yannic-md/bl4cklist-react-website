@@ -13,11 +13,11 @@
 }
 
 .gradient_top {
-    @apply z-[2] absolute inset-x-0 top-0 h-[38%] pointer-events-none;
+    @apply z-[2] absolute inset-x-0 -top-0.5 h-[38%] pointer-events-none transform-gpu;
     background-image: linear-gradient(to bottom, rgb(8, 9, 19), transparent);
 }
 
 .gradient_bottom {
-    @apply z-[2] absolute inset-x-0 bottom-0 h-[38%] pointer-events-none;
+    @apply z-[2] absolute inset-x-0 -bottom-0.5 h-[38%] pointer-events-none transform-gpu;
     background-image: linear-gradient(to top, rgb(8, 9, 19), transparent);
 }

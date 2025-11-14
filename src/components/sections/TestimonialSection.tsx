@@ -249,12 +249,32 @@ function splitArray<T>(array: T[], parts: number): T[][] {
 export default function TestimonialSection(): JSX.Element {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isPaused, setIsPaused] = useState<boolean>(false);
+    const [is2XL, setIs2XL] = useState(false);
     const tTestimonial = useTranslations('TestimonialSection');
 
     const [columns, setColumns] = useState<[Testimonial[], Testimonial[]]>((): [Testimonial[], Testimonial[]] => {
-        const [left, right] = splitArray(TESTIMONIALS, 2);
+        const [left, right] = splitArray(TESTIMONIALS, 2); // initial state
         return [left, right];
     });
+
+    /**
+     * Effect: synchronize `is2XL` state with the current viewport width.
+     *
+     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
+     *   otherwise sets it to `false`.
+     * - Runs once on mount to initialize the value.
+     * - Adds a `resize` event listener to update the state when the viewport resizes.
+     * - Cleans up the event listener on unmount.
+     */
+    useEffect((): () => void => {
+        const checkScreenSize: () => void = (): void => {
+            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return (): void => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     /**
      * Effect hook that shuffles testimonials on component mount.
@@ -295,8 +315,8 @@ export default function TestimonialSection(): JSX.Element {
 
             return (
                 <div className="flex-1 min-w-0 overflow-hidden">
-                    <div className={`flex flex-col gap-y-7 ${direction === 'down' ? animations.animate_scroll_column_up :
-                                                                                    animations.animate_scroll_column_reverse}`}
+                    <div className={`flex flex-col gap-y-4 md:gap-y-7 ${direction === 'down' ? animations.animate_scroll_column_up :
+                                                                                               animations.animate_scroll_column_reverse}`}
                          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
                         {doubled.map((testimonial: Testimonial, index: number): JSX.Element => {
                             const cardId: string = `${testimonial.userid}-${index}`;
@@ -326,8 +346,8 @@ export default function TestimonialSection(): JSX.Element {
                        className="w-full h-full object-cover" />
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-6">
-                <div className="grid gap-7 auto-rows-auto grid-cols-[0.65fr_1fr] auto-cols-fr items-center">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+                <div className="grid gap-6 md:gap-7 grid-cols-1 lg:grid-cols-[0.65fr_1fr] items-center overflow-hidden">
                     {/* Left column: Section Description */}
                     <div>
                         <div className="mb-2">
@@ -342,7 +362,8 @@ export default function TestimonialSection(): JSX.Element {
                         </div>
 
                         <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <h2 className={`${index.head_border} bg-clip-text text-transparent mb-2 text-start 
+                            <h2 className={`${is2XL ? index.head_border : index.head_border_center} bg-clip-text 
+                                            text-transparent mb-2 text-center 2xl:text-start
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2.25rem] 
                                             md:text-[2.75rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
                                 <span className="inline-block align-middle leading-none -mx-[5px]
@@ -351,7 +372,8 @@ export default function TestimonialSection(): JSX.Element {
                         </AnimateOnView>
 
                         <AnimateOnView animation="animate__fadeInRight animate__slower">
-                            <p className="text-[#969cb1] pt-6 break-words max-w-lg xl:max-w-md text-sm text-start items-center md:text-base mx-auto xl:mx-0">
+                            <p className="text-[#969cb1] pt-6 break-words max-w-lg md:max-w-full xl:max-w-md
+                                          text-sm text-start items-center md:text-base mx-auto xl:mx-0">
                                 {tTestimonial('description')}
                                 <br /><br />
                                 {tTestimonial('description2')}
@@ -360,11 +382,16 @@ export default function TestimonialSection(): JSX.Element {
                     </div>
 
                     {/* Right Column: Grid for Testimonials */}
-                    <div className="relative">
-                        <div className="flex gap-7 overflow-hidden max-h-[680px]">
-                            {renderColumn(columns[0], 'down')}
-                            {renderColumn(columns[1], 'up')}
-                        </div>
+                    <div className="relative overflow-hidden">
+                        <AnimateOnView animation="animate__fadeIn lg:animate__fadeInRight animate__slower">
+                            <div className="flex gap-4 md:gap-7 overflow-hidden max-h-[500px] sm:max-h-[580px] md:max-h-[680px]">
+                                {renderColumn(columns[0], 'down')}
+                                <div className="hidden sm:contents">
+                                    {/* Hide second column on smaller devices */}
+                                    {renderColumn(columns[1], 'up')}
+                                </div>
+                            </div>
+                        </AnimateOnView>
 
                         <div className={colors.gradient_top}></div>
                         <div className={colors.gradient_bottom}></div>
