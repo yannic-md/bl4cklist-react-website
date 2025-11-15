@@ -9,6 +9,10 @@ import {TestimonialCard} from "@/components/elements/grid/TestimonialCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 
+interface TestimonialSectionProps {
+    position?: 'left' | 'right';
+}
+
 {/* TODO: REAL API DATA */}
 const TESTIMONIALS: Testimonial[] = [
     {
@@ -185,7 +189,7 @@ const TESTIMONIALS: Testimonial[] = [
         rank: "HACKER (LVL: 75)",
         rank_color: "#ff947a",
         avatar_url: "https://cdn.discordapp.com/avatars/996317701695881237/68d2045b2bdb02eda9a2ffbd2cb5adb2.webp?size=64",
-        content: "bl4cklist ist für mich nicht nur irgendeiin Server, es ist DER Server überhaupt. Die besten Mitgleider, das beste Team, das beste Design, alles dabei. Ob man nur entspannt am Samstag abend bisschen talken will , coden lernen will (couldnt be me) oder einfach nur chaten will, dafür geht man auf bl4cklist. Ich habe hier einige meiner besten Freunde kennengelernt, hatte hier mehr spaß als irgendwo anders und fühle mich hier wohl wie nirgendswo anders. Die Atmosphäre ist so entspannt und gechillt, man wird für (fast) nichts verurteilt und wird nie ausgeschlossen. ich bin froh dass es so einen Ort für diese Community gibt und hoffe auf weitere geile Jahre mit Bl4cklist"
+        content: "Bl4cklist ist für mich nicht nur irgendein Server, es ist DER Server überhaupt. Die besten Mitglieder, das beste Team, das beste Design, alles dabei. Ob man nur entspannt am Samstagabend bisschen talken will, coden lernen will (couldnt be me) oder einfach nur chaten will, dafür geht man auf Bl4cklist. Ich habe hier einige meiner besten Freunde kennengelernt, hatte hier mehr Spaß als irgendwo anders und fühle mich hier wohl wie nirgendwo anders. Die Atmosphäre ist so entspannt und gechillt, man wird für (fast) nichts verurteilt und wird nie ausgeschlossen. Ich bin froh, dass es so einen Ort für diese Community gibt und hoffe auf weitere geile Jahre mit Bl4cklist"
     },
 ];
 
@@ -243,10 +247,11 @@ function splitArray<T>(array: T[], parts: number): T[][] {
  * - Left column with section description and animated title
  * - Right column with testimonials scrolling up and down
  * - Gradient overlays at top and bottom for smooth visual transitions
- *
+ * @param {object} props Component properties.
+ * @param {string} props.position Can be "right" or "left".
  * @returns JSX element containing the complete testimonial section
  */
-export default function TestimonialSection(): JSX.Element {
+export default function TestimonialSection({ position = 'left' }: TestimonialSectionProps): JSX.Element {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isPaused, setIsPaused] = useState<boolean>(false);
     const [is2XL, setIs2XL] = useState(false);
@@ -337,6 +342,63 @@ export default function TestimonialSection(): JSX.Element {
             );
         };
 
+    {/* Left column: Section Description */}
+    const descriptionColumn: JSX.Element = (
+        <div>
+            {/* Tag */}
+            <div className="mb-2">
+                <div className="font-bold tracking-wider">
+                    <AnimateOnView animation={`${position === 'left' ? 'animate__fadeInLeft' : 'animate__fadeInRight'} animate__slower`}>
+                        <AnimatedTextReveal text={tTestimonial('infoTag')}
+                                            className={`text-sm text-[coral] uppercase text-center
+                                                        ${position === 'left' ? '2xl:text-start' : ''} pb-3 lg:pb-0`}
+                                            shadowColor="rgba(255,127,80,0.35)" />
+                    </AnimateOnView>
+                </div>
+            </div>
+
+            {/* Title */}
+            <AnimateOnView animation={`${position === 'left' ? 'animate__fadeInLeft' : 'animate__fadeInRight'} animate__slower`}>
+                <h2 className={`${is2XL && position === 'left' ? index.head_border : index.head_border_center} bg-clip-text 
+                                text-transparent mb-2 text-center ${position === 'left' ? '2xl:text-start' : '2xl:text-center'}
+                                ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2.25rem] 
+                                md:text-[2.75rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
+                    <span className="inline-block align-middle leading-none -mx-[5px]
+                                     -mt-[5px] text-white">💫</span> - {tTestimonial('title')}
+                </h2>
+            </AnimateOnView>
+
+            {/* Description */}
+            <AnimateOnView animation={`${position === 'left' ? 'animate__fadeInLeft' : 'animate__fadeInRight'} animate__slower`}>
+                <p className={`text-[#969cb1] pt-6 break-words max-w-lg md:max-w-full  text-sm text-start 
+                               items-center md:text-base mx-auto ${position === 'left' ? 'xl:mx-0 xl:max-w-md' : 'xl:max-w-full'}`}>
+                    {tTestimonial('description')}
+                    <br /><br />
+                    {tTestimonial('description2')}
+                </p>
+            </AnimateOnView>
+        </div>
+    );
+
+    {/* Right Column: Grid for Testimonials */}
+    const testimonialsColumn: JSX.Element = (
+        <div className="relative overflow-hidden">
+            <AnimateOnView animation={`${is2XL ? position === 'left' ? "animate__fadeInRight" : "animate__fadeInLeft" : 
+                                                                       "animate__fadeIn" } animate__slower`}>
+                <div className="flex gap-4 md:gap-7 overflow-hidden max-h-[500px] sm:max-h-[580px] md:max-h-[680px]">
+                    {renderColumn(columns[0], 'down')}
+                    <div className="hidden sm:contents">
+                        {/* Hide second column on smaller devices */}
+                        {renderColumn(columns[1], 'up')}
+                    </div>
+                </div>
+            </AnimateOnView>
+
+            <div className={colors.gradient_top}></div>
+            <div className={colors.gradient_bottom}></div>
+        </div>
+    );
+
     return (
         <section className="relative py-20 bg-black/50" id="discord-server-testimonials">
             {/* Background Image */}
@@ -347,55 +409,19 @@ export default function TestimonialSection(): JSX.Element {
             </div>
 
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-                <div className="grid gap-6 md:gap-7 grid-cols-1 lg:grid-cols-[0.65fr_1fr] items-center overflow-hidden">
-                    {/* Left column: Section Description */}
-                    <div>
-                        <div className="mb-2">
-                            <div className="font-bold tracking-wider">
-                                <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <AnimatedTextReveal text={tTestimonial('infoTag')}
-                                                        className="text-sm text-[coral] uppercase text-center
-                                                                   2xl:text-start pb-3 lg:pb-0"
-                                                        shadowColor="rgba(255,127,80,0.35)" />
-                                </AnimateOnView>
-                            </div>
-                        </div>
-
-                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <h2 className={`${is2XL ? index.head_border : index.head_border_center} bg-clip-text 
-                                            text-transparent mb-2 text-center 2xl:text-start
-                                            ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2.25rem] 
-                                            md:text-[2.75rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3.25rem)]`}>
-                                <span className="inline-block align-middle leading-none -mx-[5px]
-                                                 -mt-[5px] text-white">💫</span> - {tTestimonial('title')}
-                            </h2>
-                        </AnimateOnView>
-
-                        <AnimateOnView animation="animate__fadeInRight animate__slower">
-                            <p className="text-[#969cb1] pt-6 break-words max-w-lg md:max-w-full xl:max-w-md
-                                          text-sm text-start items-center md:text-base mx-auto xl:mx-0">
-                                {tTestimonial('description')}
-                                <br /><br />
-                                {tTestimonial('description2')}
-                            </p>
-                        </AnimateOnView>
-                    </div>
-
-                    {/* Right Column: Grid for Testimonials */}
-                    <div className="relative overflow-hidden">
-                        <AnimateOnView animation="animate__fadeIn lg:animate__fadeInRight animate__slower">
-                            <div className="flex gap-4 md:gap-7 overflow-hidden max-h-[500px] sm:max-h-[580px] md:max-h-[680px]">
-                                {renderColumn(columns[0], 'down')}
-                                <div className="hidden sm:contents">
-                                    {/* Hide second column on smaller devices */}
-                                    {renderColumn(columns[1], 'up')}
-                                </div>
-                            </div>
-                        </AnimateOnView>
-
-                        <div className={colors.gradient_top}></div>
-                        <div className={colors.gradient_bottom}></div>
-                    </div>
+                <div className={`grid gap-6 grid-cols-1 items-center overflow-hidden
+                                 ${position === 'left' ? 'lg:grid-cols-[0.65fr_1fr] md:gap-7' : 'lg:grid-cols-[1fr_0.80fr] md:gap-20'}`}>
+                    {position === 'left' ? (
+                        <>
+                            {descriptionColumn}
+                            {testimonialsColumn}
+                        </>
+                    ) : (
+                        <>
+                            {testimonialsColumn}
+                            {descriptionColumn}
+                        </>
+                    )}
                 </div>
             </div>
 

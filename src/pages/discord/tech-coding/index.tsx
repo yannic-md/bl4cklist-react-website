@@ -25,7 +25,7 @@ export default function TechCoding(): JSX.Element {
                 <CodingFAQ />
 
                 {/* Section for server member reviews */}
-                <TestimonialSection />
+                <TestimonialSection position="right" />
             </div>
 
             {/* Footer at the bottom */}
