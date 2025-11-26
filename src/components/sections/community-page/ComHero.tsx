@@ -14,7 +14,15 @@ import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {faHammer} from "@fortawesome/free-solid-svg-icons/faHammer";
 
+/**
+ * Renders the hero section for the community page featuring an animated introduction,
+ * key statistics about the Discord community, and call-to-action buttons for joining
+ * the server or accessing coding support.
+ *
+ * @returns {JSX.Element} The rendered hero section with animated text, statistics counters, and action buttons
+ */
 export default function ComHero(): JSX.Element {
+    const tComHero = useTranslations('ComHero');
     const tWelcome = useTranslations('WelcomeHero');
     const { locale } = useRouter();
 
@@ -31,7 +39,7 @@ export default function ComHero(): JSX.Element {
                             <div className="mb-2">
                                 <div className="font-bold tracking-wider">
                                     <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                        <AnimatedTextReveal text="UNSERE DISCORD-SERVER COMMUNITY IST EINZIGARTIG!"
+                                        <AnimatedTextReveal text={tComHero('infoTag')}
                                                             className="text-sm text-[coral] uppercase
                                                                        text-center pb-3 lg:pb-0"
                                                             shadowColor="rgba(255,127,80,0.35)" />
@@ -46,39 +54,39 @@ export default function ComHero(): JSX.Element {
                                                 font-semibold leading-[1.1] text-[2rem] 
                                                 lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_4rem)]`}>
                                     <span className="inline-block align-middle leading-none -mx-[5px] text-white">💕</span> -
-                                    WIR SIND IMMER DA!
+                                    {tComHero('title')}
                                 </h2>
                             </AnimateOnView>
 
                             {/* Description */}
-                            <AnimateOnView animation="animate__fadeInRight animate__slower">
+                            <AnimateOnView animation="animate__fadeInLeft animate__slower">
                                 <p className="text-gray-300 mb-6 break-words max-w-3xl text-lg mx-auto text-shadow-lg">
-                                    Die Discord-Community von Bl4cklist steht im Mittelpunkt in jeder Entscheidung: Wir starten regelmäßige Umfragen um euch nach Rat zu fragen bei wichtigen Entscheidungen und folgen hier meist der Mehrheit, bevor wir neue Dinge einführen.
+                                    {tComHero('description')}
                                 </p>
                             </AnimateOnView>
 
                             {/* Statistics TODO */}
-                            <AnimateOnView animation="animate__fadeInRight animate__slower xl:mt-12 2xl:mt-0">
+                            <AnimateOnView animation="animate__fadeInLeft animate__slower xl:mt-12 2xl:mt-0">
                                 <div className="flex justify-center items-start flex-wrap gap-x-4 sm:gap-x-8
                                                 gap-y-6 mb-6 md:mb-0">
                                     <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
                                         <AnimatedCounter end={216} suffix="+" locale={locale} />
                                         <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
-                                            📂 Server-Vorlagen
+                                            📂 {tComHero('stat_templates')}
                                         </span>
                                     </div>
 
                                     <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
                                         <AnimatedCounter end={4447507} suffix="+" locale={locale} />
                                         <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap -ml-0.5">
-                                            📡 Chat-Nachrichten
+                                            📡 {tComHero('stat_messages')}
                                         </span>
                                     </div>
 
                                     <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
                                         <AnimatedCounter end={47} suffix="+" locale={locale} />
                                         <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
-                                            🐞 Coding-Fragen
+                                            🐞 {tComHero('stat_questions')}
                                         </span>
                                     </div>
                                 </div>
@@ -104,7 +112,7 @@ export default function ComHero(): JSX.Element {
                                         <Link href="discord/tech-coding" className="flex flex-col items-end w-full">
                                             <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                                 <FontAwesomeIcon icon={faHammer} className="text-gray-100" />
-                                                <p className="whitespace-pre">Coding-Support erhalten</p>
+                                                <p className="whitespace-pre">{tComHero('button_support')}</p>
                                             </button>
                                         </Link>
 

@@ -212,6 +212,15 @@
       "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
     }
   },
+  "ComHero": {
+    "infoTag": "OUR DISCORD SERVER COMMUNITY IS UNIQUE!",
+    "title": " WE'RE ALWAYS HERE!",
+    "description": "The Bl4cklist Discord community is at the center of every decision: We regularly conduct polls to ask for your advice on important decisions and usually follow the majority before introducing new features.",
+    "stat_templates": "Server Templates",
+    "stat_messages": "Chat Messages",
+    "stat_questions": "Coding Questions",
+    "button_support": "Get Coding Support"
+  },
   "TestimonialSection": {
     "infoTag": "A FEW INSIGHTS FROM THE COMMUNITY..",
     "title": "WHAT YOU SAY..",

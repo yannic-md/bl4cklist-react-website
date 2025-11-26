@@ -212,6 +212,15 @@
       "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
     }
   },
+  "ComHero": {
+    "infoTag": "UNSERE DISCORD-SERVER COMMUNITY IST EINZIGARTIG!",
+    "title": " WIR SIND IMMER DA!",
+    "description": "Die Discord-Community von Bl4cklist steht im Mittelpunkt in jeder Entscheidung: Wir starten regelmäßige Umfragen um euch nach Rat zu fragen bei wichtigen Entscheidungen und folgen hier meist der Mehrheit, bevor wir neue Dinge einführen.",
+    "stat_templates": "Server-Vorlagen",
+    "stat_messages": "Chat-Nachrichten",
+    "stat_questions": "Coding-Fragen",
+    "button_support": "Coding-Support erhalten"
+  },
   "TestimonialSection": {
     "infoTag": "EIN PAAR EINBLICKE AUS DER COMMUNITY..",
     "title": "DAS SAGT IHR..",
