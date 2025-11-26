@@ -8,12 +8,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import Link from "next/link";
-import {faRobot} from "@fortawesome/free-solid-svg-icons/faRobot";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {useRouter} from "next/router";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
+import {faHammer} from "@fortawesome/free-solid-svg-icons/faHammer";
 
 export default function ComHero(): JSX.Element {
+    const tWelcome = useTranslations('WelcomeHero');
     const { locale } = useRouter();
 
     return (
@@ -29,7 +31,7 @@ export default function ComHero(): JSX.Element {
                             <div className="mb-2">
                                 <div className="font-bold tracking-wider">
                                     <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                        <AnimatedTextReveal text="test"
+                                        <AnimatedTextReveal text="UNSERE DISCORD-SERVER COMMUNITY IST EINZIGARTIG!"
                                                             className="text-sm text-[coral] uppercase
                                                                        text-center pb-3 lg:pb-0"
                                                             shadowColor="rgba(255,127,80,0.35)" />
@@ -43,16 +45,15 @@ export default function ComHero(): JSX.Element {
                                                 text-transparent mb-4 md:mb-6 ${colors.text_gradient_gray} my-0 
                                                 font-semibold leading-[1.1] text-[2rem] 
                                                 lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_4rem)]`}>
-                                    <span className="inline-block align-middle leading-none -mx-[5px] text-white">🛠️</span> -
-                                    TEST YOYOYOYOYOOY
+                                    <span className="inline-block align-middle leading-none -mx-[5px] text-white">💕</span> -
+                                    WIR SIND IMMER DA!
                                 </h2>
                             </AnimateOnView>
 
                             {/* Description */}
                             <AnimateOnView animation="animate__fadeInRight animate__slower">
-                                <p className="text-[#white] mb-6 break-words max-w-full 2xl:max-w-xl
-                                      [@media(min-width:2000px)]:max-w-2xl text-lg mx-auto">
-                                    test beschreibung hehe
+                                <p className="text-gray-300 mb-6 break-words max-w-3xl text-lg mx-auto text-shadow-lg">
+                                    Die Discord-Community von Bl4cklist steht im Mittelpunkt in jeder Entscheidung: Wir starten regelmäßige Umfragen um euch nach Rat zu fragen bei wichtigen Entscheidungen und folgen hier meist der Mehrheit, bevor wir neue Dinge einführen.
                                 </p>
                             </AnimateOnView>
 
@@ -61,24 +62,24 @@ export default function ComHero(): JSX.Element {
                                 <div className="flex justify-center items-start flex-wrap gap-x-4 sm:gap-x-8
                                                 gap-y-6 mb-6 md:mb-0">
                                     <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                        <AnimatedCounter end={342} suffix="+" locale={locale} />
-                                        <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
-                                        📡 test
-                                    </span>
-                                    </div>
-
-                                    <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
                                         <AnimatedCounter end={216} suffix="+" locale={locale} />
                                         <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
-                                        🐞 test
-                                    </span>
+                                            📂 Server-Vorlagen
+                                        </span>
                                     </div>
 
                                     <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                        <AnimatedCounter end={15123} suffix="+" locale={locale} />
+                                        <AnimatedCounter end={4447507} suffix="+" locale={locale} />
+                                        <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap -ml-0.5">
+                                            📡 Chat-Nachrichten
+                                        </span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
+                                        <AnimatedCounter end={47} suffix="+" locale={locale} />
                                         <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
-                                        👾 Gaming-News
-                                    </span>
+                                            🐞 Coding-Fragen
+                                        </span>
                                     </div>
                                 </div>
                             </AnimateOnView>
@@ -93,17 +94,17 @@ export default function ComHero(): JSX.Element {
                                            className="flex flex-col items-end w-full">
                                             <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
                                                 <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
-                                                <p className="whitespace-pre">Test</p>
+                                                <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                             </button>
                                         </a>
                                         <ButtonHover />
                                     </div>
 
                                     <div className="flex flex-col items-end relative group w-full sm:w-auto">
-                                        <Link href="discord/clank-bot" className="flex flex-col items-end w-full">
+                                        <Link href="discord/tech-coding" className="flex flex-col items-end w-full">
                                             <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                                <FontAwesomeIcon icon={faRobot} className="text-gray-100" />
-                                                <p className="whitespace-pre">Discord-Bot Clank</p>
+                                                <FontAwesomeIcon icon={faHammer} className="text-gray-100" />
+                                                <p className="whitespace-pre">Coding-Support erhalten</p>
                                             </button>
                                         </Link>
 
@@ -128,9 +129,9 @@ export default function ComHero(): JSX.Element {
             </div>
 
             {/* Frame Overlay Background image */}
-            <div className="max-w-[68.75rem] mt-[76px] mx-auto absolute top-[7%] left-0 right-0">
+            <div className="max-w-[68.75rem] mt-[76px] mx-auto absolute top-[7%] xl:top-[12%] left-0 right-0">
                 <Image src="/images/bg/community-hero-frame-2200w.webp" sizes="(max-width: 2200px) 100vw, 2200px"
-                       className="w-full h-full grayscale" width={220} height={1142}
+                       className="w-full h-full grayscale xl:scale-125" width={220} height={1142}
                        alt="Frame BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
             </div>
 
