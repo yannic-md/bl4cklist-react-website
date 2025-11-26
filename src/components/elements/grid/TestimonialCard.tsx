@@ -1,4 +1,4 @@
-import {JSX} from "react";
+import {JSX, useState} from "react";
 
 interface TestimonialCardProps {
     userid: string;
@@ -29,6 +29,18 @@ interface TestimonialCardProps {
  */
 export function TestimonialCard({ userid, username, rank, rank_color, avatar_url, content,
                                   isHovered = false, hoveredCard, onHoverChange }: TestimonialCardProps): JSX.Element {
+    const [imageError, setImageError] = useState(false);
+
+    /**
+     * Extracts up to two initials from a display name.
+     *
+     * @param name - The display name to derive initials from.
+     * @returns Two-character uppercase initials (or fewer if name is short).
+     */
+    const getInitials: (name: string) => string = (name: string): string => {
+        return name.trim().substring(0, 2).toUpperCase();
+    };
+
     return (
         <div className={`relative p-px transition-opacity duration-300 
                          ${isHovered ? 'opacity-100' : hoveredCard !== null ? 'opacity-30' : 'opacity-100'}`}
@@ -38,8 +50,19 @@ export function TestimonialCard({ userid, username, rank, rank_color, avatar_url
                 <div className="flex items-center justify-between gap-x-4 mb-6">
                     {/* Profile Name + Avatar */}
                     <div className="flex justify-start items-center gap-2.5">
-                        <img src={avatar_url} alt={`${username} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
-                             className="rounded-full overflow-hidden translate-0 w-10 h-10 !cursor-default" />
+                        {/* Fallback for image in case discord avatar was deleted / changed */}
+                        {!imageError ? (
+                            <img src={avatar_url} alt={`${username} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
+                                 className="rounded-full overflow-hidden translate-0 w-10 h-10 !cursor-default"
+                                 onError={(): void => setImageError(true)} />
+                        ) : (
+                            <div className="rounded-full w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-500
+                                            flex items-center justify-center !cursor-default">
+                                <span className="text-white text-sm font-semibold">
+                                    {getInitials(username)}
+                                </span>
+                            </div>
+                        )}
                         <div title={userid}>
                             <div className="text-base font-medium text-white ml-0.5">{username}</div>
                             <div className="text-sm" style={{ color: rank_color }}>
