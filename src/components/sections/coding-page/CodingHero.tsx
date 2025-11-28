@@ -163,7 +163,7 @@ export default function CodingHero(): JSX.Element {
                                 </div>
 
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
-                                    <Link href="discord/clank-bot" className="flex flex-col items-end w-full">
+                                    <Link href="clank-bot" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                             <FontAwesomeIcon icon={faRobot} className="text-gray-100" />
                                             <p className="whitespace-pre">Discord-Bot Clank</p>

@@ -227,6 +227,13 @@
     "description": "› Wir haben zusammen mit euch bereits unheimlich viele Geschichten erlebt, Freundschaften geschaffen, inspiriert und gelacht. Hier sind ein paar Storys direkt von euch, unseren Server-Mitgliedern, die etwas über unseren wundervollen Discord-Server \"Bl4cklist\" erzählen und dabei sowohl die Vergangenheit, als auch die Zukunft aufgreifen.",
     "description2": "💖 › Wir danken jedem einzelnen, der über die vergangenen Jahre ein Teil von uns war und hoffen das diese ewige Freundschaft niemals endet - ihr macht uns zu dem, was wir sind!"
   },
+  "MemberListSection": {
+    "infoTagBirthday": "HERZLICHEN GLÜCKWUNSCH AN JEDES GEBURTSTAGSKIND!",
+    "titleBirthday": "GEBURTSTAGSKINDER",
+    "description1Birthday": "Heute ist ein ganz besonderer Tag! Es gibt (hoffentlich) ein paar Geburtstage unter uns! Um auszudrücken wie wichtig es uns ist zusammen mit der Discord-Community etwas zu feiern, erhält jedes Geburtstagskind die Chance auf unserer Webseite angezeigt zu werden!",
+    "description2Birthday": "Du kannst dein Geburtstag auf unserem Discord-Server den Slashbefehl <code>/birthday set</code> verwenden, um dein eigenen Geburtstag einzutragen und auch hier aufgelistet zu werden - pünktlich um 0 Uhr. 🎊",
+    "rankBirthday": "Geburtstagskind"
+  },
   "Misc": {
     "copy": "Kopiert!"
   }

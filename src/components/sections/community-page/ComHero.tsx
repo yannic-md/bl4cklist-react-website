@@ -129,7 +129,7 @@ export default function ComHero(): JSX.Element {
                                 </div>
 
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
-                                    <Link href="discord/tech-coding" className="flex flex-col items-end w-full">
+                                    <Link href="tech-coding" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
                                             <FontAwesomeIcon icon={faHammer} className="text-gray-100" />
                                             <p className="whitespace-pre">{tComHero('button_support')}</p>

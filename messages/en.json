@@ -227,6 +227,13 @@
     "description": "› Together with you, we've already experienced incredibly many stories, created friendships, inspired and laughed. Here are a few stories directly from you, our server members, telling something about our wonderful Discord server \"Bl4cklist\" and addressing both the past and the future.",
     "description2": "💖 › We thank each and every one who has been part of us over the past years and hope that this eternal friendship never ends - you make us what we are!"
   },
+  "MemberListSection": {
+    "infoTagBirthday": "CONGRATULATIONS TO EVERY BIRTHDAY CHILD!",
+    "titleBirthday": "TODAY'S BIRTHDAYS",
+    "description1Birthday": "Today is a very special day! There are (hopefully) a few birthdays among us! To show how important it is for us to celebrate together with the Discord community, every birthday child gets the chance to be shown on our website!",
+    "description2Birthday": "You can use the slash command <code>/birthday set</code> on our Discord server to add your own birthday and be listed here as well - right at midnight. 🎊",
+    "rankBirthday": "Guest of Honor"
+  },
   "Misc": {
     "copy": "Copied!"
   }

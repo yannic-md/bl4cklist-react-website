@@ -400,7 +400,7 @@ export default function TestimonialSection({ position = 'left' }: TestimonialSec
     );
 
     return (
-        <section className="relative py-20 bg-black/50" id="discord-server-testimonials">
+        <section className="relative py-20 bg-black/49" id="discord-server-testimonials">
             {/* Background Image */}
             <div className="absolute inset-0 -z-10">
                 <Image src="/images/bg/grid-1920w.webp" fill priority sizes="100vw"

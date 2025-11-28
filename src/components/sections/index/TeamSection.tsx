@@ -7,7 +7,7 @@ import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
 import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 import Image from "next/image";
-import {TeamMember} from "@/types/TeamMember";
+import {Member} from "@/types/Member";
 
 /**
  * Renders the Discord server team section with animated elements and team member cards.
@@ -22,7 +22,7 @@ export default function TeamSection(): JSX.Element {
     const tTeam = useTranslations('TeamSection');
 
     // Placeholder Data TODO
-    const teamMembers: TeamMember[] = [
+    const teamMembers: Member[] = [
         { username: 'yannicde', display_name: 'Yannic 🦙', rank: 'LEITUNG', user_id: '327176944640720906',
           avatar_url: 'https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128',
           social_media_1: 'https://twitch.tv/yannicde', social_media_2: 'https://github.com/yannicde' },
