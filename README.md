@@ -16,10 +16,10 @@
     <img src="https://img.shields.io/badge/React-19.2.0-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
   </a>
   <a href="https://nextjs.org/">
-    <img src="https://img.shields.io/badge/Next.JS-16.0.1-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Next.JS-16.0.5-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
   </a>
   <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Tailwind-4.1.16-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Tailwind-4.1.17-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
 </h4>
 <h4 align="center">
