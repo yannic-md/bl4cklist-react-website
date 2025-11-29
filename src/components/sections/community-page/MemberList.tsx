@@ -69,14 +69,14 @@ export default function MemberList({members, section_id, category, position = 'r
             ],
             3: [
                 {
-                    src: '/images/bg/moon.svg',
-                    className: `absolute ${isLeftPosition ? 'right-10 top-72' : 'left-10 top-72'} z-[3] pointer-events-none opacity-30`,
-                    alt: 'Moon Decoration Primary'
+                    src: '/images/bg/mars-128w.webp',
+                    className: `absolute ${isLeftPosition ? 'right-10 top-72' : 'left-16 top-56'} z-[3] pointer-events-none opacity-10`,
+                    alt: 'Mars ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
                 },
                 {
-                    src: '/images/bg/moon.svg',
-                    className: `absolute ${isLeftPosition ? 'left-0 bottom-56' : 'right-0 bottom-56'} z-[3] pointer-events-none opacity-18`,
-                    alt: 'Moon Decoration Secondary'
+                    src: '/images/bg/neptune-128w.webp',
+                    className: `absolute ${isLeftPosition ? 'left-0 bottom-56' : 'right-12 bottom-56 rotate-24'} z-[3] pointer-events-none opacity-18`,
+                    alt: 'Neptune ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
                 }
             ],
             4: [
@@ -139,7 +139,7 @@ export default function MemberList({members, section_id, category, position = 'r
                                                  -mt-[3px] sm:-mt-[5px] text-white text-2xl sm:text-3xl">
                                     {category === 'Birthday' ? '🍰' :
                                      category === "Leaders"  ? '🔥' :
-                                     category === 'Level'    ? '🏆' : '👴🏻'}
+                                     category === 'Levels'   ? '🏆' : '👴🏻'}
                                 </span> - {tMemberListSection('title' + category)}
                             </h2>
                         </AnimateOnView>

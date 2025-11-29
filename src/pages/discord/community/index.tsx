@@ -36,6 +36,16 @@ export default function Community(): JSX.Element {
     const ranked_users: Member[] = birthday_users.map((member, index) => {
         const ranks: Array<'REKRUT' | 'BOOSTER' | 'SPONSOR'> = ['REKRUT', 'BOOSTER', 'SPONSOR'];
         return {...member, rank: ranks[index % ranks.length] };
+    }).sort((a, b) => {
+        const rankOrder = { REKRUT: 2, BOOSTER: 1, SPONSOR: 0 };
+        return rankOrder[a.rank as keyof typeof rankOrder] - rankOrder[b.rank as keyof typeof rankOrder];
+    });
+    const level_users: Member[] = birthday_users.map((member, index) => {
+        const ranks: Array<'LVL75' | 'LVL100' | 'LVL125'> = ['LVL75', 'LVL100', 'LVL125'];
+        return {...member, rank: ranks[index % ranks.length] };
+    }).sort((a, b) => {
+        const getLevelNumber = (rank: string) => parseInt(rank.replace('LVL', ''));
+        return getLevelNumber(b.rank) - getLevelNumber(a.rank);
     });
 
     return (
@@ -51,6 +61,7 @@ export default function Community(): JSX.Element {
                 {/* Member List sections */}
                 <MemberList members={birthday_users} section_id="birthdays" category="Birthday" />
                 <MemberList members={ranked_users} section_id="leaders" category="Leaders" position="left" planetVariant={2} />
+                <MemberList members={level_users} section_id="levels" category="Levels" planetVariant={3} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />

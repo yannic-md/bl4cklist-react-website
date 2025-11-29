@@ -46,6 +46,17 @@
     @apply text-transparent bg-clip-text;
 }
 
-.rank_sponsor_gradient, .rank_booster_gradient, .rank_rekrut_gradient:hover {
+.rank_lvl100_gradient {
+    background: linear-gradient(to right, #c7ecee, #74b9ff, #c7ecee);
+    @apply text-transparent bg-clip-text;
+}
+
+.rank_lvl125_gradient {
+    background: linear-gradient(to right, #ff597e, #ff92b8, #ff597e);
+    @apply text-transparent bg-clip-text;
+}
+
+.rank_sponsor_gradient:hover, .rank_booster_gradient:hover, .rank_rekrut_gradient:hover,
+.rank_lvl100_gradient:hover, .rank_lvl125_gradient:hover {
     animation: rank_animation 1.5s linear infinite;
 }
