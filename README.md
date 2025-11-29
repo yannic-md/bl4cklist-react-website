@@ -1,4 +1,4 @@
-## This project is still in the early stages of development. Most of the features are not implemented, and it is not live yet.
+## This project is currently stable and most sites are implemented, but a few sites, many QOL features & improvements are still missing.
 <hr>
 
 <h1 align="center">
