@@ -212,13 +212,50 @@
       "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
     }
   },
+  "ComHero": {
+    "infoTag": "UNSERE DISCORD-SERVER COMMUNITY IST EINZIGARTIG!",
+    "title": " WIR SIND IMMER DA!",
+    "description": "Die Discord-Community von Bl4cklist steht im Mittelpunkt in jeder Entscheidung: Wir starten regelmäßige Umfragen um euch nach Rat zu fragen bei wichtigen Entscheidungen und folgen hier meist der Mehrheit, bevor wir neue Dinge einführen.",
+    "stat_templates": "Server-Vorlagen",
+    "stat_messages": "Chat-Nachrichten",
+    "stat_questions": "Coding-Fragen",
+    "button_support": "Coding-Support erhalten"
+  },
   "TestimonialSection": {
     "infoTag": "EIN PAAR EINBLICKE AUS DER COMMUNITY..",
     "title": "DAS SAGT IHR..",
     "description": "› Wir haben zusammen mit euch bereits unheimlich viele Geschichten erlebt, Freundschaften geschaffen, inspiriert und gelacht. Hier sind ein paar Storys direkt von euch, unseren Server-Mitgliedern, die etwas über unseren wundervollen Discord-Server \"Bl4cklist\" erzählen und dabei sowohl die Vergangenheit, als auch die Zukunft aufgreifen.",
     "description2": "💖 › Wir danken jedem einzelnen, der über die vergangenen Jahre ein Teil von uns war und hoffen das diese ewige Freundschaft niemals endet - ihr macht uns zu dem, was wir sind!"
   },
+  "MemberListSection": {
+    "infoTagBirthday": "HERZLICHEN GLÜCKWUNSCH AN JEDES GEBURTSTAGSKIND!",
+    "titleBirthday": "GEBURTSTAGSKINDER",
+    "description1Birthday": "Heute ist ein ganz besonderer Tag! Es gibt (hoffentlich) ein paar Geburtstage unter uns! Um auszudrücken wie wichtig es uns ist zusammen mit der Discord-Community etwas zu feiern, erhält jedes Geburtstagskind die Chance auf unserer Webseite angezeigt zu werden!",
+    "description2Birthday": "Du kannst dein Geburtstag auf unserem Discord-Server den Slashbefehl <code>/birthday set</code> verwenden, um dein eigenen Geburtstag einzutragen und auch hier aufgelistet zu werden - pünktlich um 0 Uhr. 🎊",
+    "infoTagLeaders": "DIESE MITGLIEDER HABEN EINZIGARTIGES GELEISTET - DANKE!",
+    "titleLeaders": "Ehrenhafte Mitglieder",
+    "description1Leaders": "Einige Mitglieder aus unserem Discord-Server haben Erfolge aufgestellt welche nur wenige vollbringen konnten und dafür sind wir ihnen sehr dankbar - auch ihr dürft auf unsere Webseite und wir danken euch recht herzlich für eure lange Unterstützung!",
+    "description2Leaders": "Es gibt verschiedene Möglichkeiten, wie du hier landen kannst: Verwende unseren Server-Tag, booste unseren Discord-Server mit Nitro oder spende echtes Geld um Events für die Community zu starten. 🤗",
+    "infoTagLevels": "DANKE AN DEN BEITRAG DEN DIE AKTIVSTEN VON EUCH LEISTEN!",
+    "titleLevels": "Aktivste Mitglieder",
+    "description1Levels": "Es gibt auch viele User aus unserer Community welche unfassbar aktiv bei uns sind und sich wie Zuhause fühlen. Für die aktivsten Mitglieder unter euch haben wir ebenfalls ein kleines Geschenk, in Form als einer Erwähnung und wir hoffen euch auch niemals wieder zu verlieren!",
+    "description2Levels": "Level aufsteigen kann man auf unserem Discord-Server durch regelmäßige Aktivität in Form von Nachrichten in Server-Chats, Zeit verbringen in Sprachkanälen und die Teilnahme an Events. 💫",
+    "infoTagStaff": "EIN PAAR LEGENDEN AUS UNSEREN ALTEN ERINNERUNGEN!",
+    "titleStaff": "EHEMALIGES TEAM",
+    "description1Staff": "Hier seht ihr einige Teammitglieder aus unserem Discord-Server, die uns besonders im Gedächtnis geblieben sind. Sie haben uns für eine sehr lange Zeit massiv mit ihrer Zeit unterstützt: Bl4cklist und unsere Community ist so wundervoll, weil sie ihr bestes dafür gegeben haben.",
+    "description2Staff": "Jedes Teammitglied, welches länger als 1 Jahr in unserem Server-Team tätig war, wird hier aufgelistet. Wir, das aktuelle Server-Team inklusive der Community, bedanken uns bei euch für eure enorme Arbeit und das Aufbringen eurer Zeit und Liebe! 💖",
+    "rankFormerStaff": "[rank] für [time]",
+    "rankLvl": "Level [level] erreicht",
+    "rankBirthday": "Geburtstagskind",
+    "rankRekrut": "Rekrut (Vanity/Tag)",
+    "rankBooster": "Server-Booster",
+    "rankSponsor": "Event-Sponsor"
+  },
   "Misc": {
-    "copy": "Kopiert!"
+    "copy": "Kopiert!",
+    "durationMonth": "Monat",
+    "durationMonths": "Monate",
+    "durationYear": "Jahr",
+    "durationYears": "Jahre"
   }
 }

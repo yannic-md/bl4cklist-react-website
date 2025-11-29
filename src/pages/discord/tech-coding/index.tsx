@@ -2,9 +2,9 @@ import {GetStaticPropsContext} from "next";
 import {JSX} from "react";
 import Header from "@/components/elements/layout/Header";
 import Footer from "@/components/elements/layout/Footer";
-import CodingHero from "@/components/sections/ coding-page/CodingHero";
-import CodingFeatures from "@/components/sections/ coding-page/CodingFeatures";
-import CodingFAQ from "@/components/sections/ coding-page/CodingFAQ";
+import CodingHero from "@/components/sections/coding-page/CodingHero";
+import CodingFeatures from "@/components/sections/coding-page/CodingFeatures";
+import CodingFAQ from "@/components/sections/coding-page/CodingFAQ";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 
 export default function TechCoding(): JSX.Element {
@@ -25,7 +25,7 @@ export default function TechCoding(): JSX.Element {
                 <CodingFAQ />
 
                 {/* Section for server member reviews */}
-                <TestimonialSection />
+                <TestimonialSection position="right" />
             </div>
 
             {/* Footer at the bottom */}

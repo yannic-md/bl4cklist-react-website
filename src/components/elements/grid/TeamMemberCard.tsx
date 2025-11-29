@@ -12,8 +12,9 @@ import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
-import {TeamMember} from "@/types/TeamMember";
+import {Member} from "@/types/Member";
 import {JSX} from "react";
+import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
 
 /**
  * Renders a card component for a team member, displaying their avatar, username, rank,
@@ -21,42 +22,13 @@ import {JSX} from "react";
  * for additional information and a copy-to-clipboard feature for the username.
  *
  * @param {Object} props - The properties passed to the component.
- * @param {TeamMember} props.member - The team member object containing details such as
+ * @param {Member} props.member - The team member object containing details such as
  * username, rank, avatar URL, and social media links.
  *
  * @returns {JSX.Element} A styled card component with team member details.
  */
-export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.Element {
+export default function TeamMemberCard({ member }: { member: Member }): JSX.Element {
     const tTeam = useTranslations('TeamSection');
-    const tMisc = useTranslations('Misc');
-
-    /**
-     * Handles the click event on a username element by copying the username to clipboard
-     * and showing a temporary visual feedback indicating the copy action was successful.
-     * 
-     * @param username - The username string to be copied to the clipboard
-     * @param user_id - The unique identifier for the user, used to target the specific tooltip element
-     */
-    const handleUsernameClick = (username: string, user_id: string): void => {
-        navigator.clipboard.writeText(username).then();
-
-        // Trigger the copied tooltip change
-        const tooltip: HTMLDivElement = document.querySelector(`.username-tooltip-${user_id}`) as HTMLDivElement;
-        if (tooltip) {
-            const childElement: HTMLSpanElement = tooltip.childNodes[0] as HTMLSpanElement;
-            const tooltipArrow: HTMLDivElement = tooltip.childNodes[1] as HTMLDivElement;
-
-            tooltip.classList.add("!bg-green-600", "!border-green-500");
-            tooltipArrow.classList.add("!border-t-green-600");
-            childElement.innerText = tMisc('copy');
-
-            setTimeout((): void => {
-                childElement.innerText = username;
-                tooltip.classList.remove("!bg-green-600", "!border-green-500");
-                tooltipArrow.classList.remove("!border-t-green-600");
-            }, 1500);
-        }
-    };
 
     /**
      * Determines the appropriate FontAwesome icon for a given social media URL.
@@ -89,23 +61,9 @@ export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.
                 {/* User Name + Rank */}
                 <div className="relative flex flex-col flex-1 items-start justify-center gap-6 w-px">
                     <div className="flex flex-col gap-2">
-                        <div className="group">
-                            <p className="text-base tracking-[-.02em] z-10 w-full cursor-pointer" 
-                                onClick={() => handleUsernameClick(member.username, member.user_id)}>
-                                {member.display_name}
-                            </p>
+                        <UsernameCopy username={member.username} displayName={member.display_name}
+                                      userId={member.user_id} className="relative" />
 
-                            {/* Tooltip for Username */}
-                            <div className={`username-tooltip-${member.user_id} 
-                                             absolute bottom-11/12 left-3/12 transform -translate-x-1/2 px-3 py-2 
-                                            bg-gray-900 text-white text-xs rounded-lg shadow-2xl opacity-0 invisible 
-                                            group-hover:opacity-100 group-hover:visible transition-all duration-200 
-                                            whitespace-nowrap z-[100] border border-gray-700 pointer-events-none`}>
-                                <span>{member.username}</span>
-                                <div className="absolute top-full left-6 transform -translate-x-1/2 w-0 h-0 
-                                                border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-                            </div>
-                        </div>
                         <div className="relative flex shrink-0 justify-start whitespace-pre-wrap w-full group">
                             <p className={`text-xs font-normal tracking-normal opacity-80 
                             ${member.rank === 'LEITUNG' ? 'text-red-500' :
@@ -179,16 +137,16 @@ export default function TeamMemberCard({ member }: { member: TeamMember }): JSX.
                                className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
                                 alt={`${member.display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
                                 onError={(e): void => {
-                                    const target = e.currentTarget as HTMLImageElement;
+                                    const target: HTMLImageElement = e.currentTarget as HTMLImageElement;
                                     target.style.display = 'none';
-                                    const fallback = target.nextElementSibling as HTMLDivElement;
+                                    const fallback: HTMLDivElement = target.nextElementSibling as HTMLDivElement;
                                     if (fallback) fallback.style.display = 'flex';
                                 }} />) : null}
 
                     {/* Fallback Avatar */}
                     <div className={`${member.avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 
                                      rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 text-white text-5xl 
-                                     font-bold hover:rotate-1 transition-all duration-300 hover:scale-105`}
+                                     font-bold hover:rotate-1 transition-all duration-300 hover:scale-105 cursor-special`}
                          style={{ aspectRatio: '1.08594' }}>
                         {member.username.length > 1 ? member.username.substring(0, 2).toUpperCase()
                                                     : member.username.toUpperCase()}

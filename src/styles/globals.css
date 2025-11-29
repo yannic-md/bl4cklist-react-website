@@ -30,6 +30,10 @@ body {
     @apply font-inter text-base bg-black text-white;
 }
 
+code {
+    @apply text-[coral];
+}
+
 /* Disable all animations (except page-loader) & hide scrollbar if page is not ready yet */
 .is-loading *:not(#page-loader, #page-loader *) {
     animation-play-state: paused !important;
@@ -57,6 +61,6 @@ body {
     @apply bg-[coral] text-white;
 }
 
-img:hover {
+img:hover, .cursor-special {
     cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer;
 }

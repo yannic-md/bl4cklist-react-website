@@ -212,13 +212,50 @@
       "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
     }
   },
+  "ComHero": {
+    "infoTag": "OUR DISCORD SERVER COMMUNITY IS UNIQUE!",
+    "title": " WE'RE ALWAYS HERE!",
+    "description": "The Bl4cklist Discord community is at the center of every decision: We regularly conduct polls to ask for your advice on important decisions and usually follow the majority before introducing new features.",
+    "stat_templates": "Server Templates",
+    "stat_messages": "Chat Messages",
+    "stat_questions": "Coding Questions",
+    "button_support": "Get Coding Support"
+  },
   "TestimonialSection": {
     "infoTag": "A FEW INSIGHTS FROM THE COMMUNITY..",
     "title": "WHAT YOU SAY..",
     "description": "› Together with you, we've already experienced incredibly many stories, created friendships, inspired and laughed. Here are a few stories directly from you, our server members, telling something about our wonderful Discord server \"Bl4cklist\" and addressing both the past and the future.",
     "description2": "💖 › We thank each and every one who has been part of us over the past years and hope that this eternal friendship never ends - you make us what we are!"
   },
+  "MemberListSection": {
+    "infoTagBirthday": "CONGRATULATIONS TO EVERY BIRTHDAY CHILD!",
+    "titleBirthday": "TODAY'S BIRTHDAYS",
+    "description1Birthday": "Today is a very special day! There are (hopefully) a few birthdays among us! To show how important it is for us to celebrate together with the Discord community, every birthday child gets the chance to be shown on our website!",
+    "description2Birthday": "You can use the slash command <code>/birthday set</code> on our Discord server to add your own birthday and be listed here as well - right at midnight. 🎊",
+    "infoTagLeaders": "THESE MEMBERS HAVE ACHIEVED SOMETHING UNIQUE - THANK YOU!",
+    "titleLeaders": "Honorary Members",
+    "description1Leaders": "Some members of our Discord server have achieved successes that only few have managed, and we are very grateful for that - you also get to be featured on our website and we sincerely thank you for your long-term support!",
+    "description2Leaders": "There are various ways you can end up here: use our server tag, boost our Discord server with Nitro, or donate real money to start events for the community. 🤗",
+    "infoTagLevels": "THANK YOU FOR THE CONTRIBUTION THAT YOU MAKE!",
+    "titleLevels": "Most Active Members",
+    "description1Levels": "There are also many users from our community who are incredibly active with us and feel at home. For the most active members among you, we also have a small gift in the form of a mention, and we hope to never lose you!",
+    "description2Levels": "You can level up on our Discord server through regular activity in the form of messages in server chats, spending time in voice channels, and participating in events. 💫",
+    "infoTagStaff": "A FEW LEGENDS FROM OUR OLD MEMORIES!",
+    "titleStaff": "FORMER TEAM MEMBERS",
+    "description1Staff": "Here you can see some team members from our Discord server who we remember especially well. They have supported us massively for a very long time with their time: Bl4cklist and our community are so wonderful because they gave their best for it.",
+    "description2Staff": "Every team member who was active in our server team for more than 1 year is listed here. We, the current server team including the community, thank you for your enormous work and for dedicating your time and love! 💖",
+    "rankFormerStaff": "[rank] for [time]",
+    "rankLvl": "Level [level] reached",
+    "rankBirthday": "Guest of Honor",
+    "rankRekrut": "Recruit (Vanity/Tag)",
+    "rankBooster": "Server-Booster",
+    "rankSponsor": "Event-Sponsor"
+  },
   "Misc": {
-    "copy": "Copied!"
+    "copy": "Copied!",
+    "durationMonth": "Month",
+    "durationMonths": "Months",
+    "durationYear": "Year",
+    "durationYears": "Years"
   }
 }
