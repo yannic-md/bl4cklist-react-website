@@ -33,7 +33,7 @@ export default function ComHero(): JSX.Element {
             {/* Grid Background image of whole section */}
             <div className="absolute inset-0 pointer-events-none select-none">
                 <Image src="/images/bg/community-hero-1440w.webp" sizes="(max-width: 1439px) 100vw, 1440px"
-                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill unoptimized
+                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill unoptimized loading="eager"
                        className="object-cover object-[center_10%] md:object-[center_80%] grayscale"/>
             </div>
 

@@ -39,6 +39,7 @@ export default function Community(): JSX.Element {
     }).sort((a, b) => {
         const rankOrder = { REKRUT: 2, BOOSTER: 1, SPONSOR: 0 };
         return rankOrder[a.rank as keyof typeof rankOrder] - rankOrder[b.rank as keyof typeof rankOrder];
+        // sort by rank (Sponsor -> Booster -> Rekrut)
     });
     const level_users: Member[] = birthday_users.map((member, index) => {
         const ranks: Array<'LVL75' | 'LVL100' | 'LVL125'> = ['LVL75', 'LVL100', 'LVL125'];
@@ -46,6 +47,23 @@ export default function Community(): JSX.Element {
     }).sort((a, b) => {
         const getLevelNumber = (rank: string) => parseInt(rank.replace('LVL', ''));
         return getLevelNumber(b.rank) - getLevelNumber(a.rank);
+        // sort by level (High -> Low)
+    });
+    const former_staff: Member[] = birthday_users.map((member, index) => {
+        const ranks: Array<'EHEM_MOD' | 'EHEM_ADMIN' | 'EHEM_SENIOR' | 'EHEM_LEITUNG'> = ['EHEM_MOD', 'EHEM_ADMIN', 'EHEM_SENIOR', 'EHEM_LEITUNG'];
+        const years: number[] = [2023, 2024, 2025];
+        const total_seconds: number[] = [7776000, 15552000, 23328000, 31104000, 46656000, 62208000];
+        return {...member, rank: ranks[index % ranks.length],
+            staff_duration: `${years[index % years.length]} - ${total_seconds[index % total_seconds.length]}`
+        };
+    }).sort((a, b) => {
+        const rankOrder = { EHEM_LEITUNG: 0, EHEM_SENIOR: 2, EHEM_ADMIN: 1, EHEM_MOD: 3 };
+        const rankComparison: number = rankOrder[a.rank as keyof typeof rankOrder] - rankOrder[b.rank as keyof typeof rankOrder];
+        if (rankComparison !== 0) return rankComparison;
+
+        const getDuration = (staffDuration: string) => parseInt(staffDuration.split(' - ')[1]);
+        return getDuration(b.staff_duration!) - getDuration(a.staff_duration!);
+        // sort by rank (Leitung -> Admin -> Senior -> Mod) & duration (High -> Low)
     });
 
     return (
@@ -62,6 +80,7 @@ export default function Community(): JSX.Element {
                 <MemberList members={birthday_users} section_id="birthdays" category="Birthday" />
                 <MemberList members={ranked_users} section_id="leaders" category="Leaders" position="left" planetVariant={2} />
                 <MemberList members={level_users} section_id="levels" category="Levels" planetVariant={3} />
+                <MemberList members={former_staff} section_id="staff" category="Staff" position="left" planetVariant={4} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />

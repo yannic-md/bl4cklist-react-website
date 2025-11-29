@@ -19,6 +19,8 @@ interface MemberCardProps {
  * @returns A styled React element representing the member card.
  */
 export function MemberCard({ member }: MemberCardProps): JSX.Element {
+    const tMisc = useTranslations("Misc");
+    const tTeamSection = useTranslations("TeamSection");
     const tMemberListSection = useTranslations('MemberListSection');
     const [imageError, setImageError] = useState(false);
 
@@ -43,6 +45,10 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
             case 'BIRTHDAY': return 'from-[#f3a683]/50';
             case 'SPONSOR': return 'from-[#a9c9ff]/50';
             case 'BOOSTER': return 'from-[#f368e0]/50';
+            case 'EHEM_LEITUNG': return 'from-red-500/50';
+            case 'EHEM_ADMIN': return 'from-red-400/50';
+            case 'EHEM_SENIOR': return 'from-blue-500/50';
+            case 'EHEM_MOD': return 'from-sky-400/50';
             case 'LVL50': return 'from-[#ee9d4a]/50';
             case 'LVL75': return 'from-[#ff947a]/50';
             case 'LVL100': return 'from-[#c7ecee]/50';
@@ -63,6 +69,10 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
             case 'SPONSOR': return colors.rank_sponsor_gradient;
             case 'BOOSTER': return colors.rank_booster_gradient;
             case 'REKRUT': return colors.rank_rekrut_gradient;
+            case 'EHEM_LEITUNG': return 'text-slate-400';
+            case 'EHEM_ADMIN': return 'text-slate-500';
+            case 'EHEM_SENIOR': return 'text-slate-600';
+            case 'EHEM_MOD': return 'text-slate-700';
             case 'LVL50': return 'text-[#ee9d4a]';
             case 'LVL75': return 'text-[#ff947a]';
             case 'LVL100': return colors.rank_lvl100_gradient;
@@ -75,9 +85,10 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
      * Returns the translated rank label based on the member's rank.
      *
      * @param rank - The member's rank.
+     * @param staff_duration - The optional duration how long the member was a staff. Format: YYYY - seconds
      * @returns Translated rank label string.
      */
-    const getRankLabel: (rank: string) => string = (rank: string): string => {
+    const getRankLabel: (rank: string, staff_duration?: string) => string = (rank: string, staff_duration?: string): string => {
         switch (rank) {
             case 'BIRTHDAY': return tMemberListSection('rankBirthday');
             case 'SPONSOR': return tMemberListSection('rankSponsor');
@@ -87,6 +98,27 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                 if (rank.startsWith('LVL')) {
                     const level: string = rank.split('LVL')[1];
                     return tMemberListSection('rankLvl').replace('[level]', level);
+                }
+
+                // former staff
+                if (rank.startsWith("EHEM_") && staff_duration) {
+                    const staffMap: Record<string, string> = {
+                        "EHEM_LEITUNG": tTeamSection("rank_owner"), "EHEM_ADMIN": "Administrator",
+                        "EHEM_SENIOR": "Sr. Moderator", "EHEM_MOD": "Moderator",
+                    };
+                    const formatted_rank: string | undefined = staffMap[rank];
+                    if (!formatted_rank) return "";
+
+                    const totalSeconds: number = parseInt(staff_duration.split(" - ")[1]);
+                    const months: number = Math.floor(totalSeconds / 2592000);
+                    const years: number = Math.floor(months / 12);
+                    const duration: string = years > 0
+                        ? `${years} ${years === 1 ? tMisc('durationYear') : tMisc('durationYears')}`
+                        : `${months} ${months === 1 ? tMisc('durationMonth') : tMisc('durationMonths')}`;
+
+                    return tMemberListSection("rankFormerStaff")
+                        .replace("[rank]", formatted_rank)
+                        .replace("[time]", duration);
                 }
                 return '';
         }
@@ -119,7 +151,7 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                             <h3 className="text-lg font-medium m-0">{member.display_name}</h3>
                         </UsernameCopy>
                         <div className={`text-sm opacity-95 ${getRankTextColor(member.rank)}`}>
-                            {getRankLabel(member.rank)}
+                            {getRankLabel(member.rank, member.staff_duration)}
                         </div>
                     </div>
 

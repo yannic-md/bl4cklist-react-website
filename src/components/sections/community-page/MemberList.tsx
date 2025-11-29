@@ -81,14 +81,14 @@ export default function MemberList({members, section_id, category, position = 'r
             ],
             4: [
                 {
-                    src: '/images/bg/moon.svg',
-                    className: `absolute ${isLeftPosition ? 'left-5 top-96' : 'right-5 top-96'} z-[3] pointer-events-none opacity-25`,
-                    alt: 'Moon Decoration Primary'
+                    src: '/images/bg/venus-128w.webp',
+                    className: `absolute ${isLeftPosition ? 'left-5 top-64' : 'right-5 top-96'} z-[3] pointer-events-none opacity-20`,
+                    alt: 'Venus ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
                 },
                 {
-                    src: '/images/bg/moon.svg',
-                    className: `absolute ${isLeftPosition ? 'right-0 bottom-32' : 'left-0 bottom-32'} z-[3] pointer-events-none opacity-20`,
-                    alt: 'Moon Decoration Secondary'
+                    src: '/images/bg/pluto-128w.webp',
+                    className: `absolute ${isLeftPosition ? 'right-12 bottom-32' : 'left-0 bottom-32'} z-[3] pointer-events-none opacity-10 scale-95`,
+                    alt: 'Pluto ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server'
                 }
             ]
         };
@@ -132,7 +132,7 @@ export default function MemberList({members, section_id, category, position = 'r
                         <AnimateOnView animation={`animate__fadeIn${isLeftPosition ? 'Right' : 'Left'} animate__slower 
                                                    self-center xl:self-auto`}>
                             <h2 className={`${index.head_border} bg-clip-text text-transparent mb-2
-                                            text-center xl:text-${isLeftPosition ? 'end' : 'start'} sm:text-[2rem] 
+                                            text-center xl:text-start sm:text-[2rem] 
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[1.75rem] 
                                             md:text-[2.5rem] lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_2.50rem)] w-full`}>
                                 <span className="inline-block align-middle leading-none -mx-[3px] sm:-mx-[5px]

@@ -240,6 +240,11 @@
     "titleLevels": "Aktivste Mitglieder",
     "description1Levels": "Es gibt auch viele User aus unserer Community welche unfassbar aktiv bei uns sind und sich wie Zuhause fühlen. Für die aktivsten Mitglieder unter euch haben wir ebenfalls ein kleines Geschenk, in Form als einer Erwähnung und wir hoffen euch auch niemals wieder zu verlieren!",
     "description2Levels": "Level aufsteigen kann man auf unserem Discord-Server durch regelmäßige Aktivität in Form von Nachrichten in Server-Chats, Zeit verbringen in Sprachkanälen und die Teilnahme an Events. 💫",
+    "infoTagStaff": "EIN PAAR LEGENDEN AUS UNSEREN ALTEN ERINNERUNGEN!",
+    "titleStaff": "EHEMALIGES TEAM",
+    "description1Staff": "Hier seht ihr einige Teammitglieder aus unserem Discord-Server, die uns besonders im Gedächtnis geblieben sind. Sie haben uns für eine sehr lange Zeit massiv mit ihrer Zeit unterstützt: Bl4cklist und unsere Community ist so wundervoll, weil sie ihr bestes dafür gegeben haben.",
+    "description2Staff": "Jedes Teammitglied, welches länger als 1 Jahr in unserem Server-Team tätig war, wird hier aufgelistet. Wir, das aktuelle Server-Team inklusive der Community, bedanken uns bei euch für eure enorme Arbeit und das Aufbringen eurer Zeit und Liebe! 💖",
+    "rankFormerStaff": "[rank] für [time]",
     "rankLvl": "Level [level] erreicht",
     "rankBirthday": "Geburtstagskind",
     "rankRekrut": "Rekrut (Vanity/Tag)",
@@ -247,6 +252,10 @@
     "rankSponsor": "Event-Sponsor"
   },
   "Misc": {
-    "copy": "Kopiert!"
+    "copy": "Kopiert!",
+    "durationMonth": "Monat",
+    "durationMonths": "Monate",
+    "durationYear": "Jahr",
+    "durationYears": "Jahre"
   }
 }

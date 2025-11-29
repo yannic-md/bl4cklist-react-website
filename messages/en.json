@@ -240,6 +240,11 @@
     "titleLevels": "Most Active Members",
     "description1Levels": "There are also many users from our community who are incredibly active with us and feel at home. For the most active members among you, we also have a small gift in the form of a mention, and we hope to never lose you!",
     "description2Levels": "You can level up on our Discord server through regular activity in the form of messages in server chats, spending time in voice channels, and participating in events. 💫",
+    "infoTagStaff": "A FEW LEGENDS FROM OUR OLD MEMORIES!",
+    "titleStaff": "FORMER TEAM MEMBERS",
+    "description1Staff": "Here you can see some team members from our Discord server who we remember especially well. They have supported us massively for a very long time with their time: Bl4cklist and our community are so wonderful because they gave their best for it.",
+    "description2Staff": "Every team member who was active in our server team for more than 1 year is listed here. We, the current server team including the community, thank you for your enormous work and for dedicating your time and love! 💖",
+    "rankFormerStaff": "[rank] for [time]",
     "rankLvl": "Level [level] reached",
     "rankBirthday": "Guest of Honor",
     "rankRekrut": "Recruit (Vanity/Tag)",
@@ -247,6 +252,10 @@
     "rankSponsor": "Event-Sponsor"
   },
   "Misc": {
-    "copy": "Copied!"
+    "copy": "Copied!",
+    "durationMonth": "Month",
+    "durationMonths": "Months",
+    "durationYear": "Year",
+    "durationYears": "Years"
   }
 }
