@@ -1,5 +1,5 @@
 import {useTranslations} from "next-intl";
-import {JSX, ReactNode} from "react";
+import {JSX, ReactNode, useRef} from "react";
 
 interface UsernameCopyProps {
     username: string;
@@ -21,6 +21,9 @@ interface UsernameCopyProps {
  */
 export function UsernameCopy({ username, displayName, userId, children, className = '' }: UsernameCopyProps): JSX.Element {
     const tMisc = useTranslations('Misc');
+    const tooltipRef = useRef<HTMLDivElement>(null);
+    const tooltipTextRef = useRef<HTMLSpanElement>(null);
+    const tooltipArrowRef = useRef<HTMLDivElement>(null);
 
     /**
      * Handles the click event on a username element by copying the username to clipboard
@@ -29,11 +32,11 @@ export function UsernameCopy({ username, displayName, userId, children, classNam
     const handleUsernameClick: () => void = (): void => {
         navigator.clipboard.writeText(username).then();
 
-        const tooltip = document.querySelector(`.username-tooltip-${userId}`) as HTMLDivElement;
-        if (tooltip) {
-            const childElement = tooltip.childNodes[0] as HTMLSpanElement;
-            const tooltipArrow = tooltip.childNodes[1] as HTMLDivElement;
+        const tooltip: HTMLDivElement | null = tooltipRef.current;
+        const childElement: HTMLSpanElement | null = tooltipTextRef.current;
+        const tooltipArrow: HTMLDivElement | null = tooltipArrowRef.current;
 
+        if (tooltip && childElement && tooltipArrow) {
             tooltip.classList.add('!bg-green-600', '!border-green-500');
             tooltipArrow.classList.add('!border-t-green-600');
             childElement.innerText = tMisc('copy');
@@ -53,13 +56,14 @@ export function UsernameCopy({ username, displayName, userId, children, classNam
             </span>
 
             {/* Tooltip */}
-            <div className={`username-tooltip-${userId}
-                             absolute bottom-11/12 left-3/12 transform -translate-x-1/2 px-3 py-2
-                             bg-gray-900 text-white text-xs rounded-lg shadow-2xl opacity-0 invisible
-                             group-hover:opacity-100 group-hover:visible transition-all duration-200
-                             whitespace-nowrap z-[100] border border-gray-700 pointer-events-none`}>
-                <span>{username}</span>
-                <div className="absolute top-full left-6 transform -translate-x-1/2 w-0 h-0
+            <div ref={tooltipRef} className={`username-tooltip-${userId} absolute bottom-11/12 left-3/12 transform 
+                                              -translate-x-1/2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg 
+                                              shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                                              transition-all duration-200 whitespace-nowrap z-[100] border 
+                                              border-gray-700 pointer-events-none`}>
+                <span ref={tooltipTextRef}>{username}</span>
+                <div ref={tooltipArrowRef}
+                     className="absolute top-full left-6 transform -translate-x-1/2 w-0 h-0
                                 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
             </div>
         </div>
