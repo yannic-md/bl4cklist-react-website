@@ -8,6 +8,7 @@ import MemberList from "@/components/sections/community-page/MemberList";
 import {Member} from "@/types/Member";
 
 export default function Community(): JSX.Element {
+    // TODO: Replace with real Data!
     const birthday_users: Member[] = [
         {username: "luna.sky", display_name: "Luna Skylar", rank: "BIRTHDAY", user_id: "284617239018",
          avatar_url: "https://cdn.discordapp.com/avatars/1018150165489668227/7a539208b433b1ee0e4dcccffcf73a2a.png?size=1024"},
@@ -32,6 +33,10 @@ export default function Community(): JSX.Element {
         {username: "zenith.x", display_name: "Felix Brandt", rank: "BIRTHDAY", user_id: "719203845617",
          avatar_url: "https://cdn.discordapp.com/avatars/339254240012664832/0cfec781df368dbce990d440d075a2d7.png?size=1024"},
     ];
+    const ranked_users: Member[] = birthday_users.map((member, index) => {
+        const ranks: Array<'REKRUT' | 'BOOSTER' | 'SPONSOR'> = ['REKRUT', 'BOOSTER', 'SPONSOR'];
+        return {...member, rank: ranks[index % ranks.length] };
+    });
 
     return (
         <>
@@ -44,7 +49,8 @@ export default function Community(): JSX.Element {
                 <ComHero />
 
                 {/* Member List sections */}
-                <MemberList members={birthday_users} />
+                <MemberList members={birthday_users} section_id="birthdays" category="Birthday" />
+                <MemberList members={ranked_users} section_id="leaders" category="Leaders" position="left" planetVariant={2} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />

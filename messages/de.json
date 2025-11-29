@@ -232,7 +232,14 @@
     "titleBirthday": "GEBURTSTAGSKINDER",
     "description1Birthday": "Heute ist ein ganz besonderer Tag! Es gibt (hoffentlich) ein paar Geburtstage unter uns! Um auszudrücken wie wichtig es uns ist zusammen mit der Discord-Community etwas zu feiern, erhält jedes Geburtstagskind die Chance auf unserer Webseite angezeigt zu werden!",
     "description2Birthday": "Du kannst dein Geburtstag auf unserem Discord-Server den Slashbefehl <code>/birthday set</code> verwenden, um dein eigenen Geburtstag einzutragen und auch hier aufgelistet zu werden - pünktlich um 0 Uhr. 🎊",
-    "rankBirthday": "Geburtstagskind"
+    "infoTagLeaders": "DIESE MITGLIEDER HABEN EINZIGARTIGES GELEISTET - DANKE!",
+    "titleLeaders": "Ehrenhafte Mitglieder",
+    "description1Leaders": "Einige Mitglieder aus unserem Discord-Server haben Erfolge aufgestellt welche nur wenige vollbringen konnten und dafür sind wir ihnen sehr dankbar - auch ihr dürft auf unsere Webseite und wir danken euch recht herzlich für eure lange Unterstützung!",
+    "description2Leaders": "Es gibt verschiedene Möglichkeiten, wie du hier landen kannst: Verwende unseren Server-Tag, booste unseren Discord-Server mit Nitro oder spende echtes Geld um Events für die Community zu starten. 🤗",
+    "rankBirthday": "Geburtstagskind",
+    "rankRekrut": "Rekrut (Vanity/Tag)",
+    "rankBooster": "Server-Booster",
+    "rankSponsor": "Event-Sponsor"
   },
   "Misc": {
     "copy": "Kopiert!"

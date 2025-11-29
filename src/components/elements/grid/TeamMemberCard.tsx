@@ -146,7 +146,7 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                     {/* Fallback Avatar */}
                     <div className={`${member.avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 
                                      rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 text-white text-5xl 
-                                     font-bold hover:rotate-1 transition-all duration-300 hover:scale-105`}
+                                     font-bold hover:rotate-1 transition-all duration-300 hover:scale-105 cursor-special`}
                          style={{ aspectRatio: '1.08594' }}>
                         {member.username.length > 1 ? member.username.substring(0, 2).toUpperCase()
                                                     : member.username.toUpperCase()}

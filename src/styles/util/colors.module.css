@@ -1,5 +1,14 @@
 @reference "tailwindcss";
 
+@keyframes rank_animation {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 100px;
+    }
+}
+
 .bg_white_black {
     background: linear-gradient(105deg, rgb(201, 201, 201) -19%, rgba(252, 127, 3, 0) 30%);
 }
@@ -20,4 +29,23 @@
 .gradient_bottom {
     @apply z-[2] absolute inset-x-0 -bottom-0.5 h-[38%] pointer-events-none transform-gpu;
     background-image: linear-gradient(to top, rgb(8, 9, 19), transparent);
+}
+
+.rank_sponsor_gradient {
+    background: linear-gradient(to right, #a9c9ff, #ffbbec, #ffc3a0, #a9c9ff);
+    @apply text-transparent bg-clip-text;
+}
+
+.rank_booster_gradient {
+    background: linear-gradient(to right, #f368e0, #ff1493, #f368e0);
+    @apply text-transparent bg-clip-text;
+}
+
+.rank_rekrut_gradient {
+    background: linear-gradient(to right, #c7e072, #81ecec, #c7e072);
+    @apply text-transparent bg-clip-text;
+}
+
+.rank_sponsor_gradient, .rank_booster_gradient, .rank_rekrut_gradient:hover {
+    animation: rank_animation 1.5s linear infinite;
 }

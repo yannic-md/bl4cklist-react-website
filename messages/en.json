@@ -232,7 +232,14 @@
     "titleBirthday": "TODAY'S BIRTHDAYS",
     "description1Birthday": "Today is a very special day! There are (hopefully) a few birthdays among us! To show how important it is for us to celebrate together with the Discord community, every birthday child gets the chance to be shown on our website!",
     "description2Birthday": "You can use the slash command <code>/birthday set</code> on our Discord server to add your own birthday and be listed here as well - right at midnight. 🎊",
-    "rankBirthday": "Guest of Honor"
+    "infoTagLeaders": "THESE MEMBERS HAVE ACHIEVED SOMETHING UNIQUE - THANK YOU!",
+    "titleLeaders": "Honorary Members",
+    "description1Leaders": "Some members of our Discord server have achieved successes that only few have managed, and we are very grateful for that - you also get to be featured on our website and we sincerely thank you for your long-term support!",
+    "description2Leaders": "There are various ways you can end up here: use our server tag, boost our Discord server with Nitro, or donate real money to start events for the community. 🤗",
+    "rankBirthday": "Guest of Honor",
+    "rankRekrut": "Recruit (Vanity/Tag)",
+    "rankBooster": "Server-Booster",
+    "rankSponsor": "Event-Sponsor"
   },
   "Misc": {
     "copy": "Copied!"

@@ -61,6 +61,6 @@ code {
     @apply bg-[coral] text-white;
 }
 
-img:hover {
+img:hover, .cursor-special {
     cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer;
 }
