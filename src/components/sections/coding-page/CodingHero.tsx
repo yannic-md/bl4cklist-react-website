@@ -100,7 +100,7 @@ export default function CodingHero(): JSX.Element {
                                             2xl:max-w-[30ch] bg-clip-text text-transparent mb-4 md:mb-6 
                                             ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2rem] 
                                             lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3rem)]`}>
-                                <span className="inline-block align-middle leading-none -mx-[5px] text-white">🛠️</span> -
+                                <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">🛠️</span> -
                                 {tCodingHero('title')}
                             </h2>
                         </AnimateOnView>

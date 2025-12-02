@@ -251,6 +251,12 @@
     "rankBooster": "Server-Booster",
     "rankSponsor": "Event-Sponsor"
   },
+  "ClankHero": {
+    "infoTag": "IMPROVE YOUR OWN DISCORD-SERVER!",
+    "title": "OUR CLANK BOT",
+    "description": "Clank is the heart of your Discord server: In addition to easy use & beautiful menus, it offers you everything you need to protect & grow your own community.",
+    "inviteButton": "Invite Clank Bot"
+  },
   "Misc": {
     "copy": "Copied!",
     "durationMonth": "Month",

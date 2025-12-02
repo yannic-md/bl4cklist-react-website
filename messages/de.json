@@ -251,6 +251,12 @@
     "rankBooster": "Server-Booster",
     "rankSponsor": "Event-Sponsor"
   },
+  "ClankHero": {
+    "infoTag": "VERBESSERE DEINEN DISCORD-SERVER!",
+    "title": "UNSER CLANK-BOT",
+    "description": "Clank ist das Herz deines Discord-Servers: Neben einer kinderleichten Verwendung & wunderschönen Menüs bietet er dir alles, was du brauchst, um deine eigene Community zu schützen, & zu vergrößern.",
+    "inviteButton": "Clank-Bot einladen"
+  },
   "Misc": {
     "copy": "Kopiert!",
     "durationMonth": "Monat",

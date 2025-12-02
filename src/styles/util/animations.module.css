@@ -37,6 +37,16 @@
     }
 }
 
+@keyframes border_trail {
+    to {
+        offset-distance: 100%;
+    }
+}
+
+.animate_border_trail {
+    animation: border_trail 12s infinite linear;
+}
+
 .animate_scroll_column_up {
     animation: scroll_column 40s linear infinite;
 }
