@@ -2,12 +2,13 @@ import Header from "@/components/elements/layout/Header";
 import WelcomeHero from "@/components/sections/index/WelcomeHero";
 import {JSX} from "react";
 import {GetStaticPropsContext} from "next";
-import IntroSection from "@/components/sections/index/IntroSection";
 import TeamSection from "@/components/sections/index/TeamSection";
 import HistorySection from "@/components/sections/index/HistorySection";
 import Image from "next/image";
 import Footer from "@/components/elements/layout/Footer";
 import TestimonialSection from "@/components/sections/TestimonialSection";
+import SingleFeatureSection from "@/components/sections/SingleFeatureSection";
+import {GuildFeature} from "@/types/GuildFeature";
 
 /**
  * Renders the home page of the project.
@@ -16,6 +17,20 @@ import TestimonialSection from "@/components/sections/TestimonialSection";
  * @returns {JSX.Element} The home page component.
  */
 export default function Home(): JSX.Element {
+    const singleFeatureSub: GuildFeature[][] = [[
+        { src: "/images/icons/small/coding-32w.webp", alt: "Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/heart-32w.webp", alt: "Heart Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_2_title", descKey: "tip_2_desc", animation: "animate__fadeInDown animate__slower" },
+        { src: "/images/icons/small/verify-32w.webp", alt: "Bot Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_3_title", descKey: "tip_3_desc", animation: "animate__fadeInRight animate__slower" }],
+        [{ src: "/images/icons/small/gift-32w.webp", alt: "Gift Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_4_title", descKey: "tip_4_desc", animation: "animate__fadeInLeft animate__slower" },
+         { src: "/images/icons/small/rocket-32w.webp", alt: "Rocket Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
+         { src: "/images/icons/small/game-32w.webp", alt: "Game Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
+
     return (
         <>
             {/* Header - allow navigation to other pages */}
@@ -34,7 +49,10 @@ export default function Home(): JSX.Element {
                                     transform -translate-y-1/2"></div>
 
                     {/* Short description of our discord-server with some statistics */}
-                    <IntroSection />
+                    <SingleFeatureSection translationNamespace="IntroSection" particlesEnabled={true} planetDecoration="none"
+                                          imagePosition="right" ctaEnabled={true} showTopGradients={true}
+                                          imageSrc="/images/pixel/guild-banner-508w.webp" guildFeatures={singleFeatureSub}
+                                          imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
 
                     {/* Presentation of the server-team */}
                     <TeamSection />

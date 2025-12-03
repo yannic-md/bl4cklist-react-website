@@ -1,0 +1,241 @@
+import {JSX, ReactNode} from "react";
+import Image from 'next/image';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDiscord} from "@fortawesome/free-brands-svg-icons";
+import {useTranslations} from "next-intl";
+import {useRouter} from "next/router";
+
+import colors from '@/styles/util/colors.module.css';
+import buttons from "@/styles/util/buttons.module.css";
+import index from '@/styles/components/index.module.css';
+
+import ButtonHover from "@/components/elements/ButtonHover";
+import {AnimatedTextReveal} from "@/components/animations/TextReveal";
+import {AnimateOnView} from "@/components/animations/AnimateOnView";
+import {AnimatedCounter} from "@/components/animations/Counter";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
+import {GuildFeature} from "@/types/GuildFeature";
+
+export interface SingleFeatureSectionProps {
+    translationNamespace: string;
+    particlesEnabled?: boolean;
+    planetDecoration?: 1 | 2 | 3 | 4 | 'none';
+    imagePosition?: 'left' | 'right';
+    ctaEnabled?: boolean;
+    showTopGradients?: boolean;
+    imageSrc: string;
+    imageAlt: string;
+    guildFeatures?: GuildFeature[][];
+}
+
+/**
+ * Renders a reusable feature section with configurable layout, decorations, and content.
+ * Can display server statistics, feature highlights, CTA button, and customizable visual elements.
+ *
+ * @param {SingleFeatureSectionProps} props - Component configuration
+ * @param {string} props.translationNamespace - Namespace for translation keys
+ * @param {boolean} [props.particlesEnabled=true] - Whether to show particle background animation
+ * @param {1 | 2 | 3 | 4 | 'none'} [props.planetDecoration='none'] - Planet decoration style (1-4) or 'none'
+ * @param {'left' | 'right'} [props.imagePosition='right'] - Position of the image container ('left' or 'right')
+ * @param {boolean} [props.ctaEnabled=true] - Whether to display the Discord join CTA button
+ * @param {boolean} [props.showTopGradients=false] - Whether to show decorative gradients at the top
+ * @param {string} props.imageSrc - Source path for the main feature image
+ * @param {string} props.imageAlt - Alt text for the main feature image
+ * @param {GuildFeature[][]} [props.guildFeatures] - Two-dimensional array of guild features to display
+ *
+ * @returns {JSX.Element} The rendered feature section component
+ */
+export default function SingleFeatureSection({translationNamespace, particlesEnabled = true, planetDecoration = 'none',
+                                              imagePosition = 'right', ctaEnabled = true, showTopGradients = false,
+                                              imageSrc, imageAlt, guildFeatures}: SingleFeatureSectionProps): JSX.Element {
+    const tWelcome = useTranslations('WelcomeHero');
+    const t = useTranslations(translationNamespace);
+    const { locale } = useRouter();
+
+    /**
+     * Get planet decoration image paths for a given decoration variant.
+     *
+     * @param {(1|2|3|4|'none')} decoration - Decoration variant (1-4) or 'none' to disable decorations.
+     * @returns {{ left: string; right: string } | null} An object containing `left` and `right` image paths, or `null` when decoration is 'none'.
+     */
+    const getPlanetImages = (decoration: 1 | 2 | 3 | 4 | 'none'): { left: string; right: string } | null => {
+        const decorations = {
+            1: { left: '/images/planets/planet-1-left.webp', right: '/images/planets/planet-1-right.webp' },
+            2: { left: '/images/planets/planet-2-left.webp', right: '/images/planets/planet-2-right.webp' },
+            3: { left: '/images/planets/planet-3-left.webp', right: '/images/planets/planet-3-right.webp' },
+            4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp' },
+        };
+        return decoration !== 'none' ? decorations[decoration] : null;
+    };
+
+    const planets: {left: string; right: string} | null = getPlanetImages(planetDecoration);
+
+    const textContent: () => JSX.Element = (): JSX.Element => (
+        <>
+            {/* Animated Tag */}
+            <div className="mb-2">
+                <div className="font-bold tracking-wider">
+                    <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Right' : 'Left'} animate__slower`}>
+                        <AnimatedTextReveal text={t('infoTag')} shadowColor="rgba(255,127,80,0.35)"
+                                            className="text-sm text-[coral] uppercase text-center lg:text-start
+                                                       pb-3 lg:pb-0" />
+                    </AnimateOnView>
+                </div>
+            </div>
+
+            {/* Headline */}
+            <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Right' : 'Left'} animate__slower`}>
+                <h2 className={`${index.head_border} max-w-[16ch] bg-clip-text text-transparent mb-6
+                                ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1]
+                                text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.75rem)]`}>
+                    <span className="inline-block align-middle leading-none -mx-[5px] text-white">👋</span> - {t('title')}
+                </h2>
+            </AnimateOnView>
+
+            {/* Description (strong tags in translation are formatted) */}
+            <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
+                <p className="text-[#969cb1] mb-6 break-words max-w-2xl">
+                    {t.rich('description', {
+                        strong: (chunks: ReactNode): JSX.Element => <strong>{chunks}</strong>
+                    })}
+                    <br /><br />
+                    {t.rich('description2', {
+                        strong: (chunks: ReactNode): JSX.Element => <strong>{chunks}</strong>
+                    })}
+                </p>
+            </AnimateOnView>
+
+            {/* Some entertaining discord server statistics */}
+            <AnimateOnView animation="animate__fadeInUp animate__slower self-center lg:self-auto">
+                <div className="flex justify-center lg:justify-start items-center flex-wrap gap-x-8 gap-y-12">
+                    <div className="flex flex-col items-center text-center px-1">
+                        <AnimatedCounter end={3533} suffix="+" locale={locale} />
+                        <span className="text-sm text-[#969cb1] tracking-wide mr-1">👥 {tWelcome('memberCount')}</span>
+                    </div>
+                    <div className="flex flex-col items-center text-center px-1">
+                        <AnimatedCounter end={890} suffix="+" locale={locale} />
+                        <span className="text-sm text-[#969cb1] tracking-wide mr-1.5">🔥 Online</span>
+                    </div>
+                    <div className="flex flex-col items-center text-center px-1">
+                        <AnimatedCounter end={4381784} suffix="+" locale={locale} />
+                        <span className="text-sm text-[#969cb1] tracking-wide mr-1">💬 {t('count_chat')}</span>
+                    </div>
+                </div>
+            </AnimateOnView>
+
+            {/* Join Discord button */}
+            {ctaEnabled && (
+                <AnimateOnView animation="animate__fadeInUp animate__slower w-full lg:w-auto">
+                    <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20] mt-8 drop-shadow-xl
+                                    drop-shadow-white/5">
+                        <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end w-full">
+                            <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
+                                <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
+                            </button>
+                        </a>
+                        <ButtonHover />
+                    </div>
+                </AnimateOnView>
+            )}
+        </>
+    );
+
+    const showcaseImage: () => JSX.Element = (): JSX.Element => (
+        <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
+            <div className="rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
+                            overflow-hidden rotate-1 border border-gray-900">
+                <div className="rounded-xl">
+                    <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
+                           className="h-full rounded-xl brightness-90" />
+                </div>
+            </div>
+        </AnimateOnView>
+    );
+
+    return (
+        <section className="w-full min-h-full relative overflow-hidden" id="discord-server-features">
+            {particlesEnabled && <ParticlesBackground className="z-0 animate__animated animate__fadeIn animate__slower" />}
+
+            {/* Optional Planet Background Decoration */}
+            {planets && (
+                <>
+                    <div className="absolute left-0 top-1/4 opacity-60 pointer-events-none z-[1]">
+                        <Image src={planets.left} width={300} height={300}
+                               alt="Planet #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                    </div>
+                    <div className="absolute right-0 top-1/3 opacity-60 pointer-events-none z-[1]">
+                        <Image src={planets.right} width={300} height={300}
+                               alt="Planet #2 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                    </div>
+                </>
+            )}
+
+            {/* Top Gradient to fit more to the upper section (mainly used on index page) */}
+            {showTopGradients && (
+                <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
+                                animate__animated animate__fadeInDown pointer-events-none">
+                    <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
+                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                           alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                           className="object-contain max-w-[800px] pointer-events-none rotate-180" />
+                </div>
+            )}
+
+            {/* Main Content area */}
+            <div className="bg-slate-900/30 pt-32">
+                <div className="px-8 pb-20">
+                    <div className="max-w-6xl w-full mx-auto">
+                        <div>
+                            {/* Order of the two content areas */}
+                            <div className="flex mb-20 flex-col lg:flex-row justify-center items-center gap-[60px]">
+                                {imagePosition === 'left' ? (
+                                    <>
+                                        {showcaseImage()}
+                                        <div className="flex flex-col justify-start items-start">{textContent()}</div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="flex flex-col justify-start items-start">{textContent()}</div>
+                                        {showcaseImage()}
+                                    </>
+                                )}
+                            </div>
+
+                            {/* A few guild features */}
+                            {guildFeatures && guildFeatures.length > 0 && (
+                                <div className="flex flex-col flex-wrap gap-10">
+                                    {guildFeatures.map((row: GuildFeature[], rowIndex: number): JSX.Element => (
+                                        <div key={rowIndex} className="flex flex-col lg:flex-row [&>*]:flex-1
+                                                                       [&>*]:min-w-[280px] gap-10">
+                                            {row.map((feature: GuildFeature, featureIndex: number): JSX.Element => (
+                                                <AnimateOnView key={featureIndex} animation={feature.animation}>
+                                                    <div className="flex items-start justify-start gap-4">
+                                                        <div className="flex-none">
+                                                            <Image src={feature.src} className="h-full" width={32}
+                                                                   height={32} alt={feature.alt} />
+                                                        </div>
+                                                        <div>
+                                                            <h3 className="mb-2 text-xl font-semibold leading-[1.5]">
+                                                                {t(feature.titleKey)}
+                                                            </h3>
+                                                            <p className="text-[#969cb1]">{t(feature.descKey)}</p>
+                                                        </div>
+                                                    </div>
+                                                </AnimateOnView>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom Border for good looking transition to new section */}
+            <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1]
+                            flex-none h-1 absolute bottom-0 left-0 right-0"></div>
+        </section>
+    );
+}
