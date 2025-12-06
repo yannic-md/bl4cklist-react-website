@@ -14,9 +14,10 @@ import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
-import {GuildFeature} from "@/types/GuildFeature";
+import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
 
 export interface SingleFeatureSectionProps {
+    sectionId: string;
     translationNamespace: string;
     particlesEnabled?: boolean;
     planetDecoration?: 1 | 2 | 3 | 4 | 'none';
@@ -25,7 +26,9 @@ export interface SingleFeatureSectionProps {
     showTopGradients?: boolean;
     imageSrc: string;
     imageAlt: string;
+    titleEmoji: string;
     guildFeatures?: GuildFeature[][];
+    customStatistics?: GuildStatistic[];
 }
 
 /**
@@ -33,6 +36,7 @@ export interface SingleFeatureSectionProps {
  * Can display server statistics, feature highlights, CTA button, and customizable visual elements.
  *
  * @param {SingleFeatureSectionProps} props - Component configuration
+ * @param {string} props.sectionId - The HTML ID for this section
  * @param {string} props.translationNamespace - Namespace for translation keys
  * @param {boolean} [props.particlesEnabled=true] - Whether to show particle background animation
  * @param {1 | 2 | 3 | 4 | 'none'} [props.planetDecoration='none'] - Planet decoration style (1-4) or 'none'
@@ -41,16 +45,25 @@ export interface SingleFeatureSectionProps {
  * @param {boolean} [props.showTopGradients=false] - Whether to show decorative gradients at the top
  * @param {string} props.imageSrc - Source path for the main feature image
  * @param {string} props.imageAlt - Alt text for the main feature image
+ * @param {string} props.titleEmoji - The emoji which will be used in the title.
  * @param {GuildFeature[][]} [props.guildFeatures] - Two-dimensional array of guild features to display
+ * @param {GuildStatistic[]} [props.customStatistics] - Custom statistics to display.
  *
  * @returns {JSX.Element} The rendered feature section component
  */
-export default function SingleFeatureSection({translationNamespace, particlesEnabled = true, planetDecoration = 'none',
-                                              imagePosition = 'right', ctaEnabled = true, showTopGradients = false,
-                                              imageSrc, imageAlt, guildFeatures}: SingleFeatureSectionProps): JSX.Element {
+export default function SingleFeatureSection({sectionId, translationNamespace, particlesEnabled = true,
+                                              planetDecoration = 'none', imagePosition = 'right', ctaEnabled = true,
+                                              showTopGradients = false, imageSrc, imageAlt, titleEmoji,
+                                              guildFeatures, customStatistics}: SingleFeatureSectionProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const t = useTranslations(translationNamespace);
     const { locale } = useRouter();
+
+    const statistics: GuildStatistic[] = customStatistics ?? [
+        { end: 3533, suffix: '+', icon: '👥', label: tWelcome('memberCount') },
+        { end: 890, suffix: '+', icon: '🔥', label: 'Online' },
+        { end: 4381784, suffix: '+', icon: '💬', label: t('count_chat') }
+    ];
 
     /**
      * Get planet decoration image paths for a given decoration variant.
@@ -58,17 +71,22 @@ export default function SingleFeatureSection({translationNamespace, particlesEna
      * @param {(1|2|3|4|'none')} decoration - Decoration variant (1-4) or 'none' to disable decorations.
      * @returns {{ left: string; right: string } | null} An object containing `left` and `right` image paths, or `null` when decoration is 'none'.
      */
-    const getPlanetImages = (decoration: 1 | 2 | 3 | 4 | 'none'): { left: string; right: string } | null => {
+    const getPlanetImages = (decoration: 1 | 2 | 3 | 4 | 'none'):
+        { left: string; right: string, position_left: string, position_right: string } | null => {
         const decorations = {
-            1: { left: '/images/planets/planet-1-left.webp', right: '/images/planets/planet-1-right.webp' },
-            2: { left: '/images/planets/planet-2-left.webp', right: '/images/planets/planet-2-right.webp' },
-            3: { left: '/images/planets/planet-3-left.webp', right: '/images/planets/planet-3-right.webp' },
-            4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp' },
+            1: { left: '/images/bg/venus-128w.webp', right: '/images/bg/uranus-128w.webp',
+                 position_left: "left-22 top-50 scale-125 rotate-12", position_right: "right-24 bottom-56 scale-125 rotate-6" },
+            2: { left: '/images/planets/planet-2-left.webp', right: '/images/planets/planet-2-right.webp',
+                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3" },
+            3: { left: '/images/planets/planet-3-left.webp', right: '/images/planets/planet-3-right.webp',
+                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3" },
+            4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp',
+                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3"},
         };
         return decoration !== 'none' ? decorations[decoration] : null;
     };
 
-    const planets: {left: string; right: string} | null = getPlanetImages(planetDecoration);
+    const planets: {left: string; right: string, position_left: string, position_right: string} | null = getPlanetImages(planetDecoration);
 
     const textContent: () => JSX.Element = (): JSX.Element => (
         <>
@@ -85,10 +103,12 @@ export default function SingleFeatureSection({translationNamespace, particlesEna
 
             {/* Headline */}
             <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Right' : 'Left'} animate__slower`}>
-                <h2 className={`${index.head_border} max-w-[16ch] bg-clip-text text-transparent mb-6
-                                ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1]
-                                text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.75rem)]`}>
-                    <span className="inline-block align-middle leading-none -mx-[5px] text-white">👋</span> - {t('title')}
+                <h2 className={`${index.head_border} max-w-2xl bg-clip-text text-transparent mb-6 leading-[1.1] w-full 
+                                ${colors.text_gradient_gray} my-0 font-semibold 
+                                ${t('title').length < 15 ? 'text-[clamp(2rem,_1.3838rem_+_2.6291vw,_3.75rem)]' : 
+                                                                'text-[clamp(2rem,_1.3838rem_+_2.6291vw,_2.75rem)]'}`}>
+                    <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">
+                        {titleEmoji}</span> - {t('title')}
                 </h2>
             </AnimateOnView>
 
@@ -96,7 +116,10 @@ export default function SingleFeatureSection({translationNamespace, particlesEna
             <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
                 <p className="text-[#969cb1] mb-6 break-words max-w-2xl">
                     {t.rich('description', {
-                        strong: (chunks: ReactNode): JSX.Element => <strong>{chunks}</strong>
+                        strong: (chunks: ReactNode): JSX.Element => <strong>{chunks}</strong>,
+                        a: (chunks: ReactNode): JSX.Element =>
+                            <a className="text-[coral] hover:brightness-110 transition-all duration-200"
+                               href="https://bl4cklist.de/invites/clank" target="_blank">{chunks}</a>
                     })}
                     <br /><br />
                     {t.rich('description2', {
@@ -105,21 +128,17 @@ export default function SingleFeatureSection({translationNamespace, particlesEna
                 </p>
             </AnimateOnView>
 
-            {/* Some entertaining discord server statistics */}
+            {/* Some entertaining discord server statistics TODO */}
             <AnimateOnView animation="animate__fadeInUp animate__slower self-center lg:self-auto">
                 <div className="flex justify-center lg:justify-start items-center flex-wrap gap-x-8 gap-y-12">
-                    <div className="flex flex-col items-center text-center px-1">
-                        <AnimatedCounter end={3533} suffix="+" locale={locale} />
-                        <span className="text-sm text-[#969cb1] tracking-wide mr-1">👥 {tWelcome('memberCount')}</span>
-                    </div>
-                    <div className="flex flex-col items-center text-center px-1">
-                        <AnimatedCounter end={890} suffix="+" locale={locale} />
-                        <span className="text-sm text-[#969cb1] tracking-wide mr-1.5">🔥 Online</span>
-                    </div>
-                    <div className="flex flex-col items-center text-center px-1">
-                        <AnimatedCounter end={4381784} suffix="+" locale={locale} />
-                        <span className="text-sm text-[#969cb1] tracking-wide mr-1">💬 {t('count_chat')}</span>
-                    </div>
+                    {statistics.map((stat: GuildStatistic, index: number): JSX.Element => (
+                        <div key={index} className="flex flex-col items-center text-center px-1">
+                            <AnimatedCounter end={stat.end} suffix={stat.suffix} locale={locale} />
+                            <span className="text-sm text-[#969cb1] tracking-wide mr-1">
+                                {stat.icon} {translationNamespace != 'IntroSection' ? t(stat.label) : stat.label}
+                            </span>
+                        </div>
+                    ))}
                 </div>
             </AnimateOnView>
 
@@ -147,25 +166,27 @@ export default function SingleFeatureSection({translationNamespace, particlesEna
                             overflow-hidden rotate-1 border border-gray-900">
                 <div className="rounded-xl">
                     <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
-                           className="h-full rounded-xl brightness-90" />
+                           className="h-full rounded-xl brightness-90" key={imageSrc} />
                 </div>
             </div>
         </AnimateOnView>
     );
 
     return (
-        <section className="w-full min-h-full relative overflow-hidden" id="discord-server-features">
+        <section className="w-full min-h-full relative overflow-hidden" id={sectionId}>
             {particlesEnabled && <ParticlesBackground className="z-0 animate__animated animate__fadeIn animate__slower" />}
 
             {/* Optional Planet Background Decoration */}
             {planets && (
                 <>
-                    <div className="absolute left-0 top-1/4 opacity-60 pointer-events-none z-[1]">
-                        <Image src={planets.left} width={300} height={300}
+                    <div className={`absolute ${planets.position_left} opacity-30 pointer-events-none z-[1] w-32 h-32 
+                                     hidden lg:block`}>
+                        <Image src={planets.left} width={128} height={128}
                                alt="Planet #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
-                    <div className="absolute right-0 top-1/3 opacity-60 pointer-events-none z-[1]">
-                        <Image src={planets.right} width={300} height={300}
+                    <div className={`absolute ${planets.position_right} opacity-30 pointer-events-none z-[1] w-32 h-32
+                                     hidden lg:block`}>
+                        <Image src={planets.right} width={128} height={128}
                                alt="Planet #2 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
                 </>

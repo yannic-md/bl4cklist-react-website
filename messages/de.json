@@ -90,6 +90,27 @@
     "tip_6_title": "Gaming & Technik - News",
     "tip_6_desc": "› Unser Discord-Bot veröffentlicht rund um die Uhr die neusten Artikel aus der Gaming-& Technik-Welt mithilfe von GameStar um dich stets zu unterhalten."
   },
+  "ClankGiveawaysSection": {
+    "infoTag": "STARTE KOMPLEXE DISCORD-GEWINNSPIELE IN SEKUNDENSCHNELLE!",
+    "title": "Gewinnspiele starten",
+    "description": "Mit unserem <strong><a>Discord Gewinnspiel-Bot</a></strong> hebst du deine Gewinnspiele auf ein neues Level - starte Gewinnspiele in sekundenschnelle komplett nach deinen Wünschen! Außerdem kannst du noch Teilnahmebedingungen festlegen und das Design verändern. Schau doch auch mal bei den anderen Discord-Bots vorbei!",
+    "description2": "Unser Bot ist jedoch einzigartig: Natürlich gibt es viel Konkurrenz doch wir bieten dir Dinge, welche du so noch nie gesehen hast: Setze \"Custom\"-Bedingungen fest & Design-Änderungen von Gewinnspiel-Nachrichten sind nur der Anfang! Lade unseren Bot ein und probiere ihn gleich aus.",
+    "giveawaysEnded": "Gewinnspiele beendet",
+    "giveawaysPlanned": "Gewinnspiele geplant",
+    "giveawaysActive": "Gewinnspiele aktiv",
+    "tip_1_title": "Schnell Gewinnspiele starten",
+    "tip_1_desc": "› Dank einer leistungsstarken Performance und durchgedachten Einstellungsmöglichkeiten dauert das ganze keine Minute.",
+    "tip_2_title": "Start-Zeitpunkt planen",
+    "tip_2_desc": "› Du kannst Gewinnspiele entspannt vorbereiten und sie automatisch zu einem späteren Zeitpunkt vom Bot starten lassen.",
+    "tip_3_title": "Dein Eigenes Design",
+    "tip_3_desc": "› Egal ob du das Embed-Thumbnail ändern möchtest, die Embed-Farbe oder das Gewinnspiel-Teilnahme-Emoji: Gestalte es für dich selbst!",
+    "tip_4_title": "User-Statistiken",
+    "tip_4_desc": "› Unser Bot zählt alle Nachrichten, Server-Einladungen & Sprachkanal-Aktivität der User und wertet diese für dich aus.",
+    "tip_5_title": "Rollen-& Kanal-Effekte",
+    "tip_5_desc": "› Blockiere Rollen, lege Bonus Kanäle fest oder vergib Erfolge - es gibt 10+ verschiedene Kategorien für besondere Effekte!",
+    "tip_6_title": "Eigene Teilnahme-Bedingungen",
+    "tip_6_desc": "› Neben über 10+ vorgefertigten funktionalen Bedingungen, hast du auch die Möglichkeit komplett eigene nach deinem Wunsch zu erstellen!"
+  },
   "TeamSection": {
     "infoTag": "WER KÜMMERT SICH UM UNSERE DISCORD-COMMUNITY?",
     "title": "DAS SERVER-TEAM",

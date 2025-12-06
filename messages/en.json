@@ -90,6 +90,27 @@
     "tip_6_title": "Gaming & Tech News",
     "tip_6_desc": "› Our Discord bot publishes the latest articles from the gaming & tech world around the clock with the help of GameStar to keep you entertained."
   },
+  "ClankGiveawaysSection": {
+    "infoTag": "START COMPLEX DISCORD GIVEAWAYS IN SECONDS!",
+    "title": "Start Giveaways",
+    "description": "With our <strong><a>Discord giveaway bot</a></strong> you can take your giveaways to a new level - start giveaways in a matter of seconds completely to your liking! You can also set participation conditions and change the design. Also check out our other Discord bots!",
+    "description2": "However, our bot is unique: Of course there is a lot of competition but we offer things you've never seen before: Set \"Custom\" conditions & design changes for giveaway messages are just the beginning! Invite our bot and try it out now.",
+    "giveawaysEnded": "Giveaways ended",
+    "giveawaysPlanned": "Giveaways planned",
+    "giveawaysActive": "Giveaways active",
+    "tip_1_title": "Quickly start giveaways",
+    "tip_1_desc": "› Thanks to powerful performance and thoughtful settings, the whole process takes less than a minute.",
+    "tip_2_title": "Schedule start time",
+    "tip_2_desc": "› You can prepare giveaways comfortably and have the bot automatically start them at a later time.",
+    "tip_3_title": "Your own design",
+    "tip_3_desc": "› Whether you want to change the embed thumbnail, the embed color, or the giveaway participation emoji: customize it for yourself!",
+    "tip_4_title": "User statistics",
+    "tip_4_desc": "› Our bot counts all messages, server invites & voice channel activity of users and analyzes them for you.",
+    "tip_5_title": "Role & channel effects",
+    "tip_5_desc": "› Block roles, set bonus channels, or award achievements - there are 10+ different categories for special effects!",
+    "tip_6_title": "Participation conditions",
+    "tip_6_desc": "› In addition to 10+ prebuilt functional conditions, you also have the option to create completely custom ones!"
+  },
   "TeamSection": {
     "infoTag": "WHO TAKES CARE OF OUR DISCORD COMMUNITY?",
     "title": "THE SERVER TEAM",

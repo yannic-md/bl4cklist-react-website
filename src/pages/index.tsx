@@ -52,7 +52,8 @@ export default function Home(): JSX.Element {
                     <SingleFeatureSection translationNamespace="IntroSection" particlesEnabled={true} planetDecoration="none"
                                           imagePosition="right" ctaEnabled={true} showTopGradients={true}
                                           imageSrc="/images/pixel/guild-banner-508w.webp" guildFeatures={singleFeatureSub}
-                                          imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                                          imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                          sectionId="discord-server-features" titleEmoji="👋🏻" />
 
                     {/* Presentation of the server-team */}
                     <TeamSection />

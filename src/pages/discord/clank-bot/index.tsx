@@ -4,6 +4,8 @@ import Header from "@/components/elements/layout/Header";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import Footer from "@/components/elements/layout/Footer";
 import ClankHero from "@/components/sections/clank-page/ClankHero";
+import SingleFeatureSection from "@/components/sections/SingleFeatureSection";
+import {GuildFeature} from "@/types/GuildFeature";
 
 /**
  * Renders the Clank Bot landing page with header, hero content,
@@ -15,6 +17,19 @@ import ClankHero from "@/components/sections/clank-page/ClankHero";
  * @returns JSX element representing the Clank Bot page layout.
  */
 export default function ClankBot(): JSX.Element {
+    const giveaway_module_features: GuildFeature[][] = [[
+        { src: "/images/icons/small/lightning-32w.webp", alt: "Lightning Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/timer-32w.webp", alt: "Timer Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_2_title", descKey: "tip_2_desc", animation: "animate__fadeInDown animate__slower" },
+        { src: "/images/icons/small/color-palette-32w.webp", alt: "Color Palette Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_3_title", descKey: "tip_3_desc", animation: "animate__fadeInRight animate__slower" }],
+       [{ src: "/images/icons/small/chart-32w.webp", alt: "Chart Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_4_title", descKey: "tip_4_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/confetti-32w.webp", alt: "Confetti Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
+        { src: "/images/icons/small/note-32w.webp", alt: "Note Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
 
     return (
         <>
@@ -25,6 +40,15 @@ export default function ClankBot(): JSX.Element {
             <div className="relative">
                 {/* Hero section of this page */}
                 <ClankHero />
+
+                {/* Bot feature sections */}
+                <SingleFeatureSection translationNamespace="ClankGiveawaysSection" particlesEnabled={false} ctaEnabled={false}
+                                      imagePosition="right" imageSrc="/images/bg/giveaway-bot-preview-508w.webp" titleEmoji="🎁"
+                                      guildFeatures={giveaway_module_features} sectionId="giveaways" planetDecoration={1}
+                                      imageAlt="Discord Giveaway Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      customStatistics={[{ end: 993, suffix: '+', icon: '🎁', label: 'giveawaysEnded' },
+                                                         { end: 16, suffix: '+', icon: '⏰', label: 'giveawaysPlanned' },
+                                                         { end: 5, suffix: '+', icon: '🎀', label: 'giveawaysActive' }]} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />
