@@ -7,6 +7,11 @@ import CodingFeatures from "@/components/sections/coding-page/CodingFeatures";
 import CodingFAQ from "@/components/sections/coding-page/CodingFAQ";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 
+/**
+ * Renders the Tech Coding landing page for the discord guild.
+ *
+ * @returns JSX.Element React component for the Tech Coding page.
+ */
 export default function TechCoding(): JSX.Element {
     return (
         <>

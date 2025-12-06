@@ -85,7 +85,7 @@ export default function Header(): JSX.Element {
                                    bg-[rgba(29,30,35,0.8)] ${head.header_border} animate__animated animate__fadeInDown`}>
                         <div className="flex items-center justify-between w-full h-full capitalize py-3 pr-2 pl-3 gap-2">
                             <Link className="block w-8 ml-2 transition-all duration-200 hover:-translate-y-0.5" href="/">
-                                <Image src="/images/brand/logo-64w.avif" className="object-contain"
+                                <Image src="/images/brand/logo-64w.avif" className="object-contain !cursor-pointer"
                                        width={64} height={64} priority
                                        alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             </Link>

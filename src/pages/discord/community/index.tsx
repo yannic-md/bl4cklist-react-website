@@ -7,6 +7,14 @@ import ComHero from "@/components/sections/community-page/ComHero";
 import MemberList from "@/components/sections/community-page/MemberList";
 import {Member} from "@/types/Member";
 
+/**
+ * Renders the community overview page with multiple member sections and testimonials.
+ *
+ * Uses temporary mock data for different member categories (birthdays, ranked users,
+ * level users, and former staff) and passes them to the corresponding layout sections.
+ *
+ * @returns JSX.Element React component for the community page layout.
+ */
 export default function Community(): JSX.Element {
     // TODO: Replace with real Data!
     const birthday_users: Member[] = [

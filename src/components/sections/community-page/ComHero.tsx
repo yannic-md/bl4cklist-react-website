@@ -72,7 +72,7 @@ export default function ComHero(): JSX.Element {
                                             text-transparent mb-4 md:mb-6 ${colors.text_gradient_gray} my-0
                                             font-semibold leading-[1.1] text-[1.75rem]
                                             lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_4rem)]`}>
-                                <span className="inline-block align-middle leading-none -mx-[5px] text-white">💕</span> -
+                                <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">💕</span> -
                                 {tComHero('title')}
                             </h2>
                         </AnimateOnView>
