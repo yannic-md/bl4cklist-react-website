@@ -1,6 +1,3 @@
-## This project is currently stable and most sites are implemented, but a few sites, many QOL features & improvements are still missing.
-<hr>
-
 <h1 align="center">
      🔥 Bl4cklist Website ~ Creative and unique presentation of my discord server
 </h1>
