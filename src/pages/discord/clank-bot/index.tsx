@@ -56,6 +56,19 @@ export default function ClankBot(): JSX.Element {
            titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
          { src: "/images/icons/small/server-32w.webp", alt: "Server Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
            titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
+    const globalchat_module_features: GuildFeature[][] = [[
+        { src: "/images/icons/small/fire-32w.webp", alt: "Fire Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/open-letter-32w.webp", alt: "Open Letter Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_2_title", descKey: "tip_2_desc", animation: "animate__fadeInDown animate__slower" },
+        { src: "/images/icons/small/police-badge-32w.webp", alt: "Police Badge Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_3_title", descKey: "tip_3_desc", animation: "animate__fadeInRight animate__slower" }],
+        [{ src: "/images/icons/small/trophy-iso-32w.webp", alt: "Trophy Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_4_title", descKey: "tip_4_desc", animation: "animate__fadeInLeft animate__slower" },
+         { src: "/images/icons/small/announcement-32w.webp", alt: "Announcement Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
+         { src: "/images/icons/small/color-palette2-32w.webp", alt: "Color Palette Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
 
     return (
         <>
@@ -73,8 +86,8 @@ export default function ClankBot(): JSX.Element {
                                       guildFeatures={support_module_features} sectionId="ticket-tool" planetDecoration={1}
                                       imageAlt="Discord Support Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       customStatistics={[{ end: 1919, suffix: '+', icon: '🎟️', label: 'ticketsEnded' },
-                                          { end: 94, suffix: '+', icon: '📡', label: 'ticketsStarted' },
-                                          { end: 13, suffix: '+', icon: '📝', label: 'ticketsActive' }]} />
+                                                         { end: 94, suffix: '+', icon: '📡', label: 'ticketsStarted' },
+                                                         { end: 13, suffix: '+', icon: '📝', label: 'ticketsActive' }]} />
                 <SingleFeatureSection translationNamespace="ClankGiveawaysSection" particlesEnabled={false} ctaEnabled={false}
                                       imagePosition="left" imageSrc="/images/bg/giveaway-bot-preview-508w.webp" titleEmoji="🎁"
                                       guildFeatures={giveaway_module_features} sectionId="giveaways" planetDecoration={2}
@@ -89,6 +102,13 @@ export default function ClankBot(): JSX.Element {
                                       customStatistics={[{ end: 634, suffix: '+', icon: '🛑', label: 'securityPunished' },
                                                          { end: 34, suffix: '+', icon: '📚', label: 'securityLog' },
                                                          { end: 10, suffix: '+', icon: '🤖', label: 'securityAutoMod' }]} />
+                <SingleFeatureSection translationNamespace="ClankGlobalSection" particlesEnabled={false} ctaEnabled={false}
+                                      imagePosition="left" imageSrc="/images/bg/global-chat-preview-546w.webp" titleEmoji="🌍"
+                                      guildFeatures={globalchat_module_features} sectionId="global-chat" planetDecoration={4}
+                                      imageAlt="Discord Global-Chat Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      customStatistics={[{ end: 5893487, suffix: '+', icon: '💬', label: 'globalMessages' },
+                                                         { end: 17272, suffix: '+', icon: '👥', label: 'globalUsers' },
+                                                         { end: 324, suffix: '+', icon: '📡', label: 'globalActive' }]} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />

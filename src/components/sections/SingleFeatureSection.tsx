@@ -80,8 +80,8 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                  position_left: "left-14 bottom-48 rotate-12", position_right: "right-22 top-48 rotate-12" },
             3: { left: '/images/bg/moon.svg', right: '/images/bg/mars-128w.webp',
                  position_left: "left-16 top-56 rotate-12", position_right: "right-18 bottom-72 -rotate-90" },
-            4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp',
-                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3"},
+            4: { left: '/images/bg/jupiter-128w.webp', right: '/images/bg/earth-128w.webp',
+                 position_left: "left-14 bottom-36 rotate-12", position_right: "right-40 top-40 -rotate-12"},
         };
         return decoration !== 'none' ? decorations[decoration] : null;
     };
@@ -239,8 +239,8 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                                                 <AnimateOnView key={featureIndex} animation={feature.animation}>
                                                     <div className="flex items-start justify-start gap-4">
                                                         <div className="flex-none">
-                                                            <Image src={feature.src} className="h-full" width={32}
-                                                                   height={32} alt={feature.alt} />
+                                                            <Image src={feature.src} className="h-full pointer-events-none"
+                                                                   width={32} height={32} alt={feature.alt} />
                                                         </div>
                                                         <div>
                                                             <h3 className="mb-2 text-xl font-semibold leading-[1.5]">

@@ -153,6 +153,27 @@
     "tip_6_title": "Protection against griefs/nukes",
     "tip_6_desc": "› Our bot creates daily backups of your Discord server & quarantines dangerous users on your server."
   },
+  "ClankGlobalSection": {
+    "infoTag": "CHAT GLOBALLY WITH DISCORD USERS FROM OTHER SERVERS!",
+    "title": "The Global Chat",
+    "description": "With our <strong><a>Discord Global-Chat Bot</a></strong>, Discord server chats become unnecessary: chat globally with users from many different communities! You don't need to be a member of server X to chat with users from server Y.",
+    "description2": "The bot shares messages from a specific channel that a server admin can designate with many others, so users don't necessarily have to be on your server to participate in the chat.",
+    "globalMessages": "Global chat messages",
+    "globalUsers": "Verified users",
+    "globalActive": "Active chats",
+    "tip_1_title": "Most active chat in Germany",
+    "tip_1_desc": "› We are the most active global server chat in all of Germany, so you'll always find someone to chat with.",
+    "tip_2_title": "Fast transmission",
+    "tip_2_desc": "› Messages sent in the global chat are forwarded to all external global chats within seconds.",
+    "tip_3_title": "External moderation team",
+    "tip_3_desc": "› We have an in-house moderation team that monitors the chat around the clock and intervenes in emergencies.",
+    "tip_4_title": "Fun leveling system",
+    "tip_4_desc": "› Level up through chat activity to earn new rank colors, rewards, and other benefits - you can even win premium for the bot!",
+    "tip_5_title": "Promote your project",
+    "tip_5_desc": "› Advertising is allowed - showcase your Discord server here, be active, and reach many new users from other servers.",
+    "tip_6_title": "Customizable design",
+    "tip_6_desc": "› Customize the global chat's appearance slightly, like the avatar or set a server description for yourself."
+  },
   "TeamSection": {
     "infoTag": "WHO TAKES CARE OF OUR DISCORD COMMUNITY?",
     "title": "THE SERVER TEAM",

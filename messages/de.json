@@ -153,6 +153,27 @@
     "tip_6_title": "Schutz vor Griefs/Nukes",
     "tip_6_desc": "› Unser Bot erstellt täglich ein Backup deines Discord-Servers & stellt gefährdende User auf deinem Server unter Quarantäne."
   },
+  "ClankGlobalSection": {
+    "infoTag": "CHATTE SERVERWEIT MIT FREMDEN DISCORD-USERN!",
+    "title": "Der Globale Chat",
+    "description": "Mit unserem <strong><a>Discord Global-Chat Bot</a></strong> werden Discord-Server Chats überflüssig: Chatte global mit fremden Usern aus den verschiedensten Bubbles! Du musst kein Mitglied von Server X sein, um mit Server Y chatten zu können.",
+    "description2": "Der Bot teilt Nachrichten aus einem bestimmten Kanal welchen ein Server-Admin festlegen kann mit vielen anderen, wodurch User nicht zwingend auf deinem Server sein müssen, um am Chat teilzunehmen.",
+    "globalMessages": "Global-Chat Nachrichten",
+    "globalUsers": "Verifizierte User",
+    "globalActive": "Chats aktiv",
+    "tip_1_title": "Aktivster Chat Deutschlands",
+    "tip_1_desc": "› Wir sind der aktivste Global-Server Chat in ganz Deutschland, wodurch du immer jemanden zum chatten finden wirst.",
+    "tip_2_title": "Schnelle Übertragung",
+    "tip_2_desc": "› Nachrichten die in dem Global-Chat versendet werden, werden in wenigen Sekunden an alle externen Global-Chats verteilt.",
+    "tip_3_title": "Externes Moderationsteam",
+    "tip_3_desc": "› Wir haben ein eigenes Moderationsteam zusammengestellt, welches den Chat rund um die Uhr im Auge behält & im Notfall eingreift.",
+    "tip_4_title": "Spaßiges Levelsystem",
+    "tip_4_desc": "› Steige durch Chat-Aktivität Level auf, erhalte neue Rangfarben, Preise und weitere Belohnungen - Du kannst auch Premium für den Bot gewinnen!",
+    "tip_5_title": "Wirb für dein Projekt",
+    "tip_5_desc": "› Werbung ist erlaubt - stelle deinen Discord-Server hier vor, sei aktiv und erreiche viele fremde neue Discord-User.",
+    "tip_6_title": "Anpassbares Design",
+    "tip_6_desc": "› Passe das Design des Global-Chats ein wenig an, wie zum Beispiel den Avatar oder lege eine Server-Beschreibung für dich fest."
+  },
   "TeamSection": {
     "infoTag": "WER KÜMMERT SICH UM UNSERE DISCORD-COMMUNITY?",
     "title": "DAS SERVER-TEAM",

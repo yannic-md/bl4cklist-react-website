@@ -156,7 +156,7 @@ export function getNavItems(t: (key: string) => string, tDropdown: (key: string)
         {
           title: tDropdown('globalChat'),
           description: tDropdown('globalChatDesc'),
-          href: "/discord/clank-bot/#globla-chat",
+          href: "/discord/clank-bot/#global-chat",
           icon: "/images/icons/small/earth-24w.webp"
         },
         {
