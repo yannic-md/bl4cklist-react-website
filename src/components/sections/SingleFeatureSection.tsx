@@ -76,8 +76,8 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
         const decorations = {
             1: { left: '/images/bg/venus-128w.webp', right: '/images/bg/uranus-128w.webp',
                  position_left: "left-22 top-50 scale-125 rotate-12", position_right: "right-24 bottom-56 scale-125 rotate-6" },
-            2: { left: '/images/planets/planet-2-left.webp', right: '/images/planets/planet-2-right.webp',
-                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3" },
+            2: { left: '/images/bg/neptune-128w.webp', right: '/images/bg/pluto-128w.webp',
+                 position_left: "left-14 bottom-48 scale-125 rotate-12", position_right: "right-22 top-48 scale-125 rotate-12" },
             3: { left: '/images/planets/planet-3-left.webp', right: '/images/planets/planet-3-right.webp',
                  position_left: "left-0 top-1/4", position_right: "right-0 top-1/3" },
             4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp',
@@ -113,7 +113,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             </AnimateOnView>
 
             {/* Description (strong tags in translation are formatted) */}
-            <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
+            <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Right' : 'Left'} animate__slower`}>
                 <p className="text-[#969cb1] mb-6 break-words max-w-2xl">
                     {t.rich('description', {
                         strong: (chunks: ReactNode): JSX.Element => <strong>{chunks}</strong>,
@@ -162,8 +162,8 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
 
     const showcaseImage: () => JSX.Element = (): JSX.Element => (
         <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
-            <div className="rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
-                            overflow-hidden rotate-1 border border-gray-900">
+            <div className={`rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
+                             overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
                 <div className="rounded-xl">
                     <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
                            className="h-full rounded-xl brightness-90" key={imageSrc} />
@@ -179,16 +179,20 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             {/* Optional Planet Background Decoration */}
             {planets && (
                 <>
-                    <div className={`absolute ${planets.position_left} opacity-30 pointer-events-none z-[1] w-32 h-32 
-                                     hidden lg:block`}>
-                        <Image src={planets.left} width={128} height={128}
-                               alt="Planet #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                    </div>
-                    <div className={`absolute ${planets.position_right} opacity-30 pointer-events-none z-[1] w-32 h-32
-                                     hidden lg:block`}>
-                        <Image src={planets.right} width={128} height={128}
-                               alt="Planet #2 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
-                    </div>
+                    <AnimateOnView animation="animate__fadeIn animate__slower">
+                        <div className={`absolute ${planets.position_left} opacity-30 pointer-events-none z-[1] 
+                                         w-32 h-32 hidden lg:block`}>
+                            <Image src={planets.left} width={128} height={128}
+                                   alt="Planet #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                        </div>
+                    </AnimateOnView>
+                    <AnimateOnView animation="animate__fadeIn animate__slower">
+                        <div className={`absolute ${planets.position_right} opacity-30 pointer-events-none z-[1] 
+                                         w-32 h-32 hidden lg:block`}>
+                            <Image src={planets.right} width={128} height={128}
+                                   alt="Planet #2 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                        </div>
+                    </AnimateOnView>
                 </>
             )}
 
@@ -212,13 +216,15 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                             <div className="flex mb-20 flex-col lg:flex-row justify-center items-center gap-[60px]">
                                 {imagePosition === 'left' ? (
                                     <>
-                                        {showcaseImage()}
-                                        <div className="flex flex-col justify-start items-start">{textContent()}</div>
+                                        <div className="flex-shrink-0 w-full lg:w-[475px]">{showcaseImage()}</div>
+                                        <div className="flex flex-col justify-start items-start flex-shrink-0 w-full
+                                                        lg:flex-1 lg:max-w-2xl">{textContent()}</div>
                                     </>
                                 ) : (
                                     <>
-                                        <div className="flex flex-col justify-start items-start">{textContent()}</div>
-                                        {showcaseImage()}
+                                        <div className="flex flex-col justify-start items-start flex-shrink-0 w-full
+                                                        lg:flex-1 lg:max-w-2xl">{textContent()}</div>
+                                        <div className="flex-shrink-0 w-full lg:w-[475px]">{showcaseImage()}</div>
                                     </>
                                 )}
                             </div>

@@ -111,6 +111,27 @@
     "tip_6_title": "Participation conditions",
     "tip_6_desc": "› In addition to 10+ prebuilt functional conditions, you also have the option to create completely custom ones!"
   },
+  "ClankSupportSection": {
+    "infoTag": "MANAGE QUESTIONS & ISSUES WITH EASE",
+    "title": "Support Tickets",
+    "description": "With our <strong><a>Discord Support Bot</a></strong>, handling questions, user reports & issues from your community becomes fun! Thanks to the revolutionary system for managing support requests, it's easy to keep an overview.",
+    "description2": "Our support system works with forum channels and is organized using tags, so every team member always maintains an overview. A user only needs to send a private message to the bot and a ticket is created automatically.",
+    "ticketsEnded": "Tickets completed",
+    "ticketsStarted": "Open tickets",
+    "ticketsActive": "Tickets in progress",
+    "tip_1_title": "System messages in tickets",
+    "tip_1_desc": "› The team receives many useful automated notes in tickets when an action was taken — for example a server boost or similar.",
+    "tip_2_title": "Automatic replies",
+    "tip_2_desc": "› Create support tickets that are automatically answered by the support bot using a custom response.",
+    "tip_3_title": "Ticket management menu",
+    "tip_3_desc": "› Click a simple button inside a ticket to manage and close it within seconds.",
+    "tip_4_title": "Rate ticket support",
+    "tip_4_desc": "› After each closed ticket, the ticket creator can rate the support with a button click & the team can view the feedback.",
+    "tip_5_title": "Team availability",
+    "tip_5_desc": "› Our bot will immediately inform the ticket creator in newly created support tickets if the server team is currently offline.",
+    "tip_6_title": "Voice channel support",
+    "tip_6_desc": "› You can additionally set up a separate voice channel support that works the same way as in TeamSpeak3."
+  },
   "TeamSection": {
     "infoTag": "WHO TAKES CARE OF OUR DISCORD COMMUNITY?",
     "title": "THE SERVER TEAM",

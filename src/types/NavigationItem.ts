@@ -136,16 +136,16 @@ export function getNavItems(t: (key: string) => string, tDropdown: (key: string)
       dropdownTitle: tDropdown('clankDiscordBot'),
       items: [
         {
-          title: tDropdown('giveawaySystem'),
-          description: tDropdown('giveawaySystemDesc'),
-          href: "/discord/clank-bot/#giveaways",
-          icon: "/images/icons/small/gift-24w.webp"
-        },
-        {
           title: tDropdown('supportTickets'),
           description: tDropdown('supportTicketsDesc'),
           href: "/discord/clank-bot/#ticket-tool",
           icon: "/images/icons/small/support-24w.webp"
+        },
+        {
+          title: tDropdown('giveawaySystem'),
+          description: tDropdown('giveawaySystemDesc'),
+          href: "/discord/clank-bot/#giveaways",
+          icon: "/images/icons/small/gift-24w.webp"
         },
         {
           title: tDropdown('serverProtection'),

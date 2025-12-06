@@ -111,6 +111,27 @@
     "tip_6_title": "Eigene Teilnahme-Bedingungen",
     "tip_6_desc": "› Neben über 10+ vorgefertigten funktionalen Bedingungen, hast du auch die Möglichkeit komplett eigene nach deinem Wunsch zu erstellen!"
   },
+  "ClankSupportSection": {
+    "infoTag": "VERWALTE FRAGEN & PROBLEME MIT LEICHTIGKEIT",
+    "title": "Support-Tickets",
+    "description": "Mit unserem <strong><a>Discord Support-Bot</a></strong> wird die Arbeit Fragen, User-Meldungen & Probleme von deiner Community zu bearbeiten zum Spaß! Durch das revolutionäre System zum Verwalten von Support-Anfragen deiner Community wird es dir leicht fallen einen Überblick zu behalten.",
+    "description2": "Unser Support-System arbeitet mit Forenkanälen und organisiert sich daher mit Tags - wodurch jedes Teammitglied stets einen Überblick behalten kann. Ein User braucht nur eine Private Nachricht an den Bot senden und schon wird automatisiert ein Ticket eröffnet.",
+    "ticketsEnded": "Tickets erledigt",
+    "ticketsStarted": "Tickets offen",
+    "ticketsActive": "Tickets in Bearbeitung",
+    "tip_1_title": "System-Nachrichten in Tickets",
+    "tip_1_desc": "› Das Team erhält viele nützliche automatisierte Hinweise in Tickets, falls eine Aktion ausgeführt wurde - zum Beispiel ein Server-Boost oder mehr.",
+    "tip_2_title": "Automatische Beantwortung",
+    "tip_2_desc": "› Erstelle Support-Tickets welche automatisch von dem Support-Bot beantwortet werden, anhand einer benutzerdefinierten Antwort.",
+    "tip_3_title": "Ticket-Management Menü",
+    "tip_3_desc": "› Klicke auf einen simplen Button innerhalb eines Tickets, um es problemlos innerhalb von Sekunden zu verwalten & zu erledigen.",
+    "tip_4_title": "Bewerte den Ticket-Support",
+    "tip_4_desc": "› Nach jedem erledigten Ticket kann der Ticket-Ersteller den Support mit einem Buttonklick bewerten & das Team kann dies anschließend einsehen.",
+    "tip_5_title": "Team-Erreichbarkeit",
+    "tip_5_desc": "› Unser Bot wird in neu erstellten Support-Tickets dem jeweiligen Ersteller sofort mitteilen, falls das Server-Team aktuell offline ist.",
+    "tip_6_title": "Sprachkanal-Support",
+    "tip_6_desc": "› Du kannst zusätzlich ein seperates Sprachkanal-Support einrichten, dass auf der selben Art und Weise funktioniert wie in TeamSpeak3."
+  },
   "TeamSection": {
     "infoTag": "WER KÜMMERT SICH UM UNSERE DISCORD-COMMUNITY?",
     "title": "DAS SERVER-TEAM",

@@ -40,7 +40,7 @@ export default function ClankHero(): JSX.Element {
     }, []);
 
     return (
-        <section className="relative z-[2] pt-20 md:pt-24 lg:pt-28  2xl:h-[95vh] bg-slate-900/30" id="start">
+        <section className="relative z-[2] pt-20 md:pt-24 lg:pt-28  2xl:h-[100vh] bg-slate-900/30" id="start">
             <div className={`relative z-[1] w-full max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6 overflow-hidden 
                              [@media(min-width:1980px)]:max-w-[80%] [@media(min-width:1980px)]:pt-8`}>
                 {/* Top Area - Responsive Layout */}
@@ -133,7 +133,7 @@ export default function ClankHero(): JSX.Element {
 
             {/* Bottom border */}
             <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-10
-                            flex-none h-1 absolute bottom-0 left-0 right-0"></div>
+                            flex-none h-1 absolute bottom-12 left-0 right-0"></div>
         </section>
     );
 }

@@ -30,6 +30,19 @@ export default function ClankBot(): JSX.Element {
           titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
         { src: "/images/icons/small/note-32w.webp", alt: "Note Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
           titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
+    const support_module_features: GuildFeature[][] = [[
+        { src: "/images/icons/small/info-32w.webp", alt: "Info Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/battery-32w.webp", alt: "Battery Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_2_title", descKey: "tip_2_desc", animation: "animate__fadeInDown animate__slower" },
+        { src: "/images/icons/small/button-32w.webp", alt: "Button Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_3_title", descKey: "tip_3_desc", animation: "animate__fadeInRight animate__slower" }],
+        [{ src: "/images/icons/small/medal-32w.webp", alt: "Medal Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_4_title", descKey: "tip_4_desc", animation: "animate__fadeInLeft animate__slower" },
+         { src: "/images/icons/small/sleep-32w.webp", alt: "Sleep Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
+         { src: "/images/icons/small/headset-32w.webp", alt: "Headset Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
 
     return (
         <>
@@ -41,10 +54,17 @@ export default function ClankBot(): JSX.Element {
                 {/* Hero section of this page */}
                 <ClankHero />
 
-                {/* Bot feature sections */}
+                {/* Bot feature sections TODO: real data */}
+                <SingleFeatureSection translationNamespace="ClankSupportSection" particlesEnabled={false} ctaEnabled={false}
+                                      imagePosition="right" imageSrc="/images/bg/support-bot-preview-600w.webp" titleEmoji="🚔"
+                                      guildFeatures={support_module_features} sectionId="ticket-tool" planetDecoration={1}
+                                      imageAlt="Discord Support Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      customStatistics={[{ end: 1919, suffix: '+', icon: '🎟️', label: 'ticketsEnded' },
+                                          { end: 94, suffix: '+', icon: '📡', label: 'ticketsStarted' },
+                                          { end: 13, suffix: '+', icon: '📝', label: 'ticketsActive' }]} />
                 <SingleFeatureSection translationNamespace="ClankGiveawaysSection" particlesEnabled={false} ctaEnabled={false}
-                                      imagePosition="right" imageSrc="/images/bg/giveaway-bot-preview-508w.webp" titleEmoji="🎁"
-                                      guildFeatures={giveaway_module_features} sectionId="giveaways" planetDecoration={1}
+                                      imagePosition="left" imageSrc="/images/bg/giveaway-bot-preview-508w.webp" titleEmoji="🎁"
+                                      guildFeatures={giveaway_module_features} sectionId="giveaways" planetDecoration={2}
                                       imageAlt="Discord Giveaway Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       customStatistics={[{ end: 993, suffix: '+', icon: '🎁', label: 'giveawaysEnded' },
                                                          { end: 16, suffix: '+', icon: '⏰', label: 'giveawaysPlanned' },
