@@ -132,6 +132,27 @@
     "tip_6_title": "Sprachkanal-Support",
     "tip_6_desc": "› Du kannst zusätzlich ein seperates Sprachkanal-Support einrichten, dass auf der selben Art und Weise funktioniert wie in TeamSpeak3."
   },
+  "ClankSecuritySection": {
+    "infoTag": "VERTEIDIGE DEINEN SERVER EFFEKTIV & BEHALTE DIE KONTROLLE!",
+    "title": "Schütze deinen Server",
+    "description": "Mit unserem <strong><a>Discord Security-Bot</a></strong> verbesserst du die Moderation auf deinem Discord-Server enorm und reduzierst zeitgleich die benötigte Arbeit für wichtige Aufgaben erheblich - unser Bot hat einen Job: Das Leben deines Server-Teams zu vereinfachen.",
+    "description2": "Egal ob Tools für Raidschutz oder einfach nur simple aber starke Auto-Moderations-Regeln: Er hat einiges zu bieten und wird Regelbrechern das Leben schwer machen, wenn sie deine Regeln umgehen wollen. Er biete intelligente Tools, welche jeder Community weiterhelfen.",
+    "securityPunished": "User bestraft",
+    "securityLog": "Log-Systeme aktiv",
+    "securityAutoMod": "Auto-Mod Regeln",
+    "tip_1_title": "Große Auswahl an Schutz-Tools",
+    "tip_1_desc": "› Sperre User die in einer bestimmten Zeitspanne beigetreten sind, erkenne automatisch Fake-& Raidaccounts und noch viel mehr!",
+    "tip_2_title": "Einzigartiges Unban-System",
+    "tip_2_desc": "› User haben direkt nach der Entsperrung die Möglichkeit, sich über dem Bot per Privat-Nachricht entsperren zu lassen.",
+    "tip_3_title": "Organisiertes Log-System",
+    "tip_3_desc": "› Durch die Verwendung eines dynamischen Forumskanals behältst du die volle Kontrolle über alle Events deines Servers.",
+    "tip_4_title": "Effektive AutoMod-Regeln",
+    "tip_4_desc": "› Mithilfe von ein paar Klicks aktivierst du unser effektives, vorgefertigtes Auto-Moderations Setup und schützt deinen Server.",
+    "tip_5_title": "Server-Team Verwaltung",
+    "tip_5_desc": "› Lege spezielle Server-Rollen fest, welche auf vorgefertigte Moderationsaktionen zugreifen können, ohne Admin-Rechte zu vergeben.",
+    "tip_6_title": "Schutz vor Griefs/Nukes",
+    "tip_6_desc": "› Unser Bot erstellt täglich ein Backup deines Discord-Servers & stellt gefährdende User auf deinem Server unter Quarantäne."
+  },
   "TeamSection": {
     "infoTag": "WER KÜMMERT SICH UM UNSERE DISCORD-COMMUNITY?",
     "title": "DAS SERVER-TEAM",

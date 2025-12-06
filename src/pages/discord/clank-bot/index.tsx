@@ -43,6 +43,19 @@ export default function ClankBot(): JSX.Element {
            titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
          { src: "/images/icons/small/headset-32w.webp", alt: "Headset Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
            titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
+    const security_module_features: GuildFeature[][] = [[
+        { src: "/images/icons/small/siren-32w.webp", alt: "Siren Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
+        { src: "/images/icons/small/letter-32w.webp", alt: "Letter Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_2_title", descKey: "tip_2_desc", animation: "animate__fadeInDown animate__slower" },
+        { src: "/images/icons/small/books-32w.webp", alt: "Books Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+          titleKey: "tip_3_title", descKey: "tip_3_desc", animation: "animate__fadeInRight animate__slower" }],
+        [{ src: "/images/icons/small/verify-32w.webp", alt: "Verify Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_4_title", descKey: "tip_4_desc", animation: "animate__fadeInLeft animate__slower" },
+         { src: "/images/icons/small/police-32w.webp", alt: "Police Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_5_title", descKey: "tip_5_desc", animation: "animate__fadeInUp animate__slower" },
+         { src: "/images/icons/small/server-32w.webp", alt: "Server Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
+           titleKey: "tip_6_title", descKey: "tip_6_desc", animation: "animate__fadeInRight animate__slower" }]]
 
     return (
         <>
@@ -69,6 +82,13 @@ export default function ClankBot(): JSX.Element {
                                       customStatistics={[{ end: 993, suffix: '+', icon: '🎁', label: 'giveawaysEnded' },
                                                          { end: 16, suffix: '+', icon: '⏰', label: 'giveawaysPlanned' },
                                                          { end: 5, suffix: '+', icon: '🎀', label: 'giveawaysActive' }]} />
+                <SingleFeatureSection translationNamespace="ClankSecuritySection" particlesEnabled={false} ctaEnabled={false}
+                                      imagePosition="right" imageSrc="/images/bg/security-bot-preview-600w.webp" titleEmoji="🚨"
+                                      guildFeatures={security_module_features} sectionId="security" planetDecoration={3}
+                                      imageAlt="Discord Security Bot - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                      customStatistics={[{ end: 634, suffix: '+', icon: '🛑', label: 'securityPunished' },
+                                                         { end: 34, suffix: '+', icon: '📚', label: 'securityLog' },
+                                                         { end: 10, suffix: '+', icon: '🤖', label: 'securityAutoMod' }]} />
 
                 {/* Section for server member reviews */}
                 <TestimonialSection />

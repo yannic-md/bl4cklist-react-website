@@ -75,11 +75,11 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
         { left: string; right: string, position_left: string, position_right: string } | null => {
         const decorations = {
             1: { left: '/images/bg/venus-128w.webp', right: '/images/bg/uranus-128w.webp',
-                 position_left: "left-22 top-50 scale-125 rotate-12", position_right: "right-24 bottom-56 scale-125 rotate-6" },
+                 position_left: "left-22 top-50 rotate-12", position_right: "right-24 bottom-56 rotate-6" },
             2: { left: '/images/bg/neptune-128w.webp', right: '/images/bg/pluto-128w.webp',
-                 position_left: "left-14 bottom-48 scale-125 rotate-12", position_right: "right-22 top-48 scale-125 rotate-12" },
-            3: { left: '/images/planets/planet-3-left.webp', right: '/images/planets/planet-3-right.webp',
-                 position_left: "left-0 top-1/4", position_right: "right-0 top-1/3" },
+                 position_left: "left-14 bottom-48 rotate-12", position_right: "right-22 top-48 rotate-12" },
+            3: { left: '/images/bg/moon.svg', right: '/images/bg/mars-128w.webp',
+                 position_left: "left-16 top-56 rotate-12", position_right: "right-18 bottom-72 -rotate-90" },
             4: { left: '/images/planets/planet-4-left.webp', right: '/images/planets/planet-4-right.webp',
                  position_left: "left-0 top-1/4", position_right: "right-0 top-1/3"},
         };
@@ -181,14 +181,14 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                 <>
                     <AnimateOnView animation="animate__fadeIn animate__slower">
                         <div className={`absolute ${planets.position_left} opacity-30 pointer-events-none z-[1] 
-                                         w-32 h-32 hidden lg:block`}>
+                                         w-32 h-32 scale-125 hidden lg:block`}>
                             <Image src={planets.left} width={128} height={128}
                                    alt="Planet #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                         </div>
                     </AnimateOnView>
                     <AnimateOnView animation="animate__fadeIn animate__slower">
                         <div className={`absolute ${planets.position_right} opacity-30 pointer-events-none z-[1] 
-                                         w-32 h-32 hidden lg:block`}>
+                                         w-32 h-32 scale-125 hidden lg:block`}>
                             <Image src={planets.right} width={128} height={128}
                                    alt="Planet #2 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                         </div>
