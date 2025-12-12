@@ -341,6 +341,17 @@
     "description": "Clank ist das Herz deines Discord-Servers: Neben einer kinderleichten Verwendung & wunderschönen Menüs bietet er dir alles, was du brauchst, um deine eigene Community zu schützen, & zu vergrößern.",
     "inviteButton": "Clank-Bot einladen"
   },
+  "ContactHero": {
+    "infoTag": "WIR SIND JEDERZEIT FÜR DICH & DEINE ANFRAGEN DA!",
+    "title": "KONTAKTIERE UNS",
+    "description": "Du hast eine Frage? Kein Problem, wir sind hier um dir zu helfen! Unser Team haut so schnell wie möglich in die Tasten und wird sich um dein Anliegen in Windeseile kümmern. Wähle einfach das passende Formulare aus und scrolle nach unten, um das korrekte Formular auszufüllen.",
+    "formUnbanTitle": "Entsperrungsanfrage",
+    "formUnbanDescription": "Du wurdest von unserem Discord-Server gesperrt und möchtest endlich wieder ein Teil von uns sein? Dann fülle dieses Formular aus und erhalte die Chance!",
+    "formUnbanButton": "Entsperrung beantragen",
+    "formGeneralTitle": "Allgemeines Anliegen",
+    "formGeneralDescription": "Nutze dieses Formular, falls du generell andere Arten von Fragen oder Anliegen hast, um die wir uns kümmern sollten.",
+    "formGeneralButton": "Team kontaktieren"
+  },
   "Misc": {
     "copy": "Kopiert!",
     "durationMonth": "Monat",

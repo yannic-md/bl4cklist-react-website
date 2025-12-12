@@ -2,7 +2,7 @@ import {JSX} from "react";
 import Header from "@/components/elements/layout/Header";
 import Footer from "@/components/elements/layout/Footer";
 import {GetStaticPropsContext} from "next";
-import ImprintSection from "@/components/sections/ImprintSection";
+import ImprintSection from "@/components/sections/imprint/ImprintSection";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 
 /**

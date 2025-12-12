@@ -341,6 +341,17 @@
     "description": "Clank is the heart of your Discord server: In addition to easy use & beautiful menus, it offers you everything you need to protect & grow your own community.",
     "inviteButton": "Invite Clank Bot"
   },
+  "ContactHero": {
+    "infoTag": "WE ARE ALWAYS HERE FOR YOU & YOUR REQUESTS!",
+    "title": "CONTACT US",
+    "description": "Do you have a question? No problem, we're here to help! Our team will get to work as quickly as possible and take care of your request in no time. Simply choose the appropriate form and scroll down to fill out the correct one.",
+    "formUnbanTitle": "Unban Request",
+    "formUnbanDescription": "You were banned from our Discord server and want to be part of us again? Then fill out this form and get a chance!",
+    "formUnbanButton": "Request Unban",
+    "formGeneralTitle": "General Inquiry",
+    "formGeneralDescription": "Use this form if you have general questions or concerns that our nice discord server-team should address. We try to answer fast.",
+    "formGeneralButton": "Contact the Team"
+  },
   "Misc": {
     "copy": "Copied!",
     "durationMonth": "Month",
