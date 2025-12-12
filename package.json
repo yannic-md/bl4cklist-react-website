@@ -17,7 +17,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
     "animate.css": "^4.1.1",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "next-intl": "^4.5.8",
     "postcss": "^8.5.6",
     "react": "19.2.1",
