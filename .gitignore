@@ -38,3 +38,6 @@ tailwind.config.js
 *.tsbuildinfo
 next-env.d.ts
 /.idea/
+
+# sensitive data
+/src/data/
