@@ -1,8 +1,12 @@
-import {JSX} from "react";
+import {JSX, useState} from "react";
 import Header from "@/components/elements/layout/Header";
 import Footer from "@/components/elements/layout/Footer";
 import {GetStaticPropsContext} from "next";
 import ContactHero from "@/components/sections/imprint/ContactHero";
+import ContactFormSection from "@/components/sections/imprint/ContactFormSection";
+import Image from "next/image";
+
+export type FormType = 'unban' | 'general' | null;
 
 /**
  * Contact page component that composes Header, ContactHero and Footer.
@@ -11,6 +15,19 @@ import ContactHero from "@/components/sections/imprint/ContactHero";
  * @returns {JSX.Element} The rendered Contact page element.
  */
 export default function Contact(): JSX.Element {
+    const [selectedForm, setSelectedForm] = useState<FormType>(null);
+
+    /**
+     * Handles the selection of a contact form type and scrolls to the form section.
+     * The form element uses a "special" ID to help prevent automated spam bot detection.
+     *
+     * @param {FormType} formType - The type of contact form to display ('unban', 'general', or null)
+     */
+    const handleFormSelect: (formType: FormType) => void = (formType: FormType): void => {
+        if (selectedForm === formType) { return setSelectedForm(null); }
+        setSelectedForm(formType);
+        document.getElementById('really-cool-thing')?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <>
@@ -20,9 +37,17 @@ export default function Contact(): JSX.Element {
             {/* Container for sections with transition overlay */}
             <div className="relative">
                 {/* Start of the page; greet the visitor & explain our project quick */}
-                <ContactHero />
+                <ContactHero onFormSelect={handleFormSelect} />
 
-                <div className="h-[90vh] bg-black"></div>
+                <div>
+                    {/* Decorational grid image on top of section */}
+                    <Image src="/images/bg/grid-2340w.webp" className="absolute grayscale pointer-events-none brightness-125"
+                           width={2340} height={280} sizes="100vw"
+                           alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+
+                    {/* Dynamic form section for picked topic */}
+                    <ContactFormSection selectedForm={selectedForm} />
+                </div>
             </div>
 
             {/* Footer at the bottom */}

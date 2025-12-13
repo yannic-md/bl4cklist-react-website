@@ -11,6 +11,7 @@ import {faHandcuffs} from "@fortawesome/free-solid-svg-icons/faHandcuffs";
 import {faPencil} from "@fortawesome/free-solid-svg-icons/faPencil";
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {useTranslations} from "next-intl";
+import {FormType} from "@/pages/contact";
 
 interface FormBox {
     icon: string;
@@ -18,22 +19,28 @@ interface FormBox {
     description: string;
     buttonText: string;
     buttonIcon: IconDefinition;
-    href: string;
+    formType: FormType;
+}
+
+interface ContactHeroProps {
+    onFormSelect: (formType: FormType) => void;
 }
 
 /**
  * Renders the contact hero section with animated background, headline, description,
  * and action boxes linking to contact forms.
  *
+ * @param {FormType} props - The used props.
+ * @param {(formType: FormType) => void} props.onFormSelect - The action what should be happing if a form was selected.
  * @returns {JSX.Element} The rendered ContactHero React component.
  */
-export default function ContactHero(): JSX.Element {
+export default function ContactHero({ onFormSelect }: ContactHeroProps): JSX.Element {
     const tContactHero = useTranslations('ContactHero')
     const form_boxes: FormBox[] = [
         {icon: "🛑", title: "formUnbanTitle", description: "formUnbanDescription",
-         buttonText: "formUnbanButton", buttonIcon: faHandcuffs, href: "https://discord.gg/bl4cklist"},
+         buttonText: "formUnbanButton", buttonIcon: faHandcuffs, formType: 'unban'},
         {icon: "📡", title: "formGeneralTitle", description: "formGeneralDescription",
-         buttonText: "formGeneralButton", buttonIcon: faPencil, href: "https://discord.gg/bl4cklist"}];
+         buttonText: "formGeneralButton", buttonIcon: faPencil, formType: 'general'}];
 
     return (
         <section className="relative w-full min-h-[90%] 2xl:h-[95vh] bg-slate-900/25 overflow-hidden
@@ -92,12 +99,11 @@ export default function ContactHero(): JSX.Element {
                                         {/* Action Button */}
                                         <div className="flex flex-col items-end relative group w-fit z-[20]
                                                         drop-shadow-xl drop-shadow-white/5 mx-auto">
-                                            <a href={item.href} target="_blank" className="flex flex-col items-center">
-                                                <button className={`relative sm:min-w-52 ${buttons.white_gray}`}>
-                                                    <FontAwesomeIcon icon={item.buttonIcon} className="text-gray-100" />
-                                                    <p className="whitespace-pre">{tContactHero(item.buttonText)}</p>
-                                                </button>
-                                            </a>
+                                            <button className={`relative sm:min-w-52 ${buttons.white_gray}`}
+                                                    onClick={(): void => onFormSelect(item.formType)}>
+                                                <FontAwesomeIcon icon={item.buttonIcon} className="text-gray-100" />
+                                                <p className="whitespace-pre">{tContactHero(item.buttonText)}</p>
+                                            </button>
 
                                             <ButtonHover />
                                         </div>
