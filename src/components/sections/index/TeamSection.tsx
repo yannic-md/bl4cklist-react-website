@@ -57,7 +57,7 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
                 return "animate__fadeInLeft"
             } else {
                 return "animate__fadeInRight";
-            };
+            }
         } else if (colIndex === 1) {
             // Middle column - determine based on row position
             if (rowIndex === 0) { return "animate__fadeInDown";

@@ -6,13 +6,21 @@ import CodingHero from "@/components/sections/coding-page/CodingHero";
 import CodingFeatures from "@/components/sections/coding-page/CodingFeatures";
 import CodingFAQ from "@/components/sections/coding-page/CodingFAQ";
 import TestimonialSection from "@/components/sections/TestimonialSection";
+import {fetchGuildStatistics} from "@/lib/api";
+import {GuildStatistics} from "@/types/APIResponse";
+
+interface TechCodingProps {
+    guildStats: GuildStatistics | null;
+}
 
 /**
  * Renders the Tech Coding landing page for the discord guild.
  *
- * @returns JSX.Element React component for the Tech Coding page.
+ * @param {HomeProps} props - Component configuration
+ * @param {GuildStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @returns {JSX.Element} The tech-coding page component.
  */
-export default function TechCoding(): JSX.Element {
+export default function TechCoding({ guildStats }: TechCodingProps): JSX.Element {
     return (
         <>
             {/* Header - allow navigation to other pages */}
@@ -21,7 +29,7 @@ export default function TechCoding(): JSX.Element {
             {/* Container for sections with transition overlay */}
             <div className="relative">
                 {/* Start of the page; greet the visitor & explain our project quick */}
-                <CodingHero />
+                <CodingHero guildStats={guildStats} />
 
                 {/* Explain some important big features related to the coding theme (using bentobox layout) */}
                 <CodingFeatures />
@@ -53,9 +61,11 @@ export default function TechCoding(): JSX.Element {
  * @returns returns.props.messages - The imported locale-specific messages object
  */
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    const [guildStats] = await Promise.all([fetchGuildStatistics()]);
+
     return {
         props: {
             messages: (await import(`../../../../messages/${locale}.json`)).default,
-        },
+            guildStats }, revalidate: 300 // regenerate http request cache every 5 minutes
     };
 }
