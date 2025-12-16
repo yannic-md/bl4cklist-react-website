@@ -11,11 +11,11 @@ import {
     security_module_features,
     support_module_features
 } from "@/types/ClankBotFeatures";
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 import {fetchGuildStatistics} from "@/lib/api";
 
 interface ClankBotProps {
-    guildStats: GuildStatistics | null;
+    guildStats: APIStatistics | null;
 }
 
 /**
@@ -26,7 +26,7 @@ interface ClankBotProps {
  * accept any runtime props.
  *
  * @param {HomeProps} props - Component configuration
- * @param {GuildStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
  * @returns {JSX.Element} The clank-bot page component.
  */
 export default function ClankBot({ guildStats }: ClankBotProps): JSX.Element {
@@ -54,7 +54,7 @@ export default function ClankBot({ guildStats }: ClankBotProps): JSX.Element {
                 {/* Hero section of this page */}
                 <ClankHero />
 
-                {/* Bot feature sections TODO: real data */}
+                {/* Bot feature sections */}
                 <SingleFeatureSection translationNamespace="ClankSupportSection" particlesEnabled={false} ctaEnabled={false}
                                       imagePosition="right" imageSrc="/images/bg/support-bot-preview-600w.webp" titleEmoji="🚔"
                                       guildFeatures={support_module_features} sectionId="ticket-tool" planetDecoration={1}

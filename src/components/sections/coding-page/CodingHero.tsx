@@ -15,10 +15,10 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import Link from "next/link";
 import {faRobot} from "@fortawesome/free-solid-svg-icons/faRobot";
 import Image from "next/image";
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 
 interface CodingHeroProps {
-    guildStats: GuildStatistics | null;
+    guildStats: APIStatistics | null;
 }
 
 /**
@@ -35,7 +35,7 @@ interface CodingHeroProps {
  *   `resize` events. The resize listener is cleaned up on unmount.
  *
  * @param {WelcomeHeroProps} props - Component configuration
- * @param {GuildStatistics | null} props.guildStats - The API fetched stats about the guild.
+ * @param {APIStatistics | null} props.guildStats - The API fetched stats about the guild.
  * @returns {JSX.Element} the hero section JSX tree.
  */
 export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element {

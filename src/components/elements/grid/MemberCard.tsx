@@ -109,9 +109,10 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                     const formatted_rank: string | undefined = staffMap[rank];
                     if (!formatted_rank) return "";
 
-                    const totalSeconds: number = parseInt(staff_duration.split(" - ")[1]);
-                    const months: number = Math.floor(totalSeconds / 2592000);
+                    const totalSeconds: number = parseInt(staff_duration);
+                    const months: number = Math.floor(totalSeconds / 2592000); // 30 days per month
                     const years: number = Math.floor(months / 12);
+
                     const duration: string = years > 0
                         ? `${years} ${years === 1 ? tMisc('durationYear') : tMisc('durationYears')}`
                         : `${months} ${months === 1 ? tMisc('durationMonth') : tMisc('durationMonths')}`;

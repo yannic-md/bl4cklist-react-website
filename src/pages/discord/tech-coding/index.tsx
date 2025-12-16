@@ -7,17 +7,17 @@ import CodingFeatures from "@/components/sections/coding-page/CodingFeatures";
 import CodingFAQ from "@/components/sections/coding-page/CodingFAQ";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import {fetchGuildStatistics} from "@/lib/api";
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 
 interface TechCodingProps {
-    guildStats: GuildStatistics | null;
+    guildStats: APIStatistics | null;
 }
 
 /**
  * Renders the Tech Coding landing page for the discord guild.
  *
  * @param {HomeProps} props - Component configuration
- * @param {GuildStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
  * @returns {JSX.Element} The tech-coding page component.
  */
 export default function TechCoding({ guildStats }: TechCodingProps): JSX.Element {

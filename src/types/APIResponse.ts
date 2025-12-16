@@ -1,4 +1,6 @@
-export interface GuildStatistics {
+import {Member} from "@/types/Member";
+
+export interface APIStatistics {
     member_count: number;
     online_count: number;
     message_count: number;
@@ -17,4 +19,11 @@ export interface GuildStatistics {
     global_message_count: number;
     global_users_count: number;
     global_chats_count: number;
+}
+
+export interface APICommunity {
+    supporters: Member[];
+    levels: Member[];
+    birthday: Member[];
+    former: Member[];
 }

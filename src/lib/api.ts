@@ -1,4 +1,4 @@
-import {GuildStatistics} from "@/types/APIResponse";
+import {APICommunity, APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
 import {CONFIG_API_BASE_URL} from "@/data/apiData";
 
@@ -33,16 +33,24 @@ async function fetchFromAPI<T>(endpoint: string = '', revalidate: number = 300):
 
 /** Fetches guild statistics from the API.
  *
- * @returns {Promise<GuildStatistics | null>} The guild statistics object or null if the request fails
+ * @returns {Promise<APIStatistics | null>} The guild statistics object or null if the request fails
  */
-export async function fetchGuildStatistics(): Promise<GuildStatistics | null> {
-    return fetchFromAPI<GuildStatistics>('', 300);
+export async function fetchGuildStatistics(): Promise<APIStatistics | null> {
+    return fetchFromAPI<APIStatistics>('', 300);
 }
 
 /** Fetches bl4cklist's team members from the API.
  *
- * @returns {Promise<GuildStatistics | null>} The team member object or null if the request fails
+ * @returns {Promise<Member[] | null>} The team member objects or null if the request fails
  */
 export async function fetchTeamMembers(): Promise<Member[] | null> {
     return fetchFromAPI<Member[]>('/team', 600);
+}
+
+/** Fetches some of the most loyal members of bl4cklist from the API.
+ *
+ * @returns {Promise<APICommunity | null>} The formatted response for all community members or null if the request fails
+ */
+export async function fetchCommunityMembers(): Promise<APICommunity | null> {
+    return fetchFromAPI<APICommunity>('/community', 300);
 }

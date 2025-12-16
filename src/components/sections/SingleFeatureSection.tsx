@@ -15,7 +15,7 @@ import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -30,7 +30,7 @@ export interface SingleFeatureSectionProps {
     titleEmoji: string;
     guildFeatures?: GuildFeature[][];
     customStatistics?: GuildStatistic[];
-    guildStats?: GuildStatistics | null;
+    guildStats?: APIStatistics | null;
 }
 
 /**
@@ -50,7 +50,7 @@ export interface SingleFeatureSectionProps {
  * @param {string} props.titleEmoji - The emoji which will be used in the title.
  * @param {GuildFeature[][]} [props.guildFeatures] - Two-dimensional array of guild features to display
  * @param {GuildStatistic[]} [props.customStatistics] - Custom statistics to display.
- * @param {GuildStatistics} [props.guildStats] - The API loaded statistics about the single feature.
+ * @param {APIStatistics} [props.guildStats] - The API loaded statistics about the single feature.
  *
  * @returns {JSX.Element} The rendered feature section component
  */

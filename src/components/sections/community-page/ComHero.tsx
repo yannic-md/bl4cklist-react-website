@@ -13,18 +13,30 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {faHammer} from "@fortawesome/free-solid-svg-icons/faHammer";
+import {APIStatistics} from "@/types/APIResponse";
+
+interface ComHeroProps {
+    guildStats?: APIStatistics | null;
+}
 
 /**
  * Renders the hero section for the community page featuring an animated introduction,
  * key statistics about the Discord community, and call-to-action buttons for joining
  * the server or accessing coding support.
  *
+ * @param {ComHeroProps} props - Component configuration
+ * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
  * @returns {JSX.Element} The rendered hero section with animated text, statistics counters, and action buttons
  */
-export default function ComHero(): JSX.Element {
+export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
     const tComHero = useTranslations('ComHero');
     const tWelcome = useTranslations('WelcomeHero');
     const { locale } = useRouter();
+
+    // fallback for SSR
+    const templatesCount: number = guildStats?.templates_count ?? 216;
+    const messageCount: number = guildStats?.message_count ?? 4447507;
+    const questionCount: number = guildStats?.coding_question_count ?? 47;
 
     return (
         <section className="relative w-full min-h-[90%] 2xl:h-[95vh] bg-slate-900/30 overflow-hidden
@@ -90,21 +102,21 @@ export default function ComHero(): JSX.Element {
                             <div className="flex justify-center items-start flex-wrap gap-x-4 sm:gap-x-8
                                             gap-y-6 mb-6 mt-8">
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={216} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={templatesCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
                                         📂 {tComHero('stat_templates')}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={4447507} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={messageCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap -ml-0.5">
                                         📡 {tComHero('stat_messages')}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={47} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={questionCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
                                         🐞 {tComHero('stat_questions')}
                                     </span>

@@ -11,10 +11,10 @@ import responsive from '../../../styles/util/responsive.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 
 interface WelcomeHeroProps {
-    guildStats: GuildStatistics | null;
+    guildStats: APIStatistics | null;
 }
 
 /**
@@ -33,7 +33,7 @@ interface WelcomeHeroProps {
  * - Scroll down indicator
  *
  * @param {WelcomeHeroProps} props - Component configuration
- * @param {GuildStatistics | null} props.guildStats - The API fetched stats about the guild.
+ * @param {APIStatistics | null} props.guildStats - The API fetched stats about the guild.
  * @returns {JSX.Element} The welcome hero section.
  */
 export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Element {

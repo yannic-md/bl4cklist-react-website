@@ -9,13 +9,13 @@ import Footer from "@/components/elements/layout/Footer";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import SingleFeatureSection from "@/components/sections/SingleFeatureSection";
 import {GuildFeature} from "@/types/GuildFeature";
-import {GuildStatistics} from "@/types/APIResponse";
+import {APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
 import {fetchGuildStatistics, fetchTeamMembers} from "@/lib/api";
 
 interface HomeProps {
     messages: any;
-    guildStats: GuildStatistics | null;
+    guildStats: APIStatistics | null;
     teamMembers: Member[] | null;
 }
 
@@ -24,7 +24,7 @@ interface HomeProps {
  * Displays a welcome hero section to greet visitors and briefly explain the project.
  *
  * @param {HomeProps} props - Component configuration
- * @param {GuildStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
  * @param {Member[] | null} props.teamMembers - The API loaded stats about the team.
  * @returns {JSX.Element} The home page component.
  */
