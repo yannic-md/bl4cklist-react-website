@@ -9,14 +9,26 @@ import Footer from "@/components/elements/layout/Footer";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import SingleFeatureSection from "@/components/sections/SingleFeatureSection";
 import {GuildFeature} from "@/types/GuildFeature";
+import {GuildStatistics} from "@/types/APIResponse";
+import {Member} from "@/types/Member";
+import {fetchGuildStatistics, fetchTeamMembers} from "@/lib/api";
+
+interface HomeProps {
+    messages: any;
+    guildStats: GuildStatistics | null;
+    teamMembers: Member[] | null;
+}
 
 /**
  * Renders the home page of the project.
  * Displays a welcome hero section to greet visitors and briefly explain the project.
  *
+ * @param {HomeProps} props - Component configuration
+ * @param {GuildStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @param {Member[] | null} props.teamMembers - The API loaded stats about the team.
  * @returns {JSX.Element} The home page component.
  */
-export default function Home(): JSX.Element {
+export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Element {
     const singleFeatureSub: GuildFeature[][] = [[
         { src: "/images/icons/small/coding-32w.webp", alt: "Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
           titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
@@ -39,7 +51,7 @@ export default function Home(): JSX.Element {
             {/* Container for sections with transition overlay */}
             <div className="relative">
                 {/* Start of the page; greet the visitor & explain our project quick */}
-                <WelcomeHero />
+                <WelcomeHero guildStats={guildStats} />
 
                 {/* Container for IntroSection with shadow overlay */}
                 <div className="relative">
@@ -53,10 +65,10 @@ export default function Home(): JSX.Element {
                                           imagePosition="right" ctaEnabled={true} showTopGradients={true}
                                           imageSrc="/images/pixel/guild-banner-508w.webp" guildFeatures={singleFeatureSub}
                                           imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                          sectionId="discord-server-features" titleEmoji="👋🏻" />
+                                          sectionId="discord-server-features" titleEmoji="👋🏻" guildStats={guildStats} />
 
                     {/* Presentation of the server-team */}
-                    <TeamSection />
+                    <TeamSection teamMembers={teamMembers} />
 
                     {/* History of the server */}
                     <div>
@@ -93,9 +105,11 @@ export default function Home(): JSX.Element {
  * @returns returns.props.messages - The imported locale-specific messages object
  */
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    const [guildStats, teamMembers] = await Promise.all([fetchGuildStatistics(), fetchTeamMembers()]);
+
     return {
         props: {
             messages: (await import(`../../messages/${locale}.json`)).default,
-        },
+            guildStats, teamMembers }, revalidate: 300 // regenerate http request cache every 5 minutes
     };
 }

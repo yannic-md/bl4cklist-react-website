@@ -9,6 +9,10 @@ import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 import Image from "next/image";
 import {Member} from "@/types/Member";
 
+interface TeamSectionProps {
+    teamMembers: Member[] | null;
+}
+
 /**
  * Renders the Discord server team section with animated elements and team member cards.
  *
@@ -16,31 +20,18 @@ import {Member} from "@/types/Member";
  * based on their position in the grid. Uses translations for all texts and applies
  * responsive TailwindCSS styling.
  *
+ * @param {TeamSectionProps} props - Component configuration
+ * @param {Member[]} props.teamMembers - The loaded api data for all team members.
  * @returns {JSX.Element} The rendered team section component.
  */
-export default function TeamSection(): JSX.Element {
+export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSectionProps): JSX.Element {
     const tTeam = useTranslations('TeamSection');
 
-    // Placeholder Data TODO
-    const teamMembers: Member[] = [
-        { username: 'yannicde', display_name: 'Yannic 🦙', rank: 'LEITUNG', user_id: '327176944640720906',
-          avatar_url: 'https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128',
-          social_media_1: 'https://twitch.tv/yannicde', social_media_2: 'https://github.com/yannicde' },
-        { username: 'xlonestar.888', display_name: '.Julian🎴', rank: 'ADMIN', user_id: '806086469268668437',
-          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/806086469268668437/avatars/a_ad9098a369c818b10c7ca055f22e8f66.gif?size=128',
-          social_media_1: 'https://youtube.com/@julian', social_media_2: 'https://twitter.com/xlonestar888' },
-        { username: '7raku_', display_name: 'Döner <3 🥙', rank: 'SENIOR', user_id: '1170958319662407694',
-          avatar_url: 'https://cdn.discordapp.com/avatars/1170958319662407694/08a55a7194b3e7f8c868b8b034f916b8.png?size=128',
-          social_media_1: 'https://tiktok.com/@7raku_', social_media_2: 'https://instagram.com/7raku_' },
-        { username: 'moderator_example', display_name: 'Platzhalter', rank: 'MODERATOR', user_id: '1170958319662407699',
-          avatar_url: 'https://cdn.discordapp.com/avatars/981918775651745832/4ef47e4b6c4bcb1f0d23ec0ec2112109.png?size=128',
-          social_media_1: 'https://twitch.tv/moderator_example', social_media_2: 'https://youtube.com/@modexample' },
-        { username: 'helper_example', display_name: 'Platzhalter', rank: 'ENTWICKLER', user_id: '1170958319662407700',
-          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/880436867357622292/avatars/a_6944984ee59435315ce7184411485cd9.gif?size=128',
-          social_media_1: 'https://github.com/helper_example', social_media_2: 'https://twitter.com/helper_example' },
-        { username: 'community_manager', display_name: 'Platzhalter', rank: 'HELFER', user_id: '1170958319662407701',
-          avatar_url: 'https://cdn.discordapp.com/guilds/616655040614236160/users/880436867357622292/avatars/a_6944984ee59435315ce7184411485cd9.gif?size=128',
-          social_media_1: 'https://instagram.com/community_manager' }
+    // fetched Team member data (or fallback)
+    const teamMembers: Member[] = apiTeamMembers ?? [ // fallback data for SSR
+        { user_name: 'yannicde', user_display_name: 'Yannic 🦙', rank: 'LEITUNG', user_id: '327176944640720906',
+          user_avatar_url: 'https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128',
+          social_media_url: null },
     ];
 
     /**

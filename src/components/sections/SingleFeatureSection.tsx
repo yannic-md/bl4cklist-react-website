@@ -15,6 +15,7 @@ import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
+import {GuildStatistics} from "@/types/APIResponse";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -29,6 +30,7 @@ export interface SingleFeatureSectionProps {
     titleEmoji: string;
     guildFeatures?: GuildFeature[][];
     customStatistics?: GuildStatistic[];
+    guildStats?: GuildStatistics | null;
 }
 
 /**
@@ -48,21 +50,22 @@ export interface SingleFeatureSectionProps {
  * @param {string} props.titleEmoji - The emoji which will be used in the title.
  * @param {GuildFeature[][]} [props.guildFeatures] - Two-dimensional array of guild features to display
  * @param {GuildStatistic[]} [props.customStatistics] - Custom statistics to display.
+ * @param {GuildStatistics} [props.guildStats] - The API loaded statistics about the single feature.
  *
  * @returns {JSX.Element} The rendered feature section component
  */
 export default function SingleFeatureSection({sectionId, translationNamespace, particlesEnabled = true,
                                               planetDecoration = 'none', imagePosition = 'right', ctaEnabled = true,
                                               showTopGradients = false, imageSrc, imageAlt, titleEmoji,
-                                              guildFeatures, customStatistics}: SingleFeatureSectionProps): JSX.Element {
+                                              guildFeatures, customStatistics, guildStats}: SingleFeatureSectionProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const t = useTranslations(translationNamespace);
     const { locale } = useRouter();
 
     const statistics: GuildStatistic[] = customStatistics ?? [
-        { end: 3533, suffix: '+', icon: '👥', label: tWelcome('memberCount') },
-        { end: 890, suffix: '+', icon: '🔥', label: 'Online' },
-        { end: 4381784, suffix: '+', icon: '💬', label: t('count_chat') }
+        { end: guildStats?.member_count ?? 3533, suffix: '+', icon: '👥', label: tWelcome('memberCount') },
+        { end: guildStats?.online_count ?? 890, suffix: '+', icon: '🔥', label: 'Online' },
+        { end: guildStats?.message_count ?? 4381784, suffix: '+', icon: '💬', label: t('count_chat') }
     ];
 
     /**

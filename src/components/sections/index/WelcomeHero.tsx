@@ -11,6 +11,11 @@ import responsive from '../../../styles/util/responsive.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import {GuildStatistics} from "@/types/APIResponse";
+
+interface WelcomeHeroProps {
+    guildStats: GuildStatistics | null;
+}
 
 /**
  * Hero Section - Welcome Experience
@@ -27,10 +32,16 @@ import Link from 'next/link';
  * - Call-to-action elements
  * - Scroll down indicator
  *
+ * @param {WelcomeHeroProps} props - Component configuration
+ * @param {GuildStatistics | null} props.guildStats - The API fetched stats about the guild.
  * @returns {JSX.Element} The welcome hero section.
  */
-export default function WelcomeHero(): JSX.Element {
+export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
+
+    // fallback for SSR
+    const memberCount: number = guildStats?.member_count ?? 3533;
+    const onlineCount: number = guildStats?.online_count ?? 890;
 
     return (
         <section className="relative w-full h-screen overflow-hidden" id="discord-server-start">
@@ -182,7 +193,7 @@ export default function WelcomeHero(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                    <span>890 Online</span> { /* TODO */ }
+                                    <span>{onlineCount.toLocaleString()} Online</span>
                                 </div>
                             </a>
                             <ButtonHover />
@@ -200,7 +211,7 @@ export default function WelcomeHero(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                                    <span>3.533 {tWelcome('memberCount')}</span> { /* TODO */ }
+                                    <span>{memberCount.toLocaleString()} {tWelcome('memberCount')}</span>
                                 </div>
                             </a>
                             <ButtonHover />
