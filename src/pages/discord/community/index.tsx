@@ -31,10 +31,10 @@ export default function Community({ guildStats, apiMembers }: CommunityProps): J
         {user_name: 'Clank#0510', user_display_name: 'Clank', rank: 'LEITUNG', user_id: '775415193760169995', social_media_url: null,
         user_avatar_url: 'https://cdn.discordapp.com/avatars/775415193760169995/731f153c04c2dc5b3f6335382c7206ba.png?size=128'};
 
-    const birthday_users: Member[] = apiMembers?.birthday ?? [fallbackMember];
-    const ranked_users: Member[] = apiMembers?.supporters ?? [fallbackMember];
-    const level_users: Member[] = apiMembers?.levels ?? [fallbackMember];
-    const former_staff: Member[] = apiMembers?.former ?? [fallbackMember];
+    const birthday_users: Member[] = apiMembers?.birthday ?? [{ ...fallbackMember, rank: "BIRTHDAY" }];
+    const ranked_users: Member[] = apiMembers?.supporters ?? [{ ...fallbackMember, rank: "SPONSOR" }];
+    const level_users: Member[] = apiMembers?.levels ?? [{ ...fallbackMember, rank: "LVL125" }];
+    const former_staff: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
 
     return (
         <>

@@ -1,16 +1,24 @@
 import NotFound from "@/components/sections/errors/404-NotFound";
 import {JSX} from "react";
 import {GetStaticPropsContext} from "next";
+import {fetchGuildStatistics} from "@/lib/api";
+import {APIStatistics} from "@/types/APIResponse";
+
+interface NotFoundProps {
+    guildStats: APIStatistics | null;
+}
 
 /**
  * Custom 404 page component.
  *
  * Renders the project's NotFound section when a route is not matched.
  *
+ * @param {NotFoundProps} props - Component configuration
+ * @param {APIStatistics | null} props.guildStats - The API fetched stats about the guild.
  * @returns {JSX.Element} The NotFound component.
  */
-export default function Custom404(): JSX.Element {
-    return <NotFound />
+export default function Custom404({ guildStats }: NotFoundProps): JSX.Element {
+    return <NotFound guildStats={guildStats} />
 }
 
 /**
@@ -27,9 +35,11 @@ export default function Custom404(): JSX.Element {
  * @returns returns.props.messages - The imported locale-specific messages object
  */
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    const [guildStats] = await Promise.all([fetchGuildStatistics()]);
+
     return {
         props: {
             messages: (await import(`../../messages/${locale}.json`)).default,
-        },
+            guildStats }, revalidate: 300 // regenerate http request cache every 5 minutes
     };
 }
