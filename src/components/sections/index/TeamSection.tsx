@@ -46,8 +46,18 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
         const colIndex: number = index % 3;
         const totalRows: number = Math.ceil(totalMembers / 3);
         
-        if (colIndex === 0) { return "animate__fadeInLeft";
-        } else if (colIndex === 2) { return "animate__fadeInRight";
+        if (colIndex === 0) {
+            if (totalMembers === 4) {
+                return "animate__fadeInRight"
+            } else {
+                return "animate__fadeInLeft";
+            }
+        } else if (colIndex === 2) {
+            if (totalMembers === 4) {
+                return "animate__fadeInLeft"
+            } else {
+                return "animate__fadeInRight";
+            };
         } else if (colIndex === 1) {
             // Middle column - determine based on row position
             if (rowIndex === 0) { return "animate__fadeInDown";
@@ -100,8 +110,9 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
                 </div>
 
                 {/* Team-Members */}
-                <div className="relative flex flex-wrap z-[1] w-full justify-center max-w-7xl gap-8">
-                    {teamMembers.map((member, index) => (
+                <div className={`relative flex flex-wrap z-[1] w-full justify-center 
+                                 ${teamMembers.length == 4 ? 'max-w-6xl' : 'max-w-7xl'} gap-8`}>
+                    {teamMembers.map((member: Member, index: number): JSX.Element => (
                         <AnimateOnView key={member.user_id} animation={`${getTeamMemberAnimation(index, teamMembers.length)} animate__slower`}>
                             <TeamMemberCard member={member} />
                         </AnimateOnView>
