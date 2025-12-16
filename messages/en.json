@@ -137,7 +137,7 @@
     "title": "Protect your server",
     "description": "With our <strong><a>Discord Security Bot</a></strong> you greatly improve moderation on your Discord server and at the same time reduce the workload for important tasks — our bot's job is to make your server team's life easier.",
     "description2": "Whether tools for raid protection or simple but powerful auto-moderation rules: it has a lot to offer and will make life difficult for rule-breakers trying to bypass your rules. It offers intelligent tools that help any community.",
-    "securityPunished": "Users punished",
+    "securityBackups": "Backups created",
     "securityLog": "Logging systems active",
     "securityAutoMod": "Auto-mod rules",
     "tip_1_title": "Wide range of protection tools",

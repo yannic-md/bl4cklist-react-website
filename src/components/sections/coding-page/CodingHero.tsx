@@ -45,9 +45,9 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
     const { locale } = useRouter();
 
     // fallback for SSR
-    const questionCount: number = guildStats?.member_count ?? 342;
-    const bugCount: number = guildStats?.online_count ?? 216;
-    const gamingNewsCount: number = guildStats?.online_count ?? 15123;
+    const questionCount: number = guildStats?.coding_question_count ?? 342;
+    const bugCount: number = guildStats?.coding_bugs_count ?? 216;
+    const gamingNewsCount: number = guildStats?.gaming_news_count ?? 15123;
 
     /**
      * Effect: synchronize `is2XL` state with the current viewport width.

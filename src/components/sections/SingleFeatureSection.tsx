@@ -131,7 +131,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                 </p>
             </AnimateOnView>
 
-            {/* Some entertaining discord server statistics TODO */}
+            {/* Some entertaining discord server statistics */}
             <AnimateOnView animation="animate__fadeInUp animate__slower self-center lg:self-auto">
                 <div className="flex justify-center lg:justify-start items-center flex-wrap gap-x-8 gap-y-12">
                     {statistics.map((stat: GuildStatistic, index: number): JSX.Element => (
