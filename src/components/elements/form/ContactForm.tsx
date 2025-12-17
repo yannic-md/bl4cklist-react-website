@@ -186,8 +186,10 @@ export default function ContactForm({formType, validationSchema, submitIcon, sub
                 <span className={`text-sm font-medium w-full self-center transition-opacity duration-200 
                                   ${submitStatus === 'idle' ? 'opacity-0' : 'opacity-100'}
                                   ${submitStatus === 'success' ? 'text-green-400' : 'text-red-400'}`}>
-                    {submitStatus === 'success' ? tForm('successFormSent')
-                                                : submitStatus === 'error' ? tForm('errorSubmit') : ''}
+                    {submitStatus === 'success' && tForm('successFormSent')}
+                    {submitStatus === 'error' && (
+                        <span className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: tForm('errorSubmit') }}/>
+                    )}
                 </span>
 
                 {/* Submit button */}

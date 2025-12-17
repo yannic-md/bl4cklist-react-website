@@ -389,7 +389,7 @@
     "buttonUnban": "Request unban",
     "errorTurnstile": "Please confirm that you are not a robot.",
     "errorTurnstileLoad": "Captcha could not be loaded. Please reload the page.",
-    "errorSubmit": "Something went wrong - please try again.\nOr send us an email: yannicdrews1@gmail.com",
+    "errorSubmit": "Something went wrong - please try again.<br />Or send us an email: yannicdrews1@gmail.com",
     "errorRequired": "This field cannot be empty.",
     "errorDiscordIdNumeric": "This ID can only contain numbers.",
     "errorDiscordIdInvalid": "This is not a valid user ID.",
