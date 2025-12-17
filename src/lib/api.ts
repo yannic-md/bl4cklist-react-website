@@ -54,3 +54,33 @@ export async function fetchTeamMembers(): Promise<Member[] | null> {
 export async function fetchCommunityMembers(): Promise<APICommunity | null> {
     return fetchFromAPI<APICommunity>('/community', 300);
 }
+
+/**
+ * Sends contact form data to the backend API with Turnstile verification.
+ *
+ * @param {FormData} formData - The form data containing user input fields
+ * @param {string} turnstileToken - The Cloudflare Turnstile verification token
+ * @param {'unban' | 'general'} formType - The type of contact form being submitted
+ *
+ * @returns {Promise<boolean>} Response indicating success or failure
+ */
+export async function submitContactForm(formData: FormData, turnstileToken: string,
+                                        formType: 'unban' | 'general'): Promise<boolean> {
+    try {
+        const payload = {formType, turnstileToken, ...Object.fromEntries(formData.entries())};
+
+        const response: Response = await fetch(`${API_BASE_URL}/contact`, {method: 'POST',
+            headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            console.error(`Failed to submit contact form: HTTP ${response.status}`);
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Failed to submit contact form:', error);
+        return false;
+    }
+}

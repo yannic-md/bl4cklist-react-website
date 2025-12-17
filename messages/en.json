@@ -386,7 +386,14 @@
     "errorFormUnknown": "Something went wrong - please try again.",
     "errorDiscordId": "This is not a valid Discord user ID!",
     "errorDiscordName": "This is not a valid account name!",
-    "buttonUnban": "Request unban"
+    "buttonUnban": "Request unban",
+    "errorTurnstile": "Please confirm that you are not a robot.",
+    "errorTurnstileLoad": "Captcha could not be loaded. Please reload the page.",
+    "errorSubmit": "Something went wrong - please try again.",
+    "errorRequired": "This field cannot be empty.",
+    "errorDiscordIdNumeric": "This ID can only contain numbers.",
+    "errorDiscordIdInvalid": "This is not a valid user ID.",
+    "errorEmailInvalid": "This is not a valid email address."
   },
   "Misc": {
     "send": "Send",

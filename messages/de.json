@@ -386,7 +386,14 @@
     "errorFormUnknown": "Etwas ist schiefgelaufen - probiere es erneut.",
     "errorDiscordId": "Dies ist keine gültige Discord User-ID!",
     "errorDiscordName": "Dies ist kein gültiger Account-Name!",
-    "buttonUnban": "Entsperrung beantragen"
+    "buttonUnban": "Entsperrung beantragen",
+    "errorTurnstile": "Bitte bestätige, dass du kein Roboter bist.",
+    "errorTurnstileLoad": "Captcha konnte nicht geladen werden. Bitte lade die Seite neu.",
+    "errorSubmit": "Etwas ist schiefgelaufen - probiere es erneut.",
+    "errorRequired": "Dieses Feld darf nicht leer sein.",
+    "errorDiscordIdNumeric": "Diese ID kann nur aus Zahlen bestehen.",
+    "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
+    "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse."
   },
   "Misc": {
     "send": "Absenden",

@@ -47,11 +47,15 @@
 It supports following <strong>features</strong>:
 <ul> 
   <li>🖼️ <strong>Creative & beautiful design</strong>: We have put a lot of thought into the design of the website and wanted it to be something unique - we have put a lot of love and attention to detail into it.</li>
-  <br /> 
+  <br />
   <li>💚 <strong>100% Unit-Test Coverage</strong>: Software testing is an important point when programming professionally for clients - we have tested all our TypeScript code, and you may be able to learn something from it.</li> 
   <br /> 
   <li>⚙️ <strong>Server-Side-Rendering</strong>: The landing page inside this little dashboard is using Angular's SSR to be optimized for Google and as fast as possible.</li> 
   <br /> 
+  <li>💯 <strong>API-Calls with SSR Support</strong>: We implemented a possible way to get realtime statistics & objects while still supporting SSR.</li> 
+  <br />
+  <li>☁️ <strong>Cloudflare Turnstile Integration</strong>: To avoid bots spamming our contact form, we're using Cloudflare's Captcha Tool "Turnstile".</li> 
+  <br />
   <li>🚩 <strong>Language Switcher</strong>: Our website automatically detects the language of your browser and displays English/German accordingly, alternatively the user can switch via button click.</li> 
   <br /> 
   <li>📱 <strong>Responsive for all Devices</strong>: We have put a special focus on ensuring that the website is beautifully and user-friendly displayed on as many devices as possible.</li> 
