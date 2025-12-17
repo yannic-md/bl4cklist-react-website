@@ -1,9 +1,8 @@
 import {APICommunity, APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
-import {CONFIG_API_BASE_URL} from "@/data/apiData";
 
 
-const API_BASE_URL: string = CONFIG_API_BASE_URL ?? 'http://localhost:3000';
+const API_BASE_URL: string = process.env.NODE_ENV === 'development' ? 'http://localhost:8081/stats/web2' : process.env.CONFIG_API_BASE_URL!;
 
 
 /** Fetches data from the API endpoint.
