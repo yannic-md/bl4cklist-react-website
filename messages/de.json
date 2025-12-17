@@ -389,7 +389,7 @@
     "buttonUnban": "Entsperrung beantragen",
     "errorTurnstile": "Bitte bestätige, dass du kein Roboter bist.",
     "errorTurnstileLoad": "Captcha konnte nicht geladen werden. Bitte lade die Seite neu.",
-    "errorSubmit": "Etwas ist schiefgelaufen - probiere es erneut.",
+    "errorSubmit": "Etwas ist schiefgelaufen - probiere es erneut.\nOder sende uns eine E-Mail: yannicdrews1@gmail.com",
     "errorRequired": "Dieses Feld darf nicht leer sein.",
     "errorDiscordIdNumeric": "Diese ID kann nur aus Zahlen bestehen.",
     "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
