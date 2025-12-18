@@ -3,23 +3,12 @@ import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
-import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import ButtonHover from "@/components/elements/ButtonHover";
-import {
-    faEnvelope,
-    faGavel,
-    faHeart,
-    faIdCard,
-    faMessage,
-    faUser,
-    faUserShield
-} from "@fortawesome/free-solid-svg-icons";
 import {FormType} from "@/pages/contact";
 import {faHandcuffs} from "@fortawesome/free-solid-svg-icons/faHandcuffs";
 import {faReply} from "@fortawesome/free-solid-svg-icons/faReply";
 import {useTranslations} from "next-intl";
-import {faQuestionCircle} from "@fortawesome/free-regular-svg-icons/faQuestionCircle";
+import {createValidationSchemas} from "@/lib/formValidation";
+import ContactForm from "@/components/elements/form/ContactForm";
 
 interface ContactFormSectionProps {
     selectedForm: FormType;
@@ -41,8 +30,8 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
     const tContactForm = useTranslations("ContactForm")
     const isUnbanForm: boolean = selectedForm === 'unban';
     const [is2XL, setIs2XL] = useState(false);
-    // TODO: Real functionality for the forms.
 
+    const validationSchemas = createValidationSchemas(tForm);
 
     /**
      * Effect: synchronize `is2XL` state with the current viewport width.
@@ -112,251 +101,6 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
         </>
     );
 
-    /**
-     * Renders the unban request form for users who want to appeal a Discord-server ban.
-     *
-     * The form collects the user's Discord name and ID, optional information about
-     * the ban reason and responsible moderator, and a detailed apology text.
-     *
-     * @returns {JSX.Element} The JSX structure for the unban request form.
-     */
-    const unbanForm: () => JSX.Element = (): JSX.Element => (
-        <>
-            <form className="relative z-10 flex flex-col gap-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Discord Name Field */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="discord-name" className="text-sm font-medium text-gray-300">
-                            {tForm('textDiscordName')}
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-slate-700 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faUser} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="text" id="discord-name" name="discord-name" placeholder="yannicde"
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                    </div>
-
-                    {/* Discord ID */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="discord-id" className="text-sm font-medium text-gray-300">
-                            {tForm('textDiscordID')}
-                            <a href="https://support.discord.com/hc/articles/206346498#h_01HRSTXPS5H5D7JBY2QKKPVKNA" target="_blank">
-                                <FontAwesomeIcon icon={faQuestionCircle} className="ml-1 text-gray-500 cursor-pointer" />
-                            </a>
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-slate-700 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faIdCard} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="text" id="discord-id" name="discord-id" placeholder="775415193760169995"
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Optional fields */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Reason of punishment (optional) */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="ban-reason" className="text-sm font-medium text-gray-300">
-                            {tForm('textReason')} <span className="text-gray-500">(Optional)</span>
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-slate-700 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faGavel} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="text" id="ban-reason" name="ban-reason" placeholder={tForm('placeholderReason')}
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                    </div>
-
-                    {/* Punished by (optional) */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="banned-by" className="text-sm font-medium text-gray-300">
-                            {tForm('textPunishedBy')} <span className="text-gray-500">(Optional)</span>
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-slate-700 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faUserShield} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="text" id="banned-by" name="banned-by" placeholder="xlonestar.888"
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Your excuse MANDATORY FIELD */}
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="apology" className="text-sm font-medium text-gray-300">
-                        {tForm('textExcuse')}
-                    </label>
-
-                    <div className="relative flex bg-slate-800/50 border border-slate-700 rounded-lg
-                                    focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                    transition-colors duration-200">
-                        <div className="flex items-start justify-center my-auto pl-4 pr-3">
-                            <FontAwesomeIcon icon={faHeart} className="text-gray-400 text-sm" />
-                        </div>
-
-                        <div className="h-auto w-px bg-slate-700 mt-3 mb-3"></div>
-                        <textarea id="apology" name="apology" rows={5} placeholder={tForm('placeholderExcuse')}
-                                  className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                             focus:outline-none resize-none" />
-                    </div>
-                </div>
-
-
-                {/* Submit Button */}
-                <div className="flex flex-col lg:flex-row-reverse mt-2 gap-6">
-                    {/* Example Success Message */}
-                    <span className="text-sm font-medium text-green-400 w-full self-center opacity-0">
-                        {tForm('successFormSent')}
-                    </span>
-
-                    {/* Submit button */}
-                    <div className="flex flex-col items-end relative group z-[20] drop-shadow-xl
-                                    drop-shadow-white/5">
-                        <a href="https://discord.gg/bl4cklist" target="_blank"
-                           className="flex flex-col items-end w-full">
-                            <button type="submit" className={`relative w-full lg:w-fit ${buttons.white_gray}`}>
-                                <FontAwesomeIcon icon={faHandcuffs} className="text-gray-100" />
-                                <p className="whitespace-pre">{tForm('buttonUnban')}</p>
-                            </button>
-                        </a>
-
-                        <ButtonHover />
-                    </div>
-                </div>
-            </form>
-        </>
-    );
-
-    /**
-     * Renders the general contact form used for non-unban related requests.
-     *
-     * The form contains input fields for the user's name, email address,
-     * and a free-text message area, as well as a submit button.
-     *
-     * @returns {JSX.Element} containing the complete general contact form layout.
-     */
-    const generalForm: () => JSX.Element = (): JSX.Element => (
-        <>
-            <form className="relative z-10 flex flex-col gap-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Name Field */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="name" className="text-sm font-medium text-gray-300">
-                            {tForm('textName')}
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-red-500 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faUser} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="text" id="name" name="name" placeholder={tForm('placeholderName')}
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                        {/* Example error message */}
-                        <span className="text-xs text-red-400">Bitte gib deinen Namen ein</span>
-                    </div>
-
-                    {/* Email Field */}
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="email" className="text-sm font-medium text-gray-300">
-                            {tForm('textEmail')}
-                        </label>
-
-                        <div className="relative flex items-center bg-slate-800/50 border border-slate-700 rounded-lg
-                                        focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                        transition-colors duration-200">
-                            <div className="flex items-center justify-center pl-4 pr-3">
-                                <FontAwesomeIcon icon={faEnvelope} className="text-gray-400 text-sm" />
-                            </div>
-
-                            <div className="h-8 w-px bg-slate-700"></div>
-                            <input type="email" id="email" name="email" placeholder={tForm('placeholderEmail')}
-                                   className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                              focus:outline-none" />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Message Field */}
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-300">
-                        {tForm('textMessage')}
-                    </label>
-
-                    <div className="relative flex bg-slate-800/50 border border-slate-700 rounded-lg
-                                    focus-within:border-zinc-300 focus-within:ring-1 focus-within:ring-zinc-300
-                                    transition-colors duration-200">
-                        <div className="flex items-start justify-center my-auto pl-4 pr-3">
-                            <FontAwesomeIcon icon={faMessage} className="text-gray-400 text-sm" />
-                        </div>
-
-                        <div className="h-auto w-px bg-slate-700 mt-3 mb-3"></div>
-                        <textarea id="message" name="message" rows={5} placeholder={tForm('placeholderMessage')}
-                                  className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
-                                             focus:outline-none resize-none" />
-                    </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex flex-col lg:flex-row mt-2 gap-6">
-                    {/* Example Success Message */}
-                    <span className="text-sm font-medium text-green-400 w-full self-center">
-                        {tForm('successFormSent')}
-                    </span>
-
-                    {/* Submit button */}
-                    <div className="flex flex-col items-end relative group z-[20] drop-shadow-xl
-                                    drop-shadow-white/5">
-                        <a href="https://discord.gg/bl4cklist" target="_blank"
-                           className="flex flex-col items-end w-full">
-                            <button type="submit" className={`relative w-full lg:w-fit ${buttons.white_gray}`}>
-                                <FontAwesomeIcon icon={faReply} className="text-gray-100" />
-                                <p className="whitespace-pre">{tMisc('send')}</p>
-                            </button>
-                        </a>
-
-                        <ButtonHover />
-                    </div>
-                </div>
-            </form>
-        </>
-    );
-
     if (!selectedForm) { return noForm(); }  // No form was selected
 
     return (
@@ -379,7 +123,11 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
                                                     bg-[radial-gradient(50%_50%_at_93.7%_8.1%,#b8c7d980_0%,rgba(4,7,13,0)_100%)]" />
 
                                     {/* Select the correct form */}
-                                    {isUnbanForm ? (unbanForm()) : (generalForm())}
+                                    <ContactForm formType={selectedForm}
+                                                 turnstileAlign={isUnbanForm ? 'lg:self-start' : 'lg:self-end'}
+                                                 validationSchema={isUnbanForm ? validationSchemas.unban : validationSchemas.general}
+                                                 submitIcon={isUnbanForm ? faHandcuffs : faReply}
+                                                 submitText={isUnbanForm ? tForm('buttonUnban') : tMisc('send')} />
                                 </div>
                             </div>
                         </AnimateOnView>

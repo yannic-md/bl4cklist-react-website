@@ -6,6 +6,13 @@ import Footer from "@/components/elements/layout/Footer";
 import ComHero from "@/components/sections/community-page/ComHero";
 import MemberList from "@/components/sections/community-page/MemberList";
 import {Member} from "@/types/Member";
+import {fetchCommunityMembers, fetchGuildStatistics} from "@/lib/api";
+import {APICommunity, APIStatistics} from "@/types/APIResponse";
+
+interface CommunityProps {
+    guildStats: APIStatistics | null;
+    apiMembers: APICommunity | null;
+}
 
 /**
  * Renders the community overview page with multiple member sections and testimonials.
@@ -13,66 +20,21 @@ import {Member} from "@/types/Member";
  * Uses temporary mock data for different member categories (birthdays, ranked users,
  * level users, and former staff) and passes them to the corresponding layout sections.
  *
- * @returns JSX.Element React component for the community page layout.
+ * @param {HomeProps} props - Component configuration
+ * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
+ * @param {APICommunity | null} props.apiMembers - The API loaded stats about the community members.
+ * @returns {JSX.Element} The community page component.
  */
-export default function Community(): JSX.Element {
-    // TODO: Replace with real Data!
-    const birthday_users: Member[] = [
-        {username: "luna.sky", display_name: "Luna Skylar", rank: "BIRTHDAY", user_id: "284617239018",
-         avatar_url: "https://cdn.discordapp.com/avatars/1018150165489668227/7a539208b433b1ee0e4dcccffcf73a2a.png?size=1024"},
-        {username: "neo.matrix", display_name: "Leon Kramer", rank: "BIRTHDAY", user_id: "593847201945",
-         avatar_url: "https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128"},
-        {username: "pixie.coder", display_name: "Emily Rhodes", rank: "BIRTHDAY", user_id: "901273648512",
-         avatar_url: "https://cdn.discordapp.com/avatars/981918775651745832/4ef47e4b6c4bcb1f0d23ec0ec2112109.png?size=1024"},
-        {username: "shadowbyte", display_name: "Noah Fischer", rank: "BIRTHDAY", user_id: "732849105627",
-         avatar_url: "https://cdn.discordapp.com/avatars/941998396934340619/a_8ff9c5ac2c403d5b9927f90837b36658.gf?size=1024"},
-        {username: "nova.chan", display_name: "Sofia Hartmann", rank: "BIRTHDAY", user_id: "457201938746",
-         avatar_url: "https://cdn.discordapp.com/guilds/616655040614236160/users/806086469268668437/avatars/a_25e1338be5c8a0c953b18c94ec92b91c.gif?size=1024"},
-        {username: "bytewizard", display_name: "Jonas Weber", rank: "BIRTHDAY", user_id: "620194857320",
-         avatar_url: "https://cdn.discordapp.com/guilds/616655040614236160/users/880436867357622292/avatars/a_6944984ee59435315ce7184411485cd9.gif?size=1024"},
-        {username: "aris.dev", display_name: "Aris Müller", rank: "BIRTHDAY", user_id: "519384720196",
-         avatar_url: "https://cdn.discordapp.com/avatars/339254240012664832/0cfec781df368dbce990d440d075a2d7.png?size=1024"},
-        {username: "celeste.codes", display_name: "Celeste Wagner", rank: "BIRTHDAY", user_id: "874520139468",
-         avatar_url: "https://cdn.discordapp.com/avatars/1116303639728889857/56020f7cc7736d8657032d07e13f76ac.png?size=1024"},
-        {username: "orbit.ray", display_name: "Ray Schneider", rank: "BIRTHDAY", user_id: "395720184963",
-         avatar_url: "https://cdn.discordapp.com/avatars/981918775651745832/4ef47e4b6c4bcb1f0d23ec0ec2112109.png?size=1024"},
-        {username: "emberline", display_name: "Mara Schulz", rank: "BIRTHDAY", user_id: "608271945320",
-         avatar_url: "https://cdn.discordapp.com/avatars/941998396934340619/a_8ff9c5ac2c403d5b9927f90837b36658.gif?size=1024"},
-        {username: "zenith.x", display_name: "Felix Brandt", rank: "BIRTHDAY", user_id: "719203845617",
-         avatar_url: "https://cdn.discordapp.com/avatars/339254240012664832/0cfec781df368dbce990d440d075a2d7.png?size=1024"},
-    ];
-    const ranked_users: Member[] = birthday_users.map((member, index) => {
-        const ranks: Array<'REKRUT' | 'BOOSTER' | 'SPONSOR'> = ['REKRUT', 'BOOSTER', 'SPONSOR'];
-        return {...member, rank: ranks[index % ranks.length] };
-    }).sort((a, b) => {
-        const rankOrder = { REKRUT: 2, BOOSTER: 1, SPONSOR: 0 };
-        return rankOrder[a.rank as keyof typeof rankOrder] - rankOrder[b.rank as keyof typeof rankOrder];
-        // sort by rank (Sponsor -> Booster -> Rekrut)
-    });
-    const level_users: Member[] = birthday_users.map((member, index) => {
-        const ranks: Array<'LVL75' | 'LVL100' | 'LVL125'> = ['LVL75', 'LVL100', 'LVL125'];
-        return {...member, rank: ranks[index % ranks.length] };
-    }).sort((a, b) => {
-        const getLevelNumber = (rank: string) => parseInt(rank.replace('LVL', ''));
-        return getLevelNumber(b.rank) - getLevelNumber(a.rank);
-        // sort by level (High -> Low)
-    });
-    const former_staff: Member[] = birthday_users.map((member, index) => {
-        const ranks: Array<'EHEM_MOD' | 'EHEM_ADMIN' | 'EHEM_SENIOR' | 'EHEM_LEITUNG'> = ['EHEM_MOD', 'EHEM_ADMIN', 'EHEM_SENIOR', 'EHEM_LEITUNG'];
-        const years: number[] = [2023, 2024, 2025];
-        const total_seconds: number[] = [7776000, 15552000, 23328000, 31104000, 46656000, 62208000];
-        return {...member, rank: ranks[index % ranks.length],
-            staff_duration: `${years[index % years.length]} - ${total_seconds[index % total_seconds.length]}`
-        };
-    }).sort((a, b) => {
-        const rankOrder = { EHEM_LEITUNG: 0, EHEM_SENIOR: 2, EHEM_ADMIN: 1, EHEM_MOD: 3 };
-        const rankComparison: number = rankOrder[a.rank as keyof typeof rankOrder] - rankOrder[b.rank as keyof typeof rankOrder];
-        if (rankComparison !== 0) return rankComparison;
+export default function Community({ guildStats, apiMembers }: CommunityProps): JSX.Element {
+    // fetched Team member data (or fallback)
+    const fallbackMember: Member =
+        {user_name: 'Clank#0510', user_display_name: 'Clank', rank: 'LEITUNG', user_id: '775415193760169995', social_media_url: null,
+        user_avatar_url: 'https://cdn.discordapp.com/avatars/775415193760169995/731f153c04c2dc5b3f6335382c7206ba.png?size=128'};
 
-        const getDuration = (staffDuration: string) => parseInt(staffDuration.split(' - ')[1]);
-        return getDuration(b.staff_duration!) - getDuration(a.staff_duration!);
-        // sort by rank (Leitung -> Admin -> Senior -> Mod) & duration (High -> Low)
-    });
+    const birthday_users: Member[] = apiMembers?.birthday ?? [{ ...fallbackMember, rank: "BIRTHDAY" }];
+    const ranked_users: Member[] = apiMembers?.supporters ?? [{ ...fallbackMember, rank: "SPONSOR" }];
+    const level_users: Member[] = apiMembers?.levels ?? [{ ...fallbackMember, rank: "LVL125" }];
+    const former_staff: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
 
     return (
         <>
@@ -82,7 +44,7 @@ export default function Community(): JSX.Element {
             {/* Container for sections with transition overlay */}
             <div className="relative">
                 {/* Start of the page; greet the visitor & explain this page */}
-                <ComHero />
+                <ComHero guildStats={guildStats} />
 
                 {/* Member List sections */}
                 <MemberList members={birthday_users} section_id="birthdays" category="Birthday" />
@@ -114,9 +76,11 @@ export default function Community(): JSX.Element {
  * @returns returns.props.messages - The imported locale-specific messages object
  */
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    const [guildStats, apiMembers] = await Promise.all([fetchGuildStatistics(), fetchCommunityMembers()]);
+
     return {
         props: {
             messages: (await import(`../../../../messages/${locale}.json`)).default,
-        },
+            guildStats, apiMembers }, revalidate: 300 // regenerate http request cache every 5 minutes
     };
 }

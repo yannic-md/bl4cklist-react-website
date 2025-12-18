@@ -109,9 +109,10 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                     const formatted_rank: string | undefined = staffMap[rank];
                     if (!formatted_rank) return "";
 
-                    const totalSeconds: number = parseInt(staff_duration.split(" - ")[1]);
-                    const months: number = Math.floor(totalSeconds / 2592000);
+                    const totalSeconds: number = parseInt(staff_duration);
+                    const months: number = Math.floor(totalSeconds / 2592000); // 30 days per month
                     const years: number = Math.floor(months / 12);
+
                     const duration: string = years > 0
                         ? `${years} ${years === 1 ? tMisc('durationYear') : tMisc('durationYears')}`
                         : `${months} ${months === 1 ? tMisc('durationMonth') : tMisc('durationMonths')}`;
@@ -131,14 +132,14 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                 <div className="rounded-lg flex-none transition-all duration-200 hover:-rotate-1 hover:scale-110">
                     {/* Fallback for image in case discord avatar was deleted / changed */}
                     {!imageError ? (
-                        <Image src={member.avatar_url} className="h-20 w-20 object-cover rounded-lg" width={80} height={80}
-                               alt={`${member.display_name}'s Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
+                        <Image src={member.user_avatar_url} className="h-20 w-20 object-cover rounded-lg" width={80} height={80}
+                               alt={`${member.user_display_name}'s Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
                                onError={(): void => setImageError(true)}/>
                     ) : (
                         <div className="rounded-lg w-20 h-20 bg-gradient-to-br from-gray-900 to-gray-500
                                         flex items-center justify-center cursor-special">
                                 <span className="text-white text-3xl font-semibold">
-                                    {getInitials(member.username)}
+                                    {getInitials(member.user_name)}
                                 </span>
                         </div>
                     )}
@@ -146,9 +147,9 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
 
                 <div className="flex justify-between items-center flex-row w-full gap-5">
                     <div className="flex items-start justify-start flex-col gap-1.5">
-                        <UsernameCopy username={member.username} displayName={member.display_name}
+                        <UsernameCopy username={member.user_name} displayName={member.user_display_name}
                                       userId={member.user_id} className="relative">
-                            <h3 className="text-lg font-medium m-0">{member.display_name}</h3>
+                            <h3 className="text-lg font-medium m-0">{member.user_display_name}</h3>
                         </UsernameCopy>
                         <div className={`text-sm opacity-95 ${getRankTextColor(member.rank)}`}>
                             {getRankLabel(member.rank, member.staff_duration)}
@@ -160,7 +161,7 @@ export function MemberCard({ member }: MemberCardProps): JSX.Element {
                         <a href={`https://discord.com/users/${member.user_id}`} target="_blank"
                            className="flex items-center justify-center flex-col w-6 h-6 mr-2 hover:scale-[101%]
                                       text-[#969cb1] hover:text-white transition-all duration-200"
-                           aria-label={`${member.display_name}'s Discord Profile`}>
+                           aria-label={`${member.user_display_name}'s Discord Profile`}>
                             <FontAwesomeIcon icon={faDiscord} />
                         </a>
                     </div>

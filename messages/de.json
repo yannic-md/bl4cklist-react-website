@@ -137,7 +137,7 @@
     "title": "Schütze deinen Server",
     "description": "Mit unserem <strong><a>Discord Security-Bot</a></strong> verbesserst du die Moderation auf deinem Discord-Server enorm und reduzierst zeitgleich die benötigte Arbeit für wichtige Aufgaben erheblich - unser Bot hat einen Job: Das Leben deines Server-Teams zu vereinfachen.",
     "description2": "Egal ob Tools für Raidschutz oder einfach nur simple aber starke Auto-Moderations-Regeln: Er hat einiges zu bieten und wird Regelbrechern das Leben schwer machen, wenn sie deine Regeln umgehen wollen. Er biete intelligente Tools, welche jeder Community weiterhelfen.",
-    "securityPunished": "User bestraft",
+    "securityBackups": "Backups erstellt",
     "securityLog": "Log-Systeme aktiv",
     "securityAutoMod": "Auto-Mod Regeln",
     "tip_1_title": "Große Auswahl an Schutz-Tools",
@@ -327,7 +327,7 @@
     "infoTagStaff": "EIN PAAR LEGENDEN AUS UNSEREN ALTEN ERINNERUNGEN!",
     "titleStaff": "EHEMALIGES TEAM",
     "description1Staff": "Hier seht ihr einige Teammitglieder aus unserem Discord-Server, die uns besonders im Gedächtnis geblieben sind. Sie haben uns für eine sehr lange Zeit massiv mit ihrer Zeit unterstützt: Bl4cklist und unsere Community ist so wundervoll, weil sie ihr bestes dafür gegeben haben.",
-    "description2Staff": "Jedes Teammitglied, welches länger als 1 Jahr in unserem Server-Team tätig war, wird hier aufgelistet. Wir, das aktuelle Server-Team inklusive der Community, bedanken uns bei euch für eure enorme Arbeit und das Aufbringen eurer Zeit und Liebe! 💖",
+    "description2Staff": "Jedes Teammitglied, welches länger als 30 Tage in unserem Server-Team tätig war, wird hier aufgelistet. Wir, das aktuelle Server-Team inklusive der Community, bedanken uns bei euch für eure enorme Arbeit und das Aufbringen eurer Zeit und Liebe! 💖",
     "rankFormerStaff": "[rank] für [time]",
     "rankLvl": "Level [level] erreicht",
     "rankBirthday": "Geburtstagskind",
@@ -386,7 +386,14 @@
     "errorFormUnknown": "Etwas ist schiefgelaufen - probiere es erneut.",
     "errorDiscordId": "Dies ist keine gültige Discord User-ID!",
     "errorDiscordName": "Dies ist kein gültiger Account-Name!",
-    "buttonUnban": "Entsperrung beantragen"
+    "buttonUnban": "Entsperrung beantragen",
+    "errorTurnstile": "Bitte bestätige, dass du kein Roboter bist.",
+    "errorTurnstileLoad": "Captcha konnte nicht geladen werden. Bitte lade die Seite neu.",
+    "errorSubmit": "Etwas ist schiefgelaufen - probiere es erneut.<br />Oder sende uns eine E-Mail: yannicdrews1@gmail.com",
+    "errorRequired": "Dieses Feld darf nicht leer sein.",
+    "errorDiscordIdNumeric": "Diese ID kann nur aus Zahlen bestehen.",
+    "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
+    "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse."
   },
   "Misc": {
     "send": "Absenden",

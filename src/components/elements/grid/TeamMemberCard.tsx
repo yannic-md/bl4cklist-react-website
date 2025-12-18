@@ -37,12 +37,13 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
      * @returns The corresponding FontAwesome icon definition based on the URL domain
      */
     const getSocialMediaIcon: (url: string) => IconDefinition = (url: string): IconDefinition => {
-        if (url.includes('youtube.com') || url.includes('youtu.be')) return faYoutube;
-        if (url.includes('twitter.com') || url.includes('x.com')) return faTwitter;
-        if (url.includes('instagram.com')) return faInstagram;
-        if (url.includes('tiktok.com')) return faTiktok;
-        if (url.includes('github.com')) return faGithub;
-        if (url.includes('twitch.tv')) return faTwitch;
+        const temp_url: string = url.replace("https://", "")
+        if (temp_url.startsWith('youtube.com') || url.startsWith('youtu.be')) return faYoutube;
+        if (temp_url.startsWith('twitter.com') || url.startsWith('x.com')) return faTwitter;
+        if (temp_url.startsWith('instagram.com')) return faInstagram;
+        if (temp_url.startsWith('tiktok.com')) return faTiktok;
+        if (temp_url.startsWith('github.com')) return faGithub;
+        if (temp_url.startsWith('twitch.tv')) return faTwitch;
         return faLink;
     };
 
@@ -61,7 +62,7 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                 {/* User Name + Rank */}
                 <div className="relative flex flex-col flex-1 items-start justify-center gap-6 w-px">
                     <div className="flex flex-col gap-2">
-                        <UsernameCopy username={member.username} displayName={member.display_name}
+                        <UsernameCopy username={member.user_name} displayName={member.user_display_name}
                                       userId={member.user_id} className="relative" />
 
                         <div className="relative flex shrink-0 justify-start whitespace-pre-wrap w-full group">
@@ -108,21 +109,11 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                                                                                  group-hover:!text-white transition-all duration-300" />
                         </a>
 
-                        {member.social_media_1 && (
+                        {member.social_media_url && (
                             <a className="relative flex flex-row bg-[#04070d] rounded-lg opacity-100 p-3 group
                                           shadow-[inset_0_1px_1px_0_rgba(207,231,255,0.2)]" target="_blank" 
-                                href={member.social_media_1}>
-                                <FontAwesomeIcon icon={getSocialMediaIcon(member.social_media_1)} size="sm" 
-                                                 className="group-hover:scale-110 text-gray-300 group-hover:!text-white 
-                                                            transition-all duration-300" />
-                            </a>
-                        )}
-
-                        {member.social_media_2 && (
-                            <a className="relative flex flex-row bg-[#04070d] rounded-lg opacity-100 p-3 group
-                                          shadow-[inset_0_1px_1px_0_rgba(207,231,255,0.2)]" target="_blank" 
-                                href={member.social_media_2}>
-                                <FontAwesomeIcon icon={getSocialMediaIcon(member.social_media_2)} size="sm"
+                                href={member.social_media_url}>
+                                <FontAwesomeIcon icon={getSocialMediaIcon(member.social_media_url)} size="sm"
                                                  className="group-hover:scale-110 text-gray-300 group-hover:!text-white 
                                                             transition-all duration-300" />
                             </a>
@@ -132,10 +123,10 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
 
                 {/* User Avatar (with Fallback Avatar) */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
-                    {member.avatar_url ? (
-                        <Image src={member.avatar_url} width={136} height={136} unoptimized
+                    {member.user_avatar_url ? (
+                        <Image src={member.user_avatar_url} width={136} height={136} unoptimized
                                className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
-                                alt={`${member.display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
+                                alt={`${member.user_display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
                                 onError={(e): void => {
                                     const target: HTMLImageElement = e.currentTarget as HTMLImageElement;
                                     target.style.display = 'none';
@@ -144,12 +135,12 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                                 }} />) : null}
 
                     {/* Fallback Avatar */}
-                    <div className={`${member.avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 
+                    <div className={`${member.user_avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 
                                      rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 text-white text-5xl 
                                      font-bold hover:rotate-1 transition-all duration-300 hover:scale-105 cursor-special`}
                          style={{ aspectRatio: '1.08594' }}>
-                        {member.username.length > 1 ? member.username.substring(0, 2).toUpperCase()
-                                                    : member.username.toUpperCase()}
+                        {member.user_name.length > 1 ? member.user_id.substring(0, 2).toUpperCase()
+                                                     : member.user_name.toUpperCase()}
                     </div>
                 </div>
                 

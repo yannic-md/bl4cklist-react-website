@@ -15,6 +15,11 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import Link from "next/link";
 import {faRobot} from "@fortawesome/free-solid-svg-icons/faRobot";
 import Image from "next/image";
+import {APIStatistics} from "@/types/APIResponse";
+
+interface CodingHeroProps {
+    guildStats: APIStatistics | null;
+}
 
 /**
  * functional component that renders the hero section for the coding support page.
@@ -29,13 +34,20 @@ import Image from "next/image";
  *   Tailwind's `2xl` breakpoint (1536px). This is initialized on mount and updated on window
  *   `resize` events. The resize listener is cleaned up on unmount.
  *
- * @return `JSX.Element` — the hero section JSX tree.
+ * @param {WelcomeHeroProps} props - Component configuration
+ * @param {APIStatistics | null} props.guildStats - The API fetched stats about the guild.
+ * @returns {JSX.Element} the hero section JSX tree.
  */
-export default function CodingHero(): JSX.Element {
+export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const tCodingHero = useTranslations('CodingHero');
     const [is2XL, setIs2XL] = useState(false);
     const { locale } = useRouter();
+
+    // fallback for SSR
+    const questionCount: number = guildStats?.coding_question_count ?? 342;
+    const bugCount: number = guildStats?.coding_bugs_count ?? 216;
+    const gamingNewsCount: number = guildStats?.gaming_news_count ?? 15123;
 
     /**
      * Effect: synchronize `is2XL` state with the current viewport width.
@@ -119,26 +131,26 @@ export default function CodingHero(): JSX.Element {
                             </p>
                         </AnimateOnView>
 
-                        {/* Statistics TODO */}
+                        {/* Statistics */}
                         <AnimateOnView animation="animate__fadeInUp animate__slower xl:mt-12 2xl:mt-0">
                             <div className="flex justify-center 2xl:justify-start items-start flex-wrap gap-x-4 sm:gap-x-8
                                             gap-y-6 mb-6 md:mb-0">
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={342} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={questionCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
                                         📡 {tCodingHero('questionStats')}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={216} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={bugCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
                                         🐞 {tCodingHero('bugsStats')}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
-                                    <AnimatedCounter end={15123} suffix="+" locale={locale} />
+                                    <AnimatedCounter end={gamingNewsCount} suffix="+" locale={locale} />
                                     <span className="text-xs sm:text-sm text-[#969cb1] tracking-wide whitespace-nowrap">
                                         👾 Gaming-News
                                     </span>

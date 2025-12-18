@@ -11,8 +11,13 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import {faHouse} from "@fortawesome/free-solid-svg-icons/faHouse";
 import Image from "next/image";
 import Link from "next/link";
+import {APIStatistics} from "@/types/APIResponse";
 
-/* A full-screen 404 error section component with decorative animated background elements
+interface NotFoundProps {
+    guildStats: APIStatistics | null;
+}
+
+/** A full-screen 404 error section component with decorative animated background elements
  * and localized copy. This component uses `next-intl` translations to render user-facing
  * strings and composes several presentational utilities and assets:
  *
@@ -20,11 +25,17 @@ import Link from "next/link";
  * - Decorative elements are placed in non-interactive containers (`pointer-events-none`).
  * - The component returns a `JSX.Element`.
  *
- * @returns {JSX.Element} The 404 error section JSX.
+ * @param {NotFoundProps} props - Component configuration
+ * @param {APIStatistics | null} props.guildStats - The API fetched stats about the guild.
+ * @returns {JSX.Element} The not found page section.
 */
-export default function NotFound(): JSX.Element {
+export default function NotFound({ guildStats }: NotFoundProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const tErrors = useTranslations('Errors');
+
+    // fallback for SSR
+    const memberCount: number = guildStats?.member_count ?? 3533;
+    const onlineCount: number = guildStats?.online_count ?? 890;
 
     return (
         <section className="relative w-full h-screen overflow-hidden bg-blue-900/30" id="discord-error-page">
@@ -102,7 +113,7 @@ export default function NotFound(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                    <span>890 Online</span> { /* TODO */ }
+                                    <span>{onlineCount.toLocaleString()} Online</span>
                                 </div>
                             </a>
                             <ButtonHover />
@@ -120,7 +131,7 @@ export default function NotFound(): JSX.Element {
                                                 text-xs font-ibm-plex-sans bg-slate-950/70 px-2 py-1 rounded-b
                                                 border border-gray-800">
                                     <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                                    <span>3.533 {tWelcome('memberCount')}</span> { /* TODO */ }
+                                    <span>{memberCount.toLocaleString()} {tWelcome('memberCount')}</span>
                                 </div>
                             </Link>
                             <ButtonHover />
