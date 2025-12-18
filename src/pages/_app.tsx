@@ -9,6 +9,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import {NextRouter, useRouter} from 'next/router';
 import PageLoader from "@/components/elements/misc/PageLoader";
 import ScrollToTopButton from "@/components/elements/misc/ScrollToTop";
+import EasterMenu from "@/components/elements/misc/EasterMenu";
 config.autoAddCss = false
 
 const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />
             </NextIntlClientProvider>
 
+            <EasterMenu />
             <ScrollToTopButton />
         </main>
     )

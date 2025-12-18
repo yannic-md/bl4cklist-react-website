@@ -43,6 +43,21 @@
     }
 }
 
+@keyframes slideOutLeftFar {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate3d(-150%, 0, 0);
+        opacity: 0;
+    }
+}
+
+.animate_slideOutLeftFar {
+    animation-name: slideOutLeftFar;
+}
+
 .animate_border_trail {
     animation: border_trail 12s infinite linear;
 }
