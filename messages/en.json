@@ -395,6 +395,25 @@
     "errorDiscordIdInvalid": "This is not a valid user ID.",
     "errorEmailInvalid": "This is not a valid email address."
   },
+  "GenericMenu": {
+    "title": "Your Achievements",
+    "progress": "Your Progress:",
+    "saveDesc": "Save your progress:",
+    "login": "Sign in with Discord",
+    "foundDesc": "Achievements found",
+    "emptyTipp": "Maybe hover over some images..",
+    "generic_pixel-bug": "A pixel error..",
+    "generic_back-to-80s": "Back to the 80s",
+    "generic_birthday": "All the best!",
+    "generic_botsdead": "Rest in peace",
+    "generic_creeper": "Creeper? Aw man!",
+    "generic_dreamteam": "The dream team",
+    "generic_herobrine": "Removed Herobrine",
+    "generic_kaboom": "Kaboom!",
+    "generic_oldbots": "From the past",
+    "generic_pacman": "Level 256 reached",
+    "generic_whatbug": "Bug? What bug?"
+  },
   "Misc": {
     "send": "Send",
     "copy": "Copied!",

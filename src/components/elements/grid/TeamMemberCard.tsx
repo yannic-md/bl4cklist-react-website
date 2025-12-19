@@ -124,7 +124,7 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                 {/* User Avatar (with Fallback Avatar) */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
                     {member.user_avatar_url ? (
-                        <Image src={member.user_avatar_url} width={136} height={136} unoptimized
+                        <Image src={member.user_avatar_url} width={136} height={136} unoptimized data-cursor-special
                                className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
                                 alt={`${member.user_display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
                                 onError={(e): void => {

@@ -395,6 +395,25 @@
     "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
     "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse."
   },
+  "GenericMenu": {
+    "title": "Deine Erfolge",
+    "progress": "Dein Fortschritt:",
+    "saveDesc": "Speichere deinen Fortschritt:",
+    "login": "Anmelden mit Discord",
+    "foundDesc": "Gefundene Erfolge",
+    "emptyTipp": "Hovere über ein paar Bilder..",
+    "generic_pixel-bug": "Ein Pixelfehler..",
+    "generic_back-to-80s": "Zurück in die 80er",
+    "generic_birthday": "Alles Gute!",
+    "generic_botsdead": "Ruhe in Frieden",
+    "generic_creeper": "Creeper? Aw man!",
+    "generic_dreamteam": "Das Dream-Team",
+    "generic_herobrine": "Removed Herobrine",
+    "generic_kaboom": "Kaboom!",
+    "generic_oldbots": "Aus der Vergangenheit",
+    "generic_pacman": "Level 256 erreicht",
+    "generic_whatbug": "Bug? Welcher Bug?"
+  },
   "Misc": {
     "send": "Absenden",
     "copy": "Kopiert!",

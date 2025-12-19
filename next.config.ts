@@ -14,6 +14,7 @@ const cspHeader: string = `
     frame-ancestors 'none';
     frame-src https://challenges.cloudflare.com;
     connect-src 'self' https://api.clank.dev ${isDev ? 'http://localhost:8081' : ''};
+    worker-src 'self' blob:;
     upgrade-insecure-requests;
 `;
 

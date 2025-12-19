@@ -198,7 +198,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                             left-1/2 top-5 -translate-x-1/2"></div>
 
                             {/* Main image */}
-                            <Image src="/images/bg/coding-support-450w.avif" width={450} height={571}
+                            <Image src="/images/bg/coding-support-450w.avif" width={450} height={571} data-cursor-special
                                    alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 450px"
                                    className={`relative z-[5] rounded-2xl w-full h-full object-cover border 

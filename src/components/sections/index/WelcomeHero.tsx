@@ -77,7 +77,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                 <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
                     <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
-                        className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px]"
+                        className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] !cursor-pointer"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
 
@@ -159,6 +159,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
                             <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority
                                 alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
+                                data-cursor-special
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28
                                            lg:w-32" />
                         </div>

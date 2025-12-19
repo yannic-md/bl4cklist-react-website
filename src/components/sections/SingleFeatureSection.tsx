@@ -169,7 +169,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                              overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
                 <div className="rounded-xl">
                     <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
-                           className="h-full rounded-xl brightness-90" key={imageSrc} />
+                           className="h-full rounded-xl brightness-90" key={imageSrc} data-cursor-special />
                 </div>
             </div>
         </AnimateOnView>
