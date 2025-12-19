@@ -412,7 +412,11 @@
     "generic_kaboom": "Kaboom!",
     "generic_oldbots": "From the past",
     "generic_pacman": "Level 256 reached",
-    "generic_whatbug": "Bug? What bug?"
+    "generic_whatbug": "Bug? What bug?",
+    "isaacTitle": "Isaac is sad because you scared him.. 😭",
+    "isaacTask": "Comfort him by typing ",
+    "isaacTask2": "and make his day better.",
+    "isaacEnd": "Thank you! Now Isaac is happy again. :)"
   },
   "Misc": {
     "send": "Send",

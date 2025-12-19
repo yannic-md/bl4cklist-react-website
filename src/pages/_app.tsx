@@ -14,6 +14,8 @@ import {JSX, useEffect} from "react";
 import {MILESTONES} from "@/data/milestones";
 import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
+import {useKonamiCode} from "@/hooks/useKonamiCode";
+import FallingObjects from "@/components/elements/misc/FallingObjects";
 config.autoAddCss = false
 
 const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -23,6 +25,30 @@ const jetbrainsMono: NextFontWithVariable = JetBrains_Mono({ subsets: ['latin'],
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     const router: NextRouter = useRouter();
+
+    /**
+     * Activates the Konami Code milestone sequence.
+     *
+     * This hook listens for a specific sequence of key presses (`ArrowUp`, `ArrowUp`, `ArrowDown`, `ArrowDown`).
+     * When the sequence is successfully entered, it dispatches a custom event (`triggerFallingObjects`) to the window,
+     * which can be used to trigger visual effects. The hook enforces a cooldown period to prevent repeated
+     * activation within a short time frame.
+     *
+     * @param {object} options - Configuration object for the Konami Code hook.
+     * @param {string[]} options.sequence - The key sequence to listen for.
+     * @param {() => void} options.onSuccess - Callback executed when the sequence is entered correctly.
+     * @param {number} options.cooldown - Cooldown time in milliseconds before the sequence can be triggered again.
+     */
+    useKonamiCode({sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+        onSuccess: async (): Promise<void> => {
+            const alreadyUnlocked: boolean = await isMilestoneUnlocked(MILESTONES.BACK80S.id);
+            if (!alreadyUnlocked) {
+                await unlockMilestone(MILESTONES.BACK80S.id, MILESTONES.BACK80S.imageKey,
+                    (router.locale === "de" || router.locale === "en") ? router.locale : "de");
+            }
+
+            window.dispatchEvent(new CustomEvent('triggerFallingObjects'));
+        }, cooldown: 10000});
 
     /**
      * Adds and removes a hover event listener to elements with the `data-cursor-special` attribute to unlock a milestone.
@@ -56,6 +82,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
                 <Component {...pageProps} />
 
                 <EasterMenu />
+                <FallingObjects />
             </NextIntlClientProvider>
 
             <ScrollToTopButton />

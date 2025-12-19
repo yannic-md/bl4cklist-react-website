@@ -64,7 +64,7 @@ function triggerMilestoneEffect(imageKey: string, locale: 'de' | 'en'): void {
 
     // Create and animate image dynamically (to avoid pasting a component in many other files)
     const img: HTMLImageElement = document.createElement('img');
-    img.src = `/images/achievements/achievement-${locale}-${imageKey}.png`;
+    img.src = `/images/achievements/achievement-${locale}-${imageKey}.webp`;
     img.alt = 'Milestone Unlocked - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server';
     img.style.cssText = `position: fixed; bottom: -300px; left: 50%; transform: translateX(-50%); width: 400px; 
                          max-width: 90vw; z-index: 9998; pointer-events: none; 

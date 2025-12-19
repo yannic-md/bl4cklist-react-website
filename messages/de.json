@@ -412,7 +412,11 @@
     "generic_kaboom": "Kaboom!",
     "generic_oldbots": "Aus der Vergangenheit",
     "generic_pacman": "Level 256 erreicht",
-    "generic_whatbug": "Bug? Welcher Bug?"
+    "generic_whatbug": "Bug? Welcher Bug?",
+    "isaacTitle": "Isaac ist traurig, weil du ihn erschreckt hast.. 😭",
+    "isaacTask": "Tröste ihn in dem du ",
+    "isaacTask2": "eingibst und verbessere seinen Tag.",
+    "isaacEnd": "Danke! Nun ist Isaac wieder glücklich. :)"
   },
   "Misc": {
     "send": "Absenden",

@@ -54,6 +54,21 @@
     }
 }
 
+@keyframes fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+
+.animate_image_fall {
+    animation: fall linear forwards;
+}
+
 .animate_slideOutLeftFar {
     animation-name: slideOutLeftFar;
 }
