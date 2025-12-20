@@ -1,7 +1,7 @@
-import React, {JSX, useCallback, useEffect, useId} from "react";
+import React, {JSX, memo, useCallback, useEffect, useId} from "react";
 import Particles, {initParticlesEngine} from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import {MoveDirection, OutMode} from "@tsparticles/engine";
+import {Engine, MoveDirection, OutMode} from "@tsparticles/engine";
 
 interface ParticlesBackgroundProps {
     className?: string;
@@ -17,8 +17,8 @@ interface ParticlesBackgroundProps {
  * @param {number} props.particles - Custom amount of particles to show on a background.
  * @returns {JSX.Element} The rendered particles background.
  */
-export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ className = "", id, particles = 40 }:
-                                                                        ParticlesBackgroundProps): JSX.Element => {
+export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = memo(({ className = "", id, particles = 40 }:
+                                                                             ParticlesBackgroundProps): JSX.Element => {
     const uniqueId: string = useId();
     const particlesId: string = id || `tsparticles-${uniqueId}`;
 
@@ -27,7 +27,7 @@ export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ classN
      * Ensures that the particles engine is loaded only once.
      */
     useEffect((): void => {
-        initParticlesEngine(async (engine): Promise<void> => { await loadSlim(engine); }).then();
+        initParticlesEngine(async (engine: Engine): Promise<void> => { await loadSlim(engine); }).then();
     }, []);
 
     const particlesLoaded: () => Promise<void> = useCallback(async (): Promise<void> => {}, []);
@@ -85,4 +85,4 @@ export const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ classN
                     detectRetina: true,
                 }} />
     );
-};
+});

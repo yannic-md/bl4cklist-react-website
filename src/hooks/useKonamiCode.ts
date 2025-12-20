@@ -39,6 +39,7 @@ export const useKonamiCode = ({sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'A
     useEffect((): () => void => {
         const handleKeyDown: (e: KeyboardEvent) => void = (e: KeyboardEvent): void => {
             if (!e.key.startsWith('Arrow')) return;  // Only track arrow keys
+            e.preventDefault();
 
             setKeys((prevKeys: string[]): string[] => {
                 const newKeys: string[] = [...prevKeys, e.key].slice(-sequence.length);

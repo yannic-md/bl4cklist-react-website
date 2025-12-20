@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {JSX, RefObject, useEffect, useRef, useState} from "react";
+import {JSX, RefObject, useEffect, useMemo, useRef, useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons";
@@ -84,9 +84,25 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                     setShowCreeper(true);
                     setHasTriggered(true);
                 }
-            }, 3000);
+            }, 60000);
         }
     };
+
+    /**
+     * Debounced wrapper around resetTimer to limit how often it runs during rapid user events.
+     *
+     * Calling `resetTimer()` on every event would repeatedly clear and recreate the milestone timer,
+     * causing performance overhead and timer thrashing. The debounced wrapper ensures a minimal
+     * interval between resets, improving performance and stabilizing milestone behavior.
+     */
+    const debouncedResetTimer: () => void = useMemo((): () => void => {
+        let timeoutId: number | null = null;
+
+        return (): void => {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = window.setTimeout((): void => { resetTimer(); }, 150); // 150ms debounce
+        };
+    }, [resetTimer]);
 
     /**
      * Tracks whether the hero section is at least 80% visible and updates component state for the milestone.
@@ -127,11 +143,12 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
         // reset timer if user interacts with the page
         const events: string[] = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-        events.forEach((event: string): void => { window.addEventListener(event, resetTimer); });
+        events.forEach((event: string): void => { window.addEventListener(event, debouncedResetTimer,
+            event === 'keydown' ? { passive: true } : undefined); });
 
         return (): void => {  // cleanup
             if (timerRef.current) { clearTimeout(timerRef.current); }
-            events.forEach((event: string): void => { window.removeEventListener(event, resetTimer); });
+            events.forEach((event: string): void => { window.removeEventListener(event, debouncedResetTimer); });
             window.removeEventListener('load', handleLoad);
         };
     }, [hasTriggered, userInteracted, isInViewport]);

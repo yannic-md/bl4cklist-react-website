@@ -1,18 +1,13 @@
-import {JSX, RefObject, useEffect, useRef, useState} from "react";
+import {JSX} from "react";
 import { AnimatedTextReveal } from "@/components/animations/TextReveal";
 import { AnimateOnView } from "@/components/animations/AnimateOnView";
 import { useTranslations } from "next-intl";
 
 import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
-import animations from '@/styles/util/animations.module.css';
 import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
-import Image from "next/image";
 import {Member} from "@/types/Member";
-import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
-import {MILESTONES} from "@/data/milestones";
-import {unlockMilestone} from "@/lib/milestones/MilestoneService";
-import {NextRouter, useRouter} from "next/router";
+import GlitchingMoon from "@/components/elements/misc/GlitchingMoon";
 
 interface TeamSectionProps {
     teamMembers: Member[] | null;
@@ -31,13 +26,6 @@ interface TeamSectionProps {
  */
 export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSectionProps): JSX.Element {
     const tTeam = useTranslations('TeamSection');
-    const router: NextRouter = useRouter();
-    const [isGlitching, setIsGlitching] = useState(false);
-    const [clickCount, setClickCount] = useState(0);
-    const [isExploding, setIsExploding] = useState(false);
-    const [exploded, setExploded] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
-    const clickTimerRef: RefObject<number | null> = useRef<number | null>(null);
 
     // fetched Team member data (or fallback)
     const teamMembers: Member[] = apiTeamMembers ?? [ // fallback data for SSR
@@ -45,77 +33,6 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
           user_avatar_url: 'https://cdn.discordapp.com/avatars/327176944640720906/a_c261a382dc3b0ebe95d6304eb452c854.gif?size=128',
           social_media_url: null },
     ];
-
-    /**
-     * Trigger periodic visual "glitch" on the moon element when visible and not exploding.
-     *
-     * This effect creates a repeating timer that briefly enables the `isGlitching` state
-     * every 5000ms for a duration of 300ms, but only while the moon is visible and not
-     * currently in an exploding state.
-     */
-    useEffect((): () => void => {
-        const glitchInterval: NodeJS.Timeout = setInterval((): void => {
-            if (isVisible && !isExploding && !exploded) {
-                setIsGlitching(true);
-                setTimeout((): void => setIsGlitching(false), 300);
-            }
-        }, 5000);
-
-        return (): void => clearInterval(glitchInterval);
-    }, [isVisible, isExploding]);
-
-    /**
-     * Incremental click handler that triggers a visual explosion after five rapid clicks.
-     *
-     * This handler increments an internal click counter each time the moon is clicked, resets the debounce timer
-     * on every click, and if five clicks are reached it initiates an "explosion" sequence by updating the
-     * `isExploding` and `isVisible` states. If fewer than five clicks occur, a timeout resets the counter.
-     */
-    const handleMoonClick: () => void = async (): Promise<void> => {
-        if (isExploding || !isVisible) return;
-        const newCount: number = clickCount + 1;
-
-        setClickCount(newCount);
-        if (clickTimerRef.current) { clearTimeout(clickTimerRef.current); } // reset timer on every click
-
-        if (newCount >= 5) {
-            setIsExploding(true);
-            setClickCount(0);
-            setIsVisible(false);
-            setExploded(true);
-
-            const alreadyUnlocked: boolean = await isMilestoneUnlocked(MILESTONES.KABOOM.id);
-            if (!alreadyUnlocked) {
-                await unlockMilestone(MILESTONES.KABOOM.id, MILESTONES.KABOOM.imageKey,
-                    (router.locale === "de" || router.locale === "en") ? router.locale : "de");
-            }
-
-            // blend in again after 5s
-            setTimeout((): void => { setIsExploding(false); }, 500);
-            setTimeout((): void => { setIsVisible(true); }, 5000);
-        } else {
-            // reset after 2 seconds if not clicked again
-            clickTimerRef.current = window.setTimeout((): void => { setClickCount(0); }, 2000);
-        }
-    };
-
-    /**
-     * Returns a CSS class representing the shake animation based on the current click count.
-     *
-     * Maps the internal click counter to a utility animation class that controls
-     * how strongly the moon element should shake. If the click count is zero or out of the
-     * defined range, an empty string is returned indicating no shake.
-     *
-     * @returns {string} - The animation class name or an empty string when no animation applies.
-     */
-    const getShakeIntensity: () => string = (): string => {
-        if (clickCount === 0) return '';
-        if (clickCount === 1) return animations.animate_shake_light;
-        if (clickCount === 2) return animations.animate_shake_medium;
-        if (clickCount === 3) return animations.animate_shake_heavy;
-        if (clickCount === 4) return animations.animate_shake_extreme;
-        return '';
-    };
 
     /**
      * Determines the appropriate animation class for a team member based on their position in a grid layout.
@@ -158,16 +75,7 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
 
             {/* Decorational moon image */}
             <AnimateOnView animation="animate__fadeIn animate__slower z-[3]">
-                <div className={`absolute left-0 top-56 z-[3] transition-opacity duration-1000
-                                 ${isVisible && !isExploding ? 'opacity-25' : 'opacity-0'}`}
-                     onClick={handleMoonClick}>
-                    <Image src="/images/bg/moon.svg" alt="Moon ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" 
-                           className={`w-48 h-48 ml-10 !cursor-pointer
-                                       ${isGlitching ? animations.animate_glitch : ''} 
-                                       ${isExploding ? animations.animate_visual_explosion : getShakeIntensity()}
-                                       ${isVisible && !isExploding ? '' : 'pointer-events-none'}`}
-                           width={192} height={192} draggable={false} />
-                </div>
+                <GlitchingMoon />
             </AnimateOnView>
 
             <div className="relative flex flex-col w-full z-[1] justify-center items-center gap-2.5">
