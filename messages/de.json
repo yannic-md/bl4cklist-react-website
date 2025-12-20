@@ -294,6 +294,10 @@
     "question4": {
       "title": "📌 ~ Habt ihr Projekte, von denen man lernen kann?",
       "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
+    },
+    "question5": {
+      "title": "🔪 ~ Wann wurde Herobrine aus Minecraft entfernt?",
+      "description": "› Ich habe den mysteriösen Mann seit unserer ersten Begegnung nicht mehr gesehen und keine Veränderungen an der Welt bemerkt, außer an meiner eigenen. Als ich ihn zum ersten Mal sah, konnte ich die \"Print\"-Taste drücken."
     }
   },
   "ComHero": {

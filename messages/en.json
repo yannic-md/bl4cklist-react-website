@@ -294,6 +294,10 @@
     "question4": {
       "title": "📌 ~ Do you have projects to learn from?",
       "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
+    },
+    "question5": {
+      "title": "🔪 ~ When was Herobrine removed from Minecraft?",
+      "description": "› I haven’t seen the mystery man since our first encounter, and I haven’t noticed any changes to the world other than my own. I was able to press ‘print screen’ when I first saw him."
     }
   },
   "ComHero": {

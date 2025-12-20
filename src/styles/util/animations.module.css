@@ -142,6 +142,28 @@
     }
 }
 
+@keyframes little_shake {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    92% { transform: rotate(-8deg); }
+    94% { transform: rotate(8deg); }
+    96% { transform: rotate(-8deg); }
+    98% { transform: rotate(8deg); }
+}
+
+@keyframes squash {
+    0% { scale: 1 1; opacity: 1; }
+    50% { scale: 1.5 0.1; opacity: 0.5; }
+    100% { scale: 1.8 0.05; opacity: 0; }
+}
+
+.animate_little_shake {
+    animation: little_shake 4s ease-in-out infinite;
+}
+
+.animate_squash {
+    animation: squash 0.2s ease-out forwards;
+}
+
 .animate_glitch {
     animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: drop-shadow(2px 0 0 rgba(255, 0, 0, 0.5)) drop-shadow(-2px 0 0 rgba(0, 255, 255, 0.5));

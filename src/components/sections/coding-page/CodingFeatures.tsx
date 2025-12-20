@@ -22,6 +22,7 @@ import BentoBoxItem from "@/components/elements/grid/BentoBoxItem";
 export default function CodingFeatures(): JSX.Element {
     const tCodingFeatures = useTranslations('CodingFeatures');
     const [is2XL, setIs2XL] = useState(false);
+    const [bugItemIndex, setBugItemIndex] = useState<number | null>(null);
 
     /**
      * Effect: synchronize `is2XL` state with the current viewport width.
@@ -40,6 +41,18 @@ export default function CodingFeatures(): JSX.Element {
         checkScreenSize();
         window.addEventListener('resize', checkScreenSize);
         return (): void => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    /**
+     * Selects a random BentoBoxItem index for a decorational bug element.
+     *
+     * Runs once on mount and chooses a random integer between 0 and totalItems - 1,
+     * then calls setBugItemIndex with that value. This ensures exactly one item
+     * contains the bug per page load.
+     */
+    useEffect((): void => {
+        const randomIndex: number = Math.floor(Math.random() * 5); // because 5 BentoBoxItems exist
+        setBugItemIndex(randomIndex);
     }, []);
 
     return (
@@ -94,21 +107,24 @@ export default function CodingFeatures(): JSX.Element {
                                       showcaseImage="/images/pixel/gaming-tech-news-441w.webp" showcaseHeight={360}
                                       showcaseAlt="Cocoboi Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by CocoNotShell" title={tCodingFeatures('BENTO_1_TITLE')}
-                                      description={tCodingFeatures('BENTO_1_DESC')} maxWidth="xl:max-w-[376px]" />
+                                      description={tCodingFeatures('BENTO_1_DESC')} maxWidth="xl:max-w-[376px]"
+                                      hasBug={bugItemIndex === 0} />
 
                         <BentoBoxItem animation="animate__fadeInUp animate__slower" hoverRotation="right"
                                       backgroundImage="/images/containers/bentobox-t-602w.avif" showcaseWidth={594}
                                       showcaseImage="/images/pixel/coding-support-594w.webp" showcaseHeight={301}
                                       showcaseAlt="Coding Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by Kirokaze" title={tCodingFeatures('BENTO_2_TITLE')}
-                                      description={tCodingFeatures('BENTO_2_DESC')} maxWidth="xl:max-w-[602px]" />
+                                      description={tCodingFeatures('BENTO_2_DESC')} maxWidth="xl:max-w-[602px]"
+                                      hasBug={bugItemIndex === 1} />
 
                         <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
                                       backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={441}
                                       showcaseImage="/images/pixel/discord-study-content-441w.webp" showcaseHeight={360}
                                       showcaseAlt="Guides & Tutorials Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by Archipics" title={tCodingFeatures('BENTO_3_TITLE')}
-                                      description={tCodingFeatures('BENTO_3_DESC')} maxWidth="xl:max-w-[376px]" />
+                                      description={tCodingFeatures('BENTO_3_DESC')} maxWidth="xl:max-w-[376px]"
+                                      hasBug={bugItemIndex === 2} />
                     </div>
 
                     {/* Bottom Row of Items */}
@@ -120,7 +136,7 @@ export default function CodingFeatures(): JSX.Element {
                                           showcaseAlt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                           showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_4_TITLE')}
                                           description={tCodingFeatures('BENTO_4_DESC')}
-                                          minHeight="min-h-[320px] md:min-h-[418px]" />
+                                          minHeight="min-h-[320px] md:min-h-[418px]" hasBug={bugItemIndex === 3} />
 
                             <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
                                           backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={740}
@@ -128,7 +144,7 @@ export default function CodingFeatures(): JSX.Element {
                                           showcaseAlt="Discord-Templates Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                           showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_5_TITLE')}
                                           description={tCodingFeatures('BENTO_5_DESC')}
-                                          minHeight="min-h-[320px] md:min-h-[418px]" />
+                                          minHeight="min-h-[320px] md:min-h-[418px]" hasBug={bugItemIndex === 4} />
                         </div>
                     </div>
                 </div>
