@@ -1,13 +1,15 @@
-import {JSX, useEffect, useState} from 'react';
+import {ChangeEvent, JSX, useEffect, useState} from 'react';
 import Image from 'next/image';
 import animations from '@/styles/util/animations.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose} from "@fortawesome/free-solid-svg-icons/faClose";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import {useMilestones} from "@/hooks/useMilestones";
 import {Milestone, TOTAL_MILESTONES} from "@/types/APIResponse";
 import {MILESTONES} from "@/data/milestones";
 import {useTranslations} from "next-intl";
+import {faQuestionCircle} from "@fortawesome/free-regular-svg-icons/faQuestionCircle";
+import {saveUserMilestones} from "@/lib/api";
+import {getUnlockedMilestones} from "@/lib/milestones/MilestoneEvents";
 
 /**
  * Displays an animated achievement menu for user milestones in the application.
@@ -20,17 +22,88 @@ import {useTranslations} from "next-intl";
  */
 export default function EasterMenu(): JSX.Element {
     const tGenericMenu = useTranslations('GenericMenu');
+    const tForm = useTranslations('Form');
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
+    const [foundUser, setFoundUser] = useState(false);
+    const [discordName, setDiscordName] = useState<string>('');
+    const [discordError, setDiscordError] = useState<string | null>(null);
     const { count, unlockedIds } = useMilestones();
 
     const progress: number = TOTAL_MILESTONES > 0 ? (count / TOTAL_MILESTONES) * 100 : 0;
-
-    const foundAchievements = unlockedIds
+    const foundAchievements: {imageKey: string | undefined, icon: string | undefined}[] = unlockedIds
         .map((id: string): {imageKey: string | undefined, icon: string | undefined} => {
             const milestone: Milestone | undefined = Object.values(MILESTONES).find((m: Milestone): boolean => m.id === id);
             return { imageKey: milestone?.imageKey, icon: milestone?.icon };
         });
+
+    /**
+     * Load saved Discord ID from localStorage into component state on mount.
+     *
+     * Executes once when the component mounts. Retrieves the value stored under
+     * `user_id` in localStorage and, if present, sets `discordName` and marks
+     * `foundUser` to true so the input is treated as an existing saved user.
+     */
+    useEffect((): void => {
+        const savedName: string | null = localStorage.getItem('user_id');
+        if (savedName) { setDiscordName(savedName); setFoundUser(true); }
+    }, []);
+
+    /**
+     * Validates whether a string is a valid Discord user ID.
+     *
+     * Returns true if the provided value contains only digits and matches Discord's typical
+     * snowflake length (17-19 characters). Leading and trailing whitespace is trimmed before validation.
+     *
+     * @param {string} value - The input string to validate as a Discord ID.
+     * @returns {boolean} - True if the input is a valid Discord ID; otherwise false.
+     */
+    const isValidDiscordId: (value: string) => boolean = (value: string): boolean => {
+        return /^[0-9]{17,19}$/.test(value.trim());
+    };
+
+    /**
+     * Validate and store Discord ID input on change.
+     *
+     * Trims and saves the input value to component state, then updates the validation error state
+     * if the field is empty or does not match Discord's expected ID pattern (17-19 digits).
+     *
+     * @param {ChangeEvent<HTMLInputElement>} e - The input change event from the Discord ID field.
+     */
+    const handleDiscordChange: (e: ChangeEvent<HTMLInputElement>) => void = (e: ChangeEvent<HTMLInputElement>): void => {
+        const value: string = e.target.value;
+        setDiscordName(value);
+
+        if (!value) { setDiscordError(null);
+        } else if (!isValidDiscordId(value)) { setDiscordError(tForm('errorDiscordId'));
+        } else { setDiscordError(null);
+        }
+    };
+
+    /**
+     * Save the user's unlocked milestones to the backend for the entered Discord ID.
+     *
+     * Validates the Discord ID from component state, shows a loading indicator, calls the API to persist
+     * unlocked milestones and updates local UI state depending on the outcome (saved flag or error message).
+     */
+    const handleSaveMilestones: () => Promise<void> = async (): Promise<void> => {
+        if (!isValidDiscordId(discordName)) return;
+        setIsLoading(true);
+        setDiscordError(null);
+
+        const success: boolean = await saveUserMilestones(discordName.trim(), getUnlockedMilestones());
+        if (success) {
+            setIsSaved(true);
+            setDiscordName(discordName.trim());
+            localStorage.setItem("user_id", discordName);
+        } else {
+            setDiscordError(tForm('errorFormUnknown'));
+        }
+
+        setIsLoading(false);
+    };
 
     /**
      * Returns the TailwindCSS gradient and shadow classes for the progress bar color.
@@ -165,25 +238,53 @@ export default function EasterMenu(): JSX.Element {
                         </div>
                     </div>
 
-                    {/* Discord Name Input */}
-                    <div className="px-4 py-3 sm:px-5 sm:py-4 border-b border-white/10 flex items-center justify-between">
-                        <div className="flex items-center justify-start">
-                            <label htmlFor="discordName" className="text-white/80 text-xs sm:text-sm font-medium">
-                                {tGenericMenu('saveDesc')}
+                    {/* Discord ID label */}
+                    <div className="px-4 py-3 sm:px-5 sm:py-4 border-b border-white/10 flex-col items-center justify-between">
+                        <div className="flex items-center justify-start gap-x-1 mb-2.5">
+                            <label htmlFor="discordName" className="block text-white/80 text-sm font-medium">
+                                {tForm('textDiscordID')}
                             </label>
+                            <a href="https://support.discord.com/hc/articles/206346498#h_01HRSTXPS5H5D7JBY2QKKPVKNA"
+                               target="_blank" rel="noopener noreferrer" aria-label="Mehr Informationen zur Discord-ID"
+                               className="text-gray-500 hover:text-gray-300 transition-colors mt-px">
+                                <FontAwesomeIcon icon={faQuestionCircle} />
+                            </a>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row items-center justify-end gap-2">
-                            <button type="button" id="discordName"
-                                    className="px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-sm font-medium rounded-lg
-                                               !cursor-pointer bg-[#5865F2] hover:bg-[#4752c4] text-white shadow-md
-                                               transition-all duration-150 whitespace-nowrap
-                                               disabled:bg-neutral-700 disabled:!cursor-not-allowed
-                                               disabled:text-neutral-400">
-                                <FontAwesomeIcon icon={faDiscord} className="me-1.5" />
-                                {tGenericMenu('login')}
-                            </button>
+                        {/* Discord ID input */}
+                        <div className="flex items-center gap-2">
+                            <input type="text" id="discordName" value={discordName} placeholder="775415193760169995"
+                                   onChange={handleDiscordChange} disabled={foundUser || isSaved || isLoading}
+                                   className={`flex-1 px-4 py-2.5 bg-white/5 rounded-lg text-white text-sm 
+                                               placeholder-white/30 focus:outline-none focus:bg-white/8 focus:ring-1 
+                                               transition-all duration-200 disabled:text-gray-500
+                                               ${isSaved ? "flex-1 w-full" : "flex-1"}
+                                               ${discordError ? "border border-red-500 focus:border-red-400 focus:ring-red-400"
+                                                              : "border border-white/10 focus:border-[#5865F2] focus:ring-[#5865F2]"}`} />
+
+                            {/* Save button */}
+                            {(!isSaved && !foundUser) && (
+                                <button type="button" onClick={handleSaveMilestones}
+                                        className={`px-3.5 py-2.5 text-sm font-medium rounded-lg !cursor-pointer
+                                                   bg-[#5865F2] hover:bg-[#4752c4] text-white shadow-md
+                                                   transition-all duration-150 whitespace-nowrap disabled:!opacity-50
+                                                   disabled:!cursor-not-allowed disabled:!bg-neutral-600
+                                                   ${isSaved ? "flex-1 w-full" : "flex-none"}
+                                                             : "border border-white/10 focus:border-[#5865F2] focus:ring-[#5865F2]"}`}
+                                        disabled={!!discordError || !discordName || isLoading}>
+                                    {isLoading ? (
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    ) : (
+                                        tForm('buttonSave')
+                                    )}
+                                </button>
+                            )}
                         </div>
+
+                        {/* Invalid User ID */}
+                        {discordError && (<p className="mt-1.5 text-xs text-red-400">{discordError}</p>)}
+                        {(foundUser && !isSaved) && (<p className="mt-1.5 text-xs text-gray-400">{tForm('infoMilestonesSaved')}</p>)}
+                        {isSaved && (<p className="mt-1.5 text-xs text-emerald-400">✓ {tForm('successMilestonesSaved')}</p>)}
                     </div>
 
                     {/* Achievements List */}

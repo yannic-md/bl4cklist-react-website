@@ -387,6 +387,8 @@
     "placeholderExcuse": "I'm sorry that..",
     "successFormSent": "Message was sent successfully.",
     "successUnbanFormSent": "Unban request submitted.",
+    "successMilestonesSaved": "Milestones saved successfully.\nUse /verify on our Discord server to verify your account.",
+    "infoMilestonesSaved": "Use /verify on our Discord server to verify your account.",
     "errorFormInvalid": "The form is incomplete.",
     "errorFormUnknown": "Something went wrong - please try again.",
     "errorDiscordId": "This is not a valid Discord user ID!",
@@ -398,13 +400,13 @@
     "errorRequired": "This field cannot be empty.",
     "errorDiscordIdNumeric": "This ID can only contain numbers.",
     "errorDiscordIdInvalid": "This is not a valid user ID.",
-    "errorEmailInvalid": "This is not a valid email address."
+    "errorEmailInvalid": "This is not a valid email address.",
+    "buttonSave": "Save"
   },
   "GenericMenu": {
     "title": "Your Achievements",
     "progress": "Your Progress:",
     "saveDesc": "Save your progress:",
-    "login": "Sign in with Discord",
     "foundDesc": "Achievements found",
     "emptyTipp": "Maybe hover over some images..",
     "generic_pixel-bug": "A pixel error..",

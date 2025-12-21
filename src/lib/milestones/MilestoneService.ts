@@ -12,7 +12,7 @@ import confetti from "canvas-confetti";
  */
 export async function hashId(id: string): Promise<string> {
     const encoder: TextEncoder = new TextEncoder();
-    const data: Uint8Array<ArrayBuffer> = encoder.encode(id + process.env.EASTER_SALT);
+    const data: Uint8Array<ArrayBuffer> = encoder.encode(id + process.env.NEXT_PUBLIC_EASTER_SALT);
     const hashBuffer: ArrayBuffer = await crypto.subtle.digest('SHA-256', data);
     const hashArray: number[] = Array.from(new Uint8Array(hashBuffer));
 
