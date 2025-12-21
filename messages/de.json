@@ -294,6 +294,10 @@
     "question4": {
       "title": "📌 ~ Habt ihr Projekte, von denen man lernen kann?",
       "description": "› JA - Die meisten Projekte von uns sind <strong>Open Source</strong> und daher kann der vollständige Quellcode ausgelesen werden. So könnt ihr lernen, wie wir bestimmte Features (wie ein Drag-& Drop-System) umgesetzt haben oder wie man Unit-Tests schreibt.<br /><br />› Ihr könnt die Projekte auch für eure eigenen Ideen umbauen und was völlig neues daraus erschaffen! Wir freuen uns immer sehr über eigene Kreativität - alle unsere Projekte findet ihr <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">hier auf Github</a>."
+    },
+    "question5": {
+      "title": "🔪 ~ Wann wurde Herobrine aus Minecraft entfernt?",
+      "description": "› Ich habe den mysteriösen Mann seit unserer ersten Begegnung nicht mehr gesehen und keine Veränderungen an der Welt bemerkt, außer an meiner eigenen. Als ich ihn zum ersten Mal sah, konnte ich die \"Print\"-Taste drücken."
     }
   },
   "ComHero": {
@@ -333,7 +337,8 @@
     "rankBirthday": "Geburtstagskind",
     "rankRekrut": "Rekrut (Vanity/Tag)",
     "rankBooster": "Server-Booster",
-    "rankSponsor": "Event-Sponsor"
+    "rankSponsor": "Event-Sponsor",
+    "rankGhost": "Etwas stimmt nicht.."
   },
   "ClankHero": {
     "infoTag": "VERBESSERE DEINEN DISCORD-SERVER!",
@@ -382,6 +387,8 @@
     "placeholderExcuse": "Es tut mir leid, dass..",
     "successFormSent": "Nachricht wurde erfolgreich abgeschickt.",
     "successUnbanFormSent": "Entsperrungsantrag übermittelt.",
+    "successMilestonesSaved": "Erfolge erfolgreich gespeichert.\nNutze /verify auf unserem Discord-Server, um dein Account zu verifieren.",
+    "infoMilestonesSaved": "Nutze /verify auf unserem Discord-Server, um dein Account zu verifieren.",
     "errorFormInvalid": "Das Formular ist unvollständig.",
     "errorFormUnknown": "Etwas ist schiefgelaufen - probiere es erneut.",
     "errorDiscordId": "Dies ist keine gültige Discord User-ID!",
@@ -393,7 +400,30 @@
     "errorRequired": "Dieses Feld darf nicht leer sein.",
     "errorDiscordIdNumeric": "Diese ID kann nur aus Zahlen bestehen.",
     "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
-    "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse."
+    "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse.",
+    "buttonSave": "Speichern"
+  },
+  "GenericMenu": {
+    "title": "Deine Erfolge",
+    "progress": "Dein Fortschritt:",
+    "saveDesc": "Speichere deinen Fortschritt:",
+    "foundDesc": "Gefundene Erfolge",
+    "emptyTipp": "Hovere über ein paar Bilder..",
+    "generic_pixel-bug": "Ein Pixelfehler..",
+    "generic_back-to-80s": "Zurück in die 80er",
+    "generic_birthday": "Alles Gute!",
+    "generic_botsdead": "Ruhe in Frieden",
+    "generic_creeper": "Creeper? Aw man!",
+    "generic_dreamteam": "Das Dream-Team",
+    "generic_herobrine": "Removed Herobrine",
+    "generic_kaboom": "Kaboom!",
+    "generic_oldbots": "Aus der Vergangenheit",
+    "generic_pacman": "Level 256 erreicht",
+    "generic_whatbug": "Bug? Welcher Bug?",
+    "isaacTitle": "Isaac ist traurig, weil du ihn erschreckt hast.. 😭",
+    "isaacTask": "Tröste ihn in dem du ",
+    "isaacTask2": "eingibst und verbessere seinen Tag.",
+    "isaacEnd": "Danke! Nun ist Isaac wieder glücklich. :)"
   },
   "Misc": {
     "send": "Absenden",
@@ -401,6 +431,7 @@
     "durationMonth": "Monat",
     "durationMonths": "Monate",
     "durationYear": "Jahr",
-    "durationYears": "Jahre"
+    "durationYears": "Jahre",
+    "ripBots": "In Gedenken an unsere alten Bl4ck-Bots.."
   }
 }

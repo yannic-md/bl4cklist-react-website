@@ -16,6 +16,7 @@ import {AnimatedCounter} from "@/components/animations/Counter";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
+import DecorationalImage from "@/components/elements/misc/DecorationalImage";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -169,7 +170,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                              overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
                 <div className="rounded-xl">
                     <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
-                           className="h-full rounded-xl brightness-90" key={imageSrc} />
+                           className="h-full rounded-xl brightness-90" key={imageSrc} data-cursor-special />
                 </div>
             </div>
         </AnimateOnView>
@@ -266,6 +267,9 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             {/* Bottom Border for good looking transition to new section */}
             <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1]
                             flex-none h-1 absolute bottom-0 left-0 right-0"></div>
+
+            {/* Rest in peace, old replaced bots.. */}
+            {translationNamespace === 'ClankGlobalSection' && <DecorationalImage />}
         </section>
     );
 }

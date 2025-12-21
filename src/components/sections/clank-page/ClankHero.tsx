@@ -122,7 +122,7 @@ export default function ClankHero(): JSX.Element {
                                 {/* Main image */}
                                 <Image src="/images/bg/clank-discord-bot-dashboard-3759w.avif" width={1358} height={554}
                                        alt="Clank Discord Bot Dashboard - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                       className="relative block z-20 w-full h-auto mx-auto" priority
+                                       className="relative block z-20 w-full h-auto mx-auto" priority data-cursor-special
                                        sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw,
                                               (max-width: 1920px) 1358px, (max-width: 2560px) 75vw, 85vw" />
                             </div>

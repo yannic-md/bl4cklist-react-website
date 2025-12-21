@@ -2,7 +2,7 @@ import {APICommunity, APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
 
 
-const API_BASE_URL: string = process.env.NODE_ENV === 'development' ? 'http://localhost:8081/stats/web2' : process.env.CONFIG_API_BASE_URL!;
+const API_BASE_URL: string = process.env.NEXT_PUBLIC_NODE_ENV === 'development' ? 'http://localhost:8081/stats/web2' : process.env.NEXT_PUBLIC_CONFIG_API_BASE_URL!;
 
 
 /** Fetches data from the API endpoint.
@@ -80,6 +80,28 @@ export async function submitContactForm(formData: FormData, turnstileToken: stri
         return true;
     } catch (error) {
         console.error('Failed to submit contact form:', error);
+        return false;
+    }
+}
+
+/**
+ * Saves the milestones achieved by a user to the backend.
+ * (Not necessary to let the entire system work; just for tracking)
+ *
+ * @param userId - The user's Discord ID
+ * @param milestones - Array of milestone IDs
+ * @returns {Promise<boolean>} - True if successful
+ */
+export async function saveUserMilestones(userId: string, milestones: string[]): Promise<boolean> {
+    try {
+        const response: Response = await fetch(`${API_BASE_URL}/milestones/sync`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id: userId, milestones })
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Failed to save milestones:', error);
         return false;
     }
 }

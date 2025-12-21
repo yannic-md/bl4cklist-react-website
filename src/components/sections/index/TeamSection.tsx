@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
 import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
-import Image from "next/image";
 import {Member} from "@/types/Member";
+import GlitchingMoon from "@/components/elements/misc/GlitchingMoon";
 
 interface TeamSectionProps {
     teamMembers: Member[] | null;
@@ -74,11 +74,8 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
                             pt-24 pb-28 scroll-m-2.5 overflow-hidden justify-center" id="discord-server-team">
 
             {/* Decorational moon image */}
-            <AnimateOnView animation="animate__fadeIn animate__slower">
-                <div className="absolute left-0 top-56 z-[3] pointer-events-none opacity-25">
-                    <Image src="/images/bg/moon.svg" alt="Moon ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" 
-                        className="w-48 h-48 ml-10" width={192} height={192} />
-                </div>
+            <AnimateOnView animation="animate__fadeIn animate__slower z-[3]">
+                <GlitchingMoon />
             </AnimateOnView>
 
             <div className="relative flex flex-col w-full z-[1] justify-center items-center gap-2.5">

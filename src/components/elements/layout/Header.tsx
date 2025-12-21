@@ -12,6 +12,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import HeaderMobileNav from './HeaderMobile';
 import { useTranslations } from 'next-intl';
 import {NextRouter, useRouter} from 'next/router';
+import useConsoleListener from "@/hooks/useConsoleListener";
 
 const dropdown_pos: string[] = ['left-[63px]', 'left-[145px]', 'left-[305px]', 'left-[435px]'];
 
@@ -31,6 +32,7 @@ export default function Header(): JSX.Element {
     const tDropdown = useTranslations('Dropdown');
     const tHeader = useTranslations('Header');
     const nav_items: NavigationItem[] = getNavItems(t, tDropdown);
+    useConsoleListener();
 
     /**
      * Toggles the state of the mobile menu.

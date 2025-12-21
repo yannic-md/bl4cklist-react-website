@@ -7,13 +7,14 @@ const cspHeader: string = `
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://pagead2.googlesyndication.com https://adservice.google.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https://cdn.discordapp.com https://i.imgur.com;
-    font-src 'self';
+    font-src 'self' https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
     frame-src https://challenges.cloudflare.com;
     connect-src 'self' https://api.clank.dev ${isDev ? 'http://localhost:8081' : ''};
+    worker-src 'self' blob:;
     upgrade-insecure-requests;
 `;
 
@@ -24,7 +25,7 @@ const nextConfig: NextConfig = {
         defaultLocale: 'de'
     },
     images: {
-        remotePatterns: [{ hostname: 'cdn.discordapp.com' }],
+        remotePatterns: [{ hostname: 'cdn.discordapp.com' }, { hostname: 'i.imgur.com' }],
     },
 
     async headers() {

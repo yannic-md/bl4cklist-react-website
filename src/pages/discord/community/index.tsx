@@ -1,11 +1,11 @@
 import {GetStaticPropsContext} from "next";
-import {JSX} from "react";
+import {JSX, useEffect, useState} from "react";
 import Header from "@/components/elements/layout/Header";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import Footer from "@/components/elements/layout/Footer";
 import ComHero from "@/components/sections/community-page/ComHero";
 import MemberList from "@/components/sections/community-page/MemberList";
-import {Member} from "@/types/Member";
+import {Member, oldBots} from "@/types/Member";
 import {fetchCommunityMembers, fetchGuildStatistics} from "@/lib/api";
 import {APICommunity, APIStatistics} from "@/types/APIResponse";
 
@@ -34,7 +34,25 @@ export default function Community({ guildStats, apiMembers }: CommunityProps): J
     const birthday_users: Member[] = apiMembers?.birthday ?? [{ ...fallbackMember, rank: "BIRTHDAY" }];
     const ranked_users: Member[] = apiMembers?.supporters ?? [{ ...fallbackMember, rank: "SPONSOR" }];
     const level_users: Member[] = apiMembers?.levels ?? [{ ...fallbackMember, rank: "LVL125" }];
-    const former_staff: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
+    const base_former_staff: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
+    const [former_staff, setFormerStaff] = useState<Member[]>(base_former_staff);
+
+    /**
+     * Insert a random legacy bot into the former staff list.
+     *
+     * This effect injects a randomly selected dead bot member (from `oldBots`) into a
+     * copy of `base_former_staff` at a random position and updates component state.
+     * It runs whenever the `base_former_staff` array identity changes.
+     */
+    useEffect((): void => {
+        if (base_former_staff.length === 0) return;
+        const randomGhost: Member = oldBots[Math.floor(Math.random() * oldBots.length)];
+
+        // Insert at random position
+        const randomPosition: number = Math.floor(Math.random() * (base_former_staff.length + 1));
+        setFormerStaff([...base_former_staff.slice(0, randomPosition), randomGhost,
+                        ...base_former_staff.slice(randomPosition)]);
+    }, [base_former_staff]);
 
     return (
         <>

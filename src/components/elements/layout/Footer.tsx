@@ -34,8 +34,9 @@ export default function Footer(): JSX.Element {
                     <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 mb-6">
                         {/* Logo and Description */}
                         <div className="flex-1 flex flex-col items-center md:items-start max-w-lg">
-                            <Image src="/images/brand/logo-64w.avif" alt="Moon ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   width={64} height={64} className="mb-4" />
+                            <Image src="/images/brand/logo-64w.avif" width={64} height={64}
+                                   className="mb-4 !cursor-pointer hover:scale-110 transition-all duration-200"
+                                   alt="Logo Footer ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                             <p className="text-[#969cb1] text-sm break-words opacity-70 text-center md:text-start">
                                 {tFooter('description')}
                             </p>

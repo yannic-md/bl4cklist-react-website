@@ -294,6 +294,10 @@
     "question4": {
       "title": "📌 ~ Do you have projects to learn from?",
       "description": "› YES - Most of our projects are <strong>Open Source</strong> and therefore the complete source code can be read. This way you can learn how we implemented certain features (like a drag & drop system) or how to write unit tests.<br /><br />› You can also rebuild the projects for your own ideas and create something completely new! We are always very happy about your own creativity - you can find all our projects <a href=\"https://github.com/yannic-md?tab=repositories\" target=\"_blank\" class=\"text-[coral]\">here on Github</a>."
+    },
+    "question5": {
+      "title": "🔪 ~ When was Herobrine removed from Minecraft?",
+      "description": "› I haven’t seen the mystery man since our first encounter, and I haven’t noticed any changes to the world other than my own. I was able to press ‘print screen’ when I first saw him."
     }
   },
   "ComHero": {
@@ -333,7 +337,8 @@
     "rankBirthday": "Guest of Honor",
     "rankRekrut": "Recruit (Vanity/Tag)",
     "rankBooster": "Server-Booster",
-    "rankSponsor": "Event-Sponsor"
+    "rankSponsor": "Event-Sponsor",
+    "rankGhost": "Something's off.."
   },
   "ClankHero": {
     "infoTag": "IMPROVE YOUR OWN DISCORD-SERVER!",
@@ -382,6 +387,8 @@
     "placeholderExcuse": "I'm sorry that..",
     "successFormSent": "Message was sent successfully.",
     "successUnbanFormSent": "Unban request submitted.",
+    "successMilestonesSaved": "Milestones saved successfully.\nUse /verify on our Discord server to verify your account.",
+    "infoMilestonesSaved": "Use /verify on our Discord server to verify your account.",
     "errorFormInvalid": "The form is incomplete.",
     "errorFormUnknown": "Something went wrong - please try again.",
     "errorDiscordId": "This is not a valid Discord user ID!",
@@ -393,7 +400,30 @@
     "errorRequired": "This field cannot be empty.",
     "errorDiscordIdNumeric": "This ID can only contain numbers.",
     "errorDiscordIdInvalid": "This is not a valid user ID.",
-    "errorEmailInvalid": "This is not a valid email address."
+    "errorEmailInvalid": "This is not a valid email address.",
+    "buttonSave": "Save"
+  },
+  "GenericMenu": {
+    "title": "Your Achievements",
+    "progress": "Your Progress:",
+    "saveDesc": "Save your progress:",
+    "foundDesc": "Achievements found",
+    "emptyTipp": "Maybe hover over some images..",
+    "generic_pixel-bug": "A pixel error..",
+    "generic_back-to-80s": "Back to the 80s",
+    "generic_birthday": "All the best!",
+    "generic_botsdead": "Rest in peace",
+    "generic_creeper": "Creeper? Aw man!",
+    "generic_dreamteam": "The dream team",
+    "generic_herobrine": "Removed Herobrine",
+    "generic_kaboom": "Kaboom!",
+    "generic_oldbots": "From the past",
+    "generic_pacman": "Level 256 reached",
+    "generic_whatbug": "Bug? What bug?",
+    "isaacTitle": "Isaac is sad because you scared him.. 😭",
+    "isaacTask": "Comfort him by typing ",
+    "isaacTask2": "and make his day better.",
+    "isaacEnd": "Thank you! Now Isaac is happy again. :)"
   },
   "Misc": {
     "send": "Send",
@@ -401,6 +431,7 @@
     "durationMonth": "Month",
     "durationMonths": "Months",
     "durationYear": "Year",
-    "durationYears": "Years"
+    "durationYears": "Years",
+    "ripBots": "In memory of our old Bl4ck-Bots.."
   }
 }

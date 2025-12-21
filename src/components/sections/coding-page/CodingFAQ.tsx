@@ -13,6 +13,10 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
 import FAQItem from "@/components/elements/grid/FAQItem";
 import FeatureItem from "@/components/elements/grid/FeatureItem";
+import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
+import {MILESTONES} from "@/data/milestones";
+import {unlockMilestone} from "@/lib/milestones/MilestoneService";
+import {NextRouter, useRouter} from "next/router";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -26,6 +30,9 @@ export default function CodingFAQ(): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const tFAQ = useTranslations('CodingFAQ');
     const [is2XL, setIs2XL] = useState(false);
+    const [isShiftPressed, setIsShiftPressed] = useState(false);
+    const [secretFaqUnlocked, setSecretFaqUnlocked] = useState(false);
+    const router: NextRouter = useRouter();
 
     /**
      * Effect: synchronize `is2XL` state with the current viewport width.
@@ -47,13 +54,48 @@ export default function CodingFAQ(): JSX.Element {
     }, []);
 
     /**
+     * Track Shift key pressed state and update component state.
+     *
+     * Registers global keyboard event listeners to detect when the user's Shift key is pressed and released.
+     * The effect updates the React state `isShiftPressed` accordingly and adds listeners on mount.
+     */
+    useEffect((): () => void => {
+        const handleKeyDown: (e: KeyboardEvent) => void = (e: KeyboardEvent): void => {
+            if (e.key === 'Shift' && !isShiftPressed) { setIsShiftPressed(true); }
+        };
+
+        const handleKeyUp: (e: KeyboardEvent) => void = (e: KeyboardEvent): void => {
+            if (e.key === 'Shift') { setIsShiftPressed(false); }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
+
+        return (): void => {  // cleanup
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keyup', handleKeyUp);
+        };
+    }, []);
+
+    /**
      * Toggles the open state of a FAQ item.
      * If the given index is already open, it closes it; otherwise, it opens the selected FAQ.
      *
-     * @param index - The index of the FAQ item to toggle.
+     * @param {number} index - The index of the FAQ item to toggle.
      */
-    const toggleFaq: (index: number) => void = (index: number): void => {
+    const toggleFaq: (index: number) => void = async (index: number): Promise<void> => {
         setOpenFaq(openFaq === index ? null : index);
+
+        // Unlock secret FAQ permanently once opened
+        if (index === 999) {
+            setSecretFaqUnlocked(true);
+
+            const alreadyUnlocked: boolean = await isMilestoneUnlocked(MILESTONES.HEROBRINE.id);
+            if (!alreadyUnlocked) {
+                await unlockMilestone(MILESTONES.HEROBRINE.id, MILESTONES.HEROBRINE.imageKey,
+                    (router.locale === "de" || router.locale === "en") ? router.locale : "de");
+            }
+        }
     };
 
     return (
@@ -123,7 +165,7 @@ export default function CodingFAQ(): JSX.Element {
                 </div>
 
                 {/* Feature List */}
-                <div className="relative max-w-7xl mt-0 mx-auto !mb-10 px-4 lg:px-0">
+                <div className="relative max-w-7xl mt-0 mx-auto !mb-10 px-4 lg:px-0 transition-all duration-200">
                     <div className="relative z-10 mx-auto overflow-hidden">
                         <div className="grid z-10 w-full h-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                             <AnimateOnView animation="animate__fadeInLeft animate__slower">
@@ -185,6 +227,16 @@ export default function CodingFAQ(): JSX.Element {
                                      description={tFAQ.raw('question4.description')} onToggle={toggleFaq} />
                         </AnimateOnView>
                     </div>
+                </div>
+
+                {/* Other Centered FAQ-Item */}
+                <div className={`mt-7 w-full lg:max-w-2xl mx-auto transition-all duration-500 px-6 2xl:px-0
+                                 ${(isShiftPressed || secretFaqUnlocked) ? 'opacity-100 translate-y-0 max-h-[500px]'
+                                                                         : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'}`}>
+                    <AnimateOnView animation="animate__fadeInUp animate__slower">
+                        <FAQItem index={999} isOpen={openFaq === 999} title={tFAQ('question5.title')}
+                                 description={tFAQ('question5.description')} onToggle={toggleFaq} />
+                    </AnimateOnView>
                 </div>
 
 

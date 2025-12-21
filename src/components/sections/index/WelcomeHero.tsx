@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import {JSX} from "react";
+import {JSX, RefObject, useEffect, useMemo, useRef, useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {faDiscord} from "@fortawesome/free-brands-svg-icons";
@@ -12,6 +12,10 @@ import ButtonHover from '@/components/elements/ButtonHover';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {APIStatistics} from "@/types/APIResponse";
+import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
+import {MILESTONES} from "@/data/milestones";
+import {unlockMilestone} from "@/lib/milestones/MilestoneService";
+import {NextRouter, useRouter} from "next/router";
 
 interface WelcomeHeroProps {
     guildStats: APIStatistics | null;
@@ -38,13 +42,140 @@ interface WelcomeHeroProps {
  */
 export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
+    const router: NextRouter = useRouter();
+
+    const [showCreeper, setShowCreeper] = useState(false);
+    const [hasTriggered, setHasTriggered] = useState(false);
+    const [userInteracted, setUserInteracted] = useState(false);
+    const [isInViewport, setIsInViewport] = useState(false);
+    const videoRef: RefObject<HTMLVideoElement | null> = useRef<HTMLVideoElement>(null);
+    const timerRef: RefObject<NodeJS.Timeout | null> = useRef<NodeJS.Timeout | null>(null);
+    const isLoadedRef: RefObject<boolean> = useRef(false);
+    const sectionRef = useRef<HTMLElement>(null);
 
     // fallback for SSR
     const memberCount: number = guildStats?.member_count ?? 3533;
     const onlineCount: number = guildStats?.online_count ?? 890;
 
+    /**
+     * Reset and (if appropriate) start the creeper milestone timer.
+     *
+     * This function prevents multiple triggers of the milestone, checks whether the current device
+     * and viewport are eligible (mobile portrait or large screens), marks the user as having interacted,
+     * clears any existing timer, and schedules a 30-second timeout to show the creeper milestone video.
+     * The timer will only start when user interaction or the page load state allows playback to respect
+     * autoplay limitations.
+     */
+    const resetTimer: () => void = (): void => {
+        if (hasTriggered) return;
+
+        // check for valid device for milestone (mobile portrait or lg:+)
+        const isPortrait: boolean = window.matchMedia('(orientation: portrait)').matches;
+        const isLargeScreen: boolean = window.matchMedia('(min-width: 1024px)').matches;
+        const shouldShow: boolean = (isPortrait && window.innerWidth < 768) || isLargeScreen;
+        if (!shouldShow) return;
+        if (!userInteracted) { setUserInteracted(true); }
+        if (timerRef.current) { clearTimeout(timerRef.current); }
+
+        // only start timer if user already interacted (HTML Limitation)
+        if (userInteracted || !isLoadedRef.current) {
+            timerRef.current = setTimeout((): void => {
+                if (!hasTriggered && isLoadedRef.current && isInViewport) {
+                    setShowCreeper(true);
+                    setHasTriggered(true);
+                }
+            }, 60000);
+        }
+    };
+
+    /**
+     * Debounced wrapper around resetTimer to limit how often it runs during rapid user events.
+     *
+     * Calling `resetTimer()` on every event would repeatedly clear and recreate the milestone timer,
+     * causing performance overhead and timer thrashing. The debounced wrapper ensures a minimal
+     * interval between resets, improving performance and stabilizing milestone behavior.
+     */
+    const debouncedResetTimer: () => void = useMemo((): () => void => {
+        let timeoutId: number | null = null;
+
+        return (): void => {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = window.setTimeout((): void => { resetTimer(); }, 150); // 150ms debounce
+        };
+    }, [resetTimer]);
+
+    /**
+     * Tracks whether the hero section is at least 80% visible and updates component state for the milestone.
+     *
+     * When the WelcomeHero section is atleast 80% visible, the observer callback updates `isInViewport` via
+     * `setIsInViewport`. The observer is only created when the ref is present and is disconnected on
+     * cleanup to avoid memory leaks.
+     */
+    useEffect((): (() => void) | undefined => {
+        if (!sectionRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]: IntersectionObserverEntry[]): void => {
+                setIsInViewport(entry.intersectionRatio >= 0.8); },
+            { threshold: 0.8 }
+        );
+
+        observer.observe(sectionRef.current);
+        return (): void => { if (sectionRef.current) { observer.unobserve(sectionRef.current); } };
+    }, []);
+
+    /**
+     * Initialize load state and attach user interaction listeners to reset the creeper timer.
+     *
+     * This effect marks the page as loaded (via `isLoadedRef`) either immediately if the document is already complete
+     * or when the window `load` event fires. It also attaches several user interaction listeners
+     * that call `resetTimer` to postpone/start the milestone timer.
+     *
+     * @returns {() => void} cleanup function that clears the timer and removes attached event listeners
+     */
+    useEffect((): () => void => {
+        const handleLoad: () => void = (): void => { isLoadedRef.current = true; };
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
+
+        // reset timer if user interacts with the page
+        const events: string[] = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+        events.forEach((event: string): void => { window.addEventListener(event, debouncedResetTimer,
+            event === 'keydown' ? { passive: true } : undefined); });
+
+        return (): void => {  // cleanup
+            if (timerRef.current) { clearTimeout(timerRef.current); }
+            events.forEach((event: string): void => { window.removeEventListener(event, debouncedResetTimer); });
+            window.removeEventListener('load', handleLoad);
+        };
+    }, [hasTriggered, userInteracted, isInViewport]);
+
+    /**
+     * Plays the creeper milestone video and triggers the milestone unlock flow when shown.
+     *
+     * This effect runs whenever `showCreeper` changes. If the creeper video is visible it attempts
+     * playback (catching and logging playback failures). It then asynchronously checks whether the
+     * CREEPER milestone is already unlocked and calls the unlock service with a locale fallback if needed.
+     */
+    useEffect((): void => {
+        if (showCreeper && videoRef.current && isInViewport) {
+            videoRef.current.play().catch(_err => { console.log('Could not start milestone.'); });
+
+            (async (): Promise<void> => {
+                const alreadyUnlocked: boolean = await isMilestoneUnlocked(MILESTONES.CREEPER.id);
+                if (!alreadyUnlocked) {
+                    await unlockMilestone(MILESTONES.CREEPER.id, MILESTONES.CREEPER.imageKey,
+                        (router.locale === "de" || router.locale === "en") ? router.locale : "de");
+                }
+            })();
+        }
+    }, [showCreeper, isInViewport]);
+
     return (
-        <section className="relative w-full h-screen overflow-hidden" id="discord-server-start">
+        <section className="relative w-full h-screen overflow-hidden" id="discord-server-start" ref={sectionRef}>
             {/* Background Video */}
             <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
                 <video className="w-full h-full object-cover relative" autoPlay muted loop
@@ -62,6 +193,18 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                 </video>
             </div>
 
+            {/* Creeper - Tss.. */}
+            {showCreeper && isInViewport && (
+                <div className="absolute inset-0 z-[2] pointer-events-none">
+                    <video ref={videoRef} onEnded={(): void => { setShowCreeper(false); }} preload="auto"
+                        className="absolute bottom-0 left-12 transform -translate-x-1/2 w-[220px] sm:w-[260px]
+                                   md:w-[320px] h-auto object-contain hidden portrait:block lg:block xl:left-[24%]
+                                   lg:translate-x-0 lg:w-[300px]" playsInline aria-hidden="true">
+                        <source src="/videos/creeper-aw-man.webm" type="video/webm" />
+                    </video>
+                </div>
+            )}
+
             {/* Some Overlays to improve quality & add unique effect */}
             <div className={`absolute z-[3] inset-0 overflow-hidden pointer-events-none blur-[2px] 
                              ${index.hero_colored_overlay}`}></div>
@@ -77,7 +220,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                 <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
                     <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
-                        className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px]"
+                        className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] !cursor-pointer"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
 
@@ -159,6 +302,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
                             <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority
                                 alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
+                                data-cursor-special
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28
                                            lg:w-32" />
                         </div>
