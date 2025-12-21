@@ -387,7 +387,8 @@
     "placeholderExcuse": "Es tut mir leid, dass..",
     "successFormSent": "Nachricht wurde erfolgreich abgeschickt.",
     "successUnbanFormSent": "Entsperrungsantrag übermittelt.",
-    "successMilestonesSaved": "Erfolge erfolgreich gespeichert.\nNutze /verify auf unserem Discord-Server, um dein Account zu verifieren.",
+    "successMilestonesSaved": "Erfolge gespeichert. \nNutze /verify auf unserem Discord-Server, um dein Account zu verifieren.",
+    "successMilestonesUpdated": "Die gespeicherten Erfolge wurden erfolgreich auf den neusten Stand aktualisiert.",
     "infoMilestonesSaved": "Nutze /verify auf unserem Discord-Server, um dein Account zu verifieren.",
     "errorFormInvalid": "Das Formular ist unvollständig.",
     "errorFormUnknown": "Etwas ist schiefgelaufen - probiere es erneut.",
@@ -401,7 +402,8 @@
     "errorDiscordIdNumeric": "Diese ID kann nur aus Zahlen bestehen.",
     "errorDiscordIdInvalid": "Dies ist keine gültige User-ID.",
     "errorEmailInvalid": "Dies ist keine gültige E-Mail Adresse.",
-    "buttonSave": "Speichern"
+    "buttonSave": "Speichern",
+    "buttonRefresh": "Aktualisieren"
   },
   "GenericMenu": {
     "title": "Deine Erfolge",
