@@ -156,6 +156,17 @@
     100% { scale: 1.8 0.05; opacity: 0; }
 }
 
+@keyframes slideOutRight {
+    0% { transform: translateX(0) translateY(-6px) scale(110%); opacity: 20%; }
+    25% { transform: translateX(-32px) translateY(-6px) scale(110%); opacity: 20%; }
+    50% { transform: translateX(-16px) translateY(-6px) scale(110%); opacity: 20%; }
+    100% { transform: translateX(200px) translateY(-6px) scale(110%); opacity: 0; }
+}
+
+.animate_slideOutRight {
+    animation: slideOutRight 0.8s ease-in-out forwards;
+}
+
 .animate_little_shake {
     animation: little_shake 4s ease-in-out infinite;
 }

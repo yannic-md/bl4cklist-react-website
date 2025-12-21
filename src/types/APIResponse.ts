@@ -32,7 +32,6 @@ export interface APICommunity {
 export interface Milestone {
     id: string;
     imageKey: string;
-    name?: string;
     icon?: string;
 }
 

@@ -20,12 +20,10 @@ import {useTranslations} from "next-intl";
  */
 export default function EasterMenu(): JSX.Element {
     const tGenericMenu = useTranslations('GenericMenu');
-
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const { count, unlockedIds } = useMilestones();
 
-    const milestoneMax = 11;
     const progress: number = TOTAL_MILESTONES > 0 ? (count / TOTAL_MILESTONES) * 100 : 0;
 
     const foundAchievements = unlockedIds
@@ -45,8 +43,8 @@ export default function EasterMenu(): JSX.Element {
      */
     const getBarColor: () => string = (): string => {
         if (progress <= 25) return "from-red-500 via-red-400 to-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]";
-        if (progress <= 50) return "from-orange-500 via-orange-400 to-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.4)]";
-        if (progress <= 75) return "from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.4)]";
+        if (progress <= 75) return "from-orange-500 via-orange-400 to-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.4)]";
+        if (progress <= 99) return "from-yellow-400 via-yellow-300 to-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.4)]";
         return "from-emerald-500 via-green-500 to-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.4)]";
     };
 
@@ -62,8 +60,8 @@ export default function EasterMenu(): JSX.Element {
      */
     const getTextColor: () => string = (): string => {
         if (progress <= 25) return "text-red-400";
-        if (progress <= 50) return "text-orange-400";
-        if (progress <= 75) return "text-yellow-300";
+        if (progress <= 75) return "text-orange-400";
+        if (progress <= 99) return "text-yellow-300";
         return "text-emerald-400";
     };
 
@@ -158,7 +156,7 @@ export default function EasterMenu(): JSX.Element {
                             <span className="text-xs sm:text-sm font-semibold">
                                 <span className={getTextColor()}>{count}</span>
                                 <span className="text-white/40 mx-1">/</span>
-                                <span className="text-white/60">{milestoneMax}</span>
+                                <span className="text-white/60">{TOTAL_MILESTONES}</span>
                             </span>
                         </div>
                         <div className="w-full bg-white/5 rounded-full h-2 sm:h-2.5 overflow-hidden border border-white/5">
