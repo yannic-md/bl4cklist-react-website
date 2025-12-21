@@ -387,7 +387,8 @@
     "placeholderExcuse": "I'm sorry that..",
     "successFormSent": "Message was sent successfully.",
     "successUnbanFormSent": "Unban request submitted.",
-    "successMilestonesSaved": "Milestones saved successfully.\nUse /verify on our Discord server to verify your account.",
+    "successMilestonesSaved": "Milestones saved. \nUse /verify on our Discord server to verify your account.",
+    "successMilestonesUpdated": "The saved achievements were successfully updated to the latest version.",
     "infoMilestonesSaved": "Use /verify on our Discord server to verify your account.",
     "errorFormInvalid": "The form is incomplete.",
     "errorFormUnknown": "Something went wrong - please try again.",
@@ -401,7 +402,8 @@
     "errorDiscordIdNumeric": "This ID can only contain numbers.",
     "errorDiscordIdInvalid": "This is not a valid user ID.",
     "errorEmailInvalid": "This is not a valid email address.",
-    "buttonSave": "Save"
+    "buttonSave": "Save",
+    "buttonRefresh": "Refresh"
   },
   "GenericMenu": {
     "title": "Your Achievements",

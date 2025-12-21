@@ -26,8 +26,10 @@ export default function EasterMenu(): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isOnCooldown, setIsOnCooldown] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
     const [foundUser, setFoundUser] = useState(false);
+    const [isRefreshVisible, setIsRefreshVisible] = useState(false);
     const [discordName, setDiscordName] = useState<string>('');
     const [discordError, setDiscordError] = useState<string | null>(null);
     const { count, unlockedIds } = useMilestones();
@@ -48,7 +50,7 @@ export default function EasterMenu(): JSX.Element {
      */
     useEffect((): void => {
         const savedName: string | null = localStorage.getItem('user_id');
-        if (savedName) { setDiscordName(savedName); setFoundUser(true); }
+        if (savedName) { setDiscordName(savedName); setFoundUser(true); setIsRefreshVisible(true); }
     }, []);
 
     /**
@@ -83,25 +85,40 @@ export default function EasterMenu(): JSX.Element {
     };
 
     /**
-     * Save the user's unlocked milestones to the backend for the entered Discord ID.
+     * Save the user's unlocked milestones to the backend for the provided Discord User-ID.
+     * (Not necessary to make the system work - just for internal tracking purposes)
      *
-     * Validates the Discord ID from component state, shows a loading indicator, calls the API to persist
-     * unlocked milestones and updates local UI state depending on the outcome (saved flag or error message).
+     * Validates the Discord ID, sends the currently unlocked milestones to the backend,
+     * updates UI state for loading, saved status and cooldown, persists the Discord ID
+     * to localStorage on success, and provides appropriate success or error feedback.
+     *
+     * @returns {Promise<void>} - Resolves when the save attempt completes.
      */
     const handleSaveMilestones: () => Promise<void> = async (): Promise<void> => {
         if (!isValidDiscordId(discordName)) return;
         setIsLoading(true);
         setDiscordError(null);
+        setIsSaved(false); // reset for the new feedback
 
         const success: boolean = await saveUserMilestones(discordName.trim(), getUnlockedMilestones());
+
         if (success) {
+            const isInitialSave: boolean = !isRefreshVisible; // check if its the first save
+            localStorage.setItem("user_id", discordName.trim());
             setIsSaved(true);
-            setDiscordName(discordName.trim());
-            localStorage.setItem("user_id", discordName);
+            setIsRefreshVisible(true);
+            setIsOnCooldown(true);
+
+            // After the cooldown we reset isSaved, so the success message goes away and makes room
+            // for the default status
+            setTimeout((): void => {
+                setIsOnCooldown(false);
+                setIsSaved(false);
+                if (isInitialSave) setFoundUser(true); // now he's an official existing user
+            }, 5000);
         } else {
             setDiscordError(tForm('errorFormUnknown'));
         }
-
         setIsLoading(false);
     };
 
@@ -257,34 +274,36 @@ export default function EasterMenu(): JSX.Element {
                                    onChange={handleDiscordChange} disabled={foundUser || isSaved || isLoading}
                                    className={`flex-1 px-4 py-2.5 bg-white/5 rounded-lg text-white text-sm 
                                                placeholder-white/30 focus:outline-none focus:bg-white/8 focus:ring-1 
-                                               transition-all duration-200 disabled:text-gray-500
-                                               ${isSaved ? "flex-1 w-full" : "flex-1"}
-                                               ${discordError ? "border border-red-500 focus:border-red-400 focus:ring-red-400"
+                                               transition-all duration-200 disabled:text-gray-500 w-full
+                                               ${discordError ? "border border-red-500 focus:border-red-400 focus:ring-red-400" 
                                                               : "border border-white/10 focus:border-[#5865F2] focus:ring-[#5865F2]"}`} />
 
-                            {/* Save button */}
-                            {(!isSaved && !foundUser) && (
-                                <button type="button" onClick={handleSaveMilestones}
-                                        className={`px-3.5 py-2.5 text-sm font-medium rounded-lg !cursor-pointer
-                                                   bg-[#5865F2] hover:bg-[#4752c4] text-white shadow-md
-                                                   transition-all duration-150 whitespace-nowrap disabled:!opacity-50
-                                                   disabled:!cursor-not-allowed disabled:!bg-neutral-600
-                                                   ${isSaved ? "flex-1 w-full" : "flex-none"}
-                                                             : "border border-white/10 focus:border-[#5865F2] focus:ring-[#5865F2]"}`}
-                                        disabled={!!discordError || !discordName || isLoading}>
-                                    {isLoading ? (
-                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                    ) : (
-                                        tForm('buttonSave')
-                                    )}
-                                </button>
-                            )}
+                            {/* Save/Refresh button */}
+                            <button type="button" onClick={handleSaveMilestones}
+                                    disabled={!!discordError || !discordName || isLoading || isOnCooldown}
+                                    className={`px-3.5 py-2.5 text-sm font-medium rounded-lg !cursor-pointer 
+                                                bg-[#5865F2] hover:bg-[#4752c4] text-white shadow-md transition-all 
+                                                duration-150 whitespace-nowrap disabled:!opacity-50 
+                                                disabled:!cursor-not-allowed disabled:!bg-neutral-600 border
+                                                border-white/10 focus:border-[#5865F2] focus:ring-[#5865F2]"}`}>
+                                {isLoading ? (
+                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    tForm(isRefreshVisible ? 'buttonRefresh' : 'buttonSave')
+                                )}
+                            </button>
                         </div>
 
-                        {/* Invalid User ID */}
-                        {discordError && (<p className="mt-1.5 text-xs text-red-400">{discordError}</p>)}
-                        {(foundUser && !isSaved) && (<p className="mt-1.5 text-xs text-gray-400">{tForm('infoMilestonesSaved')}</p>)}
-                        {isSaved && (<p className="mt-1.5 text-xs text-emerald-400">✓ {tForm('successMilestonesSaved')}</p>)}
+                        {/* Feedback Messages */}
+                        <div className="mt-1.5">
+                            {discordError ? ( <p className="text-xs text-red-400">{discordError}</p>
+                            ) : isSaved ? (
+                                <p className="text-xs text-emerald-400">
+                                    ✓ {tForm(foundUser ? 'successMilestonesUpdated' : 'successMilestonesSaved')}
+                                </p>
+                            ) : isRefreshVisible ? ( <p className="text-xs text-gray-400"> {tForm('infoMilestonesSaved')} </p>
+                            ) : null}
+                        </div>
                     </div>
 
                     {/* Achievements List */}

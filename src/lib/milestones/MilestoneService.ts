@@ -1,5 +1,6 @@
 import {getUnlockedMilestones} from "@/lib/milestones/MilestoneEvents";
 import confetti from "canvas-confetti";
+import {saveUserMilestones} from "@/lib/api";
 
 /**
  * Generates a SHA-256 hash for a given milestone ID and salt.
@@ -42,7 +43,7 @@ export async function unlockMilestone(id: string, imageKey: string, locale: 'de'
     // Dispatch custom event to notify components in the SAME tab
     window.dispatchEvent(new CustomEvent('milestoneUnlocked', {detail: { hash, id, imageKey, locale }}));
 
-    triggerMilestoneEffect(imageKey, locale);
+    await triggerMilestoneEffect(imageKey, locale);
     return true;
 }
 
@@ -56,7 +57,7 @@ export async function unlockMilestone(id: string, imageKey: string, locale: 'de'
  * @param {string} imageKey - The key identifying the milestone image to display.
  * @param {'de' | 'en'} locale - The locale for the milestone image.
  */
-function triggerMilestoneEffect(imageKey: string, locale: 'de' | 'en'): void {
+async function triggerMilestoneEffect(imageKey: string, locale: 'de' | 'en'): Promise<void> {
     const colors: string[] = ['#feff01', '#FF7F50'];
 
     confetti({particleCount: 80, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors, zIndex: 9999});
@@ -71,6 +72,10 @@ function triggerMilestoneEffect(imageKey: string, locale: 'de' | 'en'): void {
                          transition: bottom 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);`;
     document.body.appendChild(img);
     requestAnimationFrame((): void => { img.style.bottom = '30px'; });
+
+    // save progress
+    const user_id: string | null = localStorage.getItem('user_id');
+    if (user_id != null) { await saveUserMilestones(user_id.trim(), getUnlockedMilestones()); }
 
     setTimeout((): void => {
         img.style.opacity = '0';
