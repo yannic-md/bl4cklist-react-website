@@ -337,7 +337,8 @@
     "rankBirthday": "Geburtstagskind",
     "rankRekrut": "Rekrut (Vanity/Tag)",
     "rankBooster": "Server-Booster",
-    "rankSponsor": "Event-Sponsor"
+    "rankSponsor": "Event-Sponsor",
+    "rankGhost": "Etwas stimmt nicht.."
   },
   "ClankHero": {
     "infoTag": "VERBESSERE DEINEN DISCORD-SERVER!",

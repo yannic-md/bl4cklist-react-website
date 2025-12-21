@@ -85,7 +85,8 @@ export default function FallingObjects(): JSX.Element {
                                               [filter:drop-shadow(0_2px_4px_rgba(0,0,0,0.3))]`}
                     style={{left: `${obj.left}%`, animationDuration: `${obj.duration}s`, animationDelay: `${obj.delay}s`}}>
                     <Image src={`/images/icons/pixel/konami-${obj.type === 'heart' ? 'heart' : 'coin'}-32w.webp`}
-                           alt={"Konami Code Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"} width={32} height={32}/>
+                           alt={"Konami Code Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"} width={32}
+                           height={obj.type === 'heart' ? 32 : 37} />
                 </div>
             ))}
         </div>

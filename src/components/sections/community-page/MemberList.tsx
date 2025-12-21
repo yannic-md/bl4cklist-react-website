@@ -1,4 +1,4 @@
-import {JSX, ReactNode} from "react";
+import {JSX, ReactNode, useEffect, useState} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
@@ -7,6 +7,11 @@ import {Member} from "@/types/Member";
 import {MemberCard} from "@/components/elements/grid/MemberCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
+import {MILESTONES} from "@/data/milestones";
+import {unlockMilestone} from "@/lib/milestones/MilestoneService";
+import {NextRouter, useRouter} from "next/router";
 
 type MemberListPosition = 'left' | 'right';
 
@@ -35,8 +40,31 @@ interface MemberListProps {
 export default function MemberList({members, section_id, category, position = 'right',
                                     planetVariant = 1}: MemberListProps): JSX.Element {
     const tMemberListSection = useTranslations('MemberListSection');
-    const isOddCount: boolean = members.length % 2 !== 0;
+    const [visibleMembers, setVisibleMembers] = useState(members);
+    const [animationParent] = useAutoAnimate();
+    const isOddCount: boolean = visibleMembers.length % 2 !== 0;
     const isLeftPosition: boolean = position === 'left';
+    const router: NextRouter = useRouter();
+
+    useEffect((): void => { setVisibleMembers(members); }, [members]);
+
+    /**
+     * Remove a member from the visibleMembers state by id.
+     *
+     * Removes the member with the given user id from the local visibleMembers array.
+     * This updates the UI state locally (optimistic removal) without mutating the original `members` prop.
+     *
+     * @param {string} id - The user identifier of the member to remove.
+     */
+    const handleRemoveMember: (id: string) => void = async (id: string): Promise<void> => {
+        setVisibleMembers((prev: Member[]): Member[] => prev.filter((m: Member): boolean => m.user_id !== id));
+
+        const alreadyUnlocked: boolean = await isMilestoneUnlocked(MILESTONES.OLDBOTS.id);
+        if (!alreadyUnlocked) {
+            await unlockMilestone(MILESTONES.OLDBOTS.id, MILESTONES.OLDBOTS.imageKey,
+                (router.locale === "de" || router.locale === "en") ? router.locale : "de");
+        }
+    };
 
     /**
      * Returns the appropriate planet decoration configuration based on the variant.
@@ -166,12 +194,13 @@ export default function MemberList({members, section_id, category, position = 'r
                     {/* User List */}
                     <AnimateOnView animation={`animate__fadeIn${isLeftPosition ? 'Left' : 'Right'} animate__slower`}
                                    className={`mt-8 sm:mt-10 xl:mt-0 ${isLeftPosition ? 'xl:order-1' : 'xl:order-2'}`}>
-                        <div className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
+                        <div ref={animationParent} className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
                                          ${isOddCount ? 'sm:[&>*:last-child]:col-span-2 sm:[&>*:last-child]:w-full ' +
                                                         'md:[&>*:last-child]:w-[75%] lg:[&>*:last-child]:w-[50%] ' +
                                                         'sm:[&>*:last-child]:mx-auto' : ''}`}>
-                            {members.map((member: Member): JSX.Element => (
-                                <MemberCard key={member.user_id} member={member} />
+                            {visibleMembers.map((member: Member): JSX.Element => (
+                                <MemberCard key={member.user_id} member={member}
+                                            onRemove={(): void => handleRemoveMember(member.user_id)} />
                             ))}
                         </div>
                     </AnimateOnView>

@@ -337,7 +337,8 @@
     "rankBirthday": "Guest of Honor",
     "rankRekrut": "Recruit (Vanity/Tag)",
     "rankBooster": "Server-Booster",
-    "rankSponsor": "Event-Sponsor"
+    "rankSponsor": "Event-Sponsor",
+    "rankGhost": "Something's off.."
   },
   "ClankHero": {
     "infoTag": "IMPROVE YOUR OWN DISCORD-SERVER!",

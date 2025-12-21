@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
         defaultLocale: 'de'
     },
     images: {
-        remotePatterns: [{ hostname: 'cdn.discordapp.com' }],
+        remotePatterns: [{ hostname: 'cdn.discordapp.com' }, { hostname: 'i.imgur.com' }],
     },
 
     async headers() {
