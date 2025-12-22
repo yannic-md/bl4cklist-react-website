@@ -178,7 +178,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
         <section className="relative w-full h-screen overflow-hidden" id="discord-server-start" ref={sectionRef}>
             {/* Background Video */}
             <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
-                <video className="w-full h-full object-cover relative" autoPlay muted loop
+                <video className="w-full h-full object-cover relative" autoPlay muted loop preload="none"
                        playsInline poster="/images/bg/bg-intro.avif">
                     <source src="/videos/hero/bg-intro-2560w.webm" type="video/webm; codecs=vp9" media="(min-width: 2560px)" />
                     <source src="/videos/hero/bg-intro-1920w.webm" type="video/webm; codecs=vp9" media="(min-width: 1920px)" />
@@ -302,7 +302,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
                             <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority
                                 alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
-                                data-cursor-special
+                                data-cursor-special fetchPriority="high"
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28
                                            lg:w-32" />
                         </div>
@@ -381,8 +381,8 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                             md:z-5 lg:z-10 animate__animated animate__fadeInUp pointer-events-none">
-                <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={false}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px" loading="lazy"
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                     className="object-contain max-w-[800px] pointer-events-none" />
             </div>

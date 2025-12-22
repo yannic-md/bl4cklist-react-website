@@ -68,4 +68,10 @@ img:hover, .cursor-special {
 .adsbygoogle[data-ad-status="unfilled"] {
     display: none !important;
     height: 0 !important;
+    min-height: 0 !important;
+}
+
+.ad-container:has(.adsbygoogle[data-ad-status="unfilled"]) {
+    display: none !important;
+    min-height: 0 !important;
 }

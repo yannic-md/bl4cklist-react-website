@@ -124,15 +124,16 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                 {/* User Avatar (with Fallback Avatar) */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
                     {member.user_avatar_url ? (
-                        <Image src={member.user_avatar_url} width={136} height={136} unoptimized data-cursor-special
+                        <Image src={member.user_avatar_url} width={136} height={136} data-cursor-special
                                className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
-                                alt={`${member.user_display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
-                                onError={(e): void => {
-                                    const target: HTMLImageElement = e.currentTarget as HTMLImageElement;
-                                    target.style.display = 'none';
-                                    const fallback: HTMLDivElement = target.nextElementSibling as HTMLDivElement;
-                                    if (fallback) fallback.style.display = 'flex';
-                                }} />) : null}
+                               alt={`${member.user_display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
+                               unoptimized={member.user_avatar_url.includes('.gif')}
+                               onError={(e): void => {
+                                   const target: HTMLImageElement = e.currentTarget as HTMLImageElement;
+                                   target.style.display = 'none';
+                                   const fallback: HTMLDivElement = target.nextElementSibling as HTMLDivElement;
+                                   if (fallback) fallback.style.display = 'flex';
+                               }} />) : null}
 
                     {/* Fallback Avatar */}
                     <div className={`${member.user_avatar_url ? 'hidden' : 'flex'} w-full h-full items-center justify-center 

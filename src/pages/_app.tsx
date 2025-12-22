@@ -17,12 +17,13 @@ import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {useKonamiCode} from "@/hooks/useKonamiCode";
 import FallingObjects from "@/components/elements/misc/FallingObjects";
 import Script from "next/dist/client/script";
+import Head from "next/head";
 config.autoAddCss = false
 
-const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const dmSans: NextFontWithVariable = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
-const plexSans: NextFontWithVariable = IBM_Plex_Sans({ subsets: ['latin'], variable: '--font-ibm-plex-sans' })
-const jetbrainsMono: NextFontWithVariable = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' })
+const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter', adjustFontFallback: true })
+const dmSans: NextFontWithVariable = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', adjustFontFallback: true })
+const plexSans: NextFontWithVariable = IBM_Plex_Sans({ subsets: ['latin'], variable: '--font-ibm-plex-sans', adjustFontFallback: true })
+const jetbrainsMono: NextFontWithVariable = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', adjustFontFallback: true })
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     const router: NextRouter = useRouter();
@@ -76,21 +77,31 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     });
     
     return (
-        <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
-            <PageLoader />
+        <>
+            <Head>
+                <title>Bl4cklist.de ~ Gaming-& Coding Discord-Server</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#FF7F50" />
+                <meta name="author" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server" />
+                <meta property="og:site_name" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server" />
+            </Head>
 
-            {/* Google AdSense Main Script */}
-            <Script id="adsbygoogle-init" strategy="afterInteractive" crossOrigin="anonymous"
-                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_ID}`} />
+            <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
+                <PageLoader />
 
-            <NextIntlClientProvider locale={router.locale} timeZone="Europe/Berlin" messages={pageProps.messages}>
-                <Component {...pageProps} />
+                {/* Google AdSense Main Script */}
+                <Script id="adsbygoogle-init" strategy="lazyOnload" crossOrigin="anonymous"
+                        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_ID}`} />
 
-                <EasterMenu />
-                <FallingObjects />
-            </NextIntlClientProvider>
+                <NextIntlClientProvider locale={router.locale} timeZone="Europe/Berlin" messages={pageProps.messages}>
+                    <Component {...pageProps} />
 
-            <ScrollToTopButton />
-        </main>
+                    <EasterMenu />
+                    <FallingObjects />
+                </NextIntlClientProvider>
+
+                <ScrollToTopButton />
+            </main>
+        </>
     )
 }

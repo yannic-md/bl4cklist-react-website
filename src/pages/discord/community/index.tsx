@@ -8,6 +8,8 @@ import MemberList from "@/components/sections/community-page/MemberList";
 import {Member, oldBots} from "@/types/Member";
 import {fetchCommunityMembers, fetchGuildStatistics} from "@/lib/api";
 import {APICommunity, APIStatistics} from "@/types/APIResponse";
+import {useTranslations} from "next-intl";
+import MetaHead from "@/components/elements/MetaHead";
 
 interface CommunityProps {
     guildStats: APIStatistics | null;
@@ -27,6 +29,7 @@ interface CommunityProps {
  */
 export default function Community({ guildStats, apiMembers }: CommunityProps): JSX.Element {
     const [former_staff, setFormerStaffList] = useState<Member[]>([]);
+    const tComHero = useTranslations('ComHero');
 
     // fetched Team member data (or fallback)
     const fallbackMember: Member =
@@ -59,6 +62,8 @@ export default function Community({ guildStats, apiMembers }: CommunityProps): J
 
     return (
         <>
+            <MetaHead title='Community' description={tComHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 

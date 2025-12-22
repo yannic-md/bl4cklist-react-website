@@ -74,6 +74,11 @@ It supports following <strong>features</strong>:
 ## 🔨 Usage
 › You can open this website here: <code>https://bl4cklist.de</code>
 
+## 🟢 Start Project
+1. Run `ng build`.
+2. Run `cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/`
+3. Upload entire content of `standalone/` to a server and run `node server.js`.
+
 ## ⚖️ License
 
 - **Source Code:** MIT License (see LICENSE file for details)

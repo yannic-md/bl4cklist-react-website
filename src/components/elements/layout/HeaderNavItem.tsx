@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import head from '../../../styles/components/header.module.css';
 import { NavigationItem } from '@/types/NavigationItem';
 import HeaderDropdown from './HeaderDropdown';

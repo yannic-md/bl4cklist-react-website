@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bl4cklist.de
+
+# Sitemaps
+Sitemap: https://bl4cklist.de/sitemap.xml

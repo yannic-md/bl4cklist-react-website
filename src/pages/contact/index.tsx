@@ -5,6 +5,8 @@ import {GetStaticPropsContext} from "next";
 import ContactHero from "@/components/sections/imprint/ContactHero";
 import ContactFormSection from "@/components/sections/imprint/ContactFormSection";
 import Image from "next/image";
+import MetaHead from "@/components/elements/MetaHead";
+import {useTranslations} from "next-intl";
 
 export type FormType = 'unban' | 'general' | null;
 
@@ -16,6 +18,8 @@ export type FormType = 'unban' | 'general' | null;
  */
 export default function Contact(): JSX.Element {
     const [selectedForm, setSelectedForm] = useState<FormType>(null);
+    const tSEO = useTranslations('SEO');
+    const tContactHero = useTranslations('ContactHero')
 
     /**
      * Handles the selection of a contact form type and scrolls to the form section.
@@ -31,6 +35,8 @@ export default function Contact(): JSX.Element {
 
     return (
         <>
+            <MetaHead title={tSEO('contactTitle')} description={tContactHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 

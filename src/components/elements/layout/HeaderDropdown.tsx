@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
 import responsive from '../../../styles/util/responsive.module.css';
 import { DropdownItem } from '@/types/NavigationItem';
 import {JSX, RefObject, useMemo, useRef} from "react";

@@ -235,7 +235,8 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
                     {!imageError ? (
                         <Image src={member.user_avatar_url} className="h-20 w-20 object-cover rounded-lg" width={80} height={80}
                                alt={`${member.user_display_name}'s Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
-                               onError={(): void => setImageError(true)} data-cursor-special />
+                               onError={(): void => setImageError(true)} data-cursor-special
+                               unoptimized={member.user_avatar_url.includes('.gif')} />
                     ) : (
                         <div className="rounded-lg w-20 h-20 bg-gradient-to-br from-gray-900 to-gray-500
                                         flex items-center justify-center cursor-special">

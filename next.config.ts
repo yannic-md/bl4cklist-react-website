@@ -4,8 +4,8 @@ const isDev: boolean = process.env.NODE_ENV === 'development';
 
 const cspHeader: string = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google;
-    style-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google https://fonts.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' blob: data: https://cdn.discordapp.com https://i.imgur.com https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google;
     font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com;
     object-src 'none';
@@ -19,7 +19,9 @@ const cspHeader: string = `
 `;
 
 const nextConfig: NextConfig = {
+    output: "standalone",
     trailingSlash: true,
+    compress: true,
     i18n: {
         locales: ['de', 'en'],
         defaultLocale: 'de'

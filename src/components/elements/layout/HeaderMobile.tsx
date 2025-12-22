@@ -1,8 +1,8 @@
 import React, {JSX, useEffect, useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
-import { faDiscord as faDiscordBrand } from '@fortawesome/free-brands-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
+import { faDiscord as faDiscordBrand } from '@fortawesome/free-brands-svg-icons/faDiscord';
 import Link from 'next/link';
 import Image from 'next/image';
 import {NextRouter, useRouter} from 'next/router';

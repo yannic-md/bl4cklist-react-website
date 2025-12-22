@@ -12,6 +12,8 @@ import {GuildFeature} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
 import {fetchGuildStatistics, fetchTeamMembers} from "@/lib/api";
+import {useTranslations} from "next-intl";
+import MetaHead from "@/components/elements/MetaHead";
 
 interface HomeProps {
     messages: any;
@@ -29,6 +31,9 @@ interface HomeProps {
  * @returns {JSX.Element} The home page component.
  */
 export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Element {
+    const tWelcomeHero = useTranslations('WelcomeHero');
+    const tSEO = useTranslations('SEO');
+
     const singleFeatureSub: GuildFeature[][] = [[
         { src: "/images/icons/small/coding-32w.webp", alt: "Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
           titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
@@ -45,6 +50,8 @@ export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Elemen
 
     return (
         <>
+            <MetaHead title={tSEO('homeTitle')} description={tWelcomeHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 
