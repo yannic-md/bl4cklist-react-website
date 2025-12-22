@@ -56,6 +56,8 @@ It supports following <strong>features</strong>:
   <br />
   <li>☁️ <strong>Cloudflare Turnstile Integration</strong>: To avoid bots spamming our contact form, we're using Cloudflare's Captcha Tool "Turnstile".</li> 
   <br />
+  <li>🎉 <strong>Easter-Egg System</strong>: We implemented 10+ unique Easter Eggs that you can find on our website. Have fun finding them! ;)</li> 
+  <br />
   <li>🚩 <strong>Language Switcher</strong>: Our website automatically detects the language of your browser and displays English/German accordingly, alternatively the user can switch via button click.</li> 
   <br /> 
   <li>📱 <strong>Responsive for all Devices</strong>: We have put a special focus on ensuring that the website is beautifully and user-friendly displayed on as many devices as possible.</li> 
@@ -64,7 +66,7 @@ It supports following <strong>features</strong>:
   <br />
   <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li>
   <br />
-  <li>🎉 <strong>Easter-Egg System</strong>: We implemented 10+ unique Easter Eggs that you can find on our website. Have fun finding them! ;)</li> 
+  <li>💸 <strong>Google Ads Integration</strong>: With a simple solution we integrated some google ad banners on our page.</li> 
 </ul>
 
 ⚙️ › To run the <strong>test coverage</strong> and see the results, just open a terminal in the project root folder and run the command `jest`.

@@ -64,3 +64,8 @@ code {
 img:hover, .cursor-special {
     cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer;
 }
+
+.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+    height: 0 !important;
+}

@@ -17,6 +17,8 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import AdBanner from "@/components/elements/ads/AdBanner";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -266,6 +268,10 @@ export default function CodingFAQ(): JSX.Element {
                         </div>
                     </AnimateOnView>
                 </div>
+
+                <AdContainer>
+                    <AdBanner dataAdSlot="3444501462" dataAdFormat="horizontal" />
+                </AdContainer>
             </div>
 
             { /* Bottom border for this section */ }

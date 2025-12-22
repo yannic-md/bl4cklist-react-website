@@ -17,6 +17,8 @@ import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
 import DecorationalImage from "@/components/elements/misc/DecorationalImage";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import AdBanner from "@/components/elements/ads/AdBanner";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -258,6 +260,12 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                                         </div>
                                     ))}
                                 </div>
+                            )}
+
+                            {translationNamespace === 'ClankGiveawaysSection' && (
+                                <AdContainer>
+                                    <AdBanner dataAdSlot="9048181934" dataAdFormat="horizontal" />
+                                </AdContainer>
                             )}
                         </div>
                     </div>

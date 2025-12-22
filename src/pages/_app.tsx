@@ -16,6 +16,7 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {useKonamiCode} from "@/hooks/useKonamiCode";
 import FallingObjects from "@/components/elements/misc/FallingObjects";
+import Script from "next/dist/client/script";
 config.autoAddCss = false
 
 const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -77,6 +78,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
             <PageLoader />
+
+            {/* Google AdSense Main Script */}
+            <Script id="adsbygoogle-init" strategy="afterInteractive" crossOrigin="anonymous"
+                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_ID}`} />
 
             <NextIntlClientProvider locale={router.locale} timeZone="Europe/Berlin" messages={pageProps.messages}>
                 <Component {...pageProps} />

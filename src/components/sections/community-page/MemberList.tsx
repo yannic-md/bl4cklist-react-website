@@ -12,6 +12,8 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import AdBanner from "@/components/elements/ads/AdBanner";
 
 type MemberListPosition = 'left' | 'right';
 
@@ -206,6 +208,12 @@ export default function MemberList({members, section_id, category, position = 'r
                     </AnimateOnView>
                 </div>
             </div>
+
+            {section_id === 'leaders' && (
+                <AdContainer>
+                    <AdBanner dataAdSlot="1918848562" dataAdFormat="horizontal" />
+                </AdContainer>
+            )}
 
             {/* Border for better transition & Light shape for depth */}
             <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1]

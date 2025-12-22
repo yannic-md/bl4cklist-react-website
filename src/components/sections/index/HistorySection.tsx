@@ -15,6 +15,8 @@ import index from '../../../styles/components/index.module.css';
 import Link from "next/link";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {faRocket} from "@fortawesome/free-solid-svg-icons/faRocket";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import AdBanner from "@/components/elements/ads/AdBanner";
 
 /**
  * The `HistorySection` component renders a section of the webpage that provides
@@ -284,6 +286,10 @@ export default function HistorySection(): JSX.Element {
                         </div>
                     </div>
                 </div>
+
+                <AdContainer>
+                    <AdBanner dataAdSlot="3191745244" dataAdFormat="horizontal" />
+                </AdContainer>
             </div>
 
             { /* Bottom border for this section */ }

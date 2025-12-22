@@ -8,6 +8,8 @@ import index from '../../../styles/components/index.module.css';
 import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 import {Member} from "@/types/Member";
 import GlitchingMoon from "@/components/elements/misc/GlitchingMoon";
+import AdBanner from "@/components/elements/ads/AdBanner";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
 
 interface TeamSectionProps {
     teamMembers: Member[] | null;
@@ -115,6 +117,10 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
                         </AnimateOnView>
                     ))}
                 </div>
+
+                <AdContainer>
+                    <AdBanner dataAdSlot="9131942417" dataAdFormat="horizontal" />
+                </AdContainer>
             </div>
 
             {/* Border for better transition to next section & Light shape for more depth */}
