@@ -70,7 +70,7 @@ export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Elemen
                     {/* Short description of our discord-server with some statistics */}
                     <SingleFeatureSection translationNamespace="IntroSection" particlesEnabled={true} planetDecoration="none"
                                           imagePosition="right" ctaEnabled={true} showTopGradients={true}
-                                          imageSrc="/images/pixel/guild-banner-508w.webp" guildFeatures={singleFeatureSub}
+                                          imageSrc="/images/pixel/guild-banner-471w.avif" guildFeatures={singleFeatureSub}
                                           imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                           sectionId="discord-server-features" titleEmoji="👋🏻" guildStats={guildStats} />
 

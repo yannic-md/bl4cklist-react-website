@@ -27,7 +27,19 @@ const nextConfig: NextConfig = {
         defaultLocale: 'de'
     },
     images: {
+        formats: ['image/avif', 'image/webp'],
+        minimumCacheTTL: 31536000,
         remotePatterns: [{ hostname: 'cdn.discordapp.com' }, { hostname: 'i.imgur.com' }],
+    },
+    experimental: {
+        optimizeCss: true,
+        turbopackMinify: true,
+        optimizePackageImports: [
+            "@fortawesome/free-brands-svg-icons",
+            "@fortawesome/free-regular-svg-icons",
+            "@fortawesome/free-solid-svg-icons",
+            "animate.css"
+        ]
     },
 
     async headers() {

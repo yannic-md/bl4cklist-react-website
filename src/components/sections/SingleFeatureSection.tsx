@@ -13,12 +13,12 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
-import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
 import DecorationalImage from "@/components/elements/misc/DecorationalImage";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
 import AdBanner from "@/components/elements/ads/AdBanner";
+import dynamic from "next/dist/shared/lib/dynamic";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -35,6 +35,11 @@ export interface SingleFeatureSectionProps {
     customStatistics?: GuildStatistic[];
     guildStats?: APIStatistics | null;
 }
+
+const ParticlesBackground = dynamic(
+    () => import('@/components/animations/ParticlesBackground').then((mod) => mod.ParticlesBackground),
+    { ssr: false }
+);
 
 /**
  * Renders a reusable feature section with configurable layout, decorations, and content.
@@ -171,7 +176,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             <div className={`rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
                              overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
                 <div className="rounded-xl">
-                    <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
+                    <Image src={imageSrc} width={471} height={471} alt={imageAlt} unoptimized={true}
                            className="h-full rounded-xl brightness-90" key={imageSrc} data-cursor-special />
                 </div>
             </div>

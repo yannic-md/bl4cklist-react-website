@@ -13,7 +13,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {Member} from "@/types/Member";
-import {JSX} from "react";
+import {JSX, useState} from "react";
 import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
 
 /**
@@ -29,6 +29,7 @@ import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
  */
 export default function TeamMemberCard({ member }: { member: Member }): JSX.Element {
     const tTeam = useTranslations('TeamSection');
+    const [isHovered, setIsHovered] = useState(false);
 
     /**
      * Determines the appropriate FontAwesome icon for a given social media URL.
@@ -47,8 +48,33 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
         return faLink;
     };
 
+    /**
+     * Get the appropriate avatar URL for the member, preferring a WebP preview for animated GIFs when not hovered.
+     *
+     * This function returns an empty string if the member has no avatar. It strips any existing query
+     * parameters from the avatar URL, detects whether the original avatar is an animated GIF and, if so
+     * and the card is not hovered, returns a `.webp` preview variant with `?size=128`. Otherwise it
+     * returns the base avatar URL with `?size=128` appended.
+     *
+     * @returns {string} The computed avatar URL (or an empty string) with `?size=128` appended.
+     */
+    const getAvatarUrl: () => string = (): string => {
+        if (!member.user_avatar_url) return '';
+
+        const baseUrl: string = member.user_avatar_url.split('?')[0];
+        const isAnimated: boolean = member.user_avatar_url.includes('.gif');
+        if (isAnimated && !isHovered) {
+            return `${baseUrl.replace('.gif', '.webp')}?size=128`;
+        }
+
+        return `${baseUrl}?size=128`;
+    };
+
+    const avatarUrl: string = getAvatarUrl();
+    const isGif: boolean = avatarUrl.includes('.gif');
+
     return (
-        <div>
+        <div onMouseEnter={(): void => setIsHovered(true)} onMouseLeave={(): void => setIsHovered(false)}>
             <div className="relative flex-[1_0_0] w-96"></div>
             <div className={`relative flex gap-6 p-8 bg-[#04070d] rounded-2xl
                 ${member.rank === 'LEITUNG' ? 'shadow-[inset_0_2px_1px_0_rgba(239,68,68,0.2)]' :
@@ -124,10 +150,10 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                 {/* User Avatar (with Fallback Avatar) */}
                 <div className="relative flex flex-1 aspect-[1.08594]">
                     {member.user_avatar_url ? (
-                        <Image src={member.user_avatar_url} width={136} height={136} data-cursor-special
+                        <Image src={avatarUrl} width={136} height={136} data-cursor-special
                                className="rounded-lg hover:rotate-1 transition-all duration-300 hover:scale-105"
                                alt={`${member.user_display_name} Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
-                               unoptimized={member.user_avatar_url.includes('.gif')}
+                               unoptimized={isGif} sizes="136px"
                                onError={(e): void => {
                                    const target: HTMLImageElement = e.currentTarget as HTMLImageElement;
                                    target.style.display = 'none';

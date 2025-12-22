@@ -300,7 +300,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                                 </div>
                             </div>
 
-                            <Image src="/images/brand/logo-animated-120w.webp" height={120} width={120} priority
+                            <Image src="/images/brand/logo-128w.avif" height={128} width={128} priority loading={"eager"}
                                 alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
                                 data-cursor-special fetchPriority="high"
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28

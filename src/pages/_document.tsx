@@ -11,6 +11,8 @@ export default function Document(): JSX.Element {
                 <link rel="icon" type="image/png" sizes="16x16" href="/images/brand/favicon/logo-16w.png" />
                 <link rel="apple-touch-icon" href="/images/brand/favicon/logo-32w.png" />
 
+                <link rel="preconnect" href="https://api.clank.dev" />
+                <link rel="dns-prefetch" href="https://api.clank.dev" />
                 <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
                 <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
             </Head>

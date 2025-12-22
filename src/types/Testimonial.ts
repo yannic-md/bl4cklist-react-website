@@ -13,7 +13,7 @@ export const TESTIMONIALS: Testimonial[] = [
         username: "† | Leonie",
         rank: "GELDGEBER (SPONSOR)",
         rank_color: "#a9c9ff",
-        avatar_url: "/images/icons/old-avatar/587319452865921024-avatar.gif",
+        avatar_url: "/images/icons/old-avatar/587319452865921024-avatar.avif",
         content: "Bl4cklist bietet einem extrem viele coole Möglichkeiten seine Langeweile los zu werden. Neben einem extrem freundlichen und aktiven Chat, in dem auch jeder willkommen geheißen wird und ins Gespräch aufgenommen wird, gibt es auch immer Leute im Talk zum reden. Zusätzlich bietet der Server noch Minispiele, wie ein Casino, sowie das der Server sehr angenehm gestaltet ist und eine sehr nette Community aufweist. Alles in allem also mein Lieblingsserver, auf dem ich auch gerne sehr viel Zeit verbringe und schon viele Freunde getroffen habe."
     },
     {
@@ -77,7 +77,7 @@ export const TESTIMONIALS: Testimonial[] = [
         username: "IcePain",
         rank: "WISSENSCHAFTLER (LVL: 50)",
         rank_color: "#ee9d4a",
-        avatar_url: "/images/icons/old-avatar/423074517548531712-avatar.gif",
+        avatar_url: "/images/icons/old-avatar/423074517548531712-avatar.avif",
         content: "Der Server ist übersichtlich strukturiert und wird durch die sehr gut programmierten Bots täglich unterstützt. Bei Fragen und Problemen steht das Support-Team mit Rat und Tat zur Seite. Das eingebaute Casino spielt eine große Rolle im täglichen Alltag und macht sehr viel Spaß. Die Spieleabende sind eine tolle Abwechslung, nicht nur um neue Leute kennenzulernen sondern auch zusammen die Spiele zu entdecken. Der Globaler-Chat lässt einem auch Serverübergreifend Kontakte knüpfen. Im großen und ganzen ist dies ein sehr guter Community-Server, welcher täglich neue echte User zählt."
     },
     {
@@ -93,7 +93,7 @@ export const TESTIMONIALS: Testimonial[] = [
         username: "KEK",
         rank: "TECHNIKER (LVL: 5)",
         rank_color: "#8499ff",
-        avatar_url: "/images/icons/old-avatar/765116530899419147-avatar.gif",
+        avatar_url: "/images/icons/old-avatar/765116530899419147-avatar.avif",
         content: "Ein gut aufgebauter Server mit einem guten Design. Man kann Rollen aussuchen und durch leveln mehr Rollen bekommen. Es gibt auch Gesetze die von den Mods und Admins eingehalten werden. Es werden keine halben Sachen gemacht. Du kannst auch dein Geburtstag eintragen und an deinem Geburtstag ein Geschenk bekommen. Es gibt auch regelmäßige Giveaways und Community Events. Der Server kommuniziert gerne mit seinen Members. Man kann auch ne Partnerschaft mit Blacklist beantragen somit kann man sich selber auch pushen was auch sehr gut ist. Blacklist ist ein schöner Server mit vielen Netten Menschen. Ist sehr zu empfehlen. Das einzige wo man aufpassen muss isrt bei den Regeln des Servers sonst ist es ein guter Server zum chillen."
     },
     {
@@ -141,7 +141,7 @@ export const TESTIMONIALS: Testimonial[] = [
         username: "Philip",
         rank: "GELDGEBER (SPONSOR)",
         rank_color: "#a9c9ff",
-        avatar_url: "/images/icons/old-avatar/119263663621275648-avatar.png",
+        avatar_url: "/images/icons/old-avatar/119263663621275648-avatar.avif",
         content: "Bl4cklist.de ist ein super Server um sich mit Leuten zu unterhalten und für vieles mehr. Dazu machen die auch oft Giveaways.. darunter auch Nitro Giveaways. Das Team ist auch mega nett. Die Vorteile der Rollen sind auch gut."
     },
     {
