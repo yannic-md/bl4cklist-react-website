@@ -26,6 +26,8 @@ interface CommunityProps {
  * @returns {JSX.Element} The community page component.
  */
 export default function Community({ guildStats, apiMembers }: CommunityProps): JSX.Element {
+    const [former_staff, setFormerStaffList] = useState<Member[]>([]);
+
     // fetched Team member data (or fallback)
     const fallbackMember: Member =
         {user_name: 'Clank#0510', user_display_name: 'Clank', rank: 'LEITUNG', user_id: '775415193760169995', social_media_url: null,
@@ -34,25 +36,26 @@ export default function Community({ guildStats, apiMembers }: CommunityProps): J
     const birthday_users: Member[] = apiMembers?.birthday ?? [{ ...fallbackMember, rank: "BIRTHDAY" }];
     const ranked_users: Member[] = apiMembers?.supporters ?? [{ ...fallbackMember, rank: "SPONSOR" }];
     const level_users: Member[] = apiMembers?.levels ?? [{ ...fallbackMember, rank: "LVL125" }];
-    const base_former_staff: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
-    const [former_staff, setFormerStaff] = useState<Member[]>(base_former_staff);
 
     /**
      * Insert a random legacy bot into the former staff list.
      *
      * This effect injects a randomly selected dead bot member (from `oldBots`) into a
      * copy of `base_former_staff` at a random position and updates component state.
-     * It runs whenever the `base_former_staff` array identity changes.
+     * It runs whenever the `apiMembers?.former` array identity changes.
      */
     useEffect((): void => {
-        if (base_former_staff.length === 0) return;
-        const randomGhost: Member = oldBots[Math.floor(Math.random() * oldBots.length)];
+        const base: Member[] = apiMembers?.former ?? [{ ...fallbackMember, rank: "EHEM_LEITUNG" }];
+        if (base.length === 0) { return setFormerStaffList(base); }
 
-        // Insert at random position
-        const randomPosition: number = Math.floor(Math.random() * (base_former_staff.length + 1));
-        setFormerStaff([...base_former_staff.slice(0, randomPosition), randomGhost,
-                        ...base_former_staff.slice(randomPosition)]);
-    }, [base_former_staff]);
+        const randomGhost: Member = oldBots[Math.floor(Math.random() * oldBots.length)];
+        const randomPosition: number = Math.floor(Math.random() * (base.length + 1));
+
+        const listWithGhost: Member[] = [...base];
+        listWithGhost.splice(randomPosition, 0, randomGhost);
+
+        setFormerStaffList(listWithGhost);
+    }, [apiMembers?.former]);
 
     return (
         <>

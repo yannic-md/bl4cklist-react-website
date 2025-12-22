@@ -62,7 +62,9 @@ It supports following <strong>features</strong>:
   <br />
   <li>🎈 <strong>Catchy Animations</strong>: As soon as an object comes into the user's field of view, a beautiful animation is played if applicable.</li> 
   <br />
-  <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li> 
+  <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li>
+  <br />
+  <li>🎉 <strong>Easter-Egg System</strong>: We implemented 10+ unique Easter Eggs that you can find on our website. Have fun finding them! ;)</li> 
 </ul>
 
 ⚙️ › To run the <strong>test coverage</strong> and see the results, just open a terminal in the project root folder and run the command `jest`.
