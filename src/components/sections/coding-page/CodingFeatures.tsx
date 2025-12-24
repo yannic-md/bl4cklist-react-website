@@ -6,7 +6,7 @@ import colors from "@/styles/util/colors.module.css";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import BentoBoxItem from "@/components/elements/grid/BentoBoxItem";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * Renders the "Coding Features" section used on the tech-coding page.
@@ -22,7 +22,7 @@ import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 */
 export default function CodingFeatures(): JSX.Element {
     const tCodingFeatures = useTranslations('CodingFeatures');
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
     const [bugItemIndex, setBugItemIndex] = useState<number | null>(null);
 
     /**

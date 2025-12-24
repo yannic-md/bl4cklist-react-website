@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef, RefObject} from 'react';
 import { usePathname } from 'next/navigation';
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * Returns the id of the currently most visible section on large screens.
@@ -13,7 +13,7 @@ import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
  */
 export const useActiveSection: () => string = (): string => {
     const [activeSection, setActiveSection] = useState<string>('');
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
     const pathname: string = usePathname();
     const visibilityMapRef: RefObject<Map<string, number>> = useRef<Map<string, number>>(new Map());
 

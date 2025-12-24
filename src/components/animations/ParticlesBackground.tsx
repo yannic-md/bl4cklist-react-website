@@ -2,6 +2,7 @@ import {FC, JSX, memo, RefObject, useCallback, useEffect, useId, useRef, useStat
 import Particles, {initParticlesEngine} from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import {Engine, MoveDirection, OutMode} from "@tsparticles/engine";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 interface ParticlesBackgroundProps {
     className?: string;
@@ -24,25 +25,8 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
     const containerRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 
     const [isVisible, setIsVisible] = useState(false);
-    const [isMobile, setIsMobile] = useState(true); // Default true to prevent flash
+    const isLargeScreen: boolean = useMediaQuery(1280);
     const [engineReady, setEngineReady] = useState(false);
-
-    /**
-     * Detects whether the viewport is considered mobile and updates state on resize.
-     *
-     * This effect runs once on mount, checks the current window width against a 1280px breakpoint
-     * and sets the `isMobile` state accordingly. It also registers a `resize` event listener to
-     * update the state when the window is resized.
-     */
-    useEffect((): () => void => {
-        const checkMobile: () => void = (): void => {
-            setIsMobile(window.innerWidth < 1280);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return (): void => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     /**
      * Initialize only one time the tsparticles engine when the component is not running on a mobile viewport.
@@ -51,12 +35,12 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
      * This avoids loading the engine on mobile devices and runs whenever the `isMobile` flag changes.
      */
     useEffect((): void => {
-        if (isMobile) return; // Don't even load engine on mobile
+        if (!isLargeScreen) return; // Don't even load engine on mobile
 
         initParticlesEngine(async (engine: Engine): Promise<void> => {
             await loadSlim(engine);
         }).then((): void => setEngineReady(true));
-    }, [isMobile]);
+    }, [isLargeScreen]);
 
     /**
      * Observe container visibility and toggle particle rendering.
@@ -66,7 +50,7 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
      * the particles engine is ready.
      */
     useEffect((): (() => void) | undefined => {
-        if (isMobile || !engineReady) return;
+        if (!isLargeScreen || !engineReady) return;
 
         const observer = new IntersectionObserver(
             (entries: IntersectionObserverEntry[]): void => {
@@ -83,10 +67,10 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
 
         if (containerRef.current) { observer.observe(containerRef.current); }
         return (): void => { if (containerRef.current) { observer.unobserve(containerRef.current); } };
-    }, [isMobile, engineReady]);
+    }, [isLargeScreen, engineReady]);
 
     const particlesLoaded: () => Promise<void> = useCallback(async (): Promise<void> => {}, []);
-    if (isMobile) { return null; }  // Don't render anything on mobile
+    if (!isLargeScreen) { return null; }  // Don't render anything on mobile
 
     // Render placeholder container for intersection observer
     if (!engineReady || !isVisible) { return <div ref={containerRef} className="absolute inset-0 pointer-events-none" />; }

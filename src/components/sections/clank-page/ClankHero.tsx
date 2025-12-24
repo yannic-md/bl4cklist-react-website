@@ -9,7 +9,7 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {FaRobot} from "react-icons/fa";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * Renders the hero section for the Clank bot landing page.
@@ -18,7 +18,7 @@ import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
  */
 export default function ClankHero(): JSX.Element {
     const tClankBot = useTranslations('ClankHero');
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
 
     return (
         <section className="relative z-[2] pt-20 md:pt-24 lg:pt-28  2xl:h-[100vh] bg-slate-900/30" id="start">

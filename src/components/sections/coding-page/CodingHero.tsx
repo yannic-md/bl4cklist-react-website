@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {APIStatistics} from "@/types/APIResponse";
 import {FaDiscord, FaRobot} from "react-icons/fa";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 interface CodingHeroProps {
     guildStats: APIStatistics | null;
@@ -39,7 +39,7 @@ interface CodingHeroProps {
 export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const tCodingHero = useTranslations('CodingHero');
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
     const { locale } = useRouter();
 
     // fallback for SSR

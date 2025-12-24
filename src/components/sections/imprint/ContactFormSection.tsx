@@ -9,7 +9,7 @@ import {createValidationSchemas} from "@/lib/formValidation";
 import ContactForm from "@/components/elements/form/ContactForm";
 import {FaHandcuffs} from "react-icons/fa6";
 import {FaReply} from "react-icons/fa";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 interface ContactFormSectionProps {
     selectedForm: FormType;
@@ -30,7 +30,7 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
     const tForm = useTranslations("Form");
     const tContactForm = useTranslations("ContactForm")
     const isUnbanForm: boolean = selectedForm === 'unban';
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
 
     const validationSchemas = createValidationSchemas(tForm);
 

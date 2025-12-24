@@ -7,9 +7,10 @@ import {useEffect, useState} from "react";
  * and on subsequent changes, and cleans up the event listener on unmount. Prefers the modern
  * `addEventListener`/`removeEventListener` API on `MediaQueryList` when available.
  *
+ * @param {number} max_width - The used width to search for.
  * @returns {boolean} - True if the viewport width is at least 1536px.
  */
-export function useTailwindBreakpoint(): boolean {
+export function useMediaQuery(max_width: number = 1536): boolean {
     const [is2XL, setIs2XL] = useState(false);
 
     /**
@@ -22,7 +23,7 @@ export function useTailwindBreakpoint(): boolean {
      * @returns {boolean} - whether the viewport is at least 1536px wide.
      */
     useEffect((): (() => void) | undefined => {
-        const mediaQuery: MediaQueryList = window.matchMedia('(min-width: 1536px)');
+        const mediaQuery: MediaQueryList = window.matchMedia(`(min-width: ${max_width}px)`);
 
         const handleChange: (e: MediaQueryListEvent | MediaQueryList) => void = (e: MediaQueryListEvent | MediaQueryList): void => {
             setIs2XL(e.matches);

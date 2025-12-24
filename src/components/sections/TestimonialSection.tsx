@@ -8,7 +8,7 @@ import {Testimonial, TESTIMONIALS} from "@/types/Testimonial";
 import {TestimonialCard} from "@/components/elements/grid/TestimonialCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 interface TestimonialSectionProps {
     position?: 'left' | 'right';
@@ -75,7 +75,7 @@ function splitArray<T>(array: T[], parts: number): T[][] {
 export default function TestimonialSection({ position = 'left' }: TestimonialSectionProps): JSX.Element {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isPaused, setIsPaused] = useState<boolean>(false);
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
     const tTestimonial = useTranslations('TestimonialSection');
 
     const [columns, setColumns] = useState<[Testimonial[], Testimonial[]]>((): [Testimonial[], Testimonial[]] => {

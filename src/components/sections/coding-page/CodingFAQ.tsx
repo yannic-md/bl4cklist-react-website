@@ -18,7 +18,7 @@ import {NextRouter, useRouter} from "next/router";
 import AdBanner from "@/components/elements/ads/AdBanner";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
 import {FaDiscord} from "react-icons/fa";
-import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -31,7 +31,7 @@ export default function CodingFAQ(): JSX.Element {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const tWelcome = useTranslations('WelcomeHero');
     const tFAQ = useTranslations('CodingFAQ');
-    const is2XL: boolean = useTailwindBreakpoint();
+    const is2XL: boolean = useMediaQuery();
     const [isShiftPressed, setIsShiftPressed] = useState(false);
     const [secretFaqUnlocked, setSecretFaqUnlocked] = useState(false);
     const router: NextRouter = useRouter();
