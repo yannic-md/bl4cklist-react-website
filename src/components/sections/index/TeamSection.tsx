@@ -5,11 +5,11 @@ import { useTranslations } from "next-intl";
 
 import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
-import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 import {Member} from "@/types/Member";
-import GlitchingMoon from "@/components/elements/misc/GlitchingMoon";
 import AdBanner from "@/components/elements/ads/AdBanner";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import GlitchingMoon from "@/components/elements/misc/GlitchingMoon";
+import TeamMemberCard from "@/components/elements/grid/TeamMemberCard";
 
 interface TeamSectionProps {
     teamMembers: Member[] | null;

@@ -3,27 +3,25 @@ import type { AppProps } from "next/app";
 import {Inter, DM_Sans, IBM_Plex_Sans, JetBrains_Mono} from 'next/font/google'
 import {NextFontWithVariable} from "next/dist/compiled/@next/font";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import { NextIntlClientProvider } from 'next-intl';
 import {NextRouter, useRouter} from 'next/router';
-import PageLoader from "@/components/elements/misc/PageLoader";
 import ScrollToTopButton from "@/components/elements/misc/ScrollToTop";
-import EasterMenu from "@/components/elements/misc/EasterMenu";
-import {JSX, useEffect} from "react";
+import {JSX, lazy, Suspense, useEffect} from "react";
 import {MILESTONES} from "@/data/milestones";
 import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {useKonamiCode} from "@/hooks/useKonamiCode";
-import FallingObjects from "@/components/elements/misc/FallingObjects";
 import Script from "next/dist/client/script";
 import Head from "next/head";
-config.autoAddCss = false
 
-const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter', adjustFontFallback: true })
-const dmSans: NextFontWithVariable = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', adjustFontFallback: true })
-const plexSans: NextFontWithVariable = IBM_Plex_Sans({ subsets: ['latin'], variable: '--font-ibm-plex-sans', adjustFontFallback: true })
-const jetbrainsMono: NextFontWithVariable = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', adjustFontFallback: true })
+const inter: NextFontWithVariable = Inter({ subsets: ['latin'], variable: '--font-inter-next', adjustFontFallback: true })
+const dmSans: NextFontWithVariable = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans-next', adjustFontFallback: true })
+const plexSans: NextFontWithVariable = IBM_Plex_Sans({ subsets: ['latin'], variable: '--font-ibm-plex-sans-next', adjustFontFallback: true })
+const jetbrainsMono: NextFontWithVariable = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono-next',
+                                                             adjustFontFallback: true, fallback: ["sans-serif"] })
+
+const EasterMenu = lazy(() => import("@/components/elements/misc/EasterMenu"));
+const FallingObjects = lazy(() => import("@/components/elements/misc/FallingObjects"));
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
     const router: NextRouter = useRouter();
@@ -87,17 +85,17 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
             </Head>
 
             <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>
-                <PageLoader />
-
                 {/* Google AdSense Main Script */}
-                <Script id="adsbygoogle-init" strategy="lazyOnload" crossOrigin="anonymous"
+                <Script id="adsbygoogle-init" strategy="worker" crossOrigin="anonymous"
                         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_ID}`} />
 
                 <NextIntlClientProvider locale={router.locale} timeZone="Europe/Berlin" messages={pageProps.messages}>
                     <Component {...pageProps} />
 
-                    <EasterMenu />
-                    <FallingObjects />
+                    <Suspense fallback={null}>
+                        <EasterMenu />
+                        <FallingObjects />
+                    </Suspense>
                 </NextIntlClientProvider>
 
                 <ScrollToTopButton />

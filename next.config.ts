@@ -34,10 +34,9 @@ const nextConfig: NextConfig = {
     experimental: {
         optimizeCss: true,
         turbopackMinify: true,
+        turbopackRemoveUnusedExports: true,
+        nextScriptWorkers: true,
         optimizePackageImports: [
-            "@fortawesome/free-brands-svg-icons",
-            "@fortawesome/free-regular-svg-icons",
-            "@fortawesome/free-solid-svg-icons",
             "animate.css"
         ]
     },

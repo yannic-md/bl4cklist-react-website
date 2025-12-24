@@ -1,11 +1,12 @@
 @import "tailwindcss";
 @import 'animate.css';
 
-@theme {
-    --font-inter: var(--font-inter), sans-serif;
-    --font-dm-sans: var(--font-dm-sans), sans-serif;
-    --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
-    --font-jetbrains-mono: var(--font-jetbrains-mono), monospace;
+
+@theme inline {
+    --font-inter: var(--font-inter-next);
+    --font-dm-sans: var(--font-dm-sans-next);
+    --font-ibm-plex-sans: var(--font-ibm-plex-sans-next);
+    --font-jetbrains-mono: var(--font-jetbrains-mono-next);
 }
 
 @layer base {
@@ -32,15 +33,6 @@ body {
 
 code {
     @apply text-[coral];
-}
-
-/* Disable all animations (except page-loader) & hide scrollbar if page is not ready yet */
-.is-loading *:not(#page-loader, #page-loader *) {
-    animation-play-state: paused !important;
-}
-
-.is-loading {
-    overflow: hidden !important;
 }
 
 /* Custom scrollbar design */

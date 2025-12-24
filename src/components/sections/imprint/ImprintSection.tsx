@@ -1,8 +1,7 @@
 import React, {JSX, useState, useEffect, useRef, RefObject} from 'react';
 import {ImprintSectionType} from "@/types/ImprintSection";
 import {imprintData} from "@/data/imprintData";
-import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FaChevronDown} from "react-icons/fa";
 
 /**
  * Renders the imprint and data privacy section with a linked sidebar.
@@ -109,8 +108,8 @@ export default function ImprintSection(): JSX.Element {
                                 aria-label={isCollapsed ? 'Open' : 'Close'}
                                 onClick={(e): void => {
                                     e.preventDefault(); toggleSection(section.id); }}>
-                            <FontAwesomeIcon icon={faChevronDown} aria-hidden="true" size="xs"
-                                             className={`transition-transform ${isCollapsed ? '-rotate-90' : ''}`} />
+                            <FaChevronDown aria-hidden="true" size={12}
+                                           className={`transition-transform ${isCollapsed ? '-rotate-90' : ''}`} />
                         </button>
                     )}
                 </a>

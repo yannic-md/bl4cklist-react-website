@@ -5,11 +5,10 @@ import colors from "@/styles/util/colors.module.css";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import buttons from "@/styles/util/buttons.module.css";
 import animations from "@/styles/util/animations.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ButtonHover from "@/components/elements/ButtonHover";
-import {faRobot} from "@fortawesome/free-solid-svg-icons/faRobot";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
+import {FaRobot} from "react-icons/fa";
 
 /**
  * Renders the hero section for the Clank bot landing page.
@@ -93,7 +92,7 @@ export default function ClankHero(): JSX.Element {
                                    className="flex flex-col items-end w-full">
                                     <button className={`relative w-full sm:min-w-44 md:min-w-52 ${buttons.white_gray} 
                                                         text-sm md:text-base px-4 py-2 md:px-5 md:py-2.5`}>
-                                        <FontAwesomeIcon icon={faRobot} className="text-gray-100" />
+                                        <FaRobot className="text-gray-100" />
                                         <p className="whitespace-pre">{tClankBot('inviteButton')}</p>
                                     </button>
                                 </a>

@@ -5,13 +5,12 @@ import responsive from "@/styles/util/responsive.module.css";
 import animations from "@/styles/util/animations.module.css";
 import colors from "@/styles/util/colors.module.css";
 import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import ButtonHover from "@/components/elements/ButtonHover";
-import {faHouse} from "@fortawesome/free-solid-svg-icons/faHouse";
 import Image from "next/image";
 import Link from "next/link";
 import {APIStatistics} from "@/types/APIResponse";
+import {FaDiscord} from "react-icons/fa";
+import {FaHouse} from "react-icons/fa6";
 
 interface NotFoundProps {
     guildStats: APIStatistics | null;
@@ -105,7 +104,7 @@ export default function NotFound({ guildStats }: NotFoundProps): JSX.Element {
                             <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end
                                                                                               w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                    <FaDiscord className="text-gray-100" />
                                     <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                 </button>
 
@@ -123,7 +122,7 @@ export default function NotFound({ guildStats }: NotFoundProps): JSX.Element {
                         <div className="flex flex-col items-end relative group w-full sm:w-auto">
                             <Link href="/" className="flex flex-col items-end w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                    <FontAwesomeIcon icon={faHouse} className="text-gray-100" />
+                                    <FaHouse className="text-gray-100" />
                                     <p className="whitespace-pre">{tErrors('goBack')}</p>
                                 </button>
 

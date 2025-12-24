@@ -47,7 +47,7 @@ export default function Contact(): JSX.Element {
 
                 <div>
                     {/* Decorational grid image on top of section */}
-                    <Image src="/images/bg/grid-2340w.webp" className="absolute grayscale pointer-events-none brightness-125"
+                    <Image src="/images/bg/grid-1916w.avif" className="absolute grayscale pointer-events-none brightness-125"
                            width={2340} height={280} sizes="100vw"
                            alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
 

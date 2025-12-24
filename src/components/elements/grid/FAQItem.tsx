@@ -1,7 +1,6 @@
 import {JSX} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import {FaChevronDown} from "react-icons/fa";
 
 interface FAQItemProps {
     index: number;
@@ -40,7 +39,7 @@ export default function FAQItem({ index, isOpen, title, description, onToggle }:
                     <h3 className="text-xl font-medium select-none">{title}</h3>
                     <span className={`transform transition-transform duration-300 text-[#969cb1]
                                       ${isOpen ? 'rotate-180' : ''}`}>
-                        <FontAwesomeIcon icon={faChevronDown} />
+                        <FaChevronDown />
                     </span>
                 </div>
 

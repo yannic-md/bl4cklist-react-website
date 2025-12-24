@@ -1,23 +1,15 @@
 import {FormEvent, JSX, RefObject, useEffect, useRef, useState} from "react";
 import {Turnstile} from "@marsidev/react-turnstile";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useTranslations} from "next-intl";
 import {validateForm, ValidationErrors, ValidationSchema} from "@/lib/formValidation";
 import ButtonHover from "@/components/elements/ButtonHover";
 import buttons from "@/styles/util/buttons.module.css";
-import {
-    faEnvelope,
-    faGavel,
-    faHandcuffs,
-    faHeart,
-    faIdCard, faMessage,
-    faReply,
-    faUser,
-    faUserShield
-} from "@fortawesome/free-solid-svg-icons";
 import {FormType} from "@/pages/contact";
 import FormField from "@/components/elements/form/ContactFormField";
 import {submitContactForm} from "@/lib/api";
+import {FaHandcuffs, FaMessage} from "react-icons/fa6";
+import {FaEnvelope, FaGavel, FaHeart, FaIdCard, FaReply, FaUser, FaUserShield} from "react-icons/fa";
+import {IconType} from "react-icons";
 
 interface GeneralFormFieldsProps {
     tForm: (key: string) => string;
@@ -38,7 +30,7 @@ interface UnbanFormFieldsProps {
 interface ContactFormProps {
     formType: FormType;
     validationSchema: ValidationSchema;
-    submitIcon: typeof faHandcuffs | typeof faReply;
+    submitIcon: typeof FaHandcuffs | typeof FaReply;
     submitText: string;
     turnstileAlign?: 'lg:self-start' | 'lg:self-end';
 }
@@ -54,7 +46,7 @@ interface TouchedFields {
  * @param {ContactFormProps} props - Form configuration including type, schema, and styling
  * @param {FormType} props.formType - Type of the form to render (`unban` or `general`)
  * @param {ValidationSchema} props.validationSchema - Validation rules applied to the form fields
- * @param {typeof faHandcuffs | typeof faReply} props.submitIcon - Icon displayed inside the submit button
+ * @param {typeof FaHandcuffs | typeof FaReply} props.submitIcon - Icon displayed inside the submit button
  * @param {string} props.submitText - Text label displayed on the submit button
  * @param {'start' | 'end'} [props.turnstileAlign='lg:self-start'] - Horizontal alignment of the Turnstile widget on large screens
  * @returns {JSX.Element} Complete form with validation and submit logic
@@ -69,6 +61,7 @@ export default function ContactForm({formType, validationSchema, submitIcon, sub
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
     const [touchedFields, setTouchedFields] = useState<TouchedFields>({});
+    const SubmitIcon: IconType = submitIcon;
 
     /**
      * Resets the form state when the form type changes.
@@ -197,7 +190,7 @@ export default function ContactForm({formType, validationSchema, submitIcon, sub
                     <button type="submit" disabled={!isFormValid() || submitStatus === 'success' || isSubmitting}
                             className={`relative w-full lg:w-fit ${buttons.white_gray} disabled:opacity-50
                                         disabled:!cursor-not-allowed transition-all duration-200`}>
-                        <FontAwesomeIcon icon={submitIcon} className="text-gray-100" />
+                        <SubmitIcon className="text-gray-100" />
                         <p className="whitespace-pre">{submitText}</p>
                     </button>
 
@@ -228,25 +221,25 @@ function UnbanFormFields({ tForm, validationErrors, touchedFields, handleBlur, d
             {/* Discord-Name & User-ID */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FormField id="discordName" name="discordName" label={tForm('textDiscordName')} required
-                           icon={faUser} placeholder="yannicde" touched={touchedFields.discordName} disabled={disabled}
+                           icon={FaUser} placeholder="yannicde" touched={touchedFields.discordName} disabled={disabled}
                            error={validationErrors.discordName} onBlur={(): void => handleBlur('discordName')} />
                 <FormField id="discordId" name="discordId" label={tForm('textDiscordID')} disabled={disabled}
-                           icon={faIdCard} required placeholder="775415193760169995" touched={touchedFields.discordId}
+                           icon={FaIdCard} required placeholder="775415193760169995" touched={touchedFields.discordId}
                            error={validationErrors.discordId} onBlur={(): void => handleBlur('discordId')}
                            helpLink="https://support.discord.com/hc/articles/206346498#h_01HRSTXPS5H5D7JBY2QKKPVKNA" />
             </div>
 
             {/* Optional fields: Reason & Punished by */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField id="banReason" name="banReason" label={tForm('textReason')} icon={faGavel}
+                <FormField id="banReason" name="banReason" label={tForm('textReason')} icon={FaGavel}
                            placeholder={tForm('placeholderReason')} onBlur={(): void => {}} disabled={disabled} />
                 <FormField id="bannedBy" name="bannedBy" label={tForm('textPunishedBy')} placeholder="xlonestar.888"
-                           icon={faUserShield} onBlur={(): void => {}} disabled={disabled} />
+                           icon={FaUserShield} onBlur={(): void => {}} disabled={disabled} />
             </div>
 
             {/* Apology field */}
             <FormField id="apology" name="apology" label={tForm('textExcuse')} type="textarea" required
-                       icon={faHeart} disabled={disabled} placeholder={tForm('placeholderExcuse')}
+                       icon={FaHeart} disabled={disabled} placeholder={tForm('placeholderExcuse')}
                        touched={touchedFields.apology} error={validationErrors.apology}
                        onBlur={(): void => handleBlur('apology')} rows={5}
             />
@@ -273,16 +266,16 @@ function GeneralFormFields({ tForm, validationErrors, touchedFields, handleBlur,
             {/* Your Name & E-Mail Adress */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FormField id="name" name="name" label={tForm('textName')} placeholder={tForm('placeholderName')}
-                           icon={faUser} required disabled={disabled} touched={touchedFields.name}
+                           icon={FaUser} required disabled={disabled} touched={touchedFields.name}
                            error={validationErrors.name} onBlur={(): void => handleBlur('name')} />
                 <FormField id="email" name="email" label={tForm('textEmail')} type="email" placeholder={tForm('placeholderEmail')}
-                           icon={faEnvelope} required disabled={disabled} touched={touchedFields.email}
+                           icon={FaEnvelope} required disabled={disabled} touched={touchedFields.email}
                            error={validationErrors.email} onBlur={(): void => handleBlur('email')} />
             </div>
 
             {/* Message */}
             <FormField id="message" name="message" label={tForm('textMessage')} type="textarea" required  rows={5}
-                       icon={faMessage} disabled={disabled} placeholder={tForm('placeholderMessage')}
+                       icon={FaMessage} disabled={disabled} placeholder={tForm('placeholderMessage')}
                        touched={touchedFields.message} error={validationErrors.message}
                        onBlur={(): void => handleBlur('message')} />
         </>

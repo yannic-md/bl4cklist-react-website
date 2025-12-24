@@ -9,13 +9,11 @@ import {AnimatedCounter} from "@/components/animations/Counter";
 import {useRouter} from "next/router";
 import {useTranslations} from "next-intl";
 import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import Link from "next/link";
-import {faRobot} from "@fortawesome/free-solid-svg-icons/faRobot";
 import Image from "next/image";
 import {APIStatistics} from "@/types/APIResponse";
+import {FaDiscord, FaRobot} from "react-icons/fa";
 
 interface CodingHeroProps {
     guildStats: APIStatistics | null;
@@ -167,7 +165,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                     <a href="https://discord.gg/bl4cklist" target="_blank"
                                        className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                            <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                            <FaDiscord className="text-gray-100" />
                                             <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                         </button>
                                     </a>
@@ -177,7 +175,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
                                     <Link href="clank-bot" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                            <FontAwesomeIcon icon={faRobot} className="text-gray-100" />
+                                            <FaRobot className="text-gray-100" />
                                             <p className="whitespace-pre">Discord-Bot Clank</p>
                                         </button>
                                     </Link>

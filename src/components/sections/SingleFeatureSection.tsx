@@ -1,7 +1,5 @@
 import {JSX, ReactNode} from "react";
 import Image from 'next/image';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import {useTranslations} from "next-intl";
 import {useRouter} from "next/router";
 
@@ -18,7 +16,8 @@ import {APIStatistics} from "@/types/APIResponse";
 import DecorationalImage from "@/components/elements/misc/DecorationalImage";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
 import AdBanner from "@/components/elements/ads/AdBanner";
-import dynamic from "next/dist/shared/lib/dynamic";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
+import {FaDiscord} from "react-icons/fa";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -35,11 +34,6 @@ export interface SingleFeatureSectionProps {
     customStatistics?: GuildStatistic[];
     guildStats?: APIStatistics | null;
 }
-
-const ParticlesBackground = dynamic(
-    () => import('@/components/animations/ParticlesBackground').then((mod) => mod.ParticlesBackground),
-    { ssr: false }
-);
 
 /**
  * Renders a reusable feature section with configurable layout, decorations, and content.
@@ -160,7 +154,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                                     drop-shadow-white/5">
                         <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end w-full">
                             <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                <FaDiscord className="text-gray-100" />
                                 <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                             </button>
                         </a>
@@ -211,7 +205,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             {showTopGradients && (
                 <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                                 animate__animated animate__fadeInDown pointer-events-none">
-                    <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
+                    <Image src="/images/bg/color-gradient-800w.avif" width={800} height={161} priority={true}
                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                            alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                            className="object-contain max-w-[800px] pointer-events-none rotate-180" />

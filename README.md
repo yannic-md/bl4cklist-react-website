@@ -7,6 +7,11 @@
   <br /><br />
 
 ![Bl4cklist - React Website](https://i.imgur.com/zRawIcp.png)
+<p align="center">
+  <a href="https://pagespeed.web.dev/">
+    <img src="https://i.imgur.com/jMNUsO9.png" style="height: 100px;">
+  </a>
+</p>
 
 <h4 align="center">
   <a href="https://react.dev/">
@@ -31,6 +36,9 @@
  <a href="https://discord.gg/bl4cklist">
     <img src="https://img.shields.io/discord/616655040614236160?style=for-the-badge&logo=discord&label=Discord&color=%237289da" alt="discord server" style="height: 25px;">
   </a>
+ <a href="https://status.bl4cklist.de">
+   <img src="https://uptime.betterstack.com/status-badges/v1/monitor/92xm.svg" alt="uptime status" style="height: 25px;">
+ </a>
 </h4>
 
 ## 🤔 Introduction

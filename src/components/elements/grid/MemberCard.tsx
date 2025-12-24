@@ -1,6 +1,4 @@
 import {JSX, RefObject, useRef, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import {Member} from "@/types/Member";
 import Image from "next/image";
 import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
@@ -11,6 +9,7 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import {FaDiscord} from "react-icons/fa";
 
 interface MemberCardProps {
     member: Member;
@@ -264,7 +263,7 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
                            className="flex items-center justify-center flex-col w-6 h-6 mr-2 hover:scale-[101%]
                                       text-[#969cb1] hover:text-white transition-all duration-200"
                            aria-label={`${member.user_display_name}'s Discord Profile`}>
-                            <FontAwesomeIcon icon={faDiscord} />
+                            <FaDiscord />
                         </a>
                     </div>
                 </div>

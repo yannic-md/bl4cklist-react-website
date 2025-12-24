@@ -1,20 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import index from '../../../styles/components/index.module.css';
-import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons/faCircleQuestion';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons/faTiktok';
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { faTwitch } from '@fortawesome/free-brands-svg-icons/faTwitch';
-import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {Member} from "@/types/Member";
 import {JSX, useState} from "react";
 import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
+import {FaDiscord, FaGithub, FaInstagram, FaLink, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
+import {IconType} from "react-icons";
+import {FaRegCircleQuestion} from "react-icons/fa6";
+
+interface SocialPlatform {
+    name: string;
+    icon: IconType;
+    matchers: string[];
+}
 
 /**
  * Renders a card component for a team member, displaying their avatar, username, rank,
@@ -30,22 +28,35 @@ import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
 export default function TeamMemberCard({ member }: { member: Member }): JSX.Element {
     const tTeam = useTranslations('TeamSection');
     const [isHovered, setIsHovered] = useState(false);
+    const SOCIAL_CONFIG: SocialPlatform[] = [
+        { name: 'YouTube', icon: FaYoutube, matchers: ['youtube.com', 'youtu.be'] },
+        { name: 'Twitter', icon: FaTwitter, matchers: ['twitter.com', 'x.com'] },
+        { name: 'Instagram', icon: FaInstagram, matchers: ['instagram.com'] },
+        { name: 'TikTok', icon: FaTiktok, matchers: ['tiktok.com'] },
+        { name: 'GitHub', icon: FaGithub, matchers: ['github.com'] },
+        { name: 'Twitch', icon: FaTwitch, matchers: ['twitch.tv'] },
+    ];
 
     /**
-     * Determines the appropriate FontAwesome icon for a given social media URL.
-     * 
-     * @param url - The social media URL to analyze
-     * @returns The corresponding FontAwesome icon definition based on the URL domain
+     * Get FontAwesome icon and platform name for a social media URL.
+     *
+     * Normalizes the provided URL and checks it against a list of known platform matchers.
+     * Returns the matched platform's icon and name, or a generic external link icon if no match is found.
+     *
+     * @param {string} url - The social media URL to inspect. May include protocol and www prefix.
+     * @returns {{ icon: IconType; name: string }} An object containing the FontAwesome icon definition and the platform display name.
      */
-    const getSocialMediaIcon: (url: string) => IconDefinition = (url: string): IconDefinition => {
-        const temp_url: string = url.replace("https://", "")
-        if (temp_url.startsWith('youtube.com') || url.startsWith('youtu.be')) return faYoutube;
-        if (temp_url.startsWith('twitter.com') || url.startsWith('x.com')) return faTwitter;
-        if (temp_url.startsWith('instagram.com')) return faInstagram;
-        if (temp_url.startsWith('tiktok.com')) return faTiktok;
-        if (temp_url.startsWith('github.com')) return faGithub;
-        if (temp_url.startsWith('twitch.tv')) return faTwitch;
-        return faLink;
+    const getSocialMediaMetadata: (url: string) => { icon: IconType; name: string } = (url: string): { icon: IconType; name: string } => {
+        const normalizedUrl: string = url.replace(/^(https?:\/\/)?(www\.)?/, '');
+
+        for (const platform of SOCIAL_CONFIG) {
+            if (platform.matchers.some((matcher: string): boolean => normalizedUrl.startsWith(matcher))) {
+                return { icon: platform.icon, name: platform.name };
+            }
+        }
+
+        // Fallback for unknown links
+        return { icon: FaLink, name: 'External Link' };
     };
 
     /**
@@ -67,7 +78,7 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
             return `${baseUrl.replace('.gif', '.webp')}?size=128`;
         }
 
-        return `${baseUrl}?size=128`;
+        return `${baseUrl.replace('.png', '.webp')}?size=128`;
     };
 
     const avatarUrl: string = getAvatarUrl();
@@ -107,7 +118,7 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                                  member.rank === 'ENTWICKLER' ? tTeam('rank_developer') :
                                  member.rank === 'MODERATOR' ? 'Server-Moderator' :
                                  member.rank === 'HELFER' ? tTeam('rank_helper') : ''}</p>
-                            <FontAwesomeIcon icon={faCircleQuestion} size="xs" className="text-gray-400 ml-1 mt-0.5 opacity-60" />
+                            <FaRegCircleQuestion size={12} className="text-gray-400 ml-1 mt-0.5 opacity-60" />
 
                             {/* Tooltip for Rank Description */}
                             <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 
@@ -130,20 +141,26 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
                     <div className="flex flex-row gap-2">
                         <a className="relative flex flex-row bg-[#04070d] rounded-lg opacity-100 p-3 group
                                       shadow-[inset_0_1px_1px_0_rgba(207,231,255,0.2)]" target="_blank" 
-                            href={`http://discord.com/users/${member.user_id}`}>
-                            <FontAwesomeIcon icon={faDiscord} size="sm" className="group-hover:scale-110 text-gray-300 
-                                                                                 group-hover:!text-white transition-all duration-300" />
+                            href={`https://discord.com/users/${member.user_id}`} aria-label="Discord">
+                            <FaDiscord size={14} className="group-hover:scale-110 text-gray-300
+                                                            group-hover:!text-white transition-all duration-300" />
                         </a>
 
-                        {member.social_media_url && (
-                            <a className="relative flex flex-row bg-[#04070d] rounded-lg opacity-100 p-3 group
-                                          shadow-[inset_0_1px_1px_0_rgba(207,231,255,0.2)]" target="_blank" 
-                                href={member.social_media_url}>
-                                <FontAwesomeIcon icon={getSocialMediaIcon(member.social_media_url)} size="sm"
-                                                 className="group-hover:scale-110 text-gray-300 group-hover:!text-white 
-                                                            transition-all duration-300" />
-                            </a>
-                        )}
+                        {member.social_media_url && ((): JSX.Element => {
+                            const metadata: { icon: IconType, name: string} = getSocialMediaMetadata(member.social_media_url);
+                            const IconComponent: IconType = metadata.icon;
+
+                            return (
+                                <a className="relative flex flex-row bg-[#04070d] rounded-lg opacity-100 p-3 group
+                                              shadow-[inset_0_1px_1px_0_rgba(207,231,255,0.2)]"
+                                   target="_blank" href={member.social_media_url} aria-label={metadata.name}>
+
+                                    <IconComponent size={14} className="group-hover:scale-110 text-gray-300
+                                                                        group-hover:text-white transition-all
+                                                                        duration-300 text-sm" />
+                                </a>
+                            );
+                        })()}
                     </div>
                 </div>
 

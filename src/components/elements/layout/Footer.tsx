@@ -1,14 +1,9 @@
 import {JSX} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTiktok} from "@fortawesome/free-brands-svg-icons/faTiktok";
-import {faInstagram} from "@fortawesome/free-brands-svg-icons/faInstagram";
-import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
 import {useTranslations} from "next-intl";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
-import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
+import {FaDiscord, FaGithub, FaInstagram, FaTiktok, FaYoutube} from "react-icons/fa";
 
 /**
  * Renders the site's footer containing:
@@ -44,25 +39,25 @@ export default function Footer(): JSX.Element {
 
                         {/* Social Media Icons */}
                         <div className="flex flex-row gap-4">
-                            <Link href="https://www.tiktok.com/@discord.bl4cklist" target="_blank"
+                            <Link href="https://www.tiktok.com/@discord.bl4cklist" target="_blank" aria-label={"TikTok"}
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
-                                <FontAwesomeIcon icon={faTiktok} size={'lg'}/>
+                                <FaTiktok size={20} />
                             </Link>
-                            <Link href="https://www.instagram.com/discord.bl4cklist/" target="_blank"
+                            <Link href="https://www.instagram.com/discord.bl4cklist/" target="_blank" aria-label={"Instagram"}
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
-                                <FontAwesomeIcon icon={faInstagram} size={'lg'}/>
+                                <FaInstagram size={20} />
                             </Link>
-                            <Link href="https://www.youtube.com/@razzerde" target="_blank"
+                            <Link href="https://www.youtube.com/@razzerde" target="_blank" aria-label={"YouTube"}
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
-                                <FontAwesomeIcon icon={faYoutube} size={'lg'}/>
+                                <FaYoutube size={20} />
                             </Link>
-                            <Link href="https://github.com/yannic-md?tab=repositories" target="_blank"
+                            <Link href="https://github.com/yannic-md?tab=repositories" target="_blank" aria-label={"Github"}
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
-                                <FontAwesomeIcon icon={faGithub} size={'lg'}/>
+                                <FaGithub size={20} />
                             </Link>
-                            <Link href="https://discord.gg/bl4cklist" target="_blank"
+                            <Link href="https://discord.gg/bl4cklist" target="_blank" aria-label={"Discord"}
                                   className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200">
-                                <FontAwesomeIcon icon={faDiscord} size={'lg'}/>
+                                <FaDiscord size={20} />
                             </Link>
                         </div>
                     </div>

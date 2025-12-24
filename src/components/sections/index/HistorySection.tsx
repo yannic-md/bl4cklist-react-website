@@ -3,20 +3,17 @@ import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
 import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
-import {faUsers} from "@fortawesome/free-solid-svg-icons/faUsers";
 import {timeline, TimelineData} from "@/types/TimelineData";
-import TimelineItem from "@/components/elements/grid/TimelineItem";
 
 import index from '../../../styles/components/index.module.css';
 import Link from "next/link";
-import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
-import {faRocket} from "@fortawesome/free-solid-svg-icons/faRocket";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
 import AdBanner from "@/components/elements/ads/AdBanner";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
+import TimelineItem from "@/components/elements/grid/TimelineItem";
+import {FaDiscord, FaRocket, FaUsers} from "react-icons/fa";
 
 /**
  * The `HistorySection` component renders a section of the webpage that provides
@@ -170,8 +167,7 @@ export default function HistorySection(): JSX.Element {
         <section className="pr-8 pl-8 pb-40 pt-32 bg-slate-900/30 relative" id="discord-server-history">
             {/* useMemo stops re-creating the particles on scroll */}
             {useMemo((): JSX.Element => (
-                <ParticlesBackground particles={80} className="z-10 animate__animated animate__fadeIn animate__slower
-                                                               hidden xl:block" />
+                <ParticlesBackground particles={80} className="z-10 animate__animated animate__fadeIn animate__slower" />
             ), [])}
 
             <div className="mx-auto w-full xl:max-w-[1400px]">
@@ -218,7 +214,7 @@ export default function HistorySection(): JSX.Element {
                                     <a href="https://discord.gg/bl4cklist" target="_blank"
                                        className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                            <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                            <FaDiscord className="text-gray-100" />
                                             <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                         </button>
                                     </a>
@@ -228,7 +224,7 @@ export default function HistorySection(): JSX.Element {
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
                                     <Link href="discord/community" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                            <FontAwesomeIcon icon={faUsers} className="text-gray-100" />
+                                            <FaUsers className="text-gray-100" />
                                             <p className="whitespace-pre">{tHistorySection('ourCommunity')}</p>
                                         </button>
                                     </Link>
@@ -260,7 +256,7 @@ export default function HistorySection(): JSX.Element {
                                 <div className="absolute -top-1 -left-2 w-5 h-5 flex items-center justify-center
                                                 bg-gradient-to-br from-white via-gray-200 to-gray-400 rounded-full
                                                 shadow-lg transition-all duration-500">
-                                    <FontAwesomeIcon icon={faRocket} className="text-gray-800 text-xs -rotate-45" />
+                                    <FaRocket className="text-gray-800 text-xs -rotate-45" />
                                 </div>
                             </AnimateOnView>
 

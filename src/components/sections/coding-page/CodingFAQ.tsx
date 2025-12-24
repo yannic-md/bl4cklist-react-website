@@ -5,10 +5,8 @@ import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import coding from "@/styles/components/coding.module.css";
 import Image from "next/image";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import buttons from "@/styles/util/buttons.module.css";
 import anim from "@/styles/util/animations.module.css";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
 import FAQItem from "@/components/elements/grid/FAQItem";
@@ -19,6 +17,7 @@ import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
 import AdBanner from "@/components/elements/ads/AdBanner";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import {FaDiscord} from "react-icons/fa";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -250,7 +249,7 @@ export default function CodingFAQ(): JSX.Element {
                             <div className="relative group drop-shadow-xl drop-shadow-white/5">
                                 <a href="https://discord.gg/bl4cklist" target="_blank">
                                     <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                        <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                        <FaDiscord className="text-gray-100" />
                                         <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                     </button>
                                 </a>

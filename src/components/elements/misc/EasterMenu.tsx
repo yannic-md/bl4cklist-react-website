@@ -1,15 +1,14 @@
 import {ChangeEvent, JSX, useEffect, useState} from 'react';
 import Image from 'next/image';
 import animations from '@/styles/util/animations.module.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faClose} from "@fortawesome/free-solid-svg-icons/faClose";
 import {useMilestones} from "@/hooks/useMilestones";
 import {Milestone, TOTAL_MILESTONES} from "@/types/APIResponse";
 import {MILESTONES} from "@/data/milestones";
 import {useTranslations} from "next-intl";
-import {faQuestionCircle} from "@fortawesome/free-regular-svg-icons/faQuestionCircle";
 import {saveUserMilestones} from "@/lib/api";
 import {getUnlockedMilestones} from "@/lib/milestones/MilestoneEvents";
+import {MdClose} from "react-icons/md";
+import {FaRegCircleQuestion} from "react-icons/fa6";
 
 /**
  * Displays an animated achievement menu for user milestones in the application.
@@ -234,7 +233,7 @@ export default function EasterMenu(): JSX.Element {
                                     className="text-white/50 hover:text-white hover:bg-white/10 transition-all
                                                text-base leading-none !cursor-pointer rounded-lg p-2 w-8 h-8
                                                flex items-center justify-center">
-                                <FontAwesomeIcon icon={faClose} />
+                                <MdClose />
                             </button>
                         </div>
                     </div>
@@ -264,7 +263,7 @@ export default function EasterMenu(): JSX.Element {
                             <a href="https://support.discord.com/hc/articles/206346498#h_01HRSTXPS5H5D7JBY2QKKPVKNA"
                                target="_blank" rel="noopener noreferrer" aria-label="Mehr Informationen zur Discord-ID"
                                className="text-gray-500 hover:text-gray-300 transition-colors mt-px">
-                                <FontAwesomeIcon icon={faQuestionCircle} />
+                                <FaRegCircleQuestion />
                             </a>
                         </div>
 

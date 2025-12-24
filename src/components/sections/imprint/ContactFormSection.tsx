@@ -4,11 +4,11 @@ import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import {FormType} from "@/pages/contact";
-import {faHandcuffs} from "@fortawesome/free-solid-svg-icons/faHandcuffs";
-import {faReply} from "@fortawesome/free-solid-svg-icons/faReply";
 import {useTranslations} from "next-intl";
 import {createValidationSchemas} from "@/lib/formValidation";
 import ContactForm from "@/components/elements/form/ContactForm";
+import {FaHandcuffs} from "react-icons/fa6";
+import {FaReply} from "react-icons/fa";
 
 interface ContactFormSectionProps {
     selectedForm: FormType;
@@ -126,7 +126,7 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
                                     <ContactForm formType={selectedForm}
                                                  turnstileAlign={isUnbanForm ? 'lg:self-start' : 'lg:self-end'}
                                                  validationSchema={isUnbanForm ? validationSchemas.unban : validationSchemas.general}
-                                                 submitIcon={isUnbanForm ? faHandcuffs : faReply}
+                                                 submitIcon={isUnbanForm ? FaHandcuffs : FaReply}
                                                  submitText={isUnbanForm ? tForm('buttonUnban') : tMisc('send')} />
                                 </div>
                             </div>

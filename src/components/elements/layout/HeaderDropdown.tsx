@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
 import responsive from '../../../styles/util/responsive.module.css';
 import { DropdownItem } from '@/types/NavigationItem';
 import {JSX, RefObject, useMemo, useRef} from "react";
 import {useActiveSection} from "@/hooks/useActiveSection";
+import {FaLink} from "react-icons/fa";
 
 interface DropdownMenuProps {
   title: string;
@@ -94,9 +93,9 @@ export default function HeaderDropdown({ title, items, leftPosition }: DropdownM
                 </div>
 
                 <div className="flex flex-col justify-center">
-                  <div>
+                  <div className="inline-flex items-center justify-start">
                     <span>{item.title}</span>
-                    {item.isExternal && ( <FontAwesomeIcon icon={faLink} size='2xs' className="ml-2 text-white/40" /> )}
+                    {item.isExternal && ( <FaLink size={10} className="ml-2 text-white/40" /> )}
                   </div>
                   <div className="text-xs text-white/40 [text-transform:none]">{item.description}</div>
                 </div>

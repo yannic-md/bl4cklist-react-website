@@ -1,13 +1,11 @@
 import Image from 'next/image';
 import {JSX, RefObject, useEffect, useMemo, useRef, useState} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faAnglesDown, faCircleInfo} from "@fortawesome/free-solid-svg-icons";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 
 import buttons from '../../../styles/util/buttons.module.css';
 import colors from '../../../styles/util/colors.module.css';
 import index from '../../../styles/components/index.module.css';
 import responsive from '../../../styles/util/responsive.module.css';
+import animations from '@/styles/util/animations.module.css';
 import ButtonHover from '@/components/elements/ButtonHover';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -16,6 +14,8 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import {FaDiscord} from "react-icons/fa";
+import {FaAnglesDown, FaCircleInfo} from "react-icons/fa6";
 
 interface WelcomeHeroProps {
     guildStats: APIStatistics | null;
@@ -178,8 +178,10 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
         <section className="relative w-full h-screen overflow-hidden" id="discord-server-start" ref={sectionRef}>
             {/* Background Video */}
             <div className="absolute w-full h-full z-[1] top-0 left-0 right-0 -bottom-36 grayscale opacity-[.4]">
-                <video className="w-full h-full object-cover relative" autoPlay muted loop preload="none"
-                       playsInline poster="/images/bg/bg-intro.avif">
+                <Image src="/images/bg/bg-intro.avif" sizes="100vw" fill priority fetchPriority={"high"} className="object-cover z-0"
+                       alt="Video Poster - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+
+                <video className="w-full h-full object-cover relative" autoPlay muted loop preload="none" playsInline>
                     <source src="/videos/hero/bg-intro-2560w.webm" type="video/webm; codecs=vp9" media="(min-width: 2560px)" />
                     <source src="/videos/hero/bg-intro-1920w.webm" type="video/webm; codecs=vp9" media="(min-width: 1920px)" />
                     <source src="/videos/hero/bg-intro-1440w.webm" type="video/webm; codecs=vp9" media="(min-width: 1440px)" />
@@ -219,7 +221,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                             animate__fadeInUp justify-between items-center">
                 <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
-                    <Image src="/images/brand/dsh-partner.webp" width={537} height={132} priority
+                    <Image src="/images/brand/dsh-partner.webp" width={537} height={132} loading={"lazy"}
                         className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] !cursor-pointer"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
@@ -229,7 +231,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                               transition-opacity duration-300 cursor-pointer mr-16 2xl:mr-20">
                     <div className="w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
                         <Image src="/images/brand/clank-logo-65w.webp" className="object-contain"
-                               width={65} height={65} priority
+                               width={65} height={65} loading={"lazy"}
                                alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
                     <h2 className="font-jetbrains-mono tracking-tight text-3xl md:text-6xl font-bold opacity-60
@@ -246,7 +248,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                                  ${responsive.hero_responsive_tag}`}>
                     <div className="relative flex items-center justify-center px-3 py-2 bg-slate-950 border
                                   border-gray-900">
-                        <Image src="/images/icons/small/discord-heart-24w.webp" className="mr-1 mt-0.5"
+                        <Image src="/images/icons/small/discord-heart-24w.webp" className="mr-1 mt-0.5" loading={"lazy"}
                              alt="Heart - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" width={18} height={18} />
                         <div className="relative">
                             <p className="text-[rgb(240,240,255)] text-sm font-normal tracking-normal
@@ -266,7 +268,8 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                 <div className={`flex flex-col text-center max-w-4xl z-10 justify-center items-center 
                                  ${responsive.hero_main_gap}`}>
                     {/* Logo Container */}
-                    <div className="flex flex-row justify-center items-center gap-4 animate__animated animate__fadeInLeft">
+                    <div className={`flex flex-row justify-center items-center gap-4 animate__animated 
+                                     ${animations.animate_fadeInLeft_custom}`}>
                         {/* Logo Showcase Box */}
                         <div className="relative w-16 sm:w-24 lg:w-32 xl:w-40 z-[2]">
                             <div className={`${index.square_border} !h-auto aspect-square`}>
@@ -302,7 +305,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
                             <Image src="/images/brand/logo-128w.avif" height={128} width={128} priority loading={"eager"}
                                 alt="Logo - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" unoptimized
-                                data-cursor-special fetchPriority="high"
+                                data-cursor-special
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 sm:w-28
                                            lg:w-32" />
                         </div>
@@ -329,7 +332,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                             <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end
                                                                                               w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                    <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                    <FaDiscord className="text-gray-100" />
                                     <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                 </button>
 
@@ -347,7 +350,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                         <div className="flex flex-col items-end relative group w-full sm:w-auto">
                             <a href="discord/community" className="flex flex-col items-end w-full">
                                 <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                    <FontAwesomeIcon icon={faCircleInfo} className="text-gray-100" />
+                                    <FaCircleInfo className="text-gray-100" />
                                     <p className="whitespace-pre">{tWelcome('learnMore')}</p>
                                 </button>
 
@@ -374,14 +377,14 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                     <div className="animate-bounce drop-shadow-[0_0_4px_rgba(0,0,0,1)] 
                                     hover:bg-white/10 hover:backdrop-blur-sm rounded-full p-2 -m-3 
                                     transition-all duration-300 cursor-pointer">
-                        <FontAwesomeIcon icon={faAnglesDown} size={"lg"} className="text-white/70" />
+                        <FaAnglesDown size={20} className="text-white/70" />
                     </div>
                 </div>
             </Link>
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                             md:z-5 lg:z-10 animate__animated animate__fadeInUp pointer-events-none">
-                <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={false}
+                <Image src="/images/bg/color-gradient-800w.avif" width={800} height={161} priority={false}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px" loading="lazy"
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                     className="object-contain max-w-[800px] pointer-events-none" />
