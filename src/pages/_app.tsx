@@ -78,10 +78,11 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <>
             <Head>
                 <title>Bl4cklist.de ~ Gaming-& Coding Discord-Server</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#FF7F50" />
-                <meta name="author" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server" />
-                <meta property="og:site_name" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server" />
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="theme-color" content="#FF7F50"/>
+                <meta name="author" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server"/>
+                <meta property="og:site_name" content="Bl4cklist.de ~ Gaming-& Coding Discord-Server"/>
+                <meta name="google-adsense-account" content={`ca-pub-${process.env.NEXT_PUBLIC_ADSENSE_ID}`}/>
             </Head>
 
             <main className={`${inter.variable} ${dmSans.variable} ${plexSans.variable} ${jetbrainsMono.variable} antialiased`}>

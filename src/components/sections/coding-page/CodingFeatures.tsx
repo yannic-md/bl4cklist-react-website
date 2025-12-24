@@ -6,6 +6,7 @@ import colors from "@/styles/util/colors.module.css";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import BentoBoxItem from "@/components/elements/grid/BentoBoxItem";
+import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 
 /**
  * Renders the "Coding Features" section used on the tech-coding page.
@@ -21,27 +22,8 @@ import BentoBoxItem from "@/components/elements/grid/BentoBoxItem";
 */
 export default function CodingFeatures(): JSX.Element {
     const tCodingFeatures = useTranslations('CodingFeatures');
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useTailwindBreakpoint();
     const [bugItemIndex, setBugItemIndex] = useState<number | null>(null);
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
 
     /**
      * Selects a random BentoBoxItem index for a decorational bug element.
@@ -103,24 +85,24 @@ export default function CodingFeatures(): JSX.Element {
                     {/* Top Row of Items */}
                     <div className="flex flex-col xl:flex-row justify-between gap-x-5 gap-y-7 xl:gap-y-0">
                         <BentoBoxItem animation="animate__fadeInLeft animate__slower"
-                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={441}
-                                      showcaseImage="/images/pixel/gaming-tech-news-441w.webp" showcaseHeight={360}
+                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={322}
+                                      showcaseImage="/images/pixel/gaming-tech-news-322w.avif" showcaseHeight={263}
                                       showcaseAlt="Cocoboi Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by CocoNotShell" title={tCodingFeatures('BENTO_1_TITLE')}
                                       description={tCodingFeatures('BENTO_1_DESC')} maxWidth="xl:max-w-[376px]"
                                       hasBug={bugItemIndex === 0} />
 
                         <BentoBoxItem animation="animate__fadeInUp animate__slower" hoverRotation="right"
-                                      backgroundImage="/images/containers/bentobox-t-602w.avif" showcaseWidth={594}
-                                      showcaseImage="/images/pixel/coding-support-594w.webp" showcaseHeight={301}
+                                      backgroundImage="/images/containers/bentobox-t-602w.avif" showcaseWidth={526}
+                                      showcaseImage="/images/pixel/coding-support-526w.avif" showcaseHeight={267}
                                       showcaseAlt="Coding Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by Kirokaze" title={tCodingFeatures('BENTO_2_TITLE')}
                                       description={tCodingFeatures('BENTO_2_DESC')} maxWidth="xl:max-w-[602px]"
                                       hasBug={bugItemIndex === 1} />
 
                         <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
-                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={441}
-                                      showcaseImage="/images/pixel/discord-study-content-441w.webp" showcaseHeight={360}
+                                      backgroundImage="/images/containers/bentobox-tl-339w.avif" showcaseWidth={322}
+                                      showcaseImage="/images/pixel/discord-study-content-322w.avif" showcaseHeight={263}
                                       showcaseAlt="Guides & Tutorials Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                       showcaseTitle="Made by Archipics" title={tCodingFeatures('BENTO_3_TITLE')}
                                       description={tCodingFeatures('BENTO_3_DESC')} maxWidth="xl:max-w-[376px]"
@@ -131,16 +113,16 @@ export default function CodingFeatures(): JSX.Element {
                     <div className="flex flex-col lg:flex-row justify-between mt-2 lg:mt-0">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-5 auto-cols-fr gap-y-7 lg:gap-y-0">
                             <BentoBoxItem animation="animate__fadeInLeft animate__slower" hoverRotation="right"
-                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={740}
-                                          showcaseImage="/images/pixel/discord-bots-740w.webp" showcaseHeight={322}
+                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={622}
+                                          showcaseImage="/images/pixel/discord-bots-622w.avif" showcaseHeight={279}
                                           showcaseAlt="Discord-Bots Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                           showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_4_TITLE')}
                                           description={tCodingFeatures('BENTO_4_DESC')}
                                           minHeight="min-h-[320px] md:min-h-[418px]" hasBug={bugItemIndex === 3} />
 
                             <BentoBoxItem animation={is2XL ? "animate__fadeInRight animate__slower" : "animate__fadeInUp animate__slower"}
-                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={740}
-                                          showcaseImage="/images/pixel/discord-server-templates-740w.webp" showcaseHeight={322}
+                                          backgroundImage="/images/containers/bentobox-b-650w.avif" showcaseWidth={622}
+                                          showcaseImage="/images/pixel/discord-server-templates-622w.avif" showcaseHeight={271}
                                           showcaseAlt="Discord-Templates Pixel-Art - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                           showcaseTitle="Made by Karukaze" title={tCodingFeatures('BENTO_5_TITLE')}
                                           description={tCodingFeatures('BENTO_5_DESC')}

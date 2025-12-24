@@ -1,4 +1,4 @@
-import {JSX, useEffect, useState} from "react";
+import {JSX} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
@@ -9,6 +9,7 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {FaRobot} from "react-icons/fa";
+import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 
 /**
  * Renders the hero section for the Clank bot landing page.
@@ -17,26 +18,7 @@ import {FaRobot} from "react-icons/fa";
  */
 export default function ClankHero(): JSX.Element {
     const tClankBot = useTranslations('ClankHero');
-    const [is2XL, setIs2XL] = useState(false);
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
+    const is2XL: boolean = useTailwindBreakpoint();
 
     return (
         <section className="relative z-[2] pt-20 md:pt-24 lg:pt-28  2xl:h-[100vh] bg-slate-900/30" id="start">

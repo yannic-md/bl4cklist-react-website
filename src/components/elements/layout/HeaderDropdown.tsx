@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import responsive from '../../../styles/util/responsive.module.css';
 import { DropdownItem } from '@/types/NavigationItem';
-import {JSX, RefObject, useMemo, useRef} from "react";
+import {JSX, RefObject, useRef} from "react";
 import {useActiveSection} from "@/hooks/useActiveSection";
 import {FaLink} from "react-icons/fa";
 
@@ -28,20 +28,7 @@ interface DropdownMenuProps {
  */
 export default function HeaderDropdown({ title, items, leftPosition }: DropdownMenuProps): JSX.Element {
     const dropdownRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
-
-    /**
-     * Extracts section IDs from the hrefs of dropdown items.
-     * Only hrefs containing a hash (#) are considered.
-     *
-     * @param {DropdownItem[]} items - Array of dropdown items.
-     * @returns {string[]} Array of section IDs.
-     */
-    const sectionIds: string[] = useMemo((): string[] =>
-            items.map((item: DropdownItem): string => item.href.includes('#') ? item.href.split('#')[1] : '')
-                 .filter((id: string): boolean => id !== ''), [items]
-    );
-
-    const activeSection: string = useActiveSection(sectionIds);
+    const activeSection: string = useActiveSection();
 
     /**
      * Checks if the given href corresponds to the currently active section.

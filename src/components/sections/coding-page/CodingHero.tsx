@@ -1,8 +1,7 @@
-import {JSX, useEffect, useState} from "react";
+import {JSX} from "react";
 
 import index from '../../../styles/components/index.module.css';
 import animations from '../../../styles/util/animations.module.css';
-import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
 import {AnimatedCounter} from "@/components/animations/Counter";
@@ -14,6 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {APIStatistics} from "@/types/APIResponse";
 import {FaDiscord, FaRobot} from "react-icons/fa";
+import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 
 interface CodingHeroProps {
     guildStats: APIStatistics | null;
@@ -39,7 +39,7 @@ interface CodingHeroProps {
 export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element {
     const tWelcome = useTranslations('WelcomeHero');
     const tCodingHero = useTranslations('CodingHero');
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useTailwindBreakpoint();
     const { locale } = useRouter();
 
     // fallback for SSR
@@ -47,32 +47,13 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
     const bugCount: number = guildStats?.coding_bugs_count ?? 216;
     const gamingNewsCount: number = guildStats?.gaming_news_count ?? 15123;
 
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
-
     return (
         <section className="relative w-full py-6 pb-20 md:pb-12 xl:py-24 2xl:p-0 min-h-[90%] 2xl:h-[95vh]
                             [@media(max-height:500px)]:pt-[20px] [@media(max-height:500px)]:pb-[50px] overflow-hidden"
                  id="bots">
-            <Image src="/images/bg/tech-coding-bg-1920w.avif" fill priority sizes="100vw"
+            <Image src="/images/bg/tech-coding-bg-1920w.avif" fill priority fetchPriority="high" sizes="100vw"
                    alt="Grid Background - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                   className="object-cover object-center -z-10 grayscale" />
+                   className="object-cover object-center -z-10 grayscale" loading={"eager"} />
 
             {/* Some Overlays to improve quality & add unique effect */}
             <div className={`absolute z-[3] inset-0 overflow-hidden pointer-events-none blur-[2px] 
@@ -94,43 +75,37 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
 
                         {/* Animated Tag */}
                         <div className="mb-2">
-                            <div className="font-bold tracking-wider">
-                                <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                                    <AnimatedTextReveal text={tCodingHero('infoTag')}
-                                                        className="text-sm text-[coral] uppercase text-center
-                                                                   2xl:text-start pb-3 lg:pb-0"
-                                                        shadowColor="rgba(255,127,80,0.35)" />
-                                </AnimateOnView>
+                            <div className="font-bold tracking-wider animate__animated animate__fadeInLeft">
+                                <AnimatedTextReveal text={tCodingHero('infoTag')}
+                                                    className="text-sm text-[coral] uppercase text-center
+                                                               2xl:text-start pb-3 lg:pb-0"
+                                                    shadowColor="rgba(255,127,80,0.35)" />
                             </div>
                         </div>
 
                         {/* Headline */}
-                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <h2 className={`${is2XL ? index.head_border : index.head_border_center} max-w-full 
-                                            2xl:max-w-[30ch] bg-clip-text text-transparent mb-4 md:mb-6 
-                                            ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2rem] 
-                                            lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3rem)]`}>
-                                <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">🛠️</span> -
-                                {tCodingHero('title')}
-                            </h2>
-                        </AnimateOnView>
+                        <h2 className={`${is2XL ? index.head_border : index.head_border_center} max-w-full 
+                                        2xl:max-w-[30ch] bg-clip-text text-transparent mb-4 md:mb-6 animate__animated
+                                        ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2rem] 
+                                        lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3rem)] ${animations.animate_fadeInLeft_custom}`}>
+                            <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">🛠️</span> -
+                            {tCodingHero('title')}
+                        </h2>
 
                         {/* Description */}
-                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <p className="text-[#969cb1] mb-6 break-words max-w-full 2xl:max-w-xl
-                                          [@media(min-width:2000px)]:max-w-2xl text-sm md:text-base">
-                                {tCodingHero.rich('description', {
-                                    strong: (chunks): JSX.Element => <strong>{chunks}</strong>
-                                })}
-                                <br /><br />
-                                {tCodingHero.rich('description2', {
-                                    strong: (chunks): JSX.Element => <strong>{chunks}</strong>
-                                })}
-                            </p>
-                        </AnimateOnView>
+                        <p className={`text-[#969cb1] mb-6 break-words max-w-full 2xl:max-w-xl 
+                                       [@media(min-width:2000px)]:max-w-2xl text-sm md:text-base ${animations.animate_fadeInLeft_custom}`}>
+                            {tCodingHero.rich('description', {
+                                strong: (chunks): JSX.Element => <strong>{chunks}</strong>
+                            })}
+                            <br /><br />
+                            {tCodingHero.rich('description2', {
+                                strong: (chunks): JSX.Element => <strong>{chunks}</strong>
+                            })}
+                        </p>
 
                         {/* Statistics */}
-                        <AnimateOnView animation="animate__fadeInUp animate__slower xl:mt-12 2xl:mt-0">
+                        <div className="animate__animated animate__fadeInUp xl:mt-12 2xl:mt-0">
                             <div className="flex justify-center 2xl:justify-start items-start flex-wrap gap-x-4 sm:gap-x-8
                                             gap-y-6 mb-6 md:mb-0">
                                 <div className="flex flex-col items-center text-center min-w-[120px] sm:min-w-[140px]">
@@ -154,10 +129,10 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                     </span>
                                 </div>
                             </div>
-                        </AnimateOnView>
+                        </div>
 
                         {/* Buttons */}
-                        <AnimateOnView animation="animate__fadeInUp animate__slower xl:mt-12 2xl:mt-0">
+                        <div className="animate__animated animate__fadeInUp xl:mt-12 2xl:mt-0">
                             <div className="flex flex-col sm:flex-row mt-6 md:mt-8 gap-4 md:gap-6
                                             justify-center 2xl:justify-start">
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto z-[20]
@@ -183,13 +158,12 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                     <ButtonHover />
                                 </div>
                             </div>
-                        </AnimateOnView>
+                        </div>
                     </div>
 
                     {/* Image Section */}
-                    <AnimateOnView animation="animate__zoomIn animate__slower"
-                                   className="hidden 2xl:flex w-full lg:w-1/2 max-w-[280px] md:max-w-[350px]
-                                              lg:max-w-[420px] flex-col justify-center items-center z-[20]">
+                    <div className="hidden 2xl:flex w-full lg:w-1/2 max-w-[280px] md:max-w-[350px] animate__zoomIn
+                                    lg:max-w-[420px] flex-col justify-center items-center z-[20] animate__animated">
                         <div className="relative w-full h-full">
                             {/* Dark background for better visibility */}
                             <div className="absolute z-[3] blur-2xl bg-[#0c0e12] w-full min-h-[200px] md:min-h-[300px]
@@ -197,6 +171,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
 
                             {/* Main image */}
                             <Image src="/images/bg/coding-support-450w.avif" width={450} height={571} data-cursor-special
+                                   loading={"eager"} priority fetchPriority="high"
                                    alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                    sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 450px"
                                    className={`relative z-[5] rounded-2xl w-full h-full object-cover border 
@@ -205,7 +180,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                             {/* Decoration Images */}
                             <div className={`absolute z-[1] bottom-2 -left-16 md:-left-20 lg:-left-28 
                                              ${animations.animate_float}`}>
-                                <Image src="/images/bg/discord-bot-150w.avif" width={150} height={182}
+                                <Image src="/images/bg/discord-bot-150w.avif" width={150} height={182} loading="lazy"
                                        alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                        sizes="(max-width: 768px) 100px, (max-width: 1024px) 125px, 150px"
                                        className="-rotate-[40deg] w-[100px] md:w-[125px] lg:w-[150px] pointer-events-none" />
@@ -213,7 +188,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
 
                             <div className={`absolute z-[1] top-0 -right-16 md:-right-20 lg:-right-32 
                                              ${animations.animate_float}`}>
-                                <Image src="/images/bg/code-programming-128w.avif" width={128} height={128}
+                                <Image src="/images/bg/code-programming-128w.avif" width={128} height={128} loading="lazy"
                                        alt="Discord Coding-Support BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                                        sizes="(max-width: 768px) 80px, (max-width: 1024px) 100px, 128px"
                                        className="rotate-[24deg] w-[80px] md:w-[100px] lg:w-[107px] pointer-events-none" />
@@ -222,24 +197,24 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                             {/* Some particle "effects" */}
                             <Image src="/images/particles/particle-up-116w.avif" width={116} height={114}
                                    alt="Particles Top - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   sizes="(max-width: 640px) 58px, (max-width: 768px) 87px, 116px"
+                                   sizes="(max-width: 640px) 58px, (max-width: 768px) 87px, 116px" loading="lazy"
                                    className={`absolute inset-[-60px_auto_auto_-126px] ${colors.orange_overlay} pointer-events-none`} />
                             <Image src="/images/particles/particle-bottom-113w.avif" width={113} height={91}
                                    alt="Particles Bottom - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   sizes="(max-width: 640px) 57px, (max-width: 768px) 85px, 113px"
+                                   sizes="(max-width: 640px) 57px, (max-width: 768px) 85px, 113px" loading="lazy"
                                    className={`absolute inset-[auto_auto_-50px_-140px] ${colors.orange_overlay} pointer-events-none`} />
                             <Image src="/images/particles/particle-top-right-100w.avif" width={100} height={106}
                                    alt="Particles Top Right - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   sizes="(max-width: 640px) 50px, (max-width: 768px) 75px, 100px"
+                                   sizes="(max-width: 640px) 50px, (max-width: 768px) 75px, 100px" loading="lazy"
                                    className={`absolute inset-[-85px_-100px_auto_auto] ${colors.orange_overlay} pointer-events-none`} />
 
                             <Image src="/images/bg/circled-border-732w.avif" width={732} height={732}
                                    alt="Circle BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                   sizes="(max-width: 640px) 366px, (max-width: 768px) 549px, 732px"
+                                   sizes="(max-width: 640px) 366px, (max-width: 768px) 549px, 732px" loading="lazy"
                                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[732px]
                                               animate-[spin_75s_linear_infinite] pointer-events-none" />
                         </div>
-                    </AnimateOnView>
+                    </div>
 
                 </div>
             </div>

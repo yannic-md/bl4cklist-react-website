@@ -72,6 +72,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
         props: {
             messages: (await import(`../../../../messages/${locale}.json`)).default,
-            guildStats }, revalidate: 300 // regenerate http request cache every 5 minutes
+            guildStats }, revalidate: 3600 // regenerate http request cache every 5 minutes
     };
 }

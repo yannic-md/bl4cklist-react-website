@@ -165,7 +165,7 @@
 
 @keyframes custom_fadeInLeft {
     from {
-        opacity: 0.01; {/* Fix NO_LCD error in Google Lighthouse Tests */}
+        opacity: 0.01; /* Fix NO_LCD error in Google Lighthouse Tests */
         -webkit-transform: translate3d(-100%, 0, 0);
         transform: translate3d(-100%, 0, 0);
     }
@@ -177,8 +177,7 @@
     }
 }
 .animate_fadeInLeft_custom {
-    -webkit-animation-name: custom_fadeInLeft;
-    animation-name: custom_fadeInLeft;
+    animation: custom_fadeInLeft 1s ease-in-out forwards;
 }
 
 .animate_slideOutRight {

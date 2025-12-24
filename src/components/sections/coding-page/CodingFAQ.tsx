@@ -18,6 +18,7 @@ import {NextRouter, useRouter} from "next/router";
 import AdBanner from "@/components/elements/ads/AdBanner";
 import {AdContainer} from "@/components/elements/ads/AdWrapper";
 import {FaDiscord} from "react-icons/fa";
+import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -30,29 +31,10 @@ export default function CodingFAQ(): JSX.Element {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const tWelcome = useTranslations('WelcomeHero');
     const tFAQ = useTranslations('CodingFAQ');
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useTailwindBreakpoint();
     const [isShiftPressed, setIsShiftPressed] = useState(false);
     const [secretFaqUnlocked, setSecretFaqUnlocked] = useState(false);
     const router: NextRouter = useRouter();
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
 
     /**
      * Track Shift key pressed state and update component state.

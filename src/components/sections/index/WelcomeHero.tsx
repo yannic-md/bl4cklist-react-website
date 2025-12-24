@@ -221,7 +221,8 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                             animate__fadeInUp justify-between items-center">
                 <a href="https://deinserverhost.de/store/aff.php?aff=3181" target="_blank" aria-label="DeinServerHost Partner"
                    className="relative z-[20] opacity-20 hover:opacity-50 transition-opacity duration-300">
-                    <Image src="/images/brand/dsh-partner.webp" width={537} height={132} loading={"lazy"}
+                    <Image src="/images/brand/dsh-partner.webp" width={537} height={132} loading={"eager"}
+                           fetchPriority={"high"} priority
                         className="object-contain max-w-[35vw] md:max-w-[250px] xl:max-w-[425px] !cursor-pointer"
                         alt="DeinServerHost Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                 </a>
@@ -231,7 +232,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                               transition-opacity duration-300 cursor-pointer mr-16 2xl:mr-20">
                     <div className="w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
                         <Image src="/images/brand/clank-logo-65w.webp" className="object-contain"
-                               width={65} height={65} loading={"lazy"}
+                               width={65} height={65} loading={"eager"} fetchPriority={"high"} priority
                                alt="Clank Partner - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
                     </div>
                     <h2 className="font-jetbrains-mono tracking-tight text-3xl md:text-6xl font-bold opacity-60
@@ -268,7 +269,7 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
                 <div className={`flex flex-col text-center max-w-4xl z-10 justify-center items-center 
                                  ${responsive.hero_main_gap}`}>
                     {/* Logo Container */}
-                    <div className={`flex flex-row justify-center items-center gap-4 animate__animated 
+                    <div className={`flex flex-row justify-center items-center gap-4 
                                      ${animations.animate_fadeInLeft_custom}`}>
                         {/* Logo Showcase Box */}
                         <div className="relative w-16 sm:w-24 lg:w-32 xl:w-40 z-[2]">
@@ -384,8 +385,8 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
 
             <div className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                             md:z-5 lg:z-10 animate__animated animate__fadeInUp pointer-events-none">
-                <Image src="/images/bg/color-gradient-800w.avif" width={800} height={161} priority={false}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px" loading="lazy"
+                <Image src="/images/bg/color-gradient-800w.avif" width={800} height={161} priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px" loading="eager" fetchPriority={"high"}
                     alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                     className="object-contain max-w-[800px] pointer-events-none" />
             </div>

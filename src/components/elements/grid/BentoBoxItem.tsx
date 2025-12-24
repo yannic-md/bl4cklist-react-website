@@ -171,7 +171,7 @@ export default function BentoBoxItem({animation, backgroundImage, showcaseImage,
                              ${rotationClass} hover:-translate-y-1 hover:scale-105 w-full
                              ${showcaseMaxWidth} mb-7 xl:mb-auto`}>
                 <Image src={showcaseImage} width={showcaseWidth} height={showcaseHeight} unoptimized alt={showcaseAlt}
-                       title={showcaseTitle} data-cursor-special
+                       title={showcaseTitle} data-cursor-special loading={"lazy"}
                        className="w-full h-auto object-contain opacity-65 transition-opacity duration-200 hover:opacity-100" />
             </div>
 

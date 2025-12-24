@@ -1,4 +1,4 @@
-import {JSX, useEffect, useState} from "react";
+import {JSX} from "react";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
@@ -9,6 +9,7 @@ import {createValidationSchemas} from "@/lib/formValidation";
 import ContactForm from "@/components/elements/form/ContactForm";
 import {FaHandcuffs} from "react-icons/fa6";
 import {FaReply} from "react-icons/fa";
+import {useTailwindBreakpoint} from "@/hooks/useTailwindBreakpoint";
 
 interface ContactFormSectionProps {
     selectedForm: FormType;
@@ -29,28 +30,9 @@ export default function ContactFormSection({ selectedForm }: ContactFormSectionP
     const tForm = useTranslations("Form");
     const tContactForm = useTranslations("ContactForm")
     const isUnbanForm: boolean = selectedForm === 'unban';
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useTailwindBreakpoint();
 
     const validationSchemas = createValidationSchemas(tForm);
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
 
     /**
      * Renders a placeholder section when no contact form type is selected.
