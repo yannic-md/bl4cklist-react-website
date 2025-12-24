@@ -41,7 +41,7 @@ export default function CodingFeatures(): JSX.Element {
         <section className="relative py-24 pb-0 lg:pb-10 bg-blue-700/5 overflow-x-hidden" id="features">
             {/* Background Image  */}
             <div className="absolute inset-0 -z-10">
-                <Image src="/images/bg/grid-bg-1920w.avif" fill priority unoptimized sizes="100vw"
+                <Image src="/images/bg/grid-bg-1920w.avif" fill priority sizes="100vw" loading={"lazy"}
                        alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                        className="w-full h-full object-cover grayscale" />
             </div>

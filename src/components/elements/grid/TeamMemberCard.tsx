@@ -7,6 +7,7 @@ import {UsernameCopy} from "@/components/elements/misc/UsernameCopy";
 import {FaDiscord, FaGithub, FaInstagram, FaLink, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
 import {IconType} from "react-icons";
 import {FaRegCircleQuestion} from "react-icons/fa6";
+import {useAvatarUrl} from "@/hooks/useAvatarUrl";
 
 interface SocialPlatform {
     name: string;
@@ -59,30 +60,8 @@ export default function TeamMemberCard({ member }: { member: Member }): JSX.Elem
         return { icon: FaLink, name: 'External Link' };
     };
 
-    /**
-     * Get the appropriate avatar URL for the member, preferring a WebP preview for animated GIFs when not hovered.
-     *
-     * This function returns an empty string if the member has no avatar. It strips any existing query
-     * parameters from the avatar URL, detects whether the original avatar is an animated GIF and, if so
-     * and the card is not hovered, returns a `.webp` preview variant with `?size=128`. Otherwise it
-     * returns the base avatar URL with `?size=128` appended.
-     *
-     * @returns {string} The computed avatar URL (or an empty string) with `?size=128` appended.
-     */
-    const getAvatarUrl: () => string = (): string => {
-        if (!member.user_avatar_url) return '';
-
-        const baseUrl: string = member.user_avatar_url.split('?')[0];
-        const isAnimated: boolean = member.user_avatar_url.includes('.gif');
-        if (isAnimated && !isHovered) {
-            return `${baseUrl.replace('.gif', '.webp')}?size=128`;
-        }
-
-        return `${baseUrl.replace('.png', '.webp')}?size=128`;
-    };
-
-    const avatarUrl: string = getAvatarUrl();
-    const isGif: boolean = avatarUrl.includes('.gif');
+    const isGif: boolean = member.user_avatar_url.includes('.gif');
+    const avatarUrl: string = useAvatarUrl({ avatarUrl: member.user_avatar_url, isHovered: isHovered });
 
     return (
         <div onMouseEnter={(): void => setIsHovered(true)} onMouseLeave={(): void => setIsHovered(false)}>

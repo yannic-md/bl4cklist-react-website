@@ -24,7 +24,7 @@ interface ComHeroProps {
  *
  * @param {ComHeroProps} props - Component configuration
  * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
- * @returns {JSX.Element} The rendered hero section with animated text, statistics counters, and action buttons
+ * @returns {JSX.Element} - The rendered hero section with animated text, statistics counters, and action buttons
  */
 export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
     const tComHero = useTranslations('ComHero');
@@ -42,8 +42,9 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
 
             {/* Grid Background image of whole section */}
             <div className="absolute inset-0 pointer-events-none select-none">
-                <Image src="/images/bg/community-hero-1440w.webp" sizes="(max-width: 1439px) 100vw, 1440px"
-                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill unoptimized loading="eager"
+                <Image src="/images/bg/community-hero-1440w.avif" sizes="(max-width: 1439px) 100vw, 1440px"
+                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill
+                       loading="eager" fetchPriority={"high"} priority
                        className="object-cover object-[center_10%] md:object-[center_80%] grayscale"/>
             </div>
 
@@ -55,8 +56,9 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
             {/* Frame Overlay Background image */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[68.75rem] px-4
                             mt-4 pointer-events-none select-none hidden lg:block">
-                <Image src="/images/bg/community-hero-frame-2200w.webp" sizes="(max-width: 2200px) 100vw, 2200px"
+                <Image src="/images/bg/community-hero-frame-2200w.avif" sizes="(max-width: 2200px) 100vw, 2200px"
                        className="w-full h-auto grayscale xl:scale-125" width={2200} height={1142}
+                       loading={"eager"} fetchPriority={"high"} priority
                        alt="Frame BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
             </div>
 

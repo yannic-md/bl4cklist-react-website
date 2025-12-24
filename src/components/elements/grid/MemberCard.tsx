@@ -10,6 +10,7 @@ import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
 import {FaDiscord} from "react-icons/fa";
+import {useAvatarUrl} from "@/hooks/useAvatarUrl";
 
 interface MemberCardProps {
     member: Member;
@@ -31,6 +32,7 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
     const tMisc = useTranslations("Misc");
     const tTeamSection = useTranslations("TeamSection");
     const tMemberListSection = useTranslations('MemberListSection');
+    const [isHovered, setIsHovered] = useState(false);
     const [imageError, setImageError] = useState(false);
     const [ghostState, setGhostState] = useState<'idle' | 'growing' | 'fading'>('idle');
     const timerRef: RefObject<NodeJS.Timeout | null> = useRef<NodeJS.Timeout | null>(null);
@@ -148,6 +150,8 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
      * confetti effects, unlocks a milestone if applicable and uses a global cooldown to prevent excessive triggers.
      */
     const handleMouseEnter: () => void = async (): Promise<void> => {
+        setIsHovered(true);
+
         if (member.rank === 'GHOST') {
             if (ghostState === 'fading') return;
             setGhostState('growing');
@@ -196,6 +200,8 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
      * to the 'idle' state. No effect for non-ghost members or other states.
      */
     const handleMouseLeave: () => void = (): void => {
+        setIsHovered(false);
+
         if (member.rank === 'GHOST' && ghostState === 'growing') {
             if (timerRef.current) clearTimeout(timerRef.current);
             setGhostState('idle');
@@ -222,20 +228,22 @@ export function MemberCard({ member, onRemove }: MemberCardProps): JSX.Element {
         }
     };
 
+    const isGif: boolean = member.user_avatar_url.includes('.gif');
+    const avatarUrl: string = useAvatarUrl({ avatarUrl: member.user_avatar_url, isHovered: isHovered });
+
     return (
         <div ref={cardRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
              className={`rounded-2xl p-px bg-gradient-to-b via-[#1b1f2f4d] to-[#1b1f2f4d] from-0% via-5%
-                         ${getRankBorderColor(member.rank)} ${getGhostClasses()} z-10
-                         ${member.rank === 'BIRTHDAY' ? 'hover:scale-[1.02] hover:shadow-lg hover:shadow-[#f3a683]/20' : ''}
+                         ${getRankBorderColor(member.rank)} ${getGhostClasses()} z-10 hover:scale-[1.02]
+                         ${member.rank === 'BIRTHDAY' ? 'hover:shadow-lg hover:shadow-[#f3a683]/20' : ''}
                          ${member.rank !== 'GHOST' ? 'transition-all duration-200' : ''}`}>
             <div className="flex w-full h-full rounded-2xl gap-5 bg-[#070b15] p-[.625rem]">
                 <div className="rounded-lg flex-none transition-all duration-200 hover:-rotate-1 hover:scale-110">
                     {/* Fallback for image in case discord avatar was deleted / changed */}
                     {!imageError ? (
-                        <Image src={member.user_avatar_url} className="h-20 w-20 object-cover rounded-lg" width={80} height={80}
+                        <Image src={avatarUrl} className="h-20 w-20 object-cover rounded-lg" width={80} height={80}
                                alt={`${member.user_display_name}'s Avatar - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server`}
-                               onError={(): void => setImageError(true)} data-cursor-special
-                               unoptimized={member.user_avatar_url.includes('.gif')} />
+                               onError={(): void => setImageError(true)} data-cursor-special unoptimized={isGif} />
                     ) : (
                         <div className="rounded-lg w-20 h-20 bg-gradient-to-br from-gray-900 to-gray-500
                                         flex items-center justify-center cursor-special">
