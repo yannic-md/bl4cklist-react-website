@@ -7,7 +7,6 @@ import {Member} from "@/types/Member";
 import {MemberCard} from "@/components/elements/grid/MemberCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
@@ -43,7 +42,6 @@ export default function MemberList({members, section_id, category, position = 'r
                                     planetVariant = 1}: MemberListProps): JSX.Element {
     const tMemberListSection = useTranslations('MemberListSection');
     const [visibleMembers, setVisibleMembers] = useState(members);
-    const [animationParent] = useAutoAnimate();
     const isOddCount: boolean = visibleMembers.length % 2 !== 0;
     const isLeftPosition: boolean = position === 'left';
     const router: NextRouter = useRouter();
@@ -196,7 +194,7 @@ export default function MemberList({members, section_id, category, position = 'r
                     {/* User List */}
                     <AnimateOnView animation={`animate__fadeIn${isLeftPosition ? 'Left' : 'Right'} animate__slower`}
                                    className={`mt-8 sm:mt-10 xl:mt-0 ${isLeftPosition ? 'xl:order-1' : 'xl:order-2'}`}>
-                        <div ref={animationParent} className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
+                        <div className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
                                          ${isOddCount ? 'sm:[&>*:last-child]:col-span-2 sm:[&>*:last-child]:w-full ' +
                                                         'md:[&>*:last-child]:w-[75%] lg:[&>*:last-child]:w-[50%] ' +
                                                         'sm:[&>*:last-child]:mx-auto' : ''}`}>

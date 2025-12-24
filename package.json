@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^0.9.0",
     "@marsidev/react-turnstile": "^1.4.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
