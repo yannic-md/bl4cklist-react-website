@@ -48,7 +48,7 @@ export default function Contact(): JSX.Element {
                 <div>
                     {/* Decorational grid image on top of section */}
                     <Image src="/images/bg/grid-1916w.avif" className="absolute grayscale pointer-events-none brightness-125"
-                           width={2340} height={280} sizes="100vw"
+                           width={2340} height={280} sizes="100vw" priority loading={"eager"} fetchPriority={"high"}
                            alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
 
                     {/* Dynamic form section for picked topic */}

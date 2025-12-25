@@ -1,6 +1,5 @@
 import {useState, useEffect, useRef, RefObject} from 'react';
 import { usePathname } from 'next/navigation';
-import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * Returns the id of the currently most visible section on large screens.
@@ -13,13 +12,10 @@ import {useMediaQuery} from "@/hooks/useMediaQuery";
  */
 export const useActiveSection: () => string = (): string => {
     const [activeSection, setActiveSection] = useState<string>('');
-    const is2XL: boolean = useMediaQuery();
     const pathname: string = usePathname();
     const visibilityMapRef: RefObject<Map<string, number>> = useRef<Map<string, number>>(new Map());
 
     useEffect((): (() => void) | undefined => {
-        if (!is2XL) return;  // don't do anything on mobile devices
-
         /**
          * Collects all section ids present in the document.
          * Queries the DOM for `section[id]` elements and returns their ids.
