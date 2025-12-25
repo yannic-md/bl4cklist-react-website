@@ -1,17 +1,20 @@
 import Header from "@/components/elements/layout/Header";
 import WelcomeHero from "@/components/sections/index/WelcomeHero";
-import {JSX} from "react";
+import {JSX, lazy, Suspense} from "react";
 import {GetStaticPropsContext} from "next";
-import TeamSection from "@/components/sections/index/TeamSection";
-import HistorySection from "@/components/sections/index/HistorySection";
 import Image from "next/image";
 import Footer from "@/components/elements/layout/Footer";
-import TestimonialSection from "@/components/sections/TestimonialSection";
-import SingleFeatureSection from "@/components/sections/SingleFeatureSection";
 import {GuildFeature} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
 import {Member} from "@/types/Member";
 import {fetchGuildStatistics, fetchTeamMembers} from "@/lib/api";
+import {useTranslations} from "next-intl";
+import MetaHead from "@/components/elements/MetaHead";
+
+const TeamSection = lazy(() => import("@/components/sections/index/TeamSection"));
+const HistorySection = lazy(() => import("@/components/sections/index/HistorySection"));
+const TestimonialSection = lazy(() => import("@/components/sections/TestimonialSection"));
+const SingleFeatureSection = lazy(() => import("@/components/sections/SingleFeatureSection"));
 
 interface HomeProps {
     messages: any;
@@ -29,6 +32,9 @@ interface HomeProps {
  * @returns {JSX.Element} The home page component.
  */
 export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Element {
+    const tWelcomeHero = useTranslations('WelcomeHero');
+    const tSEO = useTranslations('SEO');
+
     const singleFeatureSub: GuildFeature[][] = [[
         { src: "/images/icons/small/coding-32w.webp", alt: "Programming Icon - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server",
           titleKey: "tip_1_title", descKey: "tip_1_desc", animation: "animate__fadeInLeft animate__slower" },
@@ -45,6 +51,8 @@ export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Elemen
 
     return (
         <>
+            <MetaHead title={tSEO('homeTitle')} description={tWelcomeHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 
@@ -61,27 +69,35 @@ export default function Home({ guildStats, teamMembers }: HomeProps): JSX.Elemen
                                     transform -translate-y-1/2"></div>
 
                     {/* Short description of our discord-server with some statistics */}
-                    <SingleFeatureSection translationNamespace="IntroSection" particlesEnabled={true} planetDecoration="none"
-                                          imagePosition="right" ctaEnabled={true} showTopGradients={true}
-                                          imageSrc="/images/pixel/guild-banner-508w.webp" guildFeatures={singleFeatureSub}
-                                          imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
-                                          sectionId="discord-server-features" titleEmoji="👋🏻" guildStats={guildStats} />
+                    <Suspense fallback={<div className="min-h-full" />}>
+                        <SingleFeatureSection translationNamespace="IntroSection" particlesEnabled={true} planetDecoration="none"
+                                              imagePosition="right" ctaEnabled={true} showTopGradients={true}
+                                              imageSrc="/images/pixel/guild-banner-471w.avif" guildFeatures={singleFeatureSub}
+                                              imageAlt="Pixelart #1 - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
+                                              sectionId="discord-server-features" titleEmoji="👋🏻" guildStats={guildStats} />
+                    </Suspense>
 
                     {/* Presentation of the server-team */}
-                    <TeamSection teamMembers={teamMembers} />
+                    <Suspense fallback={<div className="min-h-screen" />}>
+                        <TeamSection teamMembers={teamMembers} />
+                    </Suspense>
 
                     {/* History of the server */}
-                    <div>
-                        {/* Decorational grid image on top of section */}
-                        <Image src="/images/bg/grid-2340w.webp" className="absolute grayscale pointer-events-none"
-                               width={2340} height={280} sizes="100vw"
-                               alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
+                    <Suspense fallback={<div className="min-h-screen" />}>
+                        <div>
+                            {/* Decorational grid image on top of section */}
+                            <Image src="/images/bg/grid-1916w.avif" className="absolute grayscale pointer-events-none"
+                                   width={2340} height={280} sizes="100vw"
+                                   alt="Grid BG ~ Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
 
-                        <HistorySection />
-                    </div>
+                            <HistorySection />
+                        </div>
+                    </Suspense>
 
                     {/* Section for server member reviews */}
-                    <TestimonialSection />
+                    <Suspense fallback={<div className="min-h-screen" />}>
+                        <TestimonialSection />
+                    </Suspense>
                 </div>
             </div>
 
@@ -110,6 +126,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
         props: {
             messages: (await import(`../../messages/${locale}.json`)).default,
-            guildStats, teamMembers }, revalidate: 300 // regenerate http request cache every 5 minutes
+            guildStats, teamMembers }, revalidate: 3600 // regenerate http request cache every 5 minutes
     };
 }

@@ -8,6 +8,7 @@ import {Testimonial, TESTIMONIALS} from "@/types/Testimonial";
 import {TestimonialCard} from "@/components/elements/grid/TestimonialCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 interface TestimonialSectionProps {
     position?: 'left' | 'right';
@@ -74,32 +75,13 @@ function splitArray<T>(array: T[], parts: number): T[][] {
 export default function TestimonialSection({ position = 'left' }: TestimonialSectionProps): JSX.Element {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [isPaused, setIsPaused] = useState<boolean>(false);
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useMediaQuery();
     const tTestimonial = useTranslations('TestimonialSection');
 
     const [columns, setColumns] = useState<[Testimonial[], Testimonial[]]>((): [Testimonial[], Testimonial[]] => {
         const [left, right] = splitArray(TESTIMONIALS, 2); // initial state
         return [left, right];
     });
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
 
     /**
      * Effect hook that shuffles testimonials on component mount.
@@ -223,7 +205,7 @@ export default function TestimonialSection({ position = 'left' }: TestimonialSec
         <section className="relative py-20 bg-black/49" id="discord-server-testimonials">
             {/* Background Image */}
             <div className="absolute inset-0 -z-10">
-                <Image src="/images/bg/grid-1920w.webp" fill priority sizes="100vw"
+                <Image src="/images/bg/grid-1920w.webp" fill sizes="100vw"
                        alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                        className="w-full h-full object-cover" />
             </div>

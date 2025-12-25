@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import responsive from '../../../styles/util/responsive.module.css';
 import { DropdownItem } from '@/types/NavigationItem';
-import {JSX, RefObject, useMemo, useRef} from "react";
+import {JSX, RefObject, useRef} from "react";
 import {useActiveSection} from "@/hooks/useActiveSection";
+import {FaLink} from "react-icons/fa";
 
 interface DropdownMenuProps {
   title: string;
@@ -29,20 +28,7 @@ interface DropdownMenuProps {
  */
 export default function HeaderDropdown({ title, items, leftPosition }: DropdownMenuProps): JSX.Element {
     const dropdownRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
-
-    /**
-     * Extracts section IDs from the hrefs of dropdown items.
-     * Only hrefs containing a hash (#) are considered.
-     *
-     * @param {DropdownItem[]} items - Array of dropdown items.
-     * @returns {string[]} Array of section IDs.
-     */
-    const sectionIds: string[] = useMemo((): string[] =>
-            items.map((item: DropdownItem): string => item.href.includes('#') ? item.href.split('#')[1] : '')
-                 .filter((id: string): boolean => id !== ''), [items]
-    );
-
-    const activeSection: string = useActiveSection(sectionIds);
+    const activeSection: string = useActiveSection();
 
     /**
      * Checks if the given href corresponds to the currently active section.
@@ -94,9 +80,9 @@ export default function HeaderDropdown({ title, items, leftPosition }: DropdownM
                 </div>
 
                 <div className="flex flex-col justify-center">
-                  <div>
+                  <div className="inline-flex items-center justify-start">
                     <span>{item.title}</span>
-                    {item.isExternal && ( <FontAwesomeIcon icon={faLink} size='2xs' className="ml-2 text-white/40" /> )}
+                    {item.isExternal && ( <FaLink size={10} className="ml-2 text-white/40" /> )}
                   </div>
                   <div className="text-xs text-white/40 [text-transform:none]">{item.description}</div>
                 </div>

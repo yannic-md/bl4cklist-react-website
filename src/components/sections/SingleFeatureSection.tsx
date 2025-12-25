@@ -1,7 +1,5 @@
 import {JSX, ReactNode} from "react";
 import Image from 'next/image';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 import {useTranslations} from "next-intl";
 import {useRouter} from "next/router";
 
@@ -13,10 +11,13 @@ import ButtonHover from "@/components/elements/ButtonHover";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedCounter} from "@/components/animations/Counter";
-import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import {GuildFeature, GuildStatistic} from "@/types/GuildFeature";
 import {APIStatistics} from "@/types/APIResponse";
 import DecorationalImage from "@/components/elements/misc/DecorationalImage";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import AdBanner from "@/components/elements/ads/AdBanner";
+import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
+import {FaDiscord} from "react-icons/fa";
 
 export interface SingleFeatureSectionProps {
     sectionId: string;
@@ -153,7 +154,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                                     drop-shadow-white/5">
                         <a href="https://discord.gg/bl4cklist" target="_blank" className="flex flex-col items-end w-full">
                             <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                <FaDiscord className="text-gray-100" />
                                 <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                             </button>
                         </a>
@@ -169,7 +170,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             <div className={`rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
                              overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
                 <div className="rounded-xl">
-                    <Image src={imageSrc} width={508} height={508} alt={imageAlt} unoptimized={true}
+                    <Image src={imageSrc} width={471} height={471} alt={imageAlt} unoptimized={true}
                            className="h-full rounded-xl brightness-90" key={imageSrc} data-cursor-special />
                 </div>
             </div>
@@ -204,7 +205,7 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
             {showTopGradients && (
                 <div className="absolute -top-2.5 lg:-top-1.5 left-1/2 transform -translate-x-1/2 opacity-80 grayscale z-10
                                 animate__animated animate__fadeInDown pointer-events-none">
-                    <Image src="/images/bg/color-gradient-1726w.avif" width={800} height={161} priority={true}
+                    <Image src="/images/bg/color-gradient-800w.avif" width={800} height={161} priority={true}
                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                            alt="Colored BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server"
                            className="object-contain max-w-[800px] pointer-events-none rotate-180" />
@@ -258,6 +259,12 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
                                         </div>
                                     ))}
                                 </div>
+                            )}
+
+                            {translationNamespace === 'ClankGiveawaysSection' && (
+                                <AdContainer>
+                                    <AdBanner dataAdSlot="9048181934" dataAdFormat="horizontal" />
+                                </AdContainer>
                             )}
                         </div>
                     </div>

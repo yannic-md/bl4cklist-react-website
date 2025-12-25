@@ -1,14 +1,13 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconDefinition} from "@fortawesome/free-solid-svg-icons";
 import {JSX} from "react";
-import {faQuestionCircle} from "@fortawesome/free-regular-svg-icons/faQuestionCircle";
+import {IconType} from "react-icons";
+import {FaRegCircleQuestion} from "react-icons/fa6";
 
 interface FormFieldProps {
     id: string;
     name: string;
     label: string;
     type?: 'text' | 'email' | 'textarea';
-    icon: IconDefinition;
+    icon: IconType;
     placeholder: string;
     required?: boolean;
     touched?: boolean;
@@ -28,7 +27,7 @@ interface FormFieldProps {
  * @param {string} props.name - Name attribute used for form submission.
  * @param {string} props.label - Text label rendered above the field.
  * @param {'text' | 'email' | 'textarea'} [props.type='text'] - Input type or `textarea`.
- * @param {IconDefinition} props.icon - Leading icon rendered inside the field.
+ * @param {IconType} props.icon - Leading icon rendered inside the field.
  * @param {string} props.placeholder - Placeholder text for the input value.
  * @param {boolean} [props.required=false] - Marks the field as required.
  * @param {boolean} [props.touched=false] - Validation state flag for displaying errors.
@@ -44,16 +43,17 @@ export default function FormField({id, name, label, type = 'text', icon, placeho
     const hasError: boolean = touched && !!error;
     const borderClass: string = hasError ? 'border-red-500' : 'border-slate-700';
     const isTextarea: boolean = type === 'textarea';
+    const Icon: IconType = icon;
 
     return (
         <div className="flex flex-col gap-2">
             {/* Label with possible optional flag and/or tooltip for questions */}
-            <label htmlFor={id} className="text-sm font-medium text-gray-300">
+            <label htmlFor={id} className="text-sm font-medium text-gray-300 inline-flex items-center justify-start">
                 {label} {!required && <span className="text-gray-500"> (Optional)</span>}
 
                 {helpLink && (
                     <a href={helpLink} target="_blank" rel="noopener noreferrer">
-                        <FontAwesomeIcon icon={faQuestionCircle} className="ml-1 text-gray-500 cursor-pointer" />
+                        <FaRegCircleQuestion className="ml-1 mt-0.5 text-gray-500 cursor-pointer" />
                     </a>
                 )}
             </label>
@@ -65,7 +65,7 @@ export default function FormField({id, name, label, type = 'text', icon, placeho
                 {/* Icon on the right of the field */}
                 <div className={`flex ${isTextarea ? 'items-start' : 'items-center'} justify-center 
                                  ${isTextarea ? 'my-auto' : ''} pl-4 pr-3`}>
-                    <FontAwesomeIcon icon={icon} className="text-gray-400 text-sm" />
+                    <Icon className="text-gray-400 text-sm" />
                 </div>
 
                 {/* Divider after the icon */}

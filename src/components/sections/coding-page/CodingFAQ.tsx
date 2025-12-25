@@ -5,10 +5,8 @@ import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import coding from "@/styles/components/coding.module.css";
 import Image from "next/image";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import buttons from "@/styles/util/buttons.module.css";
 import anim from "@/styles/util/animations.module.css";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import {useTranslations} from "next-intl";
 import FAQItem from "@/components/elements/grid/FAQItem";
@@ -17,6 +15,10 @@ import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import AdBanner from "@/components/elements/ads/AdBanner";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import {FaDiscord} from "react-icons/fa";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 /**
  * CodingFAQ component displays a FAQ section with animated features and interactive questions.
@@ -29,29 +31,10 @@ export default function CodingFAQ(): JSX.Element {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const tWelcome = useTranslations('WelcomeHero');
     const tFAQ = useTranslations('CodingFAQ');
-    const [is2XL, setIs2XL] = useState(false);
+    const is2XL: boolean = useMediaQuery();
     const [isShiftPressed, setIsShiftPressed] = useState(false);
     const [secretFaqUnlocked, setSecretFaqUnlocked] = useState(false);
     const router: NextRouter = useRouter();
-
-    /**
-     * Effect: synchronize `is2XL` state with the current viewport width.
-     *
-     * - Sets `is2XL` to `true` when `window.innerWidth >= 1536` (Tailwind `2xl` breakpoint),
-     *   otherwise sets it to `false`.
-     * - Runs once on mount to initialize the value.
-     * - Adds a `resize` event listener to update the state when the viewport resizes.
-     * - Cleans up the event listener on unmount.
-     */
-    useEffect((): () => void => {
-        const checkScreenSize: () => void = (): void => {
-            setIs2XL(window.innerWidth >= 1536); // 2xl breakpoint
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return (): void => window.removeEventListener('resize', checkScreenSize);
-    }, []);
 
     /**
      * Track Shift key pressed state and update component state.
@@ -248,7 +231,7 @@ export default function CodingFAQ(): JSX.Element {
                             <div className="relative group drop-shadow-xl drop-shadow-white/5">
                                 <a href="https://discord.gg/bl4cklist" target="_blank">
                                     <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                        <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                        <FaDiscord className="text-gray-100" />
                                         <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                     </button>
                                 </a>
@@ -266,6 +249,10 @@ export default function CodingFAQ(): JSX.Element {
                         </div>
                     </AnimateOnView>
                 </div>
+
+                <AdContainer>
+                    <AdBanner dataAdSlot="3444501462" dataAdFormat="horizontal" />
+                </AdContainer>
             </div>
 
             { /* Bottom border for this section */ }

@@ -73,7 +73,7 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
             {/* Decorative background image positioned far right */}
             {bgSrc && (
                 <div className={`absolute -right-48 top-48 w-32 h-32 z-0 pointer-events-none 
-                                 ${animations.animate_float} hidden 2xl:block
+                                 ${animations.animate_float} hidden [@media(min-width:1828px)]:block
                                  ${bgRotation === 'left' ? 'rotate-12' : 'rotate-20'}`}>
                     <Image src={bgSrc} width={256} height={256} alt={bgAlt || 'Background decoration'}
                            className={`w-full h-full object-contain transition-all duration-700 opacity-10`} />

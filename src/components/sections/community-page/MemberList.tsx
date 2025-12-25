@@ -7,11 +7,12 @@ import {Member} from "@/types/Member";
 import {MemberCard} from "@/components/elements/grid/MemberCard";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {isMilestoneUnlocked} from "@/lib/milestones/MilestoneEvents";
 import {MILESTONES} from "@/data/milestones";
 import {unlockMilestone} from "@/lib/milestones/MilestoneService";
 import {NextRouter, useRouter} from "next/router";
+import {AdContainer} from "@/components/elements/ads/AdWrapper";
+import AdBanner from "@/components/elements/ads/AdBanner";
 
 type MemberListPosition = 'left' | 'right';
 
@@ -41,7 +42,6 @@ export default function MemberList({members, section_id, category, position = 'r
                                     planetVariant = 1}: MemberListProps): JSX.Element {
     const tMemberListSection = useTranslations('MemberListSection');
     const [visibleMembers, setVisibleMembers] = useState(members);
-    const [animationParent] = useAutoAnimate();
     const isOddCount: boolean = visibleMembers.length % 2 !== 0;
     const isLeftPosition: boolean = position === 'left';
     const router: NextRouter = useRouter();
@@ -194,7 +194,7 @@ export default function MemberList({members, section_id, category, position = 'r
                     {/* User List */}
                     <AnimateOnView animation={`animate__fadeIn${isLeftPosition ? 'Left' : 'Right'} animate__slower`}
                                    className={`mt-8 sm:mt-10 xl:mt-0 ${isLeftPosition ? 'xl:order-1' : 'xl:order-2'}`}>
-                        <div ref={animationParent} className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
+                        <div className={`grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 grid-rows-[auto]
                                          ${isOddCount ? 'sm:[&>*:last-child]:col-span-2 sm:[&>*:last-child]:w-full ' +
                                                         'md:[&>*:last-child]:w-[75%] lg:[&>*:last-child]:w-[50%] ' +
                                                         'sm:[&>*:last-child]:mx-auto' : ''}`}>
@@ -206,6 +206,12 @@ export default function MemberList({members, section_id, category, position = 'r
                     </AnimateOnView>
                 </div>
             </div>
+
+            {section_id === 'leaders' && (
+                <AdContainer>
+                    <AdBanner dataAdSlot="1918848562" dataAdFormat="horizontal" />
+                </AdContainer>
+            )}
 
             {/* Border for better transition & Light shape for depth */}
             <div className="bg-[radial-gradient(50%_50%_at_50%_50%,#d8e7f212_0%,#04070d_100%)] z-[1]

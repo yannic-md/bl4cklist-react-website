@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import head from '../../../styles/components/header.module.css';
 import { NavigationItem } from '@/types/NavigationItem';
 import HeaderDropdown from './HeaderDropdown';
 import {NextRouter, useRouter} from 'next/router';
 import {JSX} from "react";
+import {FaChevronDown} from "react-icons/fa";
 
 interface NavigationItemProps {
   item: NavigationItem;
@@ -34,8 +33,7 @@ export default function HeaderNavItem({ item, leftPosition }: NavigationItemProp
                             cursor-pointer transition-colors duration-200 group-hover:text-white 
                             group-hover:[text-shadow:_0_0_1px_currentColor] ${isActive ? head.active : ''}`}>
           <span>{item.title}</span> 
-          <FontAwesomeIcon icon={faChevronDown} size='2xs' 
-                           className="self-center opacity-40 transition-all duration-200 group-hover:rotate-180" />
+          <FaChevronDown size={10} className="self-center opacity-40 transition-all duration-200 group-hover:rotate-180" />
         </button>
       </Link>
 

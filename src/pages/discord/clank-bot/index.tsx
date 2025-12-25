@@ -13,6 +13,8 @@ import {
 } from "@/types/ClankBotFeatures";
 import {APIStatistics} from "@/types/APIResponse";
 import {fetchGuildStatistics} from "@/lib/api";
+import MetaHead from "@/components/elements/MetaHead";
+import {useTranslations} from "next-intl";
 
 interface ClankBotProps {
     guildStats: APIStatistics | null;
@@ -30,6 +32,7 @@ interface ClankBotProps {
  * @returns {JSX.Element} The clank-bot page component.
  */
 export default function ClankBot({ guildStats }: ClankBotProps): JSX.Element {
+    const tClankHero = useTranslations('ClankHero')
 
     // fallback for SSR
     const ticketsCount: number = guildStats?.tickets_count ?? 1919;
@@ -46,6 +49,8 @@ export default function ClankBot({ guildStats }: ClankBotProps): JSX.Element {
 
     return (
         <>
+            <MetaHead title="Clank Discord-Bot" description={tClankHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 
@@ -113,6 +118,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
         props: {
             messages: (await import(`../../../../messages/${locale}.json`)).default,
-            guildStats }, revalidate: 300 // regenerate http request cache every 5 minutes
+            guildStats }, revalidate: 3600 // regenerate http request cache every 5 minutes
     };
 }

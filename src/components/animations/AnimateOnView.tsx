@@ -45,6 +45,7 @@ export const AnimateOnView = ({
                     setTimeout((): void => {
                         setIsVisible(true);
                         if (triggerOnce) setHasTriggered(true);
+                        observer.disconnect();
                     }, delay);
                 } else if (!triggerOnce && !entry.isIntersecting) {
                     setIsVisible(false);

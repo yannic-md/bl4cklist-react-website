@@ -8,6 +8,8 @@ import CodingFAQ from "@/components/sections/coding-page/CodingFAQ";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import {fetchGuildStatistics} from "@/lib/api";
 import {APIStatistics} from "@/types/APIResponse";
+import MetaHead from "@/components/elements/MetaHead";
+import {useTranslations} from "next-intl";
 
 interface TechCodingProps {
     guildStats: APIStatistics | null;
@@ -21,8 +23,12 @@ interface TechCodingProps {
  * @returns {JSX.Element} The tech-coding page component.
  */
 export default function TechCoding({ guildStats }: TechCodingProps): JSX.Element {
+    const tCodingHero = useTranslations('CodingHero');
+
     return (
         <>
+            <MetaHead title='Hardware & Coding' description={tCodingHero('description')} />
+
             {/* Header - allow navigation to other pages */}
             <Header />
 
@@ -66,6 +72,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
         props: {
             messages: (await import(`../../../../messages/${locale}.json`)).default,
-            guildStats }, revalidate: 300 // regenerate http request cache every 5 minutes
+            guildStats }, revalidate: 3600 // regenerate http request cache every 5 minutes
     };
 }

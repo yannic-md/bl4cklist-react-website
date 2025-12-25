@@ -41,3 +41,5 @@ next-env.d.ts
 
 # sensitive data
 /src/data/
+/public/sitemap-0.xml
+/public/sitemap.xml

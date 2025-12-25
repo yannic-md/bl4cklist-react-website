@@ -1,24 +1,21 @@
 import {JSX} from "react";
 import {ParticlesBackground} from "@/components/animations/ParticlesBackground";
 import index from "@/styles/components/index.module.css";
-import {AnimateOnView} from "@/components/animations/AnimateOnView";
 import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import colors from "@/styles/util/colors.module.css";
 import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ButtonHover from "@/components/elements/ButtonHover";
-import {faHandcuffs} from "@fortawesome/free-solid-svg-icons/faHandcuffs";
-import {faPencil} from "@fortawesome/free-solid-svg-icons/faPencil";
-import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 import {useTranslations} from "next-intl";
 import {FormType} from "@/pages/contact";
+import {IconType} from "react-icons";
+import {FaHandcuffs, FaPencil} from "react-icons/fa6";
 
 interface FormBox {
     icon: string;
     title: string;
     description: string;
     buttonText: string;
-    buttonIcon: IconDefinition;
+    buttonIcon: IconType;
     formType: FormType;
 }
 
@@ -38,9 +35,9 @@ export default function ContactHero({ onFormSelect }: ContactHeroProps): JSX.Ele
     const tContactHero = useTranslations('ContactHero')
     const form_boxes: FormBox[] = [
         {icon: "🛑", title: "formUnbanTitle", description: "formUnbanDescription",
-         buttonText: "formUnbanButton", buttonIcon: faHandcuffs, formType: 'unban'},
+         buttonText: "formUnbanButton", buttonIcon: FaHandcuffs, formType: 'unban'},
         {icon: "📡", title: "formGeneralTitle", description: "formGeneralDescription",
-         buttonText: "formGeneralButton", buttonIcon: faPencil, formType: 'general'}];
+         buttonText: "formGeneralButton", buttonIcon: FaPencil, formType: 'general'}];
 
     return (
         <section className="relative w-full min-h-[90%] 2xl:h-[95vh] bg-slate-900/25 overflow-hidden
@@ -52,70 +49,70 @@ export default function ContactHero({ onFormSelect }: ContactHeroProps): JSX.Ele
                             mt-12 2xl:mt-0">
                 {/* Animated Tag */}
                 <div className="mb-2">
-                    <div className="font-bold tracking-wider">
-                        <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                            <AnimatedTextReveal text={tContactHero('infoTag')}
-                                                className="text-sm text-[coral] uppercase text-center
-                                                           2xl:text-start pb-3 lg:pb-0"
-                                                shadowColor="rgba(255,127,80,0.35)" />
-                        </AnimateOnView>
+                    <div className="font-bold tracking-wider animate__fadeInLeft animate__animated">
+                        <AnimatedTextReveal text={tContactHero('infoTag')}
+                                            className="text-sm text-[coral] uppercase text-center
+                                                       2xl:text-start pb-3 lg:pb-0"
+                                            shadowColor="rgba(255,127,80,0.35)" />
                     </div>
                 </div>
 
                 {/* Headline */}
-                <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                    <h2 className={`${index.head_border_center} max-w-full 2xl:max-w-[30ch] bg-clip-text text-transparent mb-4
-                                    md:mb-6 ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2rem] 
-                                    lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3rem)] text-center`}>
-                        <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">📬</span> -
-                        {tContactHero('title')}
-                    </h2>
-                </AnimateOnView>
+                <h2 className={`${index.head_border_center} max-w-full 2xl:max-w-[30ch] bg-clip-text text-transparent mb-4
+                                md:mb-6 ${colors.text_gradient_gray} my-0 font-semibold leading-[1.1] text-[2rem] 
+                                lg:text-[clamp(1.75rem,_1.3838rem_+_2.6291vw,_3rem)] text-center 
+                                animate__fadeInLeft animate__animated`}>
+                    <span className="inline-block align-middle leading-none -mx-[5px] mb-1 text-white">📬</span> -
+                    {tContactHero('title')}
+                </h2>
 
                 {/* Description */}
-                <AnimateOnView animation="animate__fadeInLeft animate__slower">
-                    <p className="text-[#969cb1] mb-6 break-words max-w-full md:max-w-2xl lg:max-w-3xl text-center
-                                  [@media(min-width:2000px)]:max-w-2xl text-sm md:text-base">
-                        {tContactHero("description")}
-                    </p>
-                </AnimateOnView>
+                <p className="text-[#969cb1] mb-6 break-words max-w-full md:max-w-2xl lg:max-w-3xl text-center
+                              [@media(min-width:2000px)]:max-w-2xl text-sm md:text-base animate__fadeInLeft animate__animated">
+                    {tContactHero("description")}
+                </p>
 
                 {/* "Pick-A-Form" Container */}
                 <div className="flex flex-col lg:flex-row w-full gap-6 md:gap-8 lg:gap-12 xl:gap-20 items-center justify-center">
-                    {form_boxes.map((item: FormBox, index: number): JSX.Element => (
-                        <AnimateOnView key={index} animation={`animate__fadeIn${index === 0 ? 'Left' : 'Right'} animate__slower`}>
-                            <div className="shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:-translate-y-1
-                                            transition-all duration-200 w-full max-w-md lg:max-w-none">
-                                <div className="relative flex p-3 bg-[#04070d] rounded-2xl w-full lg:w-[400px]
-                                                xl:w-[450px] shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]">
-                                    <div>
-                                        <h3 className="text-[clamp(1.375rem,1.1989rem+.7512vw,1.5rem)] font-semibold">
-                                            {item.icon} ~ {tContactHero(item.title)}
-                                        </h3>
-                                        <p className="text-[#969cb1] mb-6 break-words text-base">
-                                            {tContactHero(item.description)}
-                                        </p>
+                    {form_boxes.map((item: FormBox, index: number): JSX.Element => {
+                        const IconComponent: IconType = item.buttonIcon;
 
-                                        {/* Action Button */}
-                                        <div className="flex flex-col items-end relative group w-fit z-[20]
-                                                        drop-shadow-xl drop-shadow-white/5 mx-auto">
-                                            <button className={`relative sm:min-w-52 ${buttons.white_gray}`}
-                                                    onClick={(): void => onFormSelect(item.formType)}>
-                                                <FontAwesomeIcon icon={item.buttonIcon} className="text-gray-100" />
-                                                <p className="whitespace-pre">{tContactHero(item.buttonText)}</p>
-                                            </button>
+                        return (
+                            <div key={index} className={`animate__fadeIn${index === 0 ? 'Left' : 'Right'} animate__animated`}>
+                                <div className="shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:-translate-y-1
+                                                        transition-all duration-200 w-full max-w-md lg:max-w-none">
+                                    <div className="relative flex p-3 bg-[#04070d] rounded-2xl w-full lg:w-[400px]
+                                                            xl:w-[450px] shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]">
+                                        <div>
+                                            <h3 className="text-[clamp(1.375rem,1.1989rem+.7512vw,1.5rem)] font-semibold">
+                                                {item.icon} ~ {tContactHero(item.title)}
+                                            </h3>
+                                            <p className="text-[#969cb1] mb-6 break-words text-base">
+                                                {tContactHero(item.description)}
+                                            </p>
 
-                                            <ButtonHover />
+                                            {/* Action Button */}
+                                            <div className="flex flex-col items-end relative group w-fit z-[20]
+                                                                    drop-shadow-xl drop-shadow-white/5 mx-auto">
+                                                <button className={`relative sm:min-w-52 ${buttons.white_gray}`}
+                                                        onClick={(): void => onFormSelect(item.formType)}>
+                                                    <IconComponent className="text-gray-100" />
+                                                    <p className="whitespace-pre">{tContactHero(item.buttonText)}</p>
+                                                </button>
+
+                                                <ButtonHover />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Container gradient in right corner for more depth */}
-                                    <div className="absolute top-0 right-0 w-[437px] h-[306px] pointer-events-none opacity-[0.1] rounded-tr-2xl
-                                                    bg-[radial-gradient(50%_50%_at_93.7%_8.1%,#b8c7d980_0%,rgba(4,7,13,0)_100%)]" />
+                                        {/* Container gradient in right corner for more depth */}
+                                        <div className="absolute top-0 right-0 w-[437px] h-[306px] pointer-events-none
+                                                        opacity-[0.1] rounded-tr-2xl
+                                                        bg-[radial-gradient(50%_50%_at_93.7%_8.1%,#b8c7d980_0%,rgba(4,7,13,0)_100%)]" />
+                                    </div>
                                 </div>
                             </div>
-                        </AnimateOnView>
-                    ))}
+                        );
+                    })}
                 </div>
 
             </div>

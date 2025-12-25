@@ -1,14 +1,11 @@
 import React, {JSX, useEffect, useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
-import { faDiscord as faDiscordBrand } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import Image from 'next/image';
 import {NextRouter, useRouter} from 'next/router';
 import { NavigationItem } from '@/types/NavigationItem';
 import head from '../../../styles/components/header.module.css';
 import responsive from '../../../styles/util/responsive.module.css';
+import {FaChevronDown, FaDiscord, FaLink} from "react-icons/fa";
 
 interface HeaderMobileNavProps {
   isOpen: boolean;
@@ -125,8 +122,8 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
                                             ${isActive(item.href) ? head.active : ''}`}
                                 onClick={(): void => toggleExpanded(index)} aria-expanded={expandedItem === index}>
                         <span>{item.title}</span>
-                        <FontAwesomeIcon icon={faChevronDown} size="2xs" className={`text-white/40 transition-transform 
-                            duration-200 ${expandedItem === index ? 'rotate-180' : ''}`} />
+                        <FaChevronDown size={10} className={`text-white/40 transition-transform duration-200 
+                                                             ${expandedItem === index ? 'rotate-180' : ''}`} />
                         </button>
 
                         {/* Dropdown Items */}
@@ -150,7 +147,7 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
                                     <div className="flex items-center">
                                         <span className="text-sm font-medium">{dropdownItem.title}</span>
                                         {dropdownItem.isExternal && (
-                                        <FontAwesomeIcon icon={faLink} size='2xs' className="ml-2 text-white/40" />
+                                            <FaLink size={10} className="ml-2 text-white/40" />
                                         )}
                                     </div>
                                     <div className="text-xs text-white/50 [text-transform:none]">
@@ -170,11 +167,13 @@ export default function HeaderMobileNav({ isOpen, onClose, navItems }: HeaderMob
                                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                     style={{ transitionDelay: `${navItems.length * 50 + 100}ms` }}>
                     <a href="https://discord.gg/bl4cklist" target="_blank" onClick={onClose}
-                    className="border border-white/5 rounded-[3.125rem] text-white py-1.5 px-4 font-semibold
-                                bg-white/15 transition-all duration-200 ease-in-out w-full text-center
-                                hover:bg-white/25 hover:border-white/20 hover:scale-105
-                                hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]">
-                    <FontAwesomeIcon icon={faDiscordBrand} size='sm' className="mr-2" />Discord-Server
+                       className="border border-white/5 rounded-[3.125rem] text-white py-1.5 px-4 font-medium
+                                  bg-white/15 transition-all duration-200 ease-in-out w-full text-center
+                                  hover:bg-white/25 hover:border-white/20 hover:scale-105
+                                  inline-flex items-center justify-center
+                                  hover:[box-shadow:_0_4px_4px_rgba(114,137,218,0.3)]">
+                        <FaDiscord size={14} className="mr-2 mt-0.5" />
+                        <span>Discord-Server</span>
                     </a>
                 </div>
             </div>

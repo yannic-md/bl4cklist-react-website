@@ -7,6 +7,11 @@
   <br /><br />
 
 ![Bl4cklist - React Website](https://i.imgur.com/zRawIcp.png)
+<p align="center">
+  <a href="https://pagespeed.web.dev/">
+    <img src="https://i.imgur.com/jMNUsO9.png" style="height: 100px;">
+  </a>
+</p>
 
 <h4 align="center">
   <a href="https://react.dev/">
@@ -31,6 +36,9 @@
  <a href="https://discord.gg/bl4cklist">
     <img src="https://img.shields.io/discord/616655040614236160?style=for-the-badge&logo=discord&label=Discord&color=%237289da" alt="discord server" style="height: 25px;">
   </a>
+ <a href="https://status.bl4cklist.de">
+   <img src="https://uptime.betterstack.com/status-badges/v1/monitor/92xm.svg" alt="uptime status" style="height: 25px;">
+ </a>
 </h4>
 
 ## 🤔 Introduction
@@ -56,19 +64,28 @@ It supports following <strong>features</strong>:
   <br />
   <li>☁️ <strong>Cloudflare Turnstile Integration</strong>: To avoid bots spamming our contact form, we're using Cloudflare's Captcha Tool "Turnstile".</li> 
   <br />
+  <li>🎉 <strong>Easter-Egg System</strong>: We implemented 10+ unique Easter Eggs that you can find on our website. Have fun finding them! ;)</li> 
+  <br />
   <li>🚩 <strong>Language Switcher</strong>: Our website automatically detects the language of your browser and displays English/German accordingly, alternatively the user can switch via button click.</li> 
   <br /> 
   <li>📱 <strong>Responsive for all Devices</strong>: We have put a special focus on ensuring that the website is beautifully and user-friendly displayed on as many devices as possible.</li> 
   <br />
   <li>🎈 <strong>Catchy Animations</strong>: As soon as an object comes into the user's field of view, a beautiful animation is played if applicable.</li> 
   <br />
-  <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li> 
+  <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li>
+  <br />
+  <li>💸 <strong>Google Ads Integration</strong>: With a simple solution we integrated some google ad banners on our page.</li> 
 </ul>
 
 ⚙️ › To run the <strong>test coverage</strong> and see the results, just open a terminal in the project root folder and run the command `jest`.
 
 ## 🔨 Usage
 › You can open this website here: <code>https://bl4cklist.de</code>
+
+## 🟢 Start Project
+1. Run `ng build`.
+2. Run `cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/`
+3. Upload entire content of `standalone/` to a server and run `node server.js`.
 
 ## ⚖️ License
 

@@ -4,16 +4,14 @@ import {AnimatedTextReveal} from "@/components/animations/TextReveal";
 import index from "@/styles/components/index.module.css";
 import colors from "@/styles/util/colors.module.css";
 import buttons from "@/styles/util/buttons.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDiscord} from "@fortawesome/free-brands-svg-icons/faDiscord";
 import ButtonHover from "@/components/elements/ButtonHover";
 import Link from "next/link";
 import {AnimatedCounter} from "@/components/animations/Counter";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
-import {faHammer} from "@fortawesome/free-solid-svg-icons/faHammer";
 import {APIStatistics} from "@/types/APIResponse";
+import {FaDiscord, FaHammer} from "react-icons/fa";
 
 interface ComHeroProps {
     guildStats?: APIStatistics | null;
@@ -26,7 +24,7 @@ interface ComHeroProps {
  *
  * @param {ComHeroProps} props - Component configuration
  * @param {APIStatistics | null} props.guildStats - The API loaded stats about the guild.
- * @returns {JSX.Element} The rendered hero section with animated text, statistics counters, and action buttons
+ * @returns {JSX.Element} - The rendered hero section with animated text, statistics counters, and action buttons
  */
 export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
     const tComHero = useTranslations('ComHero');
@@ -44,8 +42,9 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
 
             {/* Grid Background image of whole section */}
             <div className="absolute inset-0 pointer-events-none select-none">
-                <Image src="/images/bg/community-hero-1440w.webp" sizes="(max-width: 1439px) 100vw, 1440px"
-                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill unoptimized loading="eager"
+                <Image src="/images/bg/community-hero-1440w.avif" sizes="(max-width: 1439px) 100vw, 1440px"
+                       alt="Grid BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" fill
+                       loading="eager" fetchPriority={"high"} priority
                        className="object-cover object-[center_10%] md:object-[center_80%] grayscale"/>
             </div>
 
@@ -57,8 +56,9 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
             {/* Frame Overlay Background image */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[68.75rem] px-4
                             mt-4 pointer-events-none select-none hidden lg:block">
-                <Image src="/images/bg/community-hero-frame-2200w.webp" sizes="(max-width: 2200px) 100vw, 2200px"
+                <Image src="/images/bg/community-hero-frame-2200w.avif" sizes="(max-width: 2200px) 100vw, 2200px"
                        className="w-full h-auto grayscale xl:scale-125" width={2200} height={1142}
+                       loading={"eager"} fetchPriority={"high"} priority
                        alt="Frame BG - Bl4cklist ~ Deutscher Gaming-& Tech Discord-Server" />
             </div>
 
@@ -133,7 +133,7 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
                                     <a href="https://discord.gg/bl4cklist" target="_blank"
                                        className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.white_gray}`}>
-                                            <FontAwesomeIcon icon={faDiscord} className="text-gray-100" />
+                                            <FaDiscord className="text-gray-100" />
                                             <p className="whitespace-pre">{tWelcome('joinDiscord')}</p>
                                         </button>
                                     </a>
@@ -143,7 +143,7 @@ export default function ComHero({guildStats}: ComHeroProps): JSX.Element {
                                 <div className="flex flex-col items-end relative group w-full sm:w-auto">
                                     <Link href="tech-coding" className="flex flex-col items-end w-full">
                                         <button className={`relative w-full sm:min-w-52 ${buttons.black_purple}`}>
-                                            <FontAwesomeIcon icon={faHammer} className="text-gray-100" />
+                                            <FaHammer className="text-gray-100" />
                                             <p className="whitespace-pre">{tComHero('button_support')}</p>
                                         </button>
                                     </Link>

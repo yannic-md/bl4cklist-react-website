@@ -1,6 +1,5 @@
 import {JSX, useEffect, useState} from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faChevronUp} from "@fortawesome/free-solid-svg-icons";
+import {FaChevronUp} from "react-icons/fa";
 
 /**
  * Displays a floating button that appears when the user scrolls  down more than half the viewport height.
@@ -67,7 +66,7 @@ export default function ScrollToTopButton(): JSX.Element | null {
                        border border-white/10 shadow-lg backdrop-blur-md transition-all duration-200
                        hover:bg-white/20 hover:border-white/20 text-white text-lg cursor-pointer hover:-translate-y-0.5
                        animate__animated ${visible ? 'animate__fadeInUp' : 'animate__fadeOutDown'}`}>
-            <FontAwesomeIcon icon={faChevronUp} />
+            <FaChevronUp />
         </button>
     );
 }
