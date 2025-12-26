@@ -8,7 +8,7 @@
     "postbuild": "npx next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.0",

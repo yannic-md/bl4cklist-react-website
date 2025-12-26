@@ -1,6 +1,6 @@
 import React, {JSX, RefObject, useEffect, useRef, useState} from "react";
 
-interface AnimateOnViewProps {
+export interface AnimateOnViewProps {
     children: React.ReactNode;
     animation: string;
     threshold?: number;

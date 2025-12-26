@@ -39,7 +39,8 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
 
         initParticlesEngine(async (engine: Engine): Promise<void> => {
             await loadSlim(engine);
-        }).then((): void => setEngineReady(true));
+        }).then((): void => setEngineReady(true))
+          .catch((err) => console.error("Particles init failed", err));
     }, [isLargeScreen]);
 
     /**
@@ -65,8 +66,9 @@ export const ParticlesBackground: FC<ParticlesBackgroundProps> = memo(({ classNa
             }
         );
 
-        if (containerRef.current) { observer.observe(containerRef.current); }
-        return (): void => { if (containerRef.current) { observer.unobserve(containerRef.current); } };
+        const currentRef = containerRef.current;
+        if (currentRef) { observer.observe(currentRef); }
+        return (): void => { if (currentRef) { observer.unobserve(currentRef); } };
     }, [isLargeScreen, engineReady]);
 
     const particlesLoaded: () => Promise<void> = useCallback(async (): Promise<void> => {}, []);
