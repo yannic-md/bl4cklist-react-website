@@ -73,12 +73,12 @@ export default function FormField({id, name, label, type = 'text', icon, placeho
 
                 {/* type of the input field */}
                 {isTextarea ? (
-                    <textarea id={id} name={name} rows={rows || 5} placeholder={placeholder} onBlur={onBlur}
+                    <textarea id={id} name={name} rows={rows || 5} placeholder={placeholder} onChange={onBlur}
                               className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
                                          focus:outline-none resize-none disabled:text-gray-700
                                          disabled:cursor-not-allowed" disabled={disabled} autoComplete="off" />
                 ) : (
-                    <input type={type} id={id} name={name} placeholder={placeholder} onBlur={onBlur} autoComplete="off"
+                    <input type={type} id={id} name={name} placeholder={placeholder} onChange={onBlur} autoComplete="off"
                            className="flex-1 bg-transparent px-4 py-3 text-gray-100 placeholder-gray-500
                                       focus:outline-none disabled:text-gray-700 disabled:cursor-not-allowed"
                            disabled={disabled} />

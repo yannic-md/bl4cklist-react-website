@@ -653,8 +653,12 @@ describe('ParticlesBackground', () => {
         expect(() => unmount()).not.toThrow();
     });
 
-    it('should be memoized component', () => {
+    it('should be memoized component', async () => {
         const { rerender } = render(<ParticlesBackground particles={40} />);
+
+        await waitFor(() => {
+            expect(initParticlesEngine).toHaveBeenCalled();
+        });
 
         // Rerender with same props
         rerender(<ParticlesBackground particles={40} />);
