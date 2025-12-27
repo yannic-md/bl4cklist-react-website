@@ -628,6 +628,7 @@ describe('ParticlesBackground', () => {
 
     it('should handle engine initialization failure', async () => {
         (useMediaQuery as jest.Mock).mockReturnValue(true);
+        jest.spyOn(console, 'error').mockImplementation(() => {});
         (initParticlesEngine as jest.Mock).mockRejectedValue(new Error('Engine init failed'));
 
         render(<ParticlesBackground particles={40} />);

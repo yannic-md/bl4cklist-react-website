@@ -2,7 +2,6 @@ import Image from 'next/image';
 import {JSX} from "react";
 
 import animations from '../../../styles/util/animations.module.css';
-import index from '../../../styles/components/index.module.css';
 
 interface TimelineItemProps {
     date: string;
@@ -43,7 +42,7 @@ export default function TimelineItem({date, title, description, logoSrc, logoAlt
                                       borderShadowClass, isFocused = false, isPassed = false,
                                       isLastItem = false, onClick}: TimelineItemProps): JSX.Element {
     return (
-        <div className={`relative flex flex-col gap-4 pl-[63px] ${isFocused ? index.easter_cursor : '!cursor-pointer'}`}>
+        <div className={`relative flex flex-col gap-4 pl-[63px] ${isFocused ? 'cursor-special' : '!cursor-pointer'}`}>
             {/* Container for the timeline item */}
             <div className={`transition-all duration-500 ${isFocused ? 'scale-105 opacity-100' : 'scale-100 opacity-40'}`}>
                 <div className={`relative flex p-3 bg-[#04070d] rounded-2xl shadow-[inset_0_2px_1px_0_rgba(207,231,255,0.2)]

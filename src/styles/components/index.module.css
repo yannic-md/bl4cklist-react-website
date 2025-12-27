@@ -40,10 +40,6 @@
     clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
 }
 
-.easter_cursor {
-    cursor: url("/images/icons/super-mario-star-cursor-32w.png"), pointer !important;
-}
-
 .hero_text_bg {
     background: radial-gradient(50% 84% at 50% 50%, rgb(1, 1, 13) 0%,rgba(0,0,0,0) 100%)
 }
