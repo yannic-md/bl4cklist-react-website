@@ -20,13 +20,16 @@
   <a href="https://nextjs.org/">
     <img src="https://img.shields.io/badge/Next.JS-16.0.10-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
   </a>
-  <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Tailwind-4.1.18-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+  <a href="https://jestjs.io/">
+    <img src="https://img.shields.io/badge/JEST-30.2.0-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
 </h4>
 <h4 align="center">
   <a href="https://animate.style/">
     <img src="https://img.shields.io/badge/Animate.css-4.1.1-1abc9c?style=for-the-badge" alt="animate.css version" style="height: 25px;">
+  </a>
+  <a href="https://tailwindcss.com">
+    <img src="https://img.shields.io/badge/Tailwind-4.1.18-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
   <a href="https://particles.js.org/">
     <img src="https://img.shields.io/badge/Particles.js-3.9.1-1abc9c?style=for-the-badge" alt="particles.js version" style="height: 25px;">
