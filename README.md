@@ -75,8 +75,6 @@ It supports following <strong>features</strong>:
   <br />
   <li>🎈 <strong>Catchy Animations</strong>: As soon as an object comes into the user's field of view, a beautiful animation is played if applicable.</li> 
   <br />
-  <li>⏳ <strong>Page-Loader</strong>: While the website is being built and all data is loading, a nice animated icon is displayed, which was built entirely with CSS.</li>
-  <br />
   <li>💸 <strong>Google Ads Integration</strong>: With a simple solution we integrated some google ad banners on our page.</li> 
 </ul>
 
