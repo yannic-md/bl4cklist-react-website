@@ -88,12 +88,11 @@ export default function GlitchingMoon(): JSX.Element {
      * @returns {string} - The animation class name or an empty string when no animation applies.
      */
     const getShakeIntensity: () => string = (): string => {
-        if (clickCount === 0) return '';
         if (clickCount === 1) return animations.animate_shake_light;
-        if (clickCount === 2) return animations.animate_shake_medium;
-        if (clickCount === 3) return animations.animate_shake_heavy;
-        if (clickCount === 4) return animations.animate_shake_extreme;
-        return '';
+        else if (clickCount === 2) return animations.animate_shake_medium;
+        else if (clickCount === 3) return animations.animate_shake_heavy;
+        else if (clickCount === 4) return animations.animate_shake_extreme;
+        else return '';
     };
 
     return (
