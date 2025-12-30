@@ -4,7 +4,7 @@
  */
 
 import type {Config} from 'jest';
-import nextJest from "next/dist/build/jest/jest";
+import nextJest from "next/jest";
 
 const createJestConfig = nextJest({
   dir: './',
