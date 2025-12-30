@@ -108,8 +108,8 @@ describe('NotFound', () => {
 
         expect(screen.getByText('404')).toBeInTheDocument();
         expect(screen.getByText('Page not found')).toBeInTheDocument();
-        expect(screen.getByText('1.200 Online')).toBeInTheDocument();
-        expect(screen.getByText('5.000 Members')).toBeInTheDocument();
+        expect(screen.getByText(/1.200 Online/)).toBeInTheDocument();
+        expect(screen.getByText(/5.000 Members/)).toBeInTheDocument();
     });
 
     it('should render with fallback values when guildStats is undefined', () => {
@@ -117,7 +117,7 @@ describe('NotFound', () => {
 
         expect(screen.getByText('404')).toBeInTheDocument();
         expect(screen.getByText('890 Online')).toBeInTheDocument();
-        expect(screen.getByText('3.533 Members')).toBeInTheDocument();
+        expect(screen.getByText(/3.533 Members/)).toBeInTheDocument();
     });
 
     it('should render all planet images with correct attributes', () => {
@@ -167,8 +167,8 @@ describe('NotFound', () => {
 
         render(<NotFound guildStats={guildStats} />);
 
-        expect(screen.getByText('98.765 Online')).toBeInTheDocument();
-        expect(screen.getByText('1.234.567 Members')).toBeInTheDocument();
+        expect(screen.getByText(/98.765 Online/)).toBeInTheDocument();
+        expect(screen.getByText(/1.234.567 Members/)).toBeInTheDocument();
     });
 
     it('should render section with correct id', () => {

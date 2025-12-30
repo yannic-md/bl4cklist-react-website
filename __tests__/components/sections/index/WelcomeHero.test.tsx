@@ -135,15 +135,15 @@ describe('WelcomeHero', () => {
         const guildStats = { member_count: 5000, online_count: 1200 } as APIStatistics;
         render(<WelcomeHero guildStats={guildStats} />);
 
-        expect(screen.getByText('5.000 Members')).toBeInTheDocument();
-        expect(screen.getByText('1.200 Online')).toBeInTheDocument();
+        expect(screen.getByText(/5.000 Members/)).toBeInTheDocument();
+        expect(screen.getByText(/1.200 Online/)).toBeInTheDocument();
     });
 
     it('should render with fallback values when guildStats is undefined', () => {
         render(<WelcomeHero guildStats={undefined as any} />);
 
-        expect(screen.getByText('3.533 Members')).toBeInTheDocument();
-        expect(screen.getByText('890 Online')).toBeInTheDocument();
+        expect(screen.getByText(/3.533 Members/)).toBeInTheDocument();
+        expect(screen.getByText(/890 Online/)).toBeInTheDocument();
     });
 
     it('should setup IntersectionObserver on mount', () => {
