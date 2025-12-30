@@ -166,9 +166,10 @@ export default function SingleFeatureSection({sectionId, translationNamespace, p
     );
 
     const showcaseImage: () => JSX.Element = (): JSX.Element => (
-        <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}>
-            <div className={`rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative
-                             overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900`}>
+        <AnimateOnView animation={`animate__fadeIn${imagePosition === 'left' ? 'Left' : 'Right'} animate__slower`}
+                       className={"flex justify-center xl:block"}>
+            <div className={`rounded-xl bg-white/[0.06] drop-shadow-2xl drop-shadow-white/5 p-px relative max-w-[471px]
+                             overflow-hidden ${imagePosition === 'left' ? '-rotate-1' : 'rotate-1'} border border-gray-900 self-center`}>
                 <div className="rounded-xl">
                     <Image src={imageSrc} width={471} height={471} alt={imageAlt} unoptimized={true}
                            className="h-full rounded-xl brightness-90" key={imageSrc} data-cursor-special />
