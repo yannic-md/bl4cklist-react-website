@@ -27,6 +27,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create dummy data for tests
+        run: |
+          mkdir -p src/data
+          # Erstelle leere Dateien, falls sie nicht existieren, damit Jest nicht crashed
+          touch src/data/milestones.ts
+          touch src/data/imprintData.ts
+          echo "export const imprintData = [];" > src/data/imprintData.ts
+          echo "export const MILESTONES = {};" > src/data/milestones.ts
+
       - name: Run tests with coverage
         run: npm test
 
