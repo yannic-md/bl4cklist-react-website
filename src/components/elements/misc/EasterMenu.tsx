@@ -33,7 +33,7 @@ export default function EasterMenu(): JSX.Element {
     const [discordError, setDiscordError] = useState<string | null>(null);
     const { count, unlockedIds } = useMilestones();
 
-    const progress: number = TOTAL_MILESTONES > 0 ? (count / TOTAL_MILESTONES) * 100 : 0;
+    const progress: number = (count / TOTAL_MILESTONES) * 100;
     const foundAchievements: {imageKey: string | undefined, icon: string | undefined}[] = unlockedIds
         .map((id: string): {imageKey: string | undefined, icon: string | undefined} => {
             const milestone: Milestone | undefined = Object.values(MILESTONES).find((m: Milestone): boolean => m.id === id);

@@ -24,7 +24,7 @@ interface UseAvatarUrlOptions {
 export function useAvatarUrl({avatarUrl, isHovered = false, size = 128, convertToWebp = true}: UseAvatarUrlOptions): string {
     return useMemo((): string => {
         if (!avatarUrl) return '';
-        if (!avatarUrl.startsWith("https://cdn.discordapp.com/")) { return avatarUrl; }
+        if (!avatarUrl.startsWith("https://cdn.discordapp.com/") || avatarUrl.includes("/embed/avatars/")) { return avatarUrl; }
 
         // Strip existing query parameters
         const baseUrl: string = avatarUrl.split('?')[0];

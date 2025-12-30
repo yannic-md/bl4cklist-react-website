@@ -55,7 +55,7 @@ export function getNavItems(t: (key: string) => string, tDropdown: (key: string)
         {
           title: tDropdown('requestUnban'),
           description: tDropdown('requestUnbanDesc'),
-          href: "/discord-server-unban",
+          href: "/contact",
           icon: "/images/icons/small/stop-24w.webp",
           isExternal: true
         }

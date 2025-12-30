@@ -60,15 +60,12 @@ export default function TeamSection({ teamMembers: apiTeamMembers }: TeamSection
             } else {
                 return "animate__fadeInRight";
             }
-        } else if (colIndex === 1) {
+        } else { // colIndex === 1
             // Middle column - determine based on row position
             if (rowIndex === 0) { return "animate__fadeInDown";
             } else if (rowIndex === totalRows - 1) { return "animate__fadeInUp";
             } else { return "animate__fadeIn"; }
         }
-        
-        // Mid items in a mid row
-        return "animate__fadeIn";
     };
 
     return (

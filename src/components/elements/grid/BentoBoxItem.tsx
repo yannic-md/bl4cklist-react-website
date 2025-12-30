@@ -117,10 +117,8 @@ export default function BentoBoxItem({animation, backgroundImage, showcaseImage,
                 return { ...baseStyles, bottom: '-12px', left: '59%', transform: 'translateX(-50%)' };
             case 'left':
                 return { ...baseStyles, left: '-12px', top: '47%', transform: 'translateY(-50%)' };
-            case 'right':
+            default: // "right"
                 return { ...baseStyles, right: '-12px', top: '54%', transform: 'translateY(-50%)' };
-            default:
-                return baseStyles;
         }
     };
 

@@ -150,6 +150,9 @@ export default function ContactForm({formType, validationSchema, submitIcon, sub
         }
     };
 
+    const canSubmit: boolean = isFormValid() && submitStatus !== 'success' && !isSubmitting &&
+        Object.keys(touchedFields).length != 0;
+
     return (
         <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-6">
             {formType === 'unban' ? <UnbanFormFields   tForm={tForm} validationErrors={validationErrors}
@@ -187,14 +190,14 @@ export default function ContactForm({formType, validationSchema, submitIcon, sub
 
                 {/* Submit button */}
                 <div className="flex flex-col items-end relative group z-[20] drop-shadow-xl drop-shadow-white/5">
-                    <button type="submit" disabled={!isFormValid() || submitStatus === 'success' || isSubmitting}
+                    <button type="submit" disabled={!canSubmit}
                             className={`relative w-full lg:w-fit ${buttons.white_gray} disabled:opacity-50
                                         disabled:!cursor-not-allowed transition-all duration-200`}>
                         <SubmitIcon className="text-gray-100" />
                         <p className="whitespace-pre">{submitText}</p>
                     </button>
 
-                    {isFormValid() || submitStatus != 'success' || !isSubmitting && <ButtonHover />}
+                    {canSubmit && <ButtonHover />}
                 </div>
             </div>
         </form>

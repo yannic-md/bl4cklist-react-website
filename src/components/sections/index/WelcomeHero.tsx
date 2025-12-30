@@ -120,8 +120,9 @@ export default function WelcomeHero({ guildStats }: WelcomeHeroProps): JSX.Eleme
             { threshold: 0.8 }
         );
 
-        observer.observe(sectionRef.current);
-        return (): void => { if (sectionRef.current) { observer.unobserve(sectionRef.current); } };
+        if (sectionRef.current) { observer.observe(sectionRef.current); }
+        const currentRef: HTMLElement | null = sectionRef.current;
+        return (): void => { if (currentRef) { observer.unobserve(currentRef); } };
     }, []);
 
     /**
