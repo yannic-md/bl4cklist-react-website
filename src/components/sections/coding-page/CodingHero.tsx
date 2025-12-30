@@ -14,6 +14,7 @@ import Image from "next/image";
 import {APIStatistics} from "@/types/APIResponse";
 import {FaDiscord, FaRobot} from "react-icons/fa";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
+import {AnimateOnView} from "@/components/animations/AnimateOnView";
 
 interface CodingHeroProps {
     guildStats: APIStatistics | null;
@@ -65,7 +66,7 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
 
             <div className="flex place-items-center items-center h-full pt-20 md:pt-24 px-4 sm:px-6 lg:px-8
                             mx-auto w-full max-w-7xl [@media(min-width:2000px)]:max-w-[100rem]">
-                <div className="flex w-full flex-col 2xl:flex-row justify-between items-center gap-8 lg:gap-12">
+                <div className={`flex w-full ${index.hero_layout_container} justify-between items-center gap-8 lg:gap-12`}>
 
                     {/* Text Section */}
                     <div className="w-full 2xl:w-1/2 relative z-10 text-center 2xl:text-left">
@@ -74,14 +75,14 @@ export default function CodingHero({ guildStats }: CodingHeroProps): JSX.Element
                                         pointer-events-none"></div>
 
                         {/* Animated Tag */}
-                        <div className="mb-2">
-                            <div className="font-bold tracking-wider animate__animated animate__fadeInLeft">
+                        <AnimateOnView animation={"animate__fadeInLeft"} className="mb-2">
+                            <div className="font-bold tracking-wider">
                                 <AnimatedTextReveal text={tCodingHero('infoTag')}
                                                     className="text-sm text-[coral] uppercase text-center
                                                                2xl:text-start pb-3 lg:pb-0"
                                                     shadowColor="rgba(255,127,80,0.35)" />
                             </div>
-                        </div>
+                        </AnimateOnView>
 
                         {/* Headline */}
                         <h2 className={`${is2XL ? index.head_border : index.head_border_center} max-w-full 

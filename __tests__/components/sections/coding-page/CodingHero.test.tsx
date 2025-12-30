@@ -48,6 +48,15 @@ jest.mock('@/components/elements/ButtonHover', () => ({
     default: () => <div data-testid="button-hover" />,
 }));
 
+jest.mock('@/components/animations/AnimateOnView', () => {
+    const MockAnimate = ({ children, className }: any) => (
+        <div data-testid="animate-on-view" className={className}>
+            {children}
+        </div>
+    );
+    return {__esModule: true, AnimateOnView: MockAnimate};
+});
+
 // Mock react-icons
 jest.mock('react-icons/fa', () => ({
     FaDiscord: () => <span data-testid="discord-icon">Discord</span>,

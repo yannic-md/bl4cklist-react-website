@@ -40,6 +40,18 @@
     clip-path: polygon(0% 0%, 100% 0%, 93.846% 100%, 6.154% 100%, 0% 0%);
 }
 
+/* Avoid very annoying ATF issue with CSS chunk loading on the "tech-coding" page */
+.hero_layout_container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1536px) {
+    .hero_layout_container {
+        flex-direction: row;
+    }
+}
+
 .hero_text_bg {
     background: radial-gradient(50% 84% at 50% 50%, rgb(1, 1, 13) 0%,rgba(0,0,0,0) 100%)
 }
