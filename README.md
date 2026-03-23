@@ -15,13 +15,13 @@
 
 <h4 align="center">
   <a href="https://react.dev/">
-    <img src="https://img.shields.io/badge/React-19.2.3-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/React-19.2.4-1abc9c?style=for-the-badge" alt="angular version" style="height: 25px;">
   </a>
   <a href="https://nextjs.org/">
-    <img src="https://img.shields.io/badge/Next.JS-16.0.10-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Next.JS-16.1.7-1abc9c?style=for-the-badge" alt="next version" style="height: 25px;">
   </a>
   <a href="https://jestjs.io/">
-    <img src="https://img.shields.io/badge/JEST-30.2.0-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/JEST-30.3.0-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
 </h4>
 <h4 align="center">
@@ -29,7 +29,7 @@
     <img src="https://img.shields.io/badge/Animate.css-4.1.1-1abc9c?style=for-the-badge" alt="animate.css version" style="height: 25px;">
   </a>
   <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Tailwind-4.1.18-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
+    <img src="https://img.shields.io/badge/Tailwind-4.2.2-1abc9c?style=for-the-badge" alt="tailwind version" style="height: 25px;">
   </a>
   <a href="https://particles.js.org/">
     <img src="https://img.shields.io/badge/Particles.js-3.9.1-1abc9c?style=for-the-badge" alt="particles.js version" style="height: 25px;">
@@ -85,8 +85,10 @@ It supports following <strong>features</strong>:
 
 ## 🟢 Start Project
 1. Run `ng build`.
-2. Run `cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/`
-3. Upload entire content of `standalone/` to a server and run `node server.js`.
+2. Run `cp -r public .next/standalone/ && cp -r -force .next/static .next/standalone/.next/`
+3. Create a tar file for linux-support (windows creates .link files otherwise): `tar -czhf release.tar.gz -C .next/standalone .`
+4. Upload the `release.tar.gz` file to the server and unpack it with `tar -xzf release.tar.gz && rm release.tar.gz`.
+5. Now start the server with `node server.js`.
 
 ## ⚖️ License
 

@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+release.tar.gz
 
 # production
 /build
