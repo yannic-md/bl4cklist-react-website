@@ -16,7 +16,7 @@
     "@tsparticles/slim": "^3.9.1",
     "animate.css": "^4.1.1",
     "canvas-confetti": "^1.9.4",
-    "next": "16.1.7",
+    "next": "16.2.3",
     "next-intl": "^4.6.1",
     "postcss": "^8.5.8",
     "react": "19.2.4",
