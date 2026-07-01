@@ -13,7 +13,7 @@
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.2",
     "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^3.9.1",
+    "@tsparticles/slim": "^4.3.1",
     "animate.css": "^4.1.1",
     "canvas-confetti": "^1.9.4",
     "next": "^16.2.9",
